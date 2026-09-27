@@ -192,6 +192,36 @@
       '<li><b>දකින්නේ කවුද:</b> දහම් පාසලේ ගුරුවරුන් පමණි. එය ගුරුවරුන්ගේ Google Sheet එකක තැන්පත් වේ.</li>' +
       '<li><b>මකා දැමීමට:</b> ඕනෑම වේලාවක ගුරුතුමාට කියන්න. දරුවාගේ සටහන මකා දමනු ලැබේ.</li></ul></div>';
   }
+  /* A full-screen "please wait" layer. While it is up, nothing else on the page can be used. */
+  var busyT = null, busyOn = false, busyFocus = null;
+  function busy(title, text) {
+    var el = document.getElementById('busy'), t0 = Date.now(), outer = [document.querySelector('.top'), app, document.querySelector('.foot')];
+    busyOn = true; busyFocus = document.activeElement;
+    document.getElementById('busyTitle').textContent = title;
+    document.getElementById('busyText').textContent = text;
+    document.getElementById('busyTime').textContent = '';
+    el.hidden = false; document.body.classList.add('is-busy');
+    outer.forEach(function (o) { if (o) { o.setAttribute('inert', ''); o.setAttribute('aria-hidden', 'true'); } });
+    try { el.querySelector('.busy-box').setAttribute('tabindex', '-1'); el.querySelector('.busy-box').focus(); } catch (e) { /* ignore */ }
+    clearInterval(busyT);
+    busyT = setInterval(function () {
+      var sec = Math.round((Date.now() - t0) / 1000), m = document.getElementById('busyTime');
+      m.textContent = sec < 6 ? '' : sec < 20 ? 'Still working… ' + sec + ' seconds' : sec < 60 ? 'The teacher\'s record is slow today. Please keep waiting… ' + sec + ' seconds' : 'Still trying. Please do not close this page… ' + sec + ' seconds';
+    }, 1000);
+  }
+  function busyNote(text) { if (busyOn) document.getElementById('busyText').textContent = text; }
+  function idle() {
+    busyOn = false; clearInterval(busyT);
+    document.getElementById('busy').hidden = true; document.body.classList.remove('is-busy');
+    [document.querySelector('.top'), app, document.querySelector('.foot')].forEach(function (o) { if (o) { o.removeAttribute('inert'); o.removeAttribute('aria-hidden'); } });
+    try { if (busyFocus && document.contains(busyFocus)) busyFocus.focus(); } catch (e) { /* ignore */ }
+  }
+  /* belt and braces for browsers without `inert`: swallow every key and click while waiting */
+  ['click', 'keydown', 'submit', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { if (busyOn) { e.stopPropagation(); e.preventDefault(); } }, true);
+  });
+  var busyHash = null;
+  window.addEventListener('hashchange', function (e) { if (busyOn && busyHash !== null && location.hash !== busyHash) { e.stopImmediatePropagation(); history.replaceState(null, '', busyHash); } }, true);
   function pageMe() {
     var head = '<section class="block first en-page" lang="en"><div class="block-head"><h1>🙋 My progress</h1><p>Your teacher can see what you learn, and you earn points.</p></div>';
     if (!Trk || !Trk.isOn()) return head + '<div class="fav-empty"><span aria-hidden="true">📋</span><b>Progress tracking is not switched on yet</b><p>You can join once your teacher switches it on. Until then your progress is saved on this device.</p></div></section>';
@@ -241,13 +271,18 @@
       if (sy) sy.textContent = syncText(why);
       if (pt && pr && pr.points) pt.textContent = pr.points.total;
     }
+    if (why === 'retry' && busyOn) busyNote('That took too long, so we are trying again. Please wait and do not press anything.');
     if (why === 'lost') toast('Your record could not be found. Please tell your teacher.');
   });
   app.addEventListener('submit', function (e) {
     var f = e.target; if (f.id !== 'joinForm' && f.id !== 'resumeForm') return;
     e.preventDefault();
-    var btn = f.querySelector('button[type=submit]'); btn.disabled = true; meMsg('⏳ One moment…', true);
+    if (busyOn) return;
+    var btn = f.querySelector('button[type=submit]'), joining = f.id === 'joinForm'; btn.disabled = true; meMsg('', true);
+    busyHash = location.hash;
+    busy(joining ? 'Joining…' : 'Finding your progress…', joining ? 'We are adding you to your teacher\'s record. Please wait and do not press anything.' : 'We are looking for your name and secret code. Please wait and do not press anything.');
     var done = function (res, joined) {
+      idle(); busyHash = null;
       btn.disabled = false;
       if (!res.ok) { meMsg(ERR[res.error] || 'Something went wrong. Please try again.', false); sfx.bad(); return; }
       if (joined) uploadLocal();
@@ -774,10 +809,11 @@
       document.getElementById('quizNext').focus();
       return;
     }
-    if (t.id === 'meSyncBtn') { meMsg('⏳ Sending…', true); Trk.flush().then(function () { meMsg(Trk.pending() ? 'Could not send. Please try again later.' : 'Everything has been sent.', !Trk.pending()); }); return; }
+    if (t.id === 'meSyncBtn') { if (busyOn) return; busyHash = location.hash; busy('Sending…', 'We are sending your progress to your teacher. Please wait.'); Trk.flush().then(function () { idle(); busyHash = null; meMsg(Trk.pending() ? 'Could not send. Please try again later.' : 'Everything has been sent.', !Trk.pending()); }); return; }
     if (t.id === 'meLeave') {
       var go = function () { if (window.confirm('Sign out? Have you written down your secret code? Progress is removed from this device. Your teacher\'s record stays as it is.')) { Trk.leave(); clearLocal(); paintProgress(); route(); toast('Signed out. See you again!'); } };
-      Trk.flush().then(function () { if (Trk.pending() && !window.confirm(Trk.pending() + ' update(s) have not been sent yet. They will be lost if you sign out. Sign out anyway?')) return; go(); });
+      if (busyOn) return; busyHash = location.hash; busy('Signing out…', 'We are sending your last updates first. Please wait.');
+      Trk.flush().then(function () { idle(); busyHash = null; if (Trk.pending() && !window.confirm(Trk.pending() + ' update(s) have not been sent yet. They will be lost if you sign out. Sign out anyway?')) return; go(); });
       return;
     }
     if (t.id === 'resetBtn') {

@@ -63,6 +63,13 @@ Built in `assets/js/app.js` (search for "tests:"). Rules chosen by the owner on 
 - Test pictures use `Art.setMode({ neutral: true })`, which hides frames, ticks, colours
   and decorations that would give the answer away. Keep new drawing helpers neutral-aware.
 
+## Waiting for Google
+
+Google's script often takes 2 to 5 seconds and sometimes much longer. Any action that waits
+for it (join, continue, send now, sign out) must call `busy(title, text)` first and `idle()`
+afterwards. `busy` covers the page, blocks clicks, keys and navigation, and shows elapsed
+time. Its text is English, like the rest of the progress page.
+
 ## Children's data
 
 Progress tracking collects a child's first name and place. Never add fields for surname,

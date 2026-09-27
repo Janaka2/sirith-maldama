@@ -269,6 +269,18 @@ a.chip:hover, button.chip:hover { background: color-mix(in srgb, var(--c) 24%, #
 .gain { background: #dcfce7; color: #15803d; } .loss { background: #fee2e2; color: #b91c1c; }
 .me-tests { font-weight: 800; color: #92400e; }
 
+/* please-wait layer */
+.busy { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px; background: rgba(58, 29, 12, .62); backdrop-filter: blur(3px); font-family: 'Baloo 2', 'Nunito', system-ui, sans-serif; cursor: wait; }
+.busy[hidden] { display: none; }
+.busy-box { background: #fff; border-radius: 30px; border: 4px solid #fbbf24; padding: 28px 26px 24px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .5); outline: none; }
+.busy-box h2 { font-size: 1.7rem; font-weight: 800; color: #7c2d12; margin: 12px 0 6px; line-height: 1.3; }
+.busy-box p { font-weight: 600; color: var(--ink2); line-height: 1.6; }
+.busy-time { min-height: 1.6em; margin-top: 10px; color: #b45309 !important; font-weight: 800 !important; }
+.busy-spin { width: 92px; height: 92px; margin: 0 auto; border-radius: 50%; border: 8px solid #fde7c3; border-top-color: #f59e0b; display: grid; place-items: center; animation: spin 1s linear infinite; }
+.busy-spin span { font-size: 2.2rem; animation: spin 1s linear infinite reverse; }
+body.is-busy { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .busy-spin, .busy-spin span { animation: glow 1.4s ease-in-out infinite !important; } }
+
 /* progress tracking (pairs with assets/js/tracker.js) */
 .pill[hidden] { display: none; }
 .me-pill { border-color: #bfdbfe; color: #1e40af; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }

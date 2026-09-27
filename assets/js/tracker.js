@@ -48,6 +48,7 @@
     tries = tries || 1;
     return sendOnce(body).catch(function (e) {
       if (tries <= 1) throw e;
+      emit('retry', { action: body.action, left: tries - 1 });
       return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return send(body, tries - 1); });
     });
   }
