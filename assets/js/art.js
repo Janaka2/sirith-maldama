@@ -811,7 +811,7 @@
   }
   /* two tall neutral panels (no tick / cross) with an emoji tag */
   function pair(a, b) {
-    function tag(x, em) { return g('<circle r="17" fill="#fff" stroke="#f59e0b" stroke-width="3"/>' + emoji(0, 1, 18, em), 'translate(' + x + ' 26)'); }
+    function tag(x, em) { return g('<circle r="17" fill="#fff" stroke="#f59e0b" stroke-width="3"/>' + (/^[0-9]+$/.test(em) ? label(0, 1, 15, em, '#b45309', 900) : emoji(0, 1, 18, em)), 'translate(' + x + ' 26)'); }
     return '<rect width="' + W + '" height="' + H + '" rx="18" fill="#fffaf0"/>' +
       panel(4, 4, 192, 292, null, a[0], a[1], a[2]) + panel(204, 4, 192, 292, null, b[0], b[1], b[2]) + tag(30, (a[2] || {}).tag || '①') + tag(230, (b[2] || {}).tag || '②');
   }

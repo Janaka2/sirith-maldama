@@ -1,9 +1,9 @@
 # සිරිත් මල්දම — පින්තූර කවි පොත
 
-An illustrated learning site for children, based on parts 1 and 2 of
+An illustrated learning site for children, based on all three parts of
 "සිරිත් මල්දම" by M. L. Silva Guru Muhandiram. Each part has 62 poems.
 
-Part 2 verses come from Wikisource. Their meanings, English lines and
+Part 2 and part 3 verses come from Wikisource. Their meanings, English lines and
 child-friendly titles were written for this site and need review by a Sinhala teacher.
 
 ## Run locally
@@ -28,10 +28,10 @@ The site is plain HTML, CSS and JavaScript. There is no build step.
 | `index.html` | Page shell |
 | `assets/css/style.css` | Styles and animations |
 | `assets/js/data.js` | Part 1 poems, meanings, child-friendly titles, quiz |
-| `assets/js/data2.js` | Part 2 poems, meanings, child-friendly titles, quiz |
+| `assets/js/data2.js`, `data3.js` | Part 2 and 3 poems, meanings, child-friendly titles, quiz |
 | `assets/js/art.js` | Drawing library for characters, props, backgrounds |
 | `assets/js/scenes.js` | Part 1 pictures, one per poem |
-| `assets/js/scenes2.js` | Part 2 pictures, one per poem |
+| `assets/js/scenes2.js`, `scenes3.js` | Part 2 and 3 pictures, one per poem |
 | `assets/js/app.js` | Pages, progress, read aloud, quiz |
 | `assets/img/logo.jpg` | School logo, cropped from the intro video |
 | `sirith_maldama_visual_storybook.html` | The original single-file version |

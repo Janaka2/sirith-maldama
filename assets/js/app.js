@@ -127,7 +127,7 @@
       p = +p;
       var c = countOf(p), t = PARTS[p].verses.length;
       h += '<a class="part-tab' + (p === PART ? ' on' : '') + '" role="tab" aria-selected="' + (p === PART) + '" href="#/' + p + '/' + (where || '') + '">' +
-        '<span class="part-ico" aria-hidden="true">' + (p === 1 ? '📙' : '📗') + '</span><span><b>' + esc(PARTS[p].name) + '</b><small>🌸 ' + c + ' / ' + t + '</small></span></a>';
+        '<span class="part-ico" aria-hidden="true">' + (['📙', '📗', '📘'][p - 1] || '📕') + '</span><span><b>' + esc(PARTS[p].name) + '</b><small>🌸 ' + c + ' / ' + t + '</small></span></a>';
     });
     return h + '</div>';
   }
@@ -209,7 +209,7 @@
     for (var i = L.from; i <= L.to; i++) dots += '<a href="#/' + PART + '/kavi/' + i + '" class="dot' + (i === n ? ' now' : '') + (learned[i] ? ' on' : '') + '" aria-label="කවිය ' + i + '"></a>';
     return '<article class="poem" style="--c:' + L.color + '">' +
       '<div class="poem-top">' +
-        '<div class="crumbs"><a class="chip" style="--c:#b45309" href="#/' + PART + '/">' + (PART === 1 ? '📙' : '📗') + ' ' + esc(PARTS[PART].name) + '</a><span class="chip solid" style="--c:' + L.color + '">' + L.icon + ' ' + L.n + ' වන පියවර · ' + esc(L.name) + '</span>' + catChip(v.cat, true) + '</div>' +
+        '<div class="crumbs"><a class="chip" style="--c:#b45309" href="#/' + PART + '/">' + (['📙', '📗', '📘'][PART - 1] || '📕') + ' ' + esc(PARTS[PART].name) + '</a><span class="chip solid" style="--c:' + L.color + '">' + L.icon + ' ' + L.n + ' වන පියවර · ' + esc(L.name) + '</span>' + catChip(v.cat, true) + '</div>' +
         '<button class="btn ghost small" id="presentBtn" type="button">🖥️ ලොකු තිරය</button>' +
       '</div>' +
       '<header class="poem-head"><span class="num" aria-label="කවිය ' + n + '">' + pad(n) + '</span><div><h1>' + esc(v.title) + '</h1><p class="sub">' + esc(v.titleEn) + '</p></div><span class="poem-icon" aria-hidden="true">' + v.icon + '</span></header>' +
@@ -339,9 +339,9 @@
       '<div class="card"><h3>1. පින්තූරයෙන් පටන් ගන්න</h3><p>කවිය කියවීමට පෙර පින්තූරය පෙන්වන්න. <b class="no-t">රතු</b> රාමුවේ ඇත්තේ නොකළ යුතු දෙයයි. <b class="yes-t">කොළ</b> රාමුවේ ඇත්තේ හොඳ පුරුද්දයි. “මෙහි සිදු වන්නේ කුමක්ද?” යැයි දරුවන්ගෙන් අසන්න.</p></div>' +
       '<div class="card"><h3>2. කවිය එකට කියන්න</h3><p>කවිය පේළියෙන් පේළිය හඬ නඟා කියවන්න. දරුවන් ඔබ පසුපස කියවීමට සලස්වන්න. “ලොකු තිරය” බොත්තම පන්ති කාමරයේ තිරයට සුදුසුය.</p></div>' +
       '<div class="card"><h3>3. තේරුම කතා කරන්න</h3><p>තේරුම සරල වචනවලින් පැහැදිලි කරන්න. දරුවාගේ ජීවිතයෙන් උදාහරණයක් අසන්න.</p></div>' +
-      '<div class="card"><h3>4. පොරොන්දුව</h3><p>“මගේ පොරොන්දුව” දරුවා විසින් කියවා “මම ඉගෙන ගත්තා” බොත්තම ඔබන්න. මලක් පිපෙයි. එක් කොටසක මල් 62 න් මල්දම සම්පූර්ණ වෙයි.</p></div>' +
+      '<div class="card"><h3>4. පොරොන්දුව</h3><p>“මගේ පොරොන්දුව” දරුවා විසින් කියවා “මම ඉගෙන ගත්තා” බොත්තම ඔබන්න. මලක් පිපෙයි. එක් කොටසක මල් 62 න් මල්දම සම්පූර්ණ වෙයි. කොටස් තුනක් ඇත.</p></div>' +
       '<div class="card"><h3>5. ප්‍රශ්න ක්‍රීඩාව</h3><p>සතියකට වරක් ප්‍රශ්න ක්‍රීඩාව කරන්න. පින්තූරය බලා පුරුද්ද හඳුනා ගැනීම මතකය ශක්තිමත් කරයි.</p></div>' +
-      '<div class="card"><h3>සටහන</h3><p>ප්‍රගතිය සුරැකෙන්නේ මෙම උපාංගයේ බ්‍රවුසරයේ පමණි. කවි ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ “සිරිත් මල්දම” කෘතියෙනි. 2 කොටසේ කවි විකිමූලාශ්‍රයෙනි; එහි තේරුම් සහ ඉංග්‍රීසි පරිවර්තන මෙම පිටුව සඳහා ලියන ලදී.</p>' +
+      '<div class="card"><h3>සටහන</h3><p>ප්‍රගතිය සුරැකෙන්නේ මෙම උපාංගයේ බ්‍රවුසරයේ පමණි. කවි ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ “සිරිත් මල්දම” කෘතියෙනි. 2 සහ 3 කොටස්වල කවි විකිමූලාශ්‍රයෙනි; ඒවායේ තේරුම් සහ ඉංග්‍රීසි පරිවර්තන මෙම පිටුව සඳහා ලියන ලදී.</p>' +
       '<button class="btn ghost small danger" id="resetBtn" type="button">🗑️ ' + esc(PARTS[PART].name) + ' ප්‍රගතිය මකන්න</button></div>' +
       '</div></section>';
   }
