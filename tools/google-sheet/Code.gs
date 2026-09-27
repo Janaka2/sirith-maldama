@@ -10,7 +10,18 @@
 
 // ====== SETTINGS: change these IN THE GOOGLE EDITOR, after pasting. ======
 // Do not type your real class code into the copy kept in the project folder: that folder is public.
-var CLASS_CODE = 'CHANGE-ME';      // give this word to your pupils; the site asks for it when they join
+// One code for each class. Replace each CHANGE-ME with a word of your own, and give each class its own word.
+// The code decides the class: a child who types the Beginner L1 code is saved as Beginner L1.
+// Leave a class as CHANGE-ME to keep that class closed.
+var CLASS_CODES = {
+  'Beginner L1': 'CHANGE-ME',
+  'Beginner L2': 'CHANGE-ME',
+  'Intermediate L1': 'CHANGE-ME',
+  'Intermediate L2': 'CHANGE-ME',
+  'Advanced': 'CHANGE-ME'
+};
+// Optional: one code that works for every class. The child's own choice of class is then saved.
+var CLASS_CODE = 'CHANGE-ME';
 var POINTS_PER_LESSON = 10;        // points for each lesson marked as learned
 var POINTS_PER_QUIZ_STAR = 5;      // points for each quiz star
 var BONUS_SECTION_COMPLETE = 50;   // extra points when every lesson of a section is learned
@@ -112,9 +123,15 @@ function writeChild_(sh, row, state, lastText) {
 }
 
 function join_(req) {
-  if (CLASS_CODE === 'CHANGE-ME') return { ok: false, error: 'not-set-up' };
-  if (!same_(req.classCode, CLASS_CODE)) return { ok: false, error: 'bad-class-code' };
-  var name = clean_(req.name, 40), place = clean_(req.place, 60), cls = clean_(req.cls, 40);
+  var owner = null, anySet = CLASS_CODE !== 'CHANGE-ME';
+  Object.keys(CLASS_CODES).forEach(function (k) {
+    if (CLASS_CODES[k] === 'CHANGE-ME') return;
+    anySet = true;
+    if (owner === null && same_(req.classCode, CLASS_CODES[k])) owner = k;
+  });
+  if (!anySet) return { ok: false, error: 'not-set-up' };
+  if (owner === null && !(CLASS_CODE !== 'CHANGE-ME' && same_(req.classCode, CLASS_CODE))) return { ok: false, error: 'bad-class-code' };
+  var name = clean_(req.name, 40), place = clean_(req.place, 60), cls = owner !== null ? owner : clean_(req.cls, 40);
   if (name.length < 2) return { ok: false, error: 'name-needed' };
   if (!cls) return { ok: false, error: 'class-needed' };
   if (!place) return { ok: false, error: 'place-needed' };

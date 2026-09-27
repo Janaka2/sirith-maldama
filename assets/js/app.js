@@ -249,6 +249,7 @@
         '<label>Your class<input name="cls" required maxlength="40" list="classList" placeholder="Choose or type"><datalist id="classList">' + copts + '</datalist></label>' +
         '<label>Your country<input name="place" required maxlength="60" list="placeList" placeholder="Choose or type"><datalist id="placeList">' + opts + '</datalist></label>' +
         '<label>Class code <small>(from your teacher)</small><input name="classCode" required maxlength="40" autocapitalize="characters"></label>' +
+        '<p class="me-note">Your class code decides your class. If it belongs to a different class, that class is saved.</p>' +
         '<fieldset class="consent"><legend>👪 For parents</legend>' +
           '<p class="me-note">This part must be completed by a parent or guardian.</p>' +
           '<label>Parent or guardian name<input name="guardian" required minlength="2" maxlength="60" autocomplete="off"></label>' +

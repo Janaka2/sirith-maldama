@@ -21,8 +21,7 @@ and the total includes them the next time that child does something.
 2. In the menu choose **Extensions**, then **Apps Script**.
 3. Delete whatever is in the editor. Open `Code.gs` from this folder, copy all of it, and
    paste it in.
-4. Near the top, change `CHANGE-ME` to a class code of your own, for example `LOTUS2026`.
-   Pupils type this word once when they join. It keeps strangers out.
+4. Near the top, set the class codes. See "Class codes" below.
 5. Click **Save**.
 6. Click **Deploy**, then **New deployment**. Click the gear icon and choose **Web app**.
    - Execute as: **Me**
@@ -35,6 +34,48 @@ and the total includes them the next time that child does something.
    ```
    Edit the lists of `classes` and `places` too, so they show your own.
 10. Publish the site again.
+
+## Class codes
+
+Near the top of the script you will find this list:
+
+```js
+var CLASS_CODES = {
+  'Beginner L1': 'CHANGE-ME',
+  'Beginner L2': 'CHANGE-ME',
+  'Intermediate L1': 'CHANGE-ME',
+  'Intermediate L2': 'CHANGE-ME',
+  'Advanced': 'CHANGE-ME'
+};
+```
+
+Replace each `CHANGE-ME` with a word of your own, inside the quotes. For example:
+
+```js
+  'Beginner L1': 'LOTUS-41',
+  'Beginner L2': 'JASMINE-27',
+```
+
+Rules:
+
+- Give every class a **different** code. If two classes share a code, children are saved
+  in whichever class comes first in the list.
+- The code decides the class. A child who types the Beginner L1 code is saved as
+  Beginner L1, whatever class they picked on the form.
+- A class left as `CHANGE-ME` stays closed. Nobody can join it.
+- Capital letters and spaces do not matter when a child types the code.
+- Do not use the class name as the code. Class names are shown publicly on the form.
+- To add a class, add a line to the list, and add the same name to `classes` in
+  `assets/js/tracker-config.js` on the site.
+- To rename a class, change it in both places. Children already saved keep the old name
+  in the sheet until you edit their rows.
+
+Below the list is one more setting, `CLASS_CODE`. It is optional. If you set it, that one
+code works for every class and the child's own choice of class is saved. Leave it as
+`CHANGE-ME` if you want each class to use only its own code.
+
+Set these codes **in the Google editor only**. The copy of `Code.gs` in the project folder
+is public and must keep `CHANGE-ME`.
 
 ## After changing the script
 
