@@ -15,10 +15,10 @@ var POINTS_PER_QUIZ_STAR = 5;      // points for each quiz star
 var BONUS_SECTION_COMPLETE = 50;   // extra points when every lesson of a section is learned
 // ====================================
 
-var CHILD_HEAD = ['Child ID', 'Name', 'Place', 'Secret code', 'Joined', 'Last active', 'Lessons learned', 'Quiz stars',
+var CHILD_HEAD = ['Child ID', 'Name', 'Class', 'Place', 'Secret code', 'Joined', 'Last active', 'Lessons learned', 'Quiz stars',
   'Last lesson', 'Progress summary', 'Points earned', 'Teacher bonus points', 'Total points', 'Saved progress (do not edit)'];
-var LOG_HEAD = ['Time', 'Child ID', 'Name', 'Place', 'Lesson set', 'Event', 'Section', 'Lesson', 'Value'];
-var COL = { id: 1, name: 2, place: 3, code: 4, joined: 5, active: 6, learned: 7, stars: 8, last: 9, summary: 10, earned: 11, bonus: 12, total: 13, state: 14 };
+var LOG_HEAD = ['Time', 'Child ID', 'Name', 'Class', 'Place', 'Lesson set', 'Event', 'Section', 'Lesson', 'Value'];
+var COL = { id: 1, name: 2, cls: 3, place: 4, code: 5, joined: 6, active: 7, learned: 8, stars: 9, last: 10, summary: 11, earned: 12, bonus: 13, total: 14, state: 15 };
 
 function doGet() { return out_({ ok: true, service: 'daham-pasala-tracker' }); }
 
@@ -45,6 +45,10 @@ function sheet_(name, head) {
   var sh = ss.getSheetByName(name);
   if (!sh) { sh = ss.insertSheet(name); }
   if (sh.getLastRow() === 0) { sh.appendRow(head); sh.setFrozenRows(1); }
+  else if (sh.getLastRow() === 1) { sh.getRange(1, 1, 1, head.length).setValues([head]); }   // only a heading row: keep it up to date
+  else if (String(sh.getRange(1, 1, 1, head.length).getValues()[0].join('|')) !== head.join('|')) {
+    throw new Error('The "' + name + '" tab has an older layout. Rename that tab (for example to "' + name + ' old") and try again.');
+  }
   return sh;
 }
 function clean_(s, max) { return String(s === undefined || s === null ? '' : s).replace(/[\u0000-\u001f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max); }
@@ -91,14 +95,15 @@ function writeChild_(sh, row, state, lastText) {
 function join_(req) {
   if (CLASS_CODE === 'CHANGE-ME') return { ok: false, error: 'not-set-up' };
   if (!same_(req.classCode, CLASS_CODE)) return { ok: false, error: 'bad-class-code' };
-  var name = clean_(req.name, 40), place = clean_(req.place, 60);
+  var name = clean_(req.name, 40), place = clean_(req.place, 60), cls = clean_(req.cls, 40);
   if (name.length < 2) return { ok: false, error: 'name-needed' };
+  if (!cls) return { ok: false, error: 'class-needed' };
   if (!place) return { ok: false, error: 'place-needed' };
   var sh = sheet_('Children', CHILD_HEAD);
   var id = 'C' + (sh.getLastRow() + 1000), code = code_(), now = new Date();
-  sh.appendRow([id, name, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(emptyState_())]);
-  sheet_('Log', LOG_HEAD).appendRow([now, id, name, place, '', 'joined', '', '', '']);
-  return { ok: true, childId: id, code: code, profile: { name: name, place: place, joined: now.getTime() }, progress: emptyState_(), points: { earned: 0, bonus: 0, total: 0 } };
+  sh.appendRow([id, name, cls, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(emptyState_())]);
+  sheet_('Log', LOG_HEAD).appendRow([now, id, name, cls, place, '', 'joined', '', '', '']);
+  return { ok: true, childId: id, code: code, profile: { name: name, cls: cls, place: place, joined: now.getTime() }, progress: emptyState_(), points: { earned: 0, bonus: 0, total: 0 } };
 }
 
 function resume_(req) {
@@ -107,8 +112,8 @@ function resume_(req) {
   if (!hit) return { ok: false, error: 'not-found' };
   var v = hit.values, state = parse_(v[COL.state - 1]);
   var p = writeChild_(sh, hit.row, state, '');
-  sheet_('Log', LOG_HEAD).appendRow([new Date(), v[COL.id - 1], v[COL.name - 1], v[COL.place - 1], '', 'continued', '', '', '']);
-  return { ok: true, childId: v[COL.id - 1], code: v[COL.code - 1], profile: { name: v[COL.name - 1], place: v[COL.place - 1] }, progress: state, points: p };
+  sheet_('Log', LOG_HEAD).appendRow([new Date(), v[COL.id - 1], v[COL.name - 1], v[COL.cls - 1], v[COL.place - 1], '', 'continued', '', '', '']);
+  return { ok: true, childId: v[COL.id - 1], code: v[COL.code - 1], profile: { name: v[COL.name - 1], cls: v[COL.cls - 1], place: v[COL.place - 1] }, progress: state, points: p };
 }
 
 function event_(req) {
@@ -132,7 +137,7 @@ function event_(req) {
     } else if (kind === 'open') {
       L.last = { part: sec, item: item };
     } else { return; }
-    if (kind !== 'open') log.appendRow([ev.t ? new Date(Number(ev.t)) : new Date(), v[COL.id - 1], v[COL.name - 1], v[COL.place - 1], set, kind, sec, item, ev.value === undefined ? '' : ev.value]);
+    if (kind !== 'open') log.appendRow([ev.t ? new Date(Number(ev.t)) : new Date(), v[COL.id - 1], v[COL.name - 1], v[COL.cls - 1], v[COL.place - 1], set, kind, sec, item, ev.value === undefined ? '' : ev.value]);
   });
   var p = writeChild_(sh, hit.row, state, last);
   return { ok: true, points: p, progress: state };

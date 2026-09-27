@@ -32,14 +32,14 @@
       .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); });
   }
   function keep(res, extra) {
-    var p = { childId: res.childId, code: res.code, name: res.profile.name, place: res.profile.place, points: res.points || null, synced: Date.now() };
+    var p = { childId: res.childId, code: res.code, name: res.profile.name, cls: res.profile.cls || '', place: res.profile.place, points: res.points || null, synced: Date.now() };
     for (var k in (extra || {})) p[k] = extra[k];
     set(P_KEY, p); return p;
   }
 
-  function join(name, place, classCode) {
+  function join(name, cls, place, classCode) {
     if (!isOn()) return Promise.resolve({ ok: false, error: 'off' });
-    return send({ action: 'join', name: name, place: place, classCode: classCode }).then(function (res) {
+    return send({ action: 'join', name: name, cls: cls, place: place, classCode: classCode }).then(function (res) {
       if (res.ok) { keep(res); emit('joined', res); }
       return res;
     }).catch(function () { return { ok: false, error: 'network' }; });
@@ -85,5 +85,5 @@
   global.addEventListener('pagehide', function () { flush(); });
   setTimeout(flush, 1500);
 
-  global.Tracker = { isOn: isOn, profile: profile, join: join, resume: resume, record: record, flush: flush, pending: pending, leave: leave, onChange: onChange, places: function () { return (CFG.places || []).slice(); } };
+  global.Tracker = { isOn: isOn, profile: profile, join: join, resume: resume, record: record, flush: flush, pending: pending, leave: leave, onChange: onChange, places: function () { return (CFG.places || []).slice(); }, classes: function () { return (CFG.classes || []).slice(); } };
 })(window);

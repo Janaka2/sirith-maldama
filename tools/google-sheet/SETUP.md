@@ -8,7 +8,7 @@ A Google Sheet with two tabs.
 
 | Tab | What it shows |
 | --- | --- |
-| Children | One row per child: name, place, date joined, last active, lessons learned, quiz stars, last lesson, points |
+| Children | One row per child: name, class, place, date joined, last active, lessons learned, quiz stars, last lesson, points |
 | Log | One row for every lesson learned and every quiz finished, with the time |
 
 Points are worked out for you. You can add your own in the "Teacher bonus points" column,
@@ -33,7 +33,7 @@ and the total includes them the next time that child does something.
    ```js
    endpoint: 'https://script.google.com/macros/s/…/exec',
    ```
-   Edit the list of `places` too, so it shows your own classes or centres.
+   Edit the lists of `classes` and `places` too, so they show your own.
 10. Publish the site again.
 
 ## After changing the script
@@ -41,10 +41,15 @@ and the total includes them the next time that child does something.
 If you edit `Code.gs` later, choose **Deploy**, **Manage deployments**, the pencil icon,
 **Version: New version**, then **Deploy**. The link stays the same.
 
+## Sorting by class
+
+Click the "Class" heading in the Children tab, then **Data**, **Create a filter**. You can
+then show one class at a time, or sort by "Total points".
+
 ## How children use it
 
-- **First time:** the child opens "මම" on the site, types a first name, picks a place,
-  and types the class code. The site shows a six-letter secret code. The child writes it down.
+- **First time:** the child opens "මම" on the site, types a first name, picks a class and a
+  country, and types the class code. The site shows a six-letter secret code. The child writes it down.
 - **Every time after, on the same device:** nothing to do. Progress is sent automatically.
 - **On another device:** the child chooses "දිගටම කරමු", types the name and the secret code,
   and carries on from where they stopped.

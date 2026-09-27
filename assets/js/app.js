@@ -170,7 +170,7 @@
     pill.classList.toggle('in', !!pr);
     document.getElementById('meName').textContent = pr ? pr.name : 'එක් වන්න';
   }
-  var ERR = { 'bad-class-code': 'පන්ති කේතය වැරදියි. ගුරුතුමාගෙන් අසන්න.', 'name-needed': 'ඔබේ නම ලියන්න.', 'place-needed': 'ඔබ සහභාගී වන තැන තෝරන්න.', 'not-found': 'නම හෝ රහස් කේතය වැරදියි. නැවත බලන්න.', 'network': 'අන්තර්ජාලය නැත. පසුව නැවත උත්සාහ කරන්න.', 'not-set-up': 'ගුරුතුමා තවම පන්ති කේතයක් සකසා නැත.', 'off': 'ප්‍රගති සටහන තවම සක්‍රිය කර නැත.' };
+  var ERR = { 'bad-class-code': 'පන්ති කේතය වැරදියි. ගුරුතුමාගෙන් අසන්න.', 'name-needed': 'ඔබේ නම ලියන්න.', 'place-needed': 'ඔබ සහභාගී වන තැන තෝරන්න.', 'class-needed': 'ඔබේ පන්තිය තෝරන්න.', 'not-found': 'නම හෝ රහස් කේතය වැරදියි. නැවත බලන්න.', 'network': 'අන්තර්ජාලය නැත. පසුව නැවත උත්සාහ කරන්න.', 'not-set-up': 'ගුරුතුමා තවම පන්ති කේතයක් සකසා නැත.', 'off': 'ප්‍රගති සටහන තවම සක්‍රිය කර නැත.' };
   function meMsg(text, ok) { var m = document.getElementById('meMsg'); if (m) { m.textContent = text; m.className = 'me-msg ' + (ok ? 'ok' : 'bad'); } }
   function pageMe() {
     var head = '<section class="block first"><div class="block-head"><h1>🙋 මගේ ප්‍රගතිය</h1><p>ඔබ ඉගෙන ගන්නා දේ ගුරුතුමාට පෙනේ. ඔබට ලකුණු ලැබේ.</p></div>';
@@ -182,7 +182,7 @@
         rows += '<a class="me-row" href="#/' + p + '/"><b>' + esc(PARTS[p].name) + '</b><div class="meter-bar"><i style="width:' + Math.round(c / t * 100) + '%"></i></div><span>🌸 ' + c + ' / ' + t + '</span><span>' + starRow(STATE[p].stars) + '</span></a>'; });
       var pts = pr.points ? pr.points.total : 0, wait = Trk.pending();
       return head + '<div class="me-card"><div class="me-top"><div class="me-pic">' + window.Scenes.portrait(PART, Math.max(1, countOf(PART)), { bg: '#fff1c9' }) + '</div>' +
-        '<div><h2>' + esc(pr.name) + '</h2><p class="me-place">📍 ' + esc(pr.place) + '</p>' +
+        '<div><h2>' + esc(pr.name) + '</h2><p class="me-place">' + (pr.cls ? '🎒 ' + esc(pr.cls) + ' · ' : '') + '📍 ' + esc(pr.place) + '</p>' +
         '<div class="me-points"><span>⭐</span><b id="mePoints">' + pts + '</b><small>ලකුණු</small></div></div></div>' +
         '<div class="me-code"><small>ඔබේ රහස් කේතය. මෙය ලියා තබා ගන්න.</small><b>' + esc(pr.code) + '</b><small>වෙනත් උපාංගයකින් දිගටම කිරීමට නම සහ මෙම කේතය අවශ්‍යයි.</small></div>' +
         '<div class="me-rows">' + rows + '</div>' +
@@ -191,10 +191,12 @@
         '<p class="me-msg" id="meMsg" role="status"></p></div></section>';
     }
     var opts = Trk.places().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+    var copts = Trk.classes().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
     return head + '<div class="me-forms">' +
       '<form class="card me-form" id="joinForm" autocomplete="off"><h2>🌱 අලුතින් එක් වෙමු</h2>' +
         '<label>ඔබේ නම <small>(මුල් නම පමණක්)</small><input name="name" required minlength="2" maxlength="40" placeholder="උදා: නිමල්"></label>' +
-        '<label>ඔබ සහභාගී වන තැන<input name="place" required maxlength="60" list="placeList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="placeList">' + opts + '</datalist></label>' +
+        '<label>ඔබේ පන්තිය<input name="cls" required maxlength="40" list="classList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="classList">' + copts + '</datalist></label>' +
+        '<label>ඔබ සහභාගී වන රට<input name="place" required maxlength="60" list="placeList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="placeList">' + opts + '</datalist></label>' +
         '<label>පන්ති කේතය <small>(ගුරුතුමා දෙන)</small><input name="classCode" required maxlength="40" autocapitalize="characters"></label>' +
         '<button class="btn big" type="submit">එක් වෙමු</button>' +
         '<p class="me-note">🔒 ඔබේ නම සහ ප්‍රගතිය පෙනෙන්නේ ගුරුතුමාට පමණි. එක් වීමට පෙර අම්මාගෙන් හෝ තාත්තාගෙන් අවසර ගන්න.</p></form>' +
@@ -225,7 +227,7 @@
       sfx.win(); confetti(); paintProgress(); paintMe(); route();
       toast(joined ? '🎉 සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!' : '👋 නැවත සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!');
     };
-    if (f.id === 'joinForm') Trk.join(f.elements.name.value, f.elements.place.value, f.elements.classCode.value).then(function (r) { done(r, true); });
+    if (f.id === 'joinForm') Trk.join(f.elements.name.value, f.elements.cls.value, f.elements.place.value, f.elements.classCode.value).then(function (r) { done(r, true); });
     else Trk.resume(f.elements.name.value, f.elements.code.value).then(function (r) { done(r, false); });
   });
 
