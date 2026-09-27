@@ -26,7 +26,15 @@ teacher will read or see about the Dhamma or good conduct.
 | --- | --- |
 | `assets/js/data.js`, `data2.js`, `data3.js` | Poems, meanings, titles, quiz for parts 1 to 3 |
 | `assets/js/refs.js` | Verified citations and the poem-to-passage map |
+| `assets/js/favourites.js` | Reusable favourites module. New lessons call `Favourites.button(item)` |
+| `assets/js/tracker.js`, `tracker-config.js` | Reusable progress tracking. New lessons call `Tracker.record({...})`. Off until `endpoint` is set |
+| `tools/google-sheet/` | Apps Script for the teacher's sheet and SETUP.md |
 | `assets/js/art.js`, `scenes*.js` | Drawing library and one picture per poem |
 | `assets/js/app.js` | Pages, progress, quiz |
 
 No build step. Test with `python3 -m http.server 8765`.
+
+## Children's data
+
+Progress tracking collects a child's first name and place. Never add fields for surname,
+date of birth, address, email or photo. Never log names to the console or to any other service.

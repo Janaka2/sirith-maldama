@@ -16,6 +16,32 @@ from tripitaka.online. Check them at any time with:
 python3 .claude/skills/mahamevnawa-dhamma/scripts/verify_citations.py
 ```
 
+## Favourites
+
+`assets/js/favourites.js` is a self-contained module. It is not tied to the poems, so any
+future lesson can use it. Usage is described at the top of that file. In short:
+
+```js
+var item = { type: 'jataka', id: '12', title: '…', url: '#/jataka/12', group: 'ජාතක කථා' };
+html += Favourites.button(item);   // a heart button
+Favourites.bind(document.body);    // once per page
+```
+
+Favourites are kept in the browser, under one key shared by all lessons.
+
+## Progress tracking
+
+Children can join with a first name, a place and a class code. Their progress goes to the
+teacher's Google Sheet, with points, and they can continue on another device with a secret
+code. It is switched off until `endpoint` is set in `assets/js/tracker-config.js`.
+Setup steps: `tools/google-sheet/SETUP.md`.
+
+`assets/js/tracker.js` is reusable. A future lesson only calls:
+
+```js
+Tracker.record({ lesson: 'jataka', kind: 'learned', part: '1', item: '12', size: 30 });
+```
+
 ## Run locally
 
 ```bash
@@ -39,6 +65,9 @@ The site is plain HTML, CSS and JavaScript. There is no build step.
 | `assets/css/style.css` | Styles and animations |
 | `assets/js/data.js` | Part 1 poems, meanings, child-friendly titles, quiz |
 | `assets/js/data2.js`, `data3.js` | Part 2 and 3 poems, meanings, child-friendly titles, quiz |
+| `assets/js/favourites.js` | Reusable favourites module |
+| `assets/js/tracker.js`, `tracker-config.js` | Reusable progress tracking and its settings |
+| `tools/google-sheet/` | Script for the teacher's Google Sheet, with setup steps |
 | `assets/js/refs.js` | Verified citations and the poem-to-passage map |
 | `.claude/skills/mahamevnawa-dhamma/` | Claude Code skill that guards sources and style |
 | `assets/js/art.js` | Drawing library for characters, props, backgrounds |
