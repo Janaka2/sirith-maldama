@@ -26,11 +26,31 @@
   function emit(why, data) { listeners.forEach(function (f) { try { f(why, data); } catch (e) { /* ignore */ } }); }
   function onChange(f) { listeners.push(f); }
 
-  function send(body) {
-    /* text/plain keeps the request "simple", which Google Apps Script needs */
-    return fetch(endpoint(), { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), redirect: 'follow' })
-      .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); });
+  function rid() { return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10); }
+  /* Google sometimes answers late or with the wrong page. Only a reply that fits the question counts. */
+  function valid(action, res) {
+    if (!res || typeof res !== 'object') return false;
+    if (res.ok === false) return typeof res.error === 'string';
+    if (action === 'event') return res.ok === true && !!res.points;
+    return res.ok === true && !!res.childId && !!res.code && !!res.profile;
   }
+  function sendOnce(body) {
+    var ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 45000);
+    /* text/plain keeps the request "simple", which Google Apps Script needs */
+    return fetch(endpoint(), { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), redirect: 'follow', signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function (res) { clearTimeout(t); if (!valid(body.action, res)) throw new Error('bad reply'); return res; }, function (e) { clearTimeout(t); throw e; });
+  }
+  function send(body, tries) {
+    tries = tries || 1;
+    return sendOnce(body).catch(function (e) {
+      if (tries <= 1) throw e;
+      return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return send(body, tries - 1); });
+    });
+  }
+  var backoff = [5000, 20000, 60000, 180000], failCount = 0, retryTimer = null;
+  function retryLater() { clearTimeout(retryTimer); retryTimer = setTimeout(flush, backoff[Math.min(failCount, backoff.length - 1)]); failCount++; }
   function keep(res, extra) {
     var p = { childId: res.childId, code: res.code, name: res.profile.name, cls: res.profile.cls || '', place: res.profile.place, points: res.points || null, synced: Date.now() };
     for (var k in (extra || {})) p[k] = extra[k];
@@ -39,14 +59,17 @@
 
   function join(name, cls, place, classCode) {
     if (!isOn()) return Promise.resolve({ ok: false, error: 'off' });
-    return send({ action: 'join', name: name, cls: cls, place: place, classCode: classCode }).then(function (res) {
-      if (res.ok) { keep(res); emit('joined', res); }
+    /* the same child pressing "join" again after a lost reply reuses the same request id */
+    var who = [name, cls, place].join('|').toLowerCase(), held = get('daham.tracker.joining', null);
+    if (!held || held.who !== who || Date.now() - held.at > 3600000) { held = { who: who, rid: rid(), at: Date.now() }; set('daham.tracker.joining', held); }
+    return send({ action: 'join', rid: held.rid, name: name, cls: cls, place: place, classCode: classCode }, 3).then(function (res) {
+      if (res.ok) { del('daham.tracker.joining'); keep(res); emit('joined', res); }
       return res;
     }).catch(function () { return { ok: false, error: 'network' }; });
   }
   function resume(name, code) {
     if (!isOn()) return Promise.resolve({ ok: false, error: 'off' });
-    return send({ action: 'resume', name: name, code: code }).then(function (res) {
+    return send({ action: 'resume', name: name, code: code }, 3).then(function (res) {
       if (res.ok) { set(Q_KEY, []); keep(res); emit('progress', res); emit('joined', res); }
       return res;
     }).catch(function () { return { ok: false, error: 'network' }; });
@@ -54,7 +77,7 @@
   function record(ev) {
     if (!isOn() || !profile()) return false;
     var q = get(Q_KEY, []);
-    q.push({ t: Date.now(), lesson: String(ev.lesson || 'lesson'), kind: String(ev.kind), part: String(ev.part === undefined ? '' : ev.part), item: String(ev.item === undefined ? '' : ev.item), value: ev.value, size: ev.size });
+    q.push({ id: rid(), t: Date.now(), lesson: String(ev.lesson || 'lesson'), kind: String(ev.kind), part: String(ev.part === undefined ? '' : ev.part), item: String(ev.item === undefined ? '' : ev.item), value: ev.value, size: ev.size });
     if (q.length > 800) q = q.slice(-800);
     set(Q_KEY, q); emit('queued', q.length);
     clearTimeout(timer); timer = setTimeout(flush, 900);
@@ -68,15 +91,16 @@
     return send({ action: 'event', childId: p.childId, code: p.code, events: batch }).then(function (res) {
       busy = false;
       if (res.ok) {
+        failCount = 0; clearTimeout(retryTimer);
         var now = get(Q_KEY, []); set(Q_KEY, now.slice(batch.length));
         var np = profile(); if (np) { np.points = res.points; np.synced = Date.now(); set(P_KEY, np); }
         emit('synced', res);
         if (get(Q_KEY, []).length) return flush();
         return true;
       }
-      if (res.error === 'not-found') { emit('lost', res); }
+      if (res.error === 'not-found') { emit('lost', res); } else retryLater();
       return false;
-    }).catch(function () { busy = false; emit('offline', null); return false; });
+    }).catch(function () { busy = false; emit('offline', null); retryLater(); return false; });
   }
   function pending() { return get(Q_KEY, []).length; }
   function leave() { del(P_KEY); del(Q_KEY); emit('left', null); }

@@ -100,8 +100,17 @@ function join_(req) {
   if (!cls) return { ok: false, error: 'class-needed' };
   if (!place) return { ok: false, error: 'place-needed' };
   var sh = sheet_('Children', CHILD_HEAD);
+  var reqId = clean_(req.rid, 40);
+  if (reqId) {   // the same request sent twice (a slow reply) must not make two children
+    var again = findRow_(sh, function (v) { return String(v[COL.state - 1]).indexOf('"rid":"' + reqId + '"') !== -1; });
+    if (again) {
+      var av = again.values;
+      return { ok: true, childId: av[COL.id - 1], code: av[COL.code - 1], profile: { name: av[COL.name - 1], cls: av[COL.cls - 1], place: av[COL.place - 1] }, progress: parse_(av[COL.state - 1]), points: { earned: av[COL.earned - 1], bonus: av[COL.bonus - 1], total: av[COL.total - 1] } };
+    }
+  }
+  var first = emptyState_(); if (reqId) first.rid = reqId;
   var id = 'C' + (sh.getLastRow() + 1000), code = code_(), now = new Date();
-  sh.appendRow([id, name, cls, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(emptyState_())]);
+  sh.appendRow([id, name, cls, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(first)]);
   sheet_('Log', LOG_HEAD).appendRow([now, id, name, cls, place, '', 'joined', '', '', '']);
   return { ok: true, childId: id, code: code, profile: { name: name, cls: cls, place: place, joined: now.getTime() }, progress: emptyState_(), points: { earned: 0, bonus: 0, total: 0 } };
 }
@@ -122,7 +131,10 @@ function event_(req) {
   if (!hit) return { ok: false, error: 'not-found' };
   var v = hit.values, state = parse_(v[COL.state - 1]), log = sheet_('Log', LOG_HEAD), last = '';
   var events = (req.events || []).slice(0, 400);
+  state.seen = state.seen || [];
   events.forEach(function (ev) {
+    var eid = clean_(ev.id, 40);
+    if (eid) { if (state.seen.indexOf(eid) !== -1) return; state.seen.push(eid); }   // already counted
     var set = clean_(ev.lesson, 30) || 'lesson', sec = clean_(ev.part, 20), item = clean_(ev.item, 20), kind = clean_(ev.kind, 20);
     var L = state.lessons[set] = state.lessons[set] || { learned: {}, stars: {}, size: {}, last: null };
     L.learned = L.learned || {}; L.stars = L.stars || {}; L.size = L.size || {};
@@ -139,6 +151,7 @@ function event_(req) {
     } else { return; }
     if (kind !== 'open') log.appendRow([ev.t ? new Date(Number(ev.t)) : new Date(), v[COL.id - 1], v[COL.name - 1], v[COL.cls - 1], v[COL.place - 1], set, kind, sec, item, ev.value === undefined ? '' : ev.value]);
   });
+  if (state.seen.length > 600) state.seen = state.seen.slice(-600);
   var p = writeChild_(sh, hit.row, state, last);
   return { ok: true, points: p, progress: state };
 }
