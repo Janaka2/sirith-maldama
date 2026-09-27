@@ -711,21 +711,26 @@
       A.hearts([[140, 140, 1.1], [262, 136, 1.1]]));
   };
 
-  function render(n, title) {
-    var fn = S[n];
-    var inner = fn ? fn() : single('garden', T(n, { x: 200, y: 258, s: 1.1 }));
+  var PARTS = { 1: S };
+  var HERO = { 1: function (v) { return v; } };
+  function register(part, map, look) { PARTS[part] = map; HERO[part] = look || HERO[1]; }
+  function render(part, n, title) {
+    var fn = (PARTS[part] || {})[n];
+    var inner = fn ? fn() : single('garden', T(HERO[part] ? HERO[part](n) : n, { x: 200, y: 258, s: 1.1 }));
     return A.wrap(inner, title || ('කවිය ' + n));
   }
 
   /* Taraka portrait for level cards and the hero */
-  function portrait(v, o) {
+  function portrait(part, n, o) {
     o = o || {};
+    var v = (HERO[part] || HERO[1])(n);
     var inner = '<circle cx="100" cy="100" r="96" fill="' + (o.bg || '#fef3c7') + '"/>' + (v >= 46 ? A.rays(100, 96, 96, '#fde68a') : '') +
       T(v, { x: 100, y: 182, s: 1.45, face: o.face || (v <= 10 ? 'happy' : 'joy'), armL: o.armL || (v >= 46 ? 'worship' : 'down'), armR: o.armR || (v >= 46 ? 'worship' : 'wave') }) +
-      (v >= 62 ? A.lotus(100, 192, 0.9) + E(100, 22, 22, '👑') : '');
-    var id = 'pc_' + v + '_' + Math.floor(Math.random() * 1e6);
+      (n >= 62 ? A.lotus(100, 192, 0.9) + E(100, 22, 22, '👑') : '');
+    var id = 'pc_' + part + '_' + n + '_' + Math.floor(Math.random() * 1e6);
     return '<svg viewBox="0 0 200 200" class="portrait" role="img" aria-label="තාරක"><clipPath id="' + id + '"><circle cx="100" cy="100" r="96"/></clipPath><g clip-path="url(#' + id + ')">' + inner + '</g><circle cx="100" cy="100" r="96" fill="none" stroke="#f59e0b" stroke-width="5"/></svg>';
   }
 
-  global.Scenes = { render: render, portrait: portrait, has: function (n) { return !!S[n]; } };
+  global.Scenes = { render: render, portrait: portrait, register: register,
+    h: { say: say, sayE: sayE, dust: dust, splash: splash, flies: flies, stink: stink, wallBg: wallBg, coin: coin } };
 })(window);

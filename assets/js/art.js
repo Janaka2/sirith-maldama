@@ -752,6 +752,70 @@
     return s;
   }
 
+
+  /* ---------- extras for part 2 ---------- */
+  function snake(x, y, s, o) {
+    o = o || {};
+    var col = o.color || '#4d7c0f';
+    return at(x, y, s, '<path d="M -26 -4 q 12 -14 26 -2 q 12 10 22 -2" stroke="' + col + '" stroke-width="9" fill="none" stroke-linecap="round"/>' +
+      '<ellipse cx="-2" cy="-4" rx="26" ry="8" fill="' + col + '"/><ellipse cx="-2" cy="-7" rx="18" ry="5" fill="#65a30d"/>' +
+      '<path d="M 4 -8 Q 0 -30 8 -44" stroke="' + col + '" stroke-width="9" fill="none" stroke-linecap="round"/>' +
+      '<ellipse cx="9" cy="-48" rx="15" ry="13" fill="' + col + '"/><ellipse cx="9" cy="-47" rx="9" ry="9" fill="#a3e635"/>' +
+      '<ellipse cx="10" cy="-56" rx="7" ry="6" fill="' + col + '"/><circle cx="7" cy="-57" r="1.5" fill="#fef08a"/><circle cx="13" cy="-57" r="1.5" fill="#fef08a"/>' +
+      '<path d="M 10 -51 v 6 l -3 4 m 3 -4 l 3 4" stroke="#dc2626" stroke-width="1.4" fill="none" stroke-linecap="round"/>', o.flip);
+  }
+  function baby(x, y, s, o) {
+    o = o || {};
+    var f = o.cry ? '<path d="M -5 -1 q 2 2 4 0 M 2 -1 q 2 2 4 0" stroke="#3b2a1e" stroke-width="1.3" fill="none"/><ellipse cx="0.5" cy="5" rx="3" ry="3.4" fill="#7f1d1d"/><path d="M -6 1 q -2 4 0 6 q 2 -2 0 -6 Z" fill="#38bdf8"/>'
+      : '<path d="M -5 -1 q 2 -2.4 4 0 M 2 -1 q 2 -2.4 4 0" stroke="#3b2a1e" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M -3 4 q 3.5 3 7 0" stroke="#3b2a1e" stroke-width="1.3" fill="none" stroke-linecap="round"/>';
+    return g('<ellipse cx="14" cy="4" rx="21" ry="11" fill="' + (o.color || '#fde68a') + '" stroke="#f59e0b" stroke-width="1"/><path d="M 0 8 q 14 -12 30 -2" stroke="#f59e0b" stroke-width="1" fill="none"/>' +
+      '<circle cx="-4" cy="0" r="10" fill="' + C.skin + '"/><path d="M -13 -3 q 8 -11 18 -2 q -8 -3 -18 2 Z" fill="' + C.hair + '"/>' +
+      '<g transform="translate(-4 0)">' + f + '<ellipse cx="-6" cy="3.5" rx="2.2" ry="1.5" fill="#fb7185" opacity=".5"/><ellipse cx="7" cy="3.5" rx="2.2" ry="1.5" fill="#fb7185" opacity=".5"/></g>',
+      'translate(' + x + ' ' + y + ') rotate(' + (o.rot || 0) + ') scale(' + (o.flip ? -(s || 1) : (s || 1)) + ' ' + (s || 1) + ')');
+  }
+  function lantern(x, y, s, col) {
+    col = col || '#f43f5e';
+    return at(x, y, s, '<path d="M 0 -34 v -14" stroke="#78716c" stroke-width="1.5"/><g class="floaty"><circle cx="0" cy="-16" r="24" fill="#fde68a" opacity=".35" class="glow"/>' +
+      '<path d="M 0 -34 L 16 -16 L 0 2 L -16 -16 Z" fill="' + col + '" stroke="#fff" stroke-width="1.5"/><path d="M 0 -34 L 0 2 M -16 -16 L 16 -16" stroke="#fff" stroke-width="1.2"/>' +
+      '<path d="M -8 -25 L 8 -25 L 8 -7 L -8 -7 Z" fill="#fde047" opacity=".9"/>' +
+      '<path d="M -10 -4 v 16 M -3 2 v 18 M 3 2 v 18 M 10 -4 v 16" stroke="' + col + '" stroke-width="2.4" stroke-linecap="round"/></g>');
+  }
+  function fence(x, y, w, o) {
+    o = o || {};
+    var s = '', n = Math.floor(w / 14);
+    for (var i = 0; i <= n; i++) {
+      if (o.broken && (i === Math.floor(n / 2) || i === Math.floor(n / 2) + 1)) { s += '<rect x="' + (x + i * 14 - 3) + '" y="' + (y - 8) + '" width="6" height="26" rx="2" fill="#a16207" transform="rotate(' + (i % 2 ? 62 : -58) + ' ' + (x + i * 14) + ' ' + y + ')"/>'; continue; }
+      s += '<path d="M ' + (x + i * 14 - 3) + ' ' + y + ' v -24 l 3 -5 l 3 5 v 24 Z" fill="#d6a06a" stroke="#a16207" stroke-width=".8"/>';
+    }
+    return (o.broken ? '' : '<rect x="' + x + '" y="' + (y - 19) + '" width="' + w + '" height="4" fill="#b9773f"/><rect x="' + x + '" y="' + (y - 9) + '" width="' + w + '" height="4" fill="#b9773f"/>') + s;
+  }
+  function anthill(x, y, s, closed) {
+    return at(x, y, s, '<path d="M -26 0 Q -20 -30 -8 -34 Q -4 -52 4 -36 Q 16 -34 26 0 Z" fill="#a16207"/><path d="M -14 0 Q -10 -18 -2 -22" stroke="#854d0e" stroke-width="2" fill="none"/>' +
+      (closed ? '<ellipse cx="4" cy="-14" rx="8" ry="6" fill="#78716c"/><ellipse cx="-10" cy="-6" rx="6" ry="4" fill="#78716c"/>' : '<ellipse cx="4" cy="-14" rx="7" ry="5" fill="#1c1917"/><ellipse cx="-10" cy="-6" rx="5" ry="3.5" fill="#1c1917"/>'));
+  }
+  function boat(x, y, s) {
+    return at(x, y, s, '<path d="M -40 -12 h 80 l -12 14 h -56 Z" fill="#92400e"/><path d="M 0 -12 v -46" stroke="#57534e" stroke-width="3"/><path d="M 2 -56 L 30 -18 L 2 -18 Z" fill="#fff" stroke="#cbd5e1" stroke-width="1"/>');
+  }
+  function hoe(x, y, s, rot) {
+    return g('<path d="M 0 0 L 0 -58" stroke="' + C.woodD + '" stroke-width="4" stroke-linecap="round"/><path d="M -2 -58 h 20 v 10 q -10 -4 -20 -2 Z" fill="#64748b"/>', 'translate(' + x + ' ' + y + ') rotate(' + (rot || 0) + ') scale(' + (s || 1) + ')');
+  }
+  function rubbish(x, y, s) {
+    return at(x, y, s, '<path d="M -24 0 Q -18 -22 0 -24 Q 20 -22 24 0 Z" fill="#78716c"/><rect x="-12" y="-20" width="9" height="12" rx="2" fill="#ef4444" transform="rotate(-20 -8 -14)"/><circle cx="8" cy="-12" r="5" fill="#facc15"/><path d="M -2 -6 l 10 2 l -3 5 Z" fill="#60a5fa"/>' + stink0(-6, -26) );
+  }
+  function stink0(x, y) {
+    return '<path d="M ' + x + ' ' + y + ' q -5 -7 0 -14 q 5 -7 0 -14 M ' + (x + 12) + ' ' + (y + 2) + ' q -5 -7 0 -14 q 5 -7 0 -14" stroke="#84cc16" stroke-width="2.2" fill="none" stroke-linecap="round" class="steam"/>';
+  }
+  function frame(x, y, w, h, inner, o) {
+    o = o || {};
+    return '<rect x="' + (x - w / 2) + '" y="' + (y - h / 2) + '" width="' + w + '" height="' + h + '" rx="4" fill="' + (o.fill || '#fffdf5') + '" stroke="' + (o.stroke || '#b45309') + '" stroke-width="5"/>' + (inner || '');
+  }
+  /* two tall neutral panels (no tick / cross) with an emoji tag */
+  function pair(a, b) {
+    function tag(x, em) { return g('<circle r="17" fill="#fff" stroke="#f59e0b" stroke-width="3"/>' + emoji(0, 1, 18, em), 'translate(' + x + ' 26)'); }
+    return '<rect width="' + W + '" height="' + H + '" rx="18" fill="#fffaf0"/>' +
+      panel(4, 4, 192, 292, null, a[0], a[1], a[2]) + panel(204, 4, 192, 292, null, b[0], b[1], b[2]) + tag(30, (a[2] || {}).tag || '①') + tag(230, (b[2] || {}).tag || '②');
+  }
+
   global.Art = {
     C: C, W: W, H: H, g: g, at: at, emoji: emoji, label: label, person: person, taraka: taraka, rascal: rascal, girl: girl, friend: friend,
     mother: mother, father: father, teacher: teacher, grandpa: grandpa, grandma: grandma, monk: monk,
@@ -762,6 +826,7 @@
     book: book, openBook: openBook, slate: slate, pencil: pencil, bag: bag, ball: ball, umbrella: umbrella, purse: purse, plate: plate, cup: cup, pot: pot, basin: basin, tap: tap,
     broom: broom, comb: comb, toothbrush: toothbrush, teeth: teeth, hand: hand, hanky: hanky, bin: bin, fire: fire, lamp: lamp, clock: clock, betel: betel, gift: gift, car: car, stone: stone, water: water, steps: steps,
     heart: heart, hearts: hearts, sparkle: sparkle, badge: badge, ban: ban, bubble: bubble, think: think, rays: rays, garlandArc: garlandArc, confetti: confetti, zzz: zzz, sweat: sweat, anger: anger, scribble: scribble,
-    bg: bg, wrap: wrap, single: single, split: split, grid: grid, panel: panel
+    bg: bg, wrap: wrap, single: single, split: split, grid: grid, panel: panel, pair: pair,
+    snake: snake, baby: baby, lantern: lantern, fence: fence, anthill: anthill, boat: boat, hoe: hoe, rubbish: rubbish, frame: frame
   };
 })(window);
