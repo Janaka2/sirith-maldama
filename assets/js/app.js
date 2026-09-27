@@ -30,7 +30,8 @@
 
   function learnedCount() { return Object.keys(learned).length; }
   function saveLearned() { store.set(key('learned'), Object.keys(learned).map(Number)); }
-  function setLast(n) { lastRead = STATE[PART].last = n; store.set(key('last'), n); }
+  function setLast(n) { lastRead = STATE[PART].last = n; store.set(key('last'), n); store.set('lastpos', { part: PART, n: n }); }
+  function lastPos() { var l = store.get('lastpos', null); return l && PARTS[l.part] && l.n >= 1 && l.n <= PARTS[l.part].verses.length ? l : { part: PART, n: lastRead }; }
   function setStars(n) { bestStars = STATE[PART].stars = n; store.set(key('stars'), n); }
 
   /* ---------- helpers ---------- */
@@ -149,6 +150,7 @@
     var lp = L.last && PARTS[L.last.part] ? +L.last.part : PART;
     if (L.last && PARTS[L.last.part]) STATE[lp].last = Math.min(PARTS[lp].verses.length, Math.max(1, +L.last.item || 1));
     Object.keys(PARTS).forEach(function (p) { savePart(+p); });
+    store.set('lastpos', { part: lp, n: STATE[lp].last });
     setPart(lp);
   }
   function uploadLocal() {
@@ -160,6 +162,7 @@
   }
   function clearLocal() {
     Object.keys(PARTS).forEach(function (p) { STATE[+p] = { learned: {}, last: 1, stars: 0 }; savePart(+p); });
+    store.set('lastpos', null);
     setPart(PART);
   }
   function paintMe() {
@@ -187,7 +190,7 @@
         '<div class="me-code"><small>ඔබේ රහස් කේතය. මෙය ලියා තබා ගන්න.</small><b>' + esc(pr.code) + '</b><small>වෙනත් උපාංගයකින් දිගටම කිරීමට නම සහ මෙම කේතය අවශ්‍යයි.</small></div>' +
         '<div class="me-rows">' + rows + '</div>' +
         '<p class="me-sync" id="meSync">' + (wait ? '⏳ යැවීමට ඇති සටහන් ' + wait + ' යි' : '✅ සියල්ල ගුරුතුමාට යවා ඇත') + '</p>' +
-        '<div class="hero-cta"><a class="btn big" href="#/' + PART + '/kavi/' + lastRead + '">▶ නැවතුණු තැනින් පටන් ගනිමු</a><button class="btn ghost" id="meSyncBtn" type="button">🔄 දැන් යවන්න</button><button class="btn ghost danger" id="meLeave" type="button">🚪 පිටවන්න</button></div>' +
+        '<div class="hero-cta"><a class="btn big" href="#/' + lastPos().part + '/kavi/' + lastPos().n + '">▶ නැවතුණු තැනින් පටන් ගනිමු · ' + esc(PARTS[lastPos().part].name) + ' · කවිය ' + lastPos().n + '</a><button class="btn ghost" id="meSyncBtn" type="button">🔄 දැන් යවන්න</button><button class="btn ghost danger" id="meLeave" type="button">🚪 පිටවන්න</button></div>' +
         '<p class="me-msg" id="meMsg" role="status"></p></div></section>';
     }
     var opts = Trk.places().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
