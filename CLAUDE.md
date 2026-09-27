@@ -20,6 +20,20 @@ teacher will read or see about the Dhamma or good conduct.
   finishing. A failure blocks the work.
 - New teaching text needs review by a Mahamevnawa monk or Dhamma school teacher. Say so.
 
+## Language
+
+The site is in **Sinhala**. One exception, decided by the owner on 2026-09-27:
+
+- The **Join button** in the header and the **progress page** (`#/N/mama`, built by `pageMe()` in
+  `assets/js/app.js`) are in **English only**. This covers the join form, the continue form,
+  the parents' consent text, the "what is stored" list, the signed-in profile view, and every
+  message, toast and confirmation shown from that page.
+- Everything else stays in Sinhala: poems, meanings, titles, promises, teacher notes, quiz,
+  favourites, navigation, and the teachers' page (including its privacy section).
+
+Do not translate the rest of the site into English, and do not put Sinhala back on the
+progress page, unless the owner asks.
+
 ## Layout
 
 | Path | Purpose |

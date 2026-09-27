@@ -236,6 +236,11 @@ a.chip:hover, button.chip:hover { background: color-mix(in srgb, var(--c) 24%, #
 .privacy ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 10px; font-size: .92rem; line-height: 1.6; font-weight: 600; }
 .poem-head .sub, .tile-body, .more p[lang="en"] { color: inherit; }
 
+.en-page, .en-page input, .en-page button, .en-page .btn, .me-pill { font-family: 'Baloo 2', 'Nunito', system-ui, sans-serif; }
+.en-page [lang="en"], .en-page { color: inherit; }
+.en-page .block-head p, .en-page .me-note, .en-page .me-place { color: var(--ink2); }
+.en-page .privacy ul { font-weight: 500; }
+
 /* Dhamma citations */
 .dear { font-weight: 800 !important; color: #1e40af; font-size: .95rem !important; margin-bottom: 2px; }
 .more p.src-note { color: #7c2d12; }

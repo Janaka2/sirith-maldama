@@ -171,56 +171,62 @@
     pill.hidden = !on;
     pill.setAttribute('href', '#/' + PART + '/mama');
     pill.classList.toggle('in', !!pr);
-    document.getElementById('meName').textContent = pr ? pr.name : 'එක් වන්න';
+    document.getElementById('meName').textContent = pr ? pr.name : 'Join';
   }
-  var ERR = { 'bad-class-code': 'පන්ති කේතය වැරදියි. ගුරුතුමාගෙන් අසන්න.', 'name-needed': 'ඔබේ නම ලියන්න.', 'place-needed': 'ඔබ සහභාගී වන තැන තෝරන්න.', 'class-needed': 'ඔබේ පන්තිය තෝරන්න.', 'consent-needed': 'දෙමාපියෙකුගේ එකඟතාව අවශ්‍යයි. Please ask a parent to complete the consent part.', 'not-found': 'නම හෝ රහස් කේතය වැරදියි. නැවත බලන්න.', 'network': 'අන්තර්ජාලය නැත. පසුව නැවත උත්සාහ කරන්න.', 'not-set-up': 'ගුරුතුමා තවම පන්ති කේතයක් සකසා නැත.', 'off': 'ප්‍රගති සටහන තවම සක්‍රිය කර නැත.' };
+  /* The Join button and the progress page are in ENGLISH ONLY (decision recorded in CLAUDE.md). Everything else stays Sinhala. */
+  var ERR = { 'bad-class-code': 'That class code is not right. Please ask your teacher.', 'name-needed': 'Please type your name.', 'place-needed': 'Please choose your country.', 'class-needed': 'Please choose your class.', 'consent-needed': 'A parent or guardian must complete the consent part.', 'not-found': 'The name or secret code is not right. Please check and try again.', 'network': 'Could not reach the teacher\'s record. Please press the button again.', 'not-set-up': 'The teacher has not set a class code yet.', 'off': 'Progress tracking is not switched on yet.' };
   function meMsg(text, ok) { var m = document.getElementById('meMsg'); if (m) { m.textContent = text; m.className = 'me-msg ' + (ok ? 'ok' : 'bad'); } }
-  function privacyHtml() {
+  function syncText(why) { var n = Trk.pending(); return n ? (why === 'offline' ? '📴 No internet. ' + n + ' update' + (n > 1 ? 's' : '') + ' will be sent later' : '⏳ ' + n + ' update' + (n > 1 ? 's' : '') + ' waiting to be sent') : '✅ Everything has been sent to your teacher'; }
+  function privacyHtml(lang) {
+    if (lang === 'en') return '<div class="privacy"><ul>' +
+      '<li><b>What is stored:</b> the child\'s first name, class, country, lessons learned, quiz stars, points, and the name of the parent who agreed, with the date.</li>' +
+      '<li><b>Not stored:</b> surname, date of birth, address, phone number, email or photos.</li>' +
+      '<li><b>Who can see it:</b> only the Dhamma school teachers. It is kept in the teachers\' Google Sheet.</li>' +
+      '<li><b>To delete:</b> tell the teacher at any time and the child\'s record will be deleted.</li></ul></div>';
     return '<div class="privacy"><ul>' +
-      '<li><b>ගබඩා වන දේ:</b> දරුවාගේ මුල් නම, පන්තිය, රට, ඉගෙන ගත් පාඩම්, ප්‍රශ්න තරු, ලකුණු, සහ එකඟතාව දුන් දෙමාපියාගේ නම හා දිනය.<br><span lang="en"><b>What is stored:</b> the child\'s first name, class, country, lessons learned, quiz stars, points, and the name of the parent who agreed with the date.</span></li>' +
-      '<li><b>ගබඩා නොවන දේ:</b> වාසගම, උපන් දිනය, ලිපිනය, දුරකථන අංකය, ඊමේල්, ඡායාරූප.<br><span lang="en"><b>Not stored:</b> surname, date of birth, address, phone number, email or photos.</span></li>' +
-      '<li><b>දකින්නේ කවුද:</b> දහම් පාසලේ ගුරුවරුන් පමණි. එය ගුරුවරුන්ගේ Google Sheet එකක තැන්පත් වේ.<br><span lang="en"><b>Who can see it:</b> only the Dhamma school teachers. It is kept in the teachers\' Google Sheet.</span></li>' +
-      '<li><b>මකා දැමීමට:</b> ඕනෑම වේලාවක ගුරුතුමාට කියන්න. දරුවාගේ සටහන මකා දමනු ලැබේ.<br><span lang="en"><b>To delete:</b> tell the teacher at any time and the child\'s record will be deleted.</span></li>' +
-      '</ul></div>';
+      '<li><b>ගබඩා වන දේ:</b> දරුවාගේ මුල් නම, පන්තිය, රට, ඉගෙන ගත් පාඩම්, ප්‍රශ්න තරු, ලකුණු, සහ එකඟතාව දුන් දෙමාපියාගේ නම හා දිනය.</li>' +
+      '<li><b>ගබඩා නොවන දේ:</b> වාසගම, උපන් දිනය, ලිපිනය, දුරකථන අංකය, ඊමේල්, ඡායාරූප.</li>' +
+      '<li><b>දකින්නේ කවුද:</b> දහම් පාසලේ ගුරුවරුන් පමණි. එය ගුරුවරුන්ගේ Google Sheet එකක තැන්පත් වේ.</li>' +
+      '<li><b>මකා දැමීමට:</b> ඕනෑම වේලාවක ගුරුතුමාට කියන්න. දරුවාගේ සටහන මකා දමනු ලැබේ.</li></ul></div>';
   }
   function pageMe() {
-    var head = '<section class="block first"><div class="block-head"><h1>🙋 මගේ ප්‍රගතිය</h1><p>ඔබ ඉගෙන ගන්නා දේ ගුරුතුමාට පෙනේ. ඔබට ලකුණු ලැබේ.</p></div>';
-    if (!Trk || !Trk.isOn()) return head + '<div class="fav-empty"><span aria-hidden="true">📋</span><b>ප්‍රගති සටහන තවම සක්‍රිය කර නැත</b><p>ගුරුතුමා මෙය සක්‍රිය කළ පසු ඔබට එක් විය හැක. එතෙක් ඔබේ ප්‍රගතිය මෙම උපාංගයේ සුරැකේ.</p></div></section>';
+    var head = '<section class="block first en-page" lang="en"><div class="block-head"><h1>🙋 My progress</h1><p>Your teacher can see what you learn, and you earn points.</p></div>';
+    if (!Trk || !Trk.isOn()) return head + '<div class="fav-empty"><span aria-hidden="true">📋</span><b>Progress tracking is not switched on yet</b><p>You can join once your teacher switches it on. Until then your progress is saved on this device.</p></div></section>';
     var pr = Trk.profile();
     if (pr) {
-      var rows = '', all = 0;
-      Object.keys(PARTS).forEach(function (p) { p = +p; var c = countOf(p), t = PARTS[p].verses.length; all += c;
-        rows += '<a class="me-row" href="#/' + p + '/"><b>' + esc(PARTS[p].name) + '</b><div class="meter-bar"><i style="width:' + Math.round(c / t * 100) + '%"></i></div><span>🌸 ' + c + ' / ' + t + '</span><span>' + starRow(STATE[p].stars) + '</span></a>'; });
-      var pts = pr.points ? pr.points.total : 0, wait = Trk.pending();
+      var rows = '';
+      Object.keys(PARTS).forEach(function (p) { p = +p; var c = countOf(p), t = PARTS[p].verses.length;
+        rows += '<a class="me-row" href="#/' + p + '/"><b>Part ' + p + '</b><div class="meter-bar"><i style="width:' + Math.round(c / t * 100) + '%"></i></div><span>🌸 ' + c + ' / ' + t + '</span><span>' + starRow(STATE[p].stars) + '</span></a>'; });
+      var pts = pr.points ? pr.points.total : 0, lp = lastPos();
       return head + '<div class="me-card"><div class="me-top"><div class="me-pic">' + window.Scenes.portrait(PART, Math.max(1, countOf(PART)), { bg: '#fff1c9' }) + '</div>' +
         '<div><h2>' + esc(pr.name) + '</h2><p class="me-place">' + (pr.cls ? '🎒 ' + esc(pr.cls) + ' · ' : '') + '📍 ' + esc(pr.place) + '</p>' +
-        '<div class="me-points"><span>⭐</span><b id="mePoints">' + pts + '</b><small>ලකුණු</small></div></div></div>' +
-        '<div class="me-code"><small>ඔබේ රහස් කේතය. මෙය ලියා තබා ගන්න.</small><b>' + esc(pr.code) + '</b><small>වෙනත් උපාංගයකින් දිගටම කිරීමට නම සහ මෙම කේතය අවශ්‍යයි.</small></div>' +
+        '<div class="me-points"><span>⭐</span><b id="mePoints">' + pts + '</b><small>points</small></div></div></div>' +
+        '<div class="me-code"><small>Your secret code. Please write it down.</small><b>' + esc(pr.code) + '</b><small>You need your name and this code to continue on another device.</small></div>' +
         '<div class="me-rows">' + rows + '</div>' +
-        '<p class="me-sync" id="meSync">' + (wait ? '⏳ යැවීමට ඇති සටහන් ' + wait + ' යි' : '✅ සියල්ල ගුරුතුමාට යවා ඇත') + '</p>' +
-        '<div class="hero-cta"><a class="btn big" href="#/' + lastPos().part + '/kavi/' + lastPos().n + '">▶ නැවතුණු තැනින් පටන් ගනිමු · ' + esc(PARTS[lastPos().part].name) + ' · කවිය ' + lastPos().n + '</a><button class="btn ghost" id="meSyncBtn" type="button">🔄 දැන් යවන්න</button><button class="btn ghost danger" id="meLeave" type="button">🚪 පිටවන්න</button></div>' +
+        '<p class="me-sync" id="meSync">' + syncText() + '</p>' +
+        '<div class="hero-cta"><a class="btn big" href="#/' + lp.part + '/kavi/' + lp.n + '">▶ Continue · Part ' + lp.part + ' · Poem ' + lp.n + '</a><button class="btn ghost" id="meSyncBtn" type="button">🔄 Send now</button><button class="btn ghost danger" id="meLeave" type="button">🚪 Sign out</button></div>' +
         '<p class="me-msg" id="meMsg" role="status"></p></div></section>';
     }
     var opts = Trk.places().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
     var copts = Trk.classes().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
     return head + '<div class="me-forms">' +
-      '<form class="card me-form" id="joinForm" autocomplete="off"><h2>🌱 අලුතින් එක් වෙමු</h2>' +
-        '<label>ඔබේ නම <small>(මුල් නම පමණක්)</small><input name="name" required minlength="2" maxlength="40" placeholder="උදා: නිමල්"></label>' +
-        '<label>ඔබේ පන්තිය<input name="cls" required maxlength="40" list="classList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="classList">' + copts + '</datalist></label>' +
-        '<label>ඔබ සහභාගී වන රට<input name="place" required maxlength="60" list="placeList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="placeList">' + opts + '</datalist></label>' +
-        '<label>පන්ති කේතය <small>(ගුරුතුමා දෙන)</small><input name="classCode" required maxlength="40" autocapitalize="characters"></label>' +
-        '<fieldset class="consent"><legend>👪 දෙමාපියන් සඳහා · For parents</legend>' +
-          '<p class="me-note">මෙම කොටස අම්මා, තාත්තා හෝ භාරකරු විසින් පිරවිය යුතුය.<br><span lang="en">This part must be completed by a parent or guardian.</span></p>' +
-          '<label>දෙමාපියෙකුගේ නම · <span lang="en">Parent or guardian name</span><input name="guardian" required minlength="2" maxlength="60" autocomplete="off"></label>' +
-          '<label class="tick"><input type="checkbox" name="consent" required><span>මම මෙම දරුවාගේ දෙමාපියෙක් හෝ භාරකරුවෙක් වෙමි. දරුවාගේ මුල් නම, පන්තිය, රට සහ ඉගෙනීමේ ප්‍රගතිය දහම් පාසලේ ගුරුවරුන්ගේ සටහනේ ගබඩා කිරීමට මම එකඟ වෙමි.<br><span lang="en">I am this child\'s parent or guardian. I agree that the child\'s first name, class, country and learning progress are stored in the Dhamma school teachers\' record.</span></span></label>' +
-          '<details class="consent-more"><summary>ගබඩා වන්නේ මොනවාද? · What is stored?</summary>' + privacyHtml() + '</details>' +
+      '<form class="card me-form" id="joinForm" autocomplete="off"><h2>🌱 Join for the first time</h2>' +
+        '<label>Your name <small>(first name only)</small><input name="name" required minlength="2" maxlength="40" placeholder="For example: Nimal"></label>' +
+        '<label>Your class<input name="cls" required maxlength="40" list="classList" placeholder="Choose or type"><datalist id="classList">' + copts + '</datalist></label>' +
+        '<label>Your country<input name="place" required maxlength="60" list="placeList" placeholder="Choose or type"><datalist id="placeList">' + opts + '</datalist></label>' +
+        '<label>Class code <small>(from your teacher)</small><input name="classCode" required maxlength="40" autocapitalize="characters"></label>' +
+        '<fieldset class="consent"><legend>👪 For parents</legend>' +
+          '<p class="me-note">This part must be completed by a parent or guardian.</p>' +
+          '<label>Parent or guardian name<input name="guardian" required minlength="2" maxlength="60" autocomplete="off"></label>' +
+          '<label class="tick"><input type="checkbox" name="consent" required><span>I am this child\'s parent or guardian. I agree that the child\'s first name, class, country and learning progress are stored in the Dhamma school teachers\' record.</span></label>' +
+          '<details class="consent-more"><summary>What is stored?</summary>' + privacyHtml('en') + '</details>' +
         '</fieldset>' +
-        '<button class="btn big" type="submit">එක් වෙමු</button>' +
-        '<p class="me-note">🔒 ඔබේ නම සහ ප්‍රගතිය පෙනෙන්නේ ගුරුවරුන්ට පමණි.</p></form>' +
-      '<form class="card me-form" id="resumeForm" autocomplete="off"><h2>▶ දිගටම කරමු</h2><p class="me-note">කලින් එක් වී තිබේ නම්, නම සහ රහස් කේතය ලියන්න.</p>' +
-        '<label>ඔබේ නම<input name="name" required minlength="2" maxlength="40"></label>' +
-        '<label>රහස් කේතය<input name="code" required maxlength="12" autocapitalize="characters" placeholder="උදා: K7M2QX"></label>' +
-        '<button class="btn big" type="submit">දිගටම කරමු</button></form>' +
+        '<button class="btn big" type="submit">Join</button>' +
+        '<p class="me-note">🔒 Only the teachers can see your name and progress.</p></form>' +
+      '<form class="card me-form" id="resumeForm" autocomplete="off"><h2>▶ Continue</h2><p class="me-note">If you joined before, type your name and your secret code.</p>' +
+        '<label>Your name<input name="name" required minlength="2" maxlength="40"></label>' +
+        '<label>Secret code<input name="code" required maxlength="12" autocapitalize="characters" placeholder="For example: K7M2QX"></label>' +
+        '<button class="btn big" type="submit">Continue</button></form>' +
       '</div><p class="me-msg" id="meMsg" role="status"></p></section>';
   }
   if (Trk) Trk.onChange(function (why, data) {
@@ -228,21 +234,21 @@
     if (why === 'synced' || why === 'joined' || why === 'left' || why === 'queued' || why === 'offline') {
       paintMe();
       var sy = document.getElementById('meSync'), pt = document.getElementById('mePoints'), pr = Trk.profile();
-      if (sy) sy.textContent = Trk.pending() ? (why === 'offline' ? '📴 අන්තර්ජාලය නැත. සටහන් ' + Trk.pending() + ' ක් පසුව යැවේ' : '⏳ යැවීමට ඇති සටහන් ' + Trk.pending() + ' යි') : '✅ සියල්ල ගුරුතුමාට යවා ඇත';
+      if (sy) sy.textContent = syncText(why);
       if (pt && pr && pr.points) pt.textContent = pr.points.total;
     }
-    if (why === 'lost') toast('ඔබේ සටහන සොයා ගත නොහැක. ගුරුතුමාට කියන්න.');
+    if (why === 'lost') toast('Your record could not be found. Please tell your teacher.');
   });
   app.addEventListener('submit', function (e) {
     var f = e.target; if (f.id !== 'joinForm' && f.id !== 'resumeForm') return;
     e.preventDefault();
-    var btn = f.querySelector('button[type=submit]'); btn.disabled = true; meMsg('⏳ මොහොතක් ඉන්න…', true);
+    var btn = f.querySelector('button[type=submit]'); btn.disabled = true; meMsg('⏳ One moment…', true);
     var done = function (res, joined) {
       btn.disabled = false;
-      if (!res.ok) { meMsg(ERR[res.error] || 'යම් වරදක් විය. නැවත උත්සාහ කරන්න.', false); sfx.bad(); return; }
+      if (!res.ok) { meMsg(ERR[res.error] || 'Something went wrong. Please try again.', false); sfx.bad(); return; }
       if (joined) uploadLocal();
       sfx.win(); confetti(); paintProgress(); paintMe(); route();
-      toast(joined ? '🎉 සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!' : '👋 නැවත සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!');
+      toast(joined ? '🎉 Welcome, ' + res.profile.name + '!' : '👋 Welcome back, ' + res.profile.name + '!');
     };
     if (f.id === 'joinForm') Trk.join(f.elements.name.value, f.elements.cls.value, f.elements.place.value, f.elements.classCode.value, { agreed: f.elements.consent.checked === true, guardian: f.elements.guardian.value }).then(function (r) { done(r, true); });
     else Trk.resume(f.elements.name.value, f.elements.code.value).then(function (r) { done(r, false); });
@@ -525,7 +531,7 @@
       '<div class="guide"><div class="card"><ul class="src-list">' + src + '</ul></div>' +
       '<div class="card"><h3>බුදු වදන් දක්වා ඇති ආකාරය</h3><p>කවි ' + total + ' න් ' + cited + ' කට ගැළපෙන බුදු වදනක් දක්වා ඇත. සෑම පාළි පාඨයක් ම සහ සිංහල පරිවර්තනයක් ම tripitaka.online වෙතින් අකුරක් නෑර උපුටා ගෙන, සබැඳියක් සමඟ දක්වා ඇත.</p></div>' +
       '<div class="card"><h3>බුදු වදනක් නැති කවි</h3><p>සමහර කවිවල ඇත්තේ පැරණි ගෘහ සිරිත්, පිරිසිදුකම සහ ආරක්ෂාව වැනි දේ ය. ඒවාට ගැළපෙන සූත්‍රයක් තහවුරු කර ගත නොහැකි වූ විට බුදු වදනක් ලෙස කිසිවක් දක්වා නැත.</p></div></div></section>';
-    var priv = (Trk && Trk.isOn()) ? '<section class="block"><div class="block-head"><h2>🔒 දරුවන්ගේ තොරතුරු · Children\'s information</h2><p>ප්‍රගති සටහන සඳහා ගබඩා වන දේ. <span lang="en">What the progress record stores.</span></p></div><div class="card">' + privacyHtml() + '</div></section>' : '';
+    var priv = (Trk && Trk.isOn()) ? '<section class="block"><div class="block-head"><h2>🔒 දරුවන්ගේ තොරතුරු</h2><p>ප්‍රගති සටහන සඳහා ගබඩා වන දේ.</p></div><div class="card">' + privacyHtml() + '</div></section>' : '';
     return '<section class="block first prose"><div class="block-head"><h1>👩‍🏫 ගුරුවරුන්ට සහ දෙමාපියන්ට</h1><p>මෙම පිටුව පන්තියේදී සහ ගෙදරදී භාවිත කරන හැටි.</p></div>' +
       '<div class="guide">' +
       '<div class="card"><h3>1. පින්තූරයෙන් පටන් ගන්න</h3><p>කවිය කියවීමට පෙර පින්තූරය පෙන්වන්න. <b class="no-t">රතු</b> රාමුවේ ඇත්තේ නොකළ යුතු දෙයයි. <b class="yes-t">කොළ</b> රාමුවේ ඇත්තේ හොඳ පුරුද්දයි. “මෙහි සිදු වන්නේ කුමක්ද?” යැයි දරුවන්ගෙන් අසන්න.</p></div>' +
@@ -558,7 +564,7 @@
       else if (name === 'quiz') { html = pageQuiz(); document.title = 'ප්‍රශ්න — සිරිත් මල්දම'; }
       else if (name === 'guru') { html = pageGuru(); document.title = 'ගුරුවරුන්ට — සිරිත් මල්දම'; }
       else if (name === 'fav') { html = pageFav(); nav = 'fav'; document.title = 'මගේ ප්‍රියතම — සිරිත් මල්දම'; }
-      else if (name === 'mama') { html = pageMe(); nav = 'mama'; document.title = 'මගේ ප්‍රගතිය — සිරිත් මල්දම'; }
+      else if (name === 'mama') { html = pageMe(); nav = 'mama'; document.title = 'My progress — Sirith Maldama'; }
       else { nav = 'home'; html = pageHome(); document.title = 'සිරිත් මල්දම — පින්තූර කවි පොත'; }
     }
     app.innerHTML = html;
@@ -623,10 +629,10 @@
       document.getElementById('quizNext').focus();
       return;
     }
-    if (t.id === 'meSyncBtn') { meMsg('⏳ යවමින්…', true); Trk.flush().then(function () { meMsg(Trk.pending() ? 'යැවීමට නොහැකි විය. පසුව නැවත උත්සාහ කරන්න.' : 'සියල්ල යවා ඇත.', !Trk.pending()); }); return; }
+    if (t.id === 'meSyncBtn') { meMsg('⏳ Sending…', true); Trk.flush().then(function () { meMsg(Trk.pending() ? 'Could not send. Please try again later.' : 'Everything has been sent.', !Trk.pending()); }); return; }
     if (t.id === 'meLeave') {
-      var go = function () { if (window.confirm('පිටවන්නද? ඔබේ රහස් කේතය ලියා ගත්තාද? මෙම උපාංගයේ ප්‍රගතිය මැකේ. ගුරුතුමාගේ සටහන එලෙසම පවතී.')) { Trk.leave(); clearLocal(); paintProgress(); route(); toast('පිටවුණා. නැවත හමුවෙමු!'); } };
-      Trk.flush().then(function () { if (Trk.pending() && !window.confirm('තවම නොයැවූ සටහන් ' + Trk.pending() + ' ක් ඇත. පිටවුවහොත් ඒවා නැති වේ. කෙසේ වුවත් පිටවන්නද?')) return; go(); });
+      var go = function () { if (window.confirm('Sign out? Have you written down your secret code? Progress is removed from this device. Your teacher\'s record stays as it is.')) { Trk.leave(); clearLocal(); paintProgress(); route(); toast('Signed out. See you again!'); } };
+      Trk.flush().then(function () { if (Trk.pending() && !window.confirm(Trk.pending() + ' update(s) have not been sent yet. They will be lost if you sign out. Sign out anyway?')) return; go(); });
       return;
     }
     if (t.id === 'resetBtn') {
