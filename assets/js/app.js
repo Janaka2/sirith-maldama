@@ -14,7 +14,7 @@
   function key(k, p) { return (p || PART) === 1 ? k : k + (p || PART); }
   Object.keys(PARTS).forEach(function (p) {
     p = +p;
-    var st = { learned: {}, last: store.get(key('last', p), 1) || 1, stars: store.get(key('stars', p), 0) || 0 };
+    var st = { learned: {}, last: store.get(key('last', p), 1) || 1, stars: store.get(key('stars', p), 0) || 0, tests: store.get(key('tests', p), {}) || {} };
     (store.get(key('learned', p), []) || []).forEach(function (n) { if (n >= 1 && n <= PARTS[p].verses.length) st.learned[n] = true; });
     STATE[p] = st;
   });
@@ -138,12 +138,14 @@
   function track(kind, part, item, value) { if (Trk) Trk.record({ lesson: LESSON, kind: kind, part: part, item: item, value: value, size: PARTS[part] ? PARTS[part].verses.length : undefined }); }
   function savePart(p) {
     store.set(key('learned', p), Object.keys(STATE[p].learned).map(Number));
-    store.set(key('last', p), STATE[p].last); store.set(key('stars', p), STATE[p].stars);
+    store.set(key('last', p), STATE[p].last); store.set(key('stars', p), STATE[p].stars); store.set(key('tests', p), STATE[p].tests || {});
   }
   function applyServer(progress) {
     var L = (progress && progress.lessons && progress.lessons[LESSON]) || { learned: {}, stars: {}, last: null };
     Object.keys(PARTS).forEach(function (p) {
-      p = +p; var st = { learned: {}, last: 1, stars: Math.min(3, Number((L.stars || {})[p]) || 0) };
+      p = +p; var st = { learned: {}, last: 1, stars: Math.min(3, Number((L.stars || {})[p]) || 0), tests: {} };
+      var srv = (L.tests || {})[p] || {};
+      Object.keys(srv).forEach(function (id) { var x = srv[id] || {}; st.tests[id] = { attempts: Number(x.attempts) || 0, best: x.best === undefined ? null : Number(x.best), wins: Number(x.wins) || 0, wrong: Number(x.wrong) || 0, review: [] }; });
       ((L.learned || {})[p] || []).forEach(function (n) { n = +n; if (n >= 1 && n <= PARTS[p].verses.length) st.learned[n] = true; });
       STATE[p] = st;
     });
@@ -161,7 +163,8 @@
     });
   }
   function clearLocal() {
-    Object.keys(PARTS).forEach(function (p) { STATE[+p] = { learned: {}, last: 1, stars: 0 }; savePart(+p); });
+    Object.keys(PARTS).forEach(function (p) { STATE[+p] = { learned: {}, last: 1, stars: 0, tests: {} }; savePart(+p); });
+    store.set('exam.open', null);
     store.set('lastpos', null);
     setPart(PART);
   }
@@ -203,6 +206,7 @@
         '<div class="me-points"><span>⭐</span><b id="mePoints">' + pts + '</b><small>points</small></div></div></div>' +
         '<div class="me-code"><small>Your secret code. Please write it down.</small><b>' + esc(pr.code) + '</b><small>You need your name and this code to continue on another device.</small></div>' +
         '<div class="me-rows">' + rows + '</div>' +
+        '<p class="me-tests">🏆 Tests won: <b>' + testsWon().won + '</b> of ' + testsWon().all + '</p>' +
         '<p class="me-sync" id="meSync">' + syncText() + '</p>' +
         '<div class="hero-cta"><a class="btn big" href="#/' + lp.part + '/kavi/' + lp.n + '">▶ Continue · Part ' + lp.part + ' · Poem ' + lp.n + '</a><button class="btn ghost" id="meSyncBtn" type="button">🔄 Send now</button><button class="btn ghost danger" id="meLeave" type="button">🚪 Sign out</button></div>' +
         '<p class="me-msg" id="meMsg" role="status"></p></div></section>';
@@ -254,6 +258,123 @@
     else Trk.resume(f.elements.name.value, f.elements.code.value).then(function (r) { done(r, false); });
   });
 
+  /* ---------- tests: plus points for right, minus for wrong, win only with no mistakes ---------- */
+  var EXAM_RIGHT = 10, EXAM_WRONG = 5, EXAM_WAIT = 1400;
+  var NO_JUDGE = { 1: { 30: 1 }, 3: { 3: 1, 19: 1, 52: 1 } };   /* pictures whose meaning depends on a hidden hint */
+  var exam = null, examTimer = null;
+  function testsOf(p) { STATE[p].tests = STATE[p].tests || {}; return STATE[p].tests; }
+  function testRec(p, id) { var t = testsOf(p); t[id] = t[id] || { attempts: 0, best: null, wins: 0, wrong: 0, review: [] }; t[id].review = t[id].review || []; return t[id]; }
+  function testScope(id) {
+    if (id === 'final') return { id: 'final', name: 'අවසාන විභාගය', from: 1, to: TOTAL, count: Math.min(20, TOTAL), icon: '👑', color: '#b45309' };
+    var L = LEVELS[+id - 1];
+    return L ? { id: String(L.n), name: L.n + ' වන පියවර විභාගය', sub: L.name, from: L.from, to: L.to, count: Math.min(10, L.to - L.from + 1), icon: '🏆', color: L.color } : null;
+  }
+  function testLeft(sc) { var c = 0; for (var n = sc.from; n <= sc.to; n++) if (!learned[n]) c++; return c; }
+  function testsWon() { var w = 0, all = 0; Object.keys(PARTS).forEach(function (p) { p = +p; all += PARTS[p].levels.length + 1; var t = testsOf(p); Object.keys(t).forEach(function (k) { if (t[k].wins > 0) w++; }); }); return { won: w, all: all }; }
+  function makeQuestion(n, want) {
+    var v = V[n - 1], ps = NO_JUDGE[PART] && NO_JUDGE[PART][n] ? [] : window.Scenes.panels(PART, n);
+    var good = ps.filter(function (x) { return x.ok === true; }), poor = ps.filter(function (x) { return x.ok === false; });
+    var order = ['judge', 'pick', 'verse', 'name'], kind = null;
+    for (var k = 0; k < 4 && !kind; k++) { var c = order[(want + k) % 4]; if (c !== 'judge' || (good.length && poor.length)) kind = c; }
+    var rest = shuffle(V.filter(function (x) { return x.id !== n && x.title !== v.title; }));
+    if (kind === 'judge') {   /* two pictures of the same poem, side by side: which one is the right way? */
+      var gp = good[Math.floor(Math.random() * good.length)], bp = poor[Math.floor(Math.random() * poor.length)];
+      return { kind: kind, n: n, head: v.title, ask: 'හොඳ දේ පෙන්වන පින්තූරය තෝරන්න', tall: gp.h > gp.w,
+        opts: shuffle([{ pic: window.Scenes.panel(PART, n, gp.i), ok: true }, { pic: window.Scenes.panel(PART, n, bp.i), ok: false }]) };
+    }
+    if (kind === 'pick') {
+      return { kind: kind, n: n, ask: 'මේ කවියට ගැළපෙන පින්තූරය තෝරන්න', head: v.title, opts: shuffle([{ pic: window.Scenes.render(PART, n, 'පින්තූරය'), ok: true }].concat(rest.slice(0, 3).map(function (x) { return { pic: window.Scenes.render(PART, x.id, 'පින්තූරය'), ok: false }; }))) };
+    }
+    if (kind === 'verse') {
+      var lines = v.verse.split('\n'), last = lines[3], seen = {}, wrong = [];
+      seen[last] = 1;
+      rest.forEach(function (x) { var l = x.verse.split('\n')[3]; if (!seen[l] && wrong.length < 3) { seen[l] = 1; wrong.push(l); } });
+      return { kind: kind, n: n, ask: 'මේ කවියේ අවසාන පේළිය කුමක්ද?', lines: lines.slice(0, 3), opts: shuffle([{ t: last, ok: true }].concat(wrong.map(function (l) { return { t: l, ok: false }; }))) };
+    }
+    return { kind: 'name', n: n, ask: 'මේ පින්තූරයෙන් කියා දෙන්නේ කුමක්ද?', pic: window.Scenes.render(PART, n, 'පින්තූරය'), opts: shuffle([{ t: v.title, ok: true }].concat(rest.slice(0, 3).map(function (x) { return { t: x.title, ok: false }; }))) };
+  }
+  function startExam(sc) {
+    var ids = []; for (var n = sc.from; n <= sc.to; n++) ids.push(n);
+    var start = Math.floor(Math.random() * 4);
+    exam = { id: sc.id, part: PART, i: 0, score: 0, right: 0, wrong: 0, missed: [], answered: false, done: false,
+      qs: shuffle(ids).slice(0, sc.count).map(function (n, i) { return makeQuestion(n, start + i); }) };
+    store.set('exam.open', { part: PART, id: sc.id });
+  }
+  /* leaving a test half way counts as an attempt, so a child cannot restart until the questions are easy */
+  function closeExam(how) {
+    if (!exam || exam.done) { exam = null; return; }
+    var r = testRec(exam.part, exam.id);
+    r.attempts++; r.wrong += exam.wrong;
+    exam.missed.forEach(function (n) { if (r.review.indexOf(n) === -1) r.review.push(n); });
+    store.set(key('tests', exam.part), STATE[exam.part].tests); store.set('exam.open', null);
+    if (Trk) Trk.record({ lesson: LESSON, kind: 'test', part: exam.part, item: exam.id, value: JSON.stringify({ score: exam.score, right: exam.right, wrong: exam.wrong, total: exam.qs.length, win: false, left: how || 'left' }) });
+    exam = null;
+  }
+  (function () {   /* a test that was open when the page was closed or reloaded */
+    var o = store.get('exam.open', null);
+    if (o && PARTS[o.part]) { var r = testRec(+o.part, o.id); r.attempts++; store.set(key('tests', +o.part), STATE[+o.part].tests); store.set('exam.open', null);
+      if (Trk) Trk.record({ lesson: LESSON, kind: 'test', part: +o.part, item: o.id, value: JSON.stringify({ score: 0, right: 0, wrong: 0, total: 0, win: false, left: 'closed' }) }); }
+  })();
+  function finishExam() {
+    var r = testRec(exam.part, exam.id), win = exam.wrong === 0;
+    exam.done = true; exam.win = win;
+    r.attempts++; r.wrong += exam.wrong; r.best = r.best === null || r.best === undefined ? exam.score : Math.max(r.best, exam.score);
+    if (win) { r.wins++; r.review = []; } else { r.review = []; exam.missed.forEach(function (n) { if (r.review.indexOf(n) === -1) r.review.push(n); }); }
+    store.set(key('tests', exam.part), STATE[exam.part].tests); store.set('exam.open', null);
+    if (Trk) Trk.record({ lesson: LESSON, kind: 'test', part: exam.part, item: exam.id, value: JSON.stringify({ score: exam.score, right: exam.right, wrong: exam.wrong, total: exam.qs.length, win: win }) });
+    if (win) { confetti(); sfx.win(); } else sfx.bad();
+  }
+  function testButton(id) {
+    var sc = testScope(id), r = testRec(PART, id), left = testLeft(sc), won = r.wins > 0;
+    var cls = won ? ' won' : left ? ' locked' : '', txt = won ? '🏆 දිනුවා' : left ? '🔒 විභාගය' : '🏆 විභාගය';
+    return '<a class="test-btn' + cls + '" href="#/' + PART + '/test/' + id + '" style="--c:' + sc.color + '" title="' + esc(sc.name) + '">' + txt + (r.best !== null && r.best !== undefined ? '<small>' + r.best + '</small>' : '') + '</a>';
+  }
+  function reviewList(r) {
+    return r.review.map(function (n) { return '<a class="review-link" href="#/' + PART + '/kavi/' + n + '"><b>' + pad(n) + '</b> ' + esc(V[n - 1].title) + '</a>'; }).join('');
+  }
+  function pageTest(id) {
+    var sc = testScope(id); if (!sc) return pageHome();
+    if (exam && (exam.id !== sc.id || exam.part !== PART)) closeExam('left');
+    var r = testRec(PART, sc.id), left = testLeft(sc);
+    if (exam && exam.done) {
+      var win = exam.win;
+      return '<section class="block first exam-end' + (win ? ' win' : '') + '" style="--c:' + sc.color + '"><div class="quiz-art">' + window.Scenes.portrait(PART, win ? 62 : 20, { bg: '#fff1c9' }) + '</div>' +
+        '<h1>' + (win ? '🏆 ඔබ දිනුම්!' : 'තව ටිකයි!') + '</h1>' +
+        '<p class="exam-say">' + (win ? 'එක වැරැද්දක්වත් නැතිව සියල්ල නිවැරදියි. ශාබාෂ්!' : 'වැරදි ' + exam.wrong + ' ක් විය. දිනීමට නම් වැරදි එකක්වත් නොවිය යුතුයි.') + '</p>' +
+        '<div class="exam-score"><div><b>' + exam.score + '</b><small>ලකුණු</small></div><div class="ok"><b>' + exam.right + '</b><small>නිවැරදි · +' + EXAM_RIGHT + '</small></div><div class="no"><b>' + exam.wrong + '</b><small>වැරදි · −' + EXAM_WRONG + '</small></div></div>' +
+        (win ? '' : '<div class="review"><h2>📖 මුලින් මේ කවි නැවත ඉගෙන ගන්න</h2><p>පහත කවි විවෘත කර බැලූ පසු නැවත විභාගය කළ හැක.</p>' + reviewList(r) + '</div>') +
+        '<div class="hero-cta center"><a class="btn big" href="#/' + PART + '/">🌸 මගේ මල්දම</a>' + (win ? '' : '<a class="btn ghost" href="#/' + PART + '/test/' + sc.id + '" id="examAgain">🔁 නැවත</a>') + '</div></section>';
+    }
+    if (exam) {
+      var q = exam.qs[exam.i], body = '', opts = '';
+      if (q.kind === 'judge') body = '<p class="exam-head big">“' + esc(q.head) + '”</p>';
+      else if (q.kind === 'name') body = '<figure class="scene-card exam-pic">' + q.pic + '</figure>';
+      else if (q.kind === 'verse') body = '<div class="card verse-card exam-verse"><p class="verse">' + q.lines.map(function (l) { return '<span class="line">' + esc(l) + '</span>'; }).join('') + '<span class="line gap">… … … ?</span></p></div>';
+      else body = '<p class="exam-head big">“' + esc(q.head) + '”</p>';
+      q.opts.forEach(function (o, i) {
+        opts += (q.kind === 'pick' || q.kind === 'judge') ? '<button class="exam-opt pic" type="button" data-i="' + i + '" disabled aria-label="පින්තූරය ' + (i + 1) + '"><span class="opt-k">' + (i + 1) + '</span>' + o.pic + '</button>'
+          : '<button class="exam-opt" type="button" data-i="' + i + '" disabled><span class="opt-k">' + ['අ', 'ආ', 'ඇ', 'ඈ'][i] + '</span><span>' + esc(o.t) + '</span></button>';
+      });
+      return '<section class="block first exam" style="--c:' + sc.color + '"><div class="exam-bar"><span>' + esc(sc.name) + ' · ' + (exam.i + 1) + ' / ' + exam.qs.length + '</span><div class="meter-bar"><i style="width:' + Math.round(exam.i / exam.qs.length * 100) + '%"></i></div>' +
+        '<span class="exam-pts" id="examPts">⭐ ' + exam.score + '</span><span class="exam-bad' + (exam.wrong ? ' some' : '') + '" id="examBad">✗ ' + exam.wrong + '</span></div>' +
+        '<h1 class="exam-ask">' + esc(q.ask) + '</h1><div class="exam-body kind-' + q.kind + '">' + body + '<div class="exam-opts kind-' + q.kind + (q.tall ? ' tall' : '') + '" id="examOpts">' + opts + '</div></div>' +
+        '<div class="exam-after" id="examAfter" hidden><p id="examMsg"></p><button class="btn big" id="examNext" type="button">' + (exam.i + 1 < exam.qs.length ? 'ඊළඟ ▶' : 'ප්‍රතිඵලය බලමු ▶') + '</button></div></section>';
+    }
+    var status = r.attempts ? '<p class="exam-status">' + (r.wins ? '🏆 ඔබ මෙම විභාගය දිනා ඇත. ' : '') + 'උත්සාහ කළ වාර: <b>' + r.attempts + '</b> · හොඳම ලකුණු: <b>' + (r.best === null || r.best === undefined ? '—' : r.best) + '</b></p>' : '';
+    var gate = left ? '<div class="review"><h2>🔒 තවම අගුළු දමා ඇත</h2><p>මෙම විභාගයට පෙර කවි ' + (sc.to - sc.from + 1) + ' ම ඉගෙන ගත යුතුයි. තව කවි <b>' + left + '</b> ක් ඉතිරියි.</p><a class="btn" href="#/' + PART + '/">🌸 කවි ඉගෙන ගමු</a></div>'
+      : r.review.length ? '<div class="review"><h2>📖 මුලින් මේ කවි නැවත ඉගෙන ගන්න</h2><p>පසුගිය වර වැරදුණු කවි මේවායි. ඒවා විවෘත කර බැලූ පසු නැවත විභාගය කළ හැක.</p>' + reviewList(r) + '</div>'
+      : '<button class="btn big" id="examStart" type="button">▶ විභාගය පටන් ගමු</button>';
+    return '<section class="block first exam-intro" style="--c:' + sc.color + '"><div class="quiz-art">' + window.Scenes.portrait(PART, 40, { bg: '#fff1c9', armR: 'wave', armL: 'hip' }) + '</div>' +
+      '<h1>' + sc.icon + ' ' + esc(sc.name) + '</h1><p class="exam-sub">' + esc(PARTS[PART].name) + (sc.sub ? ' · ' + esc(sc.sub) : '') + ' · කවි ' + sc.from + '–' + sc.to + ' · ප්‍රශ්න ' + sc.count + '</p>' +
+      '<ul class="exam-rules"><li class="ok"><b>+' + EXAM_RIGHT + '</b><span>නිවැරදි පිළිතුරකට ලකුණු ' + EXAM_RIGHT + ' ක් ලැබේ</span></li><li class="no"><b>−' + EXAM_WRONG + '</b><span>වැරදි පිළිතුරකට ලකුණු ' + EXAM_WRONG + ' ක් අඩු වේ</span></li>' +
+      '<li class="win"><b>🏆</b><span>එක වැරැද්දක්වත් නැතිව අවසන් කළොත් ඔබ දිනුම්</span></li><li><b>1</b><span>එක් ප්‍රශ්නයකට ඇත්තේ එක් අවස්ථාවක් පමණි. හොඳින් සිතා පිළිතුරු දෙන්න</span></li>' +
+      '<li><b>🚪</b><span>අතරමඟ නවතා ගියොත් එයද උත්සාහයක් ලෙස ගණන් ගැනේ</span></li></ul>' + status + gate + '</section>';
+  }
+  function armOptions() {
+    clearTimeout(examTimer);
+    examTimer = setTimeout(function () { Array.prototype.forEach.call(app.querySelectorAll('#examOpts .exam-opt'), function (b) { if (exam && !exam.answered) b.disabled = false; }); var o = document.getElementById('examOpts'); if (o) o.classList.add('ready'); }, EXAM_WAIT);
+  }
+
   /* ---------- favourites (module: assets/js/favourites.js) ---------- */
   var Fav = window.Favourites;
   function favItem(part, n) {
@@ -300,9 +421,12 @@
       h += '<section class="lvl" style="--c:' + L.color + '">' +
         '<header class="lvl-head"><span class="lvl-ico" aria-hidden="true">' + L.icon + '</span>' +
         '<div><h3>' + L.n + ' වන පියවර · ' + esc(L.name) + '</h3><p>' + esc(L.about) + '</p></div>' +
-        '<span class="lvl-count">' + done + ' / ' + all + '</span></header>' +
+        '<span class="lvl-count">' + done + ' / ' + all + '</span>' + testButton(String(L.n)) + '</header>' +
         '<div class="vine">' + fl + '</div></section>';
     });
+    var fin = testScope('final'), fr = testRec(PART, 'final'), fl2 = testLeft(fin);
+    h += '<a class="final-card' + (fr.wins ? ' won' : fl2 ? ' locked' : '') + '" href="#/' + PART + '/test/final"><span class="final-ico" aria-hidden="true">' + (fr.wins ? '👑' : fl2 ? '🔒' : '🏆') + '</span>' +
+      '<span><b>' + esc(PARTS[PART].name) + ' · අවසාන විභාගය</b><small>' + (fr.wins ? 'ඔබ දිනා ඇත! හොඳම ලකුණු ' + fr.best : fl2 ? 'කවි ' + TOTAL + ' ම ඉගෙන ගත් පසු විවෘත වේ. තව ' + fl2 + ' යි' : 'ප්‍රශ්න ' + fin.count + ' යි. එක වැරැද්දක්වත් නැතිව දිනන්න') + '</small></span></a>';
     return h;
   }
 
@@ -504,7 +628,7 @@
   function pageQuiz() {
     if (!quiz) {
       return partTabs('quiz') + '<section class="block first quiz-intro"><div class="quiz-art">' + window.Scenes.portrait(PART, 40, { bg: '#fff1c9', armR: 'wave', armL: 'hip' }) + '</div>' +
-        '<h1>⭐ ප්‍රශ්න ක්‍රීඩාව · ' + esc(PARTS[PART].name) + '</h1><p>ප්‍රශ්න 8 යි. පින්තූරය බලා නිවැරදි පිළිතුර තෝරන්න.</p>' +
+        '<h1>⭐ පුහුණු ප්‍රශ්න · ' + esc(PARTS[PART].name) + '</h1><p>ප්‍රශ්න 8 යි. මෙය පුහුණුවකි. ලකුණු ලැබෙන විභාග මුල් පිටුවේ ඇත.</p>' +
         '<p class="stars-line big">' + starRow(bestStars) + '</p>' +
         '<button class="btn big" id="quizStart" type="button">▶ පටන් ගනිමු</button></section>';
     }
@@ -551,10 +675,15 @@
     else if (parts[0]) { if (PART !== 1) { galleryCat = ''; galleryQ = ''; quiz = null; } setPart(1); }
     var name = parts[0] || 'home';
     if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+    if (exam && !exam.done && name !== 'test') closeExam('left');
+    if (exam && exam.done && name !== 'test') exam = null;
     var html, nav = name;
     if (name === 'kavi') {
       var n = Math.min(TOTAL, Math.max(1, parseInt(parts[1], 10) || 1));
       html = pagePoem(n); nav = 'mala'; if (lastRead !== n) track('open', PART, n); setLast(n); app.dataset.poem = n;
+      var tt = testsOf(PART), changed = false;
+      Object.keys(tt).forEach(function (k) { var i = (tt[k].review || []).indexOf(n); if (i !== -1) { tt[k].review.splice(i, 1); changed = true; } });
+      if (changed) store.set(key('tests', PART), tt);
       document.title = n + '. ' + V[n - 1].title + ' — සිරිත් මල්දම ' + PARTS[PART].name;
     } else {
       delete app.dataset.poem;
@@ -564,6 +693,7 @@
       else if (name === 'quiz') { html = pageQuiz(); document.title = 'ප්‍රශ්න — සිරිත් මල්දම'; }
       else if (name === 'guru') { html = pageGuru(); document.title = 'ගුරුවරුන්ට — සිරිත් මල්දම'; }
       else if (name === 'fav') { html = pageFav(); nav = 'fav'; document.title = 'මගේ ප්‍රියතම — සිරිත් මල්දම'; }
+      else if (name === 'test') { html = pageTest(parts[1] || '1'); nav = 'home'; name = 'test'; document.title = 'විභාගය — සිරිත් මල්දම'; }
       else if (name === 'mama') { html = pageMe(); nav = 'mama'; document.title = 'My progress — Sirith Maldama'; }
       else { nav = 'home'; html = pageHome(); document.title = 'සිරිත් මල්දම — පින්තූර කවි පොත'; }
     }
@@ -579,6 +709,7 @@
     var mp = document.getElementById('mePill'); if (mp) mp.classList.toggle('active', nav === 'mama');
     Array.prototype.forEach.call(document.querySelectorAll('.nav a'), function (a) { a.classList.toggle('active', a.dataset.nav === nav); if (a.dataset.nav === nav) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (name === 'mala') hydrateThumbs();
+    if (name === 'test' && exam && !exam.done) armOptions();
     paintProgress();
     window.scrollTo(0, 0);
   }
@@ -616,6 +747,20 @@
       galleryCat = t.dataset.filter;
       Array.prototype.forEach.call(app.querySelectorAll('#filterChips .chip'), function (c) { c.classList.toggle('active', c === t); });
       document.getElementById('tiles').innerHTML = galleryCards(); hydrateThumbs(); sfx.page(); return;
+    }
+    if (t.id === 'examStart') { var scx = testScope(location.hash.split('/').pop()); if (scx && !testLeft(scx) && !testRec(PART, scx.id).review.length) { startExam(scx); sfx.page(); route(); } return; }
+    if (t.id === 'examAgain') { exam = null; return; }
+    if (t.id === 'examNext' && exam) { exam.i++; exam.answered = false; if (exam.i >= exam.qs.length) finishExam(); route(); return; }
+    if (t.classList.contains('exam-opt') && exam && !exam.answered && !exam.done) {
+      exam.answered = true;
+      var q = exam.qs[exam.i], pick = +t.dataset.i, ok = !!(q.opts[pick] && q.opts[pick].ok);
+      if (ok) { exam.score += EXAM_RIGHT; exam.right++; sfx.good(); } else { exam.score -= EXAM_WRONG; exam.wrong++; exam.missed.push(q.n); sfx.bad(); }
+      Array.prototype.forEach.call(app.querySelectorAll('#examOpts .exam-opt'), function (b, i) { b.disabled = true; if (q.opts[i].ok) b.classList.add('right'); else if (i === pick) b.classList.add('wrong'); });
+      document.getElementById('examPts').textContent = '⭐ ' + exam.score;
+      var bd = document.getElementById('examBad'); bd.textContent = '✗ ' + exam.wrong; bd.classList.toggle('some', exam.wrong > 0);
+      document.getElementById('examMsg').innerHTML = ok ? '<span class="gain">+' + EXAM_RIGHT + '</span> ✅ නිවැරදියි!' : '<span class="loss">−' + EXAM_WRONG + '</span> නිවැරදි පිළිතුර කොළ පාටින් පෙන්වා ඇත. කවිය ' + q.n + ': ' + esc(V[q.n - 1].title);
+      document.getElementById('examAfter').hidden = false; document.getElementById('examNext').focus();
+      return;
     }
     if (t.id === 'quizStart') { newQuiz(); sfx.page(); route(); return; }
     if (t.id === 'quizNext') { quiz.i++; quiz.answered = false; if (quiz.i >= quiz.items.length) { var s = quiz.score, m = quiz.items.length, st = s >= m ? 3 : s >= m - 2 ? 2 : s >= Math.ceil(m / 2) ? 1 : 0; if (st > bestStars) setStars(st); track('quiz', PART, '', st); if (st >= 2) { confetti(); sfx.win(); } } route(); return; }

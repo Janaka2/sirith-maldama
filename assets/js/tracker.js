@@ -15,6 +15,8 @@
 (function (global) {
   'use strict';
   var CFG = global.TRACKER_CONFIG || {};
+  /* Some kinds of event need a newer script in the sheet. Until it is updated they are held, never dropped. */
+  var NEEDS = { test: 3 }, H_KEY = 'daham.tracker.held', lastProbe = 0;
   var P_KEY = 'daham.tracker.profile', Q_KEY = 'daham.tracker.queue', listeners = [], busy = false, timer = null;
 
   function get(k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }
@@ -71,7 +73,7 @@
   function resume(name, code) {
     if (!isOn()) return Promise.resolve({ ok: false, error: 'off' });
     return send({ action: 'resume', name: name, code: code }, 3).then(function (res) {
-      if (res.ok) { set(Q_KEY, []); keep(res); emit('progress', res); emit('joined', res); }
+      if (res.ok) { set(Q_KEY, []); set(H_KEY, []); keep(res); emit('progress', res); emit('joined', res); }
       return res;
     }).catch(function () { return { ok: false, error: 'network' }; });
   }
@@ -85,15 +87,19 @@
     return true;
   }
   function flush() {
-    var p = profile(), q = get(Q_KEY, []);
-    if (!isOn() || !p || !q.length || busy) return Promise.resolve(false);
-    busy = true;
+    var p = profile(), q = get(Q_KEY, []), held = get(H_KEY, []);
+    if (!isOn() || !p || busy) return Promise.resolve(false);
+    if (!q.length && !(held.length && Date.now() - lastProbe > 300000)) return Promise.resolve(false);
+    busy = true; lastProbe = Date.now();
     var batch = q.slice(0, 200);
     return send({ action: 'event', childId: p.childId, code: p.code, events: batch }).then(function (res) {
       busy = false;
       if (res.ok) {
         failCount = 0; clearTimeout(retryTimer);
-        var now = get(Q_KEY, []); set(Q_KEY, now.slice(batch.length));
+        var ver = Number(res.version) || 1, keep2 = get(H_KEY, []), rest = get(Q_KEY, []).slice(batch.length);
+        batch.forEach(function (ev) { if ((NEEDS[ev.kind] || 1) > ver) keep2.push(ev); });
+        if (keep2.length && keep2.every(function (ev) { return (NEEDS[ev.kind] || 1) <= ver; })) { rest = keep2.concat(rest); keep2 = []; }
+        set(H_KEY, keep2.slice(-400)); set(Q_KEY, rest);
         var np = profile(); if (np) { np.points = res.points; np.synced = Date.now(); set(P_KEY, np); }
         emit('synced', res);
         if (get(Q_KEY, []).length) return flush();
@@ -103,12 +109,13 @@
       return false;
     }).catch(function () { busy = false; emit('offline', null); retryLater(); return false; });
   }
-  function pending() { return get(Q_KEY, []).length; }
-  function leave() { del(P_KEY); del(Q_KEY); emit('left', null); }
+  function pending() { return get(Q_KEY, []).length + get(H_KEY, []).length; }
+  function held() { return get(H_KEY, []).length; }
+  function leave() { del(P_KEY); del(Q_KEY); del(H_KEY); emit('left', null); }
 
   global.addEventListener('online', function () { flush(); });
   global.addEventListener('pagehide', function () { flush(); });
   setTimeout(flush, 1500);
 
-  global.Tracker = { isOn: isOn, profile: profile, join: join, resume: resume, record: record, flush: flush, pending: pending, leave: leave, onChange: onChange, places: function () { return (CFG.places || []).slice(); }, classes: function () { return (CFG.classes || []).slice(); } };
+  global.Tracker = { isOn: isOn, profile: profile, join: join, resume: resume, record: record, flush: flush, pending: pending, held: held, leave: leave, onChange: onChange, places: function () { return (CFG.places || []).slice(); }, classes: function () { return (CFG.classes || []).slice(); } };
 })(window);

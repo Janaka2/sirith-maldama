@@ -84,5 +84,24 @@ You are collecting information about children, so please:
 | Each lesson learned | 10 |
 | Each quiz star | 5 |
 | Finishing every lesson of a section | 50 extra |
+| Test: each right answer | 10 |
+| Test: each wrong answer | minus 5 |
+| Winning a test, which needs no wrong answers | 50 extra |
 
-Change the three numbers at the top of `Code.gs` to suit you.
+Only a child's best attempt at each test counts towards points, so repeating a test does
+not pile up points. Change the bonus numbers at the top of `Code.gs` to suit you.
+
+## Tests
+
+Each part has a test for each of its five steps and one final test. A test opens when the
+child has marked every poem in it as learned. The Children tab shows, at the far right:
+
+| Column | Meaning |
+| --- | --- |
+| Tests won | Tests finished with no wrong answer |
+| Test attempts | Every attempt, including ones the child left half way |
+| Wrong answers in tests | All wrong answers added together |
+| Test results | Each test: won or not, best score, number of tries |
+
+A child with many attempts and many wrong answers is guessing. A child with few attempts
+and wins has learned the poems.

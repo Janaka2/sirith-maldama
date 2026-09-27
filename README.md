@@ -29,6 +29,12 @@ Favourites.bind(document.body);    // once per page
 
 Favourites are kept in the browser, under one key shared by all lessons.
 
+## Tests
+
+Each part has five step tests and a final test. Right answers add 10 points, wrong answers
+take away 5, and a test is won only with no wrong answer. Questions are picture-based and
+generated from the poems. A child who fails must reopen the missed poems before retrying.
+
 ## Progress tracking
 
 Children can join with a first name, a place and a class code. Their progress goes to the

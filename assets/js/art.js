@@ -3,6 +3,13 @@
 (function (global) {
   'use strict';
 
+  /* Test mode. `neutral` hides every hint of right or wrong (frames, ticks, colours, the hero's look).
+     `focus` draws one panel only. `capture` lists the panels of a scene without drawing. */
+  var MODE = { neutral: false, focus: null, capture: null };
+  function setMode(m) { MODE.neutral = !!(m && m.neutral); MODE.focus = m && m.focus !== undefined ? m.focus : null; MODE.capture = m && m.capture ? m.capture : null; }
+  var PLAIN = { hair: 'neat', top: '#fde68a', topLine: '#f59e0b', bottom: '#2563eb', shoes: '#3b2a1e', blush: true };
+  var LOOK_KEYS = { top: 1, topLine: 1, bottom: 1, shoes: 1, blush: 1, garland: 1, halo: 1, sash: 1, tie: 1 };
+  function plain(o) { var b = {}, k; for (k in PLAIN) b[k] = PLAIN[k]; for (k in (o || {})) if (!LOOK_KEYS[k]) b[k] = o[k]; return b; }
   var uid = 0;
   function nid(p) { uid += 1; return p + '_' + uid; }
   function r1(n) { return Math.round(n * 10) / 10; }
@@ -26,6 +33,7 @@
     return '<text x="' + x + '" y="' + y + '" font-size="' + size + '" text-anchor="middle" dominant-baseline="central" class="emo"' + (extra || '') + '>' + ch + '</text>';
   }
   function label(x, y, size, txt, fill, weight) {
+    if (MODE.neutral && /^#(991b1b|166534|7f1d1d|b91c1c|14532d)$/i.test(fill || '')) fill = C.ink;
     return '<text x="' + x + '" y="' + y + '" font-size="' + size + '" text-anchor="middle" dominant-baseline="central" class="si" font-weight="' + (weight || 800) + '" fill="' + (fill || C.ink) + '">' + txt + '</text>';
   }
 
@@ -50,6 +58,7 @@
       glasses: false, sash: null, holdR: '', holdL: '', shoes: '#3b2a1e', blush: true
     };
     for (var k in o) { if (Object.prototype.hasOwnProperty.call(o, k)) p[k] = o[k]; }
+    if (MODE.neutral) { p.garland = false; p.halo = false; }
 
     var K = p.adult
       ? { hip: -60, sh: -104, neck: -109, hy: -126, hr: 16, tw: 17, arm: 1.18, lw: 9 }
@@ -236,6 +245,7 @@
   }
   /* Taraka — the hero. His look matures with the poem number. */
   function taraka(v, o) {
+    if (MODE.neutral) return person(plain(o));
     var lvl = v <= 10 ? 1 : v <= 23 ? 2 : v <= 32 ? 3 : v <= 45 ? 4 : 5;
     var base = { face: 'happy' };
     if (lvl === 1) { base.hair = 'messy'; base.top = '#fdba74'; base.topLine = '#fb923c'; base.bottom = '#7c5a3a'; base.shoes = 'none'; }
@@ -248,6 +258,7 @@
   }
   /* A naughty child for the "don't" pictures */
   function rascal(o) {
+    if (MODE.neutral) return person(plain(o));
     var base = { hair: 'messy', top: '#a8a29e', topLine: '#78716c', bottom: '#57534e', face: 'sly', shoes: 'none', blush: false };
     for (var k in (o || {})) base[k] = o[k];
     return person(base);
@@ -348,6 +359,7 @@
 
   /* ---------- nature & buildings ---------- */
   function sun(x, y, r, o) {
+    if (MODE.neutral) return '';
     o = o || {};
     var rays = '';
     for (var i = 0; i < 12; i++) rays += '<rect x="-2" y="' + (-r - 15) + '" width="4" height="10" rx="2" fill="#fbbf24" transform="rotate(' + (i * 30) + ')"/>';
@@ -366,9 +378,11 @@
     return s;
   }
   function cloud(x, y, s, col) {
+    if (MODE.neutral) return '';
     return at(x, y, s, '<g class="drift"><ellipse cx="0" cy="0" rx="26" ry="11" fill="' + (col || '#fff') + '"/><circle cx="-10" cy="-8" r="11" fill="' + (col || '#fff') + '"/><circle cx="6" cy="-11" r="14" fill="' + (col || '#fff') + '"/><circle cx="19" cy="-4" r="9" fill="' + (col || '#fff') + '"/></g>');
   }
   function rain(x, y, n) {
+    if (MODE.neutral) return '';
     var s = '';
     for (var i = 0; i < n; i++) s += '<path d="M ' + (x + i * 9 - n * 4.5) + ' ' + (y + (i % 2) * 7) + ' l -3 9" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" class="fall" style="animation-delay:' + (i * 0.15) + 's"/>';
     return s;
@@ -599,22 +613,27 @@
     return at(x, y, s, '<path d="M 0 8 C -16 -4 -9 -16 0 -7 C 9 -16 16 -4 0 8 Z" fill="' + (col || '#ef4444') + '"/>');
   }
   function hearts(list, col) {
+    if (MODE.neutral) return '';
     var s = '';
     list.forEach(function (p, i) { s += '<g class="floaty" style="animation-delay:' + (i * 0.4) + 's">' + heart(p[0], p[1], p[2] || 1, col || '#fb7185') + '</g>'; });
     return s;
   }
-  function sparkle(list, col) { return stars(list, col || '#fbbf24'); }
+  function sparkle(list, col) {
+    if (MODE.neutral) return ''; return stars(list, col || '#fbbf24'); }
   function badge(x, y, r, ok) {
+    if (MODE.neutral) return '';
     return g('<g class="pop"><circle r="' + r + '" fill="#fff"/><circle r="' + (r - 3) + '" fill="' + (ok ? '#16a34a' : '#dc2626') + '"/>' +
       (ok ? '<path d="M -' + (r * 0.4) + ' 0 l ' + (r * 0.28) + ' ' + (r * 0.3) + ' l ' + (r * 0.5) + ' -' + (r * 0.55) + '" stroke="#fff" stroke-width="' + (r * 0.24) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
           : '<path d="M -' + (r * 0.34) + ' -' + (r * 0.34) + ' l ' + (r * 0.68) + ' ' + (r * 0.68) + ' M ' + (r * 0.34) + ' -' + (r * 0.34) + ' l -' + (r * 0.68) + ' ' + (r * 0.68) + '" stroke="#fff" stroke-width="' + (r * 0.24) + '" stroke-linecap="round"/>') + '</g>',
       'translate(' + x + ' ' + y + ')');
   }
   function ban(x, y, r, inner) {
+    if (MODE.neutral) return g(inner || '', 'translate(' + x + ' ' + y + ')');
     return g('<circle r="' + r + '" fill="#fff" stroke="#dc2626" stroke-width="' + (r * 0.17) + '"/>' + (inner || '') + '<path d="M -' + (r * 0.68) + ' -' + (r * 0.68) + ' L ' + (r * 0.68) + ' ' + (r * 0.68) + '" stroke="#dc2626" stroke-width="' + (r * 0.17) + '" stroke-linecap="round"/>', 'translate(' + x + ' ' + y + ')');
   }
   function bubble(x, y, w, h, inner, o) {
     o = o || {};
+    if (MODE.neutral) o = { tail: o.tail };
     var fill = o.fill || '#fff', st = o.stroke || '#cbd5e1', tx = o.tail === 'right' ? w * 0.22 : -w * 0.22;
     return g('<path d="M ' + (tx - 6) + ' ' + (h / 2 - 2) + ' L ' + (tx + (o.tail === 'right' ? 8 : -8)) + ' ' + (h / 2 + 13) + ' L ' + (tx + 7) + ' ' + (h / 2 - 2) + ' Z" fill="' + fill + '" stroke="' + st + '" stroke-width="2"/>' +
       '<rect x="' + (-w / 2) + '" y="' + (-h / 2) + '" width="' + w + '" height="' + h + '" rx="' + Math.min(14, h / 2) + '" fill="' + fill + '" stroke="' + st + '" stroke-width="2"/>' +
@@ -622,11 +641,13 @@
   }
   function think(x, y, w, h, inner, o) {
     o = o || {};
+    if (MODE.neutral) o = { tail: o.tail };
     var fill = o.fill || '#fff', dir = o.tail === 'right' ? 1 : -1;
     return g('<circle cx="' + (dir * w * 0.3) + '" cy="' + (h / 2 + 8) + '" r="5" fill="' + fill + '" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="' + (dir * w * 0.42) + '" cy="' + (h / 2 + 19) + '" r="3" fill="' + fill + '" stroke="#cbd5e1" stroke-width="1.5"/>' +
       '<ellipse cx="0" cy="0" rx="' + (w / 2) + '" ry="' + (h / 2) + '" fill="' + fill + '" stroke="#cbd5e1" stroke-width="2"/>' + (inner || ''), 'translate(' + x + ' ' + y + ')');
   }
   function rays(x, y, r, col, n) {
+    if (MODE.neutral) return '';
     var s = ''; n = n || 14;
     for (var i = 0; i < n; i++) s += '<path d="M 0 0 L -' + (r * 0.11) + ' -' + r + ' L ' + (r * 0.11) + ' -' + r + ' Z" fill="' + (col || '#fde68a') + '" opacity=".55" transform="rotate(' + (i * 360 / n) + ')"/>';
     return g('<g class="spin-slow">' + s + '</g>', 'translate(' + x + ' ' + y + ')');
@@ -644,6 +665,7 @@
     return s;
   }
   function confetti(w, h, n) {
+    if (MODE.neutral) return '';
     var s = '', cols = ['#f472b6', '#fbbf24', '#34d399', '#60a5fa', '#c084fc', '#fb923c'];
     for (var i = 0; i < n; i++) {
       var x = (i * 73 + 17) % w, y = (i * 41 + 9) % (h * 0.7);
@@ -658,6 +680,7 @@
     return '<path d="M ' + x + ' ' + y + ' q -4 8 0 12 q 4 -4 0 -12 Z" fill="#7dd3fc" class="fall"/>';
   }
   function anger(x, y, s) {
+    if (MODE.neutral) return '';
     return at(x, y, s, '<path d="M -8 -3 h 5 v -5 M 8 -3 h -5 v -5 M -8 3 h 5 v 5 M 8 3 h -5 v 5" stroke="#dc2626" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>');
   }
   function scribble(x, y, s, col) {
@@ -667,6 +690,7 @@
   /* ---------- backgrounds ---------- */
   function bg(type, w, h, o) {
     o = o || {};
+    if (MODE.neutral && type === 'gloom') type = 'yard';
     var G = h * 0.8, s = '';
     function grass(top) { return '<rect x="0" y="' + top + '" width="' + w + '" height="' + (h - top) + '" fill="#86d36b"/><path d="M 0 ' + top + ' Q ' + (w / 2) + ' ' + (top - 10) + ' ' + w + ' ' + top + ' L ' + w + ' ' + (top + 12) + ' L 0 ' + (top + 12) + ' Z" fill="#9be07f"/>'; }
     function hills(y) { return '<path d="M 0 ' + y + ' Q ' + (w * 0.22) + ' ' + (y - 46) + ' ' + (w * 0.5) + ' ' + (y - 8) + ' Q ' + (w * 0.78) + ' ' + (y - 52) + ' ' + w + ' ' + (y - 12) + ' L ' + w + ' ' + (y + 20) + ' L 0 ' + (y + 20) + ' Z" fill="#b7e4a0"/>'; }
@@ -734,13 +758,20 @@
     return s;
   }
   /* two tall panels: left = don't, right = do */
+  function lone(c, w, h) {
+    return clipBox(3, 3, w, h, 14, bg(c[0], w, h, c[2]) + c[1]) + '<rect x="3" y="3" width="' + w + '" height="' + h + '" rx="14" fill="none" stroke="#f59e0b" stroke-width="4"/>';
+  }
   function split(bad, good) {
+    if (MODE.capture) { MODE.capture.push({ ok: false, w: 198, h: 298 }, { ok: true, w: 198, h: 298 }); return ''; }
+    if (MODE.focus !== null) return lone(MODE.focus === 0 ? bad : good, 192, 292);
     return '<rect width="' + W + '" height="' + H + '" rx="18" fill="#fffaf0"/>' +
       panel(4, 4, 192, 292, false, bad[0], bad[1], bad[2]) + panel(204, 4, 192, 292, true, good[0], good[1], good[2]) +
       g('<circle r="15" fill="#fff" stroke="#f59e0b" stroke-width="3"/><path d="M -6 0 h 11 M 1 -5 l 5 5 l -5 5" stroke="#f59e0b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>', 'translate(200 150)');
   }
   /* 2 x 2 grid. each cell: [ok|num, bgType, inner, opts] */
   function grid(cells) {
+    if (MODE.capture) { cells.forEach(function (c) { MODE.capture.push({ ok: c[0] === true ? true : c[0] === false ? false : null, w: 199, h: 150 }); }); return ''; }
+    if (MODE.focus !== null) { var fc = cells[MODE.focus]; return lone([fc[1], fc[2], fc[3]], 193, 144); }
     var s = '<rect width="' + W + '" height="' + H + '" rx="18" fill="#fffaf0"/>';
     var pos = [[4, 4], [203, 4], [4, 152], [203, 152]];
     cells.forEach(function (c, i) {
@@ -825,7 +856,7 @@
     book: book, openBook: openBook, slate: slate, pencil: pencil, bag: bag, ball: ball, umbrella: umbrella, purse: purse, plate: plate, cup: cup, pot: pot, basin: basin, tap: tap,
     broom: broom, comb: comb, toothbrush: toothbrush, teeth: teeth, hand: hand, hanky: hanky, bin: bin, fire: fire, lamp: lamp, clock: clock, betel: betel, gift: gift, car: car, stone: stone, water: water, steps: steps,
     heart: heart, hearts: hearts, sparkle: sparkle, badge: badge, ban: ban, bubble: bubble, think: think, rays: rays, garlandArc: garlandArc, confetti: confetti, zzz: zzz, sweat: sweat, anger: anger, scribble: scribble,
-    bg: bg, wrap: wrap, single: single, split: split, grid: grid, panel: panel, pair: pair,
+    bg: bg, wrap: wrap, single: single, split: split, grid: grid, panel: panel, pair: pair, setMode: setMode,
     snake: snake, baby: baby, lantern: lantern, fence: fence, anthill: anthill, boat: boat, hoe: hoe, rubbish: rubbish, frame: frame
   };
 })(window);

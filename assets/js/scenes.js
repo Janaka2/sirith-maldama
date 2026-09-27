@@ -731,6 +731,21 @@
     return '<svg viewBox="0 0 200 200" class="portrait" role="img" aria-label="තාරක"><clipPath id="' + id + '"><circle cx="100" cy="100" r="96"/></clipPath><g clip-path="url(#' + id + ')">' + inner + '</g><circle cx="100" cy="100" r="96" fill="none" stroke="#f59e0b" stroke-width="5"/></svg>';
   }
 
-  global.Scenes = { render: render, portrait: portrait, register: register,
+  /* For the tests: which single pictures of a poem show a right or a wrong action */
+  function panels(part, n) {
+    var fn = (PARTS[part] || {})[n], list = [];
+    if (!fn) return list;
+    try { A.setMode({ capture: list }); fn(); } finally { A.setMode(null); }
+    return list.map(function (p, i) { return { i: i, ok: p.ok, w: p.w, h: p.h }; }).filter(function (p) { return p.ok !== null; });
+  }
+  /* one picture, drawn with nothing that gives the answer away */
+  function panel(part, n, i) {
+    var fn = (PARTS[part] || {})[n], all = [], inner = '';
+    try { A.setMode({ capture: all }); fn(); } finally { A.setMode(null); }
+    try { A.setMode({ neutral: true, focus: i }); inner = fn(); } finally { A.setMode(null); }
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + all[i].w + ' ' + all[i].h + '" role="img" aria-label="පින්තූරය" class="scene-svg">' + inner + '</svg>';
+  }
+
+  global.Scenes = { render: render, portrait: portrait, register: register, panels: panels, panel: panel,
     h: { say: say, sayE: sayE, dust: dust, splash: splash, flies: flies, stink: stink, wallBg: wallBg, coin: coin } };
 })(window);

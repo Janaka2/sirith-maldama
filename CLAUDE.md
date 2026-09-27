@@ -48,6 +48,21 @@ progress page, unless the owner asks.
 
 No build step. Test with `python3 -m http.server 8765`.
 
+## Tests
+
+Built in `assets/js/app.js` (search for "tests:"). Rules chosen by the owner on 2026-09-27:
+
+- Right answer +10, wrong answer -5. A test is won only with no wrong answer.
+- One chance per question. Answers stay locked for a moment so the child reads first.
+- Questions and answer order are random on every attempt.
+- After a failed attempt, the child must open every missed poem before trying again.
+- Leaving or reloading half way counts as an attempt.
+- Questions are generated from the poems and pictures. Do not hand-write question text
+  about the Dhamma without the `mahamevnawa-dhamma` skill.
+- Never put the right answer in the page markup (no `data-ok` or similar).
+- Test pictures use `Art.setMode({ neutral: true })`, which hides frames, ticks, colours
+  and decorations that would give the answer away. Keep new drawing helpers neutral-aware.
+
 ## Children's data
 
 Progress tracking collects a child's first name and place. Never add fields for surname,
