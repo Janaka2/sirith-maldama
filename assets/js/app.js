@@ -1,0 +1,423 @@
+/* සිරිත් මල්දම — app: routing, progress, read aloud, quiz */
+(function () {
+  'use strict';
+  var D = window.SM_DATA, V = D.verses, CATS = D.cats, LEVELS = D.levels;
+  var app = document.getElementById('app');
+  var TOTAL = V.length;
+
+  /* ---------- storage (safe) ---------- */
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem('sirith.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem('sirith.' + k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
+  };
+  var learned = {};
+  (store.get('learned', []) || []).forEach(function (n) { if (n >= 1 && n <= TOTAL) learned[n] = true; });
+  var soundOn = store.get('sound', true) !== false;
+  var lastRead = store.get('last', 1) || 1;
+  var bestStars = store.get('stars', 0) || 0;
+
+  function learnedCount() { return Object.keys(learned).length; }
+  function saveLearned() { store.set('learned', Object.keys(learned).map(Number)); }
+
+  /* ---------- helpers ---------- */
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function levelOf(n) { for (var i = 0; i < LEVELS.length; i++) if (n >= LEVELS[i].from && n <= LEVELS[i].to) return LEVELS[i]; return LEVELS[0]; }
+  function levelDone(L) { var c = 0; for (var n = L.from; n <= L.to; n++) if (learned[n]) c++; return c; }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('show'); }, 3200);
+  }
+
+  /* ---------- sound ---------- */
+  var actx = null;
+  function tone(freqs, dur, type, gain) {
+    if (!soundOn) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      var t0 = actx.currentTime;
+      freqs.forEach(function (f, i) {
+        var o = actx.createOscillator(), g = actx.createGain();
+        o.type = type || 'sine'; o.frequency.value = f;
+        var s = t0 + i * dur * 0.55;
+        g.gain.setValueAtTime(0.0001, s); g.gain.exponentialRampToValueAtTime(gain || 0.12, s + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, s + dur);
+        o.connect(g); g.connect(actx.destination); o.start(s); o.stop(s + dur + 0.05);
+      });
+    } catch (e) { /* no audio */ }
+  }
+  var sfx = {
+    page: function () { tone([520], 0.12, 'triangle', 0.06); },
+    good: function () { tone([523, 659, 784, 1047], 0.22, 'sine', 0.12); },
+    bad: function () { tone([220, 196], 0.22, 'triangle', 0.08); },
+    win: function () { tone([523, 659, 784, 1047, 1319, 1568], 0.26, 'sine', 0.12); }
+  };
+  function paintSound() {
+    var b = document.getElementById('soundBtn');
+    b.textContent = soundOn ? '🔊' : '🔇';
+    b.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+  }
+  document.getElementById('soundBtn').addEventListener('click', function () {
+    soundOn = !soundOn; store.set('sound', soundOn); paintSound();
+    if (soundOn) sfx.page(); else if (window.speechSynthesis) window.speechSynthesis.cancel();
+  });
+
+  /* ---------- read aloud ---------- */
+  function sinhalaVoice() {
+    if (!('speechSynthesis' in window)) return null;
+    var vs = window.speechSynthesis.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) if (/^si([-_]|$)/i.test(vs[i].lang)) return vs[i];
+    return vs.length ? false : null; /* false = voices exist but none Sinhala, null = unknown */
+  }
+  if ('speechSynthesis' in window) { try { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = function () {}; } catch (e) { /* ignore */ } }
+  function readAloud(text, btn) {
+    if (!('speechSynthesis' in window)) { toast('මේ උපාංගයට හඬ නඟා කියවිය නොහැක. අපි එකට කියවමු!'); return; }
+    var synth = window.speechSynthesis;
+    if (synth.speaking) { synth.cancel(); if (btn) btn.classList.remove('on'); return; }
+    var v = sinhalaVoice();
+    if (v === false) { toast('මේ උපාංගයේ සිංහල හඬක් නැත. ගුරුතුමා සමඟ හඬ නඟා කියවමු!'); return; }
+    var u = new SpeechSynthesisUtterance(text.replace(/\n/g, ' . '));
+    u.lang = 'si-LK'; u.rate = 0.8; u.pitch = 1.05; if (v) u.voice = v;
+    u.onend = u.onerror = function () { if (btn) btn.classList.remove('on'); };
+    if (btn) btn.classList.add('on');
+    synth.speak(u);
+  }
+
+  /* ---------- little visuals ---------- */
+  function flowerSvg(color, on) {
+    var p = '';
+    for (var i = 0; i < 6; i++) p += '<ellipse cx="0" cy="-13" rx="8.5" ry="12" transform="rotate(' + (i * 60) + ')" fill="' + (on ? color : '#f1e9da') + '" stroke="' + (on ? 'rgba(0,0,0,.12)' : '#d9ccb4') + '" stroke-width="1"/>';
+    return '<svg viewBox="-28 -28 56 56" aria-hidden="true">' + p + '<circle r="11" fill="' + (on ? '#fff7d6' : '#fffaf0') + '" stroke="' + (on ? '#f59e0b' : '#d9ccb4') + '" stroke-width="1.5"/></svg>';
+  }
+  function confetti() {
+    var fx = document.getElementById('fx'), cols = ['#f472b6', '#fbbf24', '#34d399', '#60a5fa', '#c084fc', '#fb923c'], h = '';
+    for (var i = 0; i < 46; i++) {
+      h += '<i style="left:' + (Math.random() * 100) + '%;background:' + cols[i % cols.length] + ';animation-delay:' + (Math.random() * 0.5) + 's;animation-duration:' + (1.6 + Math.random() * 1.4) + 's;transform:rotate(' + (Math.random() * 360) + 'deg)"></i>';
+    }
+    fx.innerHTML = h;
+    clearTimeout(confetti._t); confetti._t = setTimeout(function () { fx.innerHTML = ''; }, 3400);
+  }
+  function catChip(cat, link) {
+    var c = CATS[cat] || ['🌼', '#f59e0b'];
+    var inner = '<span aria-hidden="true">' + c[0] + '</span> ' + esc(cat);
+    return link ? '<a class="chip" style="--c:' + c[1] + '" href="#/mala" data-cat="' + esc(cat) + '">' + inner + '</a>'
+                : '<span class="chip" style="--c:' + c[1] + '">' + inner + '</span>';
+  }
+  function paintProgress() { document.getElementById('progressCount').textContent = learnedCount(); }
+
+  /* ---------- pages ---------- */
+  function garland() {
+    var h = '';
+    LEVELS.forEach(function (L) {
+      var done = levelDone(L), all = L.to - L.from + 1, fl = '';
+      for (var n = L.from; n <= L.to; n++) {
+        var v = V[n - 1];
+        fl += '<a class="bloom' + (learned[n] ? ' on' : '') + '" href="#/kavi/' + n + '" title="' + esc(n + '. ' + v.title) + '" aria-label="' + esc('කවිය ' + n + ': ' + v.title + (learned[n] ? ' (ඉගෙන ගත්තා)' : '')) + '">' +
+          flowerSvg(L.color, !!learned[n]) + '<b>' + n + '</b></a>';
+      }
+      h += '<section class="lvl" style="--c:' + L.color + '">' +
+        '<header class="lvl-head"><span class="lvl-ico" aria-hidden="true">' + L.icon + '</span>' +
+        '<div><h3>' + L.n + ' වන පියවර · ' + esc(L.name) + '</h3><p>' + esc(L.about) + '</p></div>' +
+        '<span class="lvl-count">' + done + ' / ' + all + '</span></header>' +
+        '<div class="vine">' + fl + '</div></section>';
+    });
+    return h;
+  }
+
+  function pageHome() {
+    var c = learnedCount();
+    var next = 1;
+    for (var n = 1; n <= TOTAL; n++) { if (!learned[n]) { next = n; break; } if (n === TOTAL) next = TOTAL; }
+    var started = c > 0 || lastRead > 1;
+    var go = started ? (learned[lastRead] ? next : lastRead) : 1;
+    var cats = Object.keys(CATS).map(function (k) { return catChip(k, true); }).join('');
+    return '<section class="hero">' +
+      '<div class="hero-text">' +
+        '<div class="school"><img src="assets/img/logo.jpg" alt="" width="56" height="56"><span><b>Mahamevnawa Dhamma School UK</b><small>මහමෙව්නාව දහම් පාසල</small></span></div>' +
+        '<p class="eyebrow">ළමයින් සඳහා · කවි 62</p>' +
+        '<h1>සිරිත් මල්දම</h1>' +
+        '<p class="lead">පින්තූර බලමු. කවිය කියමු. හොඳ පුරුද්දක් ඉගෙන ගනිමු. <br>එක කවියකට එක මලක් — මල් 62 න් ඔබේ <b>මල්දම</b> ගොතමු!</p>' +
+        '<div class="hero-cta">' +
+          '<a class="btn big" href="#/kavi/' + go + '">' + (started ? '▶ දිගටම කියවමු · කවිය ' + go : '▶ පටන් ගනිමු') + '</a>' +
+          '<a class="btn ghost" href="#/mala">📖 කවි සියල්ල</a>' +
+        '</div>' +
+        '<div class="meter" role="img" aria-label="' + c + ' / ' + TOTAL + '"><div class="meter-bar"><i style="width:' + Math.max(2, Math.round(c / TOTAL * 100)) + '%"></i></div><span>🌸 මල් <b>' + c + '</b> / ' + TOTAL + '</span></div>' +
+      '</div>' +
+      '<a class="hero-art" href="#/kavi/' + go + '" aria-label="කවිය ' + go + '">' + window.Scenes.render(c >= TOTAL ? 62 : 1, 'සිරිත් මල්දම') + '</a>' +
+    '</section>' +
+
+    '<section class="how" aria-label="ඉගෙන ගන්නා හැටි">' +
+      '<div class="how-card"><span>👀</span><b>1. බලමු</b><p>පින්තූරය බලා සිදු වන දේ කියමු.</p></div>' +
+      '<div class="how-card"><span>🗣️</span><b>2. කියමු</b><p>කවිය හඬ නඟා කියමු.</p></div>' +
+      '<div class="how-card"><span>💡</span><b>3. තේරුම් ගනිමු</b><p>කවියේ තේරුම දැන ගනිමු.</p></div>' +
+      '<div class="how-card"><span>🌸</span><b>4. කරමු</b><p>පොරොන්දු වී මලක් ලබා ගනිමු.</p></div>' +
+    '</section>' +
+
+    '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
+    '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
+  }
+
+  function versesHtml(v) {
+    return v.verse.split('\n').map(function (l, i) { return '<span class="line" style="animation-delay:' + (i * 0.12) + 's">' + esc(l) + '</span>'; }).join('');
+  }
+
+  function legend(svg) {
+    var h = '';
+    if (svg.indexOf('stroke-dasharray="9 6"') !== -1) h += '<span class="lg no">✕ මෙහෙම එපා</span>';
+    if (svg.indexOf('stroke="#16a34a" stroke-width="4"') !== -1) h += '<span class="lg yes">✓ මෙහෙම හොඳයි</span>';
+    if (svg.indexOf('stroke="#f59e0b" stroke-width="4"') !== -1) h += '<span class="lg step">① ② ③ ④ පියවරෙන් පියවර</span>';
+    return h ? '<figcaption>' + h + '</figcaption>' : '';
+  }
+
+  function pagePoem(n) {
+    var v = V[n - 1], L = levelOf(n), on = !!learned[n];
+    var pic = window.Scenes.render(n, v.title);
+    var dots = '';
+    for (var i = L.from; i <= L.to; i++) dots += '<a href="#/kavi/' + i + '" class="dot' + (i === n ? ' now' : '') + (learned[i] ? ' on' : '') + '" aria-label="කවිය ' + i + '"></a>';
+    return '<article class="poem" style="--c:' + L.color + '">' +
+      '<div class="poem-top">' +
+        '<div class="crumbs"><span class="chip solid" style="--c:' + L.color + '">' + L.icon + ' ' + L.n + ' වන පියවර · ' + esc(L.name) + '</span>' + catChip(v.cat, true) + '</div>' +
+        '<button class="btn ghost small" id="presentBtn" type="button">🖥️ ලොකු තිරය</button>' +
+      '</div>' +
+      '<header class="poem-head"><span class="num" aria-label="කවිය ' + n + '">' + pad(n) + '</span><div><h1>' + esc(v.title) + '</h1><p class="sub">' + esc(v.titleEn) + '</p></div><span class="poem-icon" aria-hidden="true">' + v.icon + '</span></header>' +
+      '<div class="poem-grid">' +
+        '<figure class="scene-card">' + pic + legend(pic) + '</figure>' +
+        '<div class="poem-side">' +
+          '<section class="card verse-card"><div class="card-tag">📜 කවිය</div><p class="verse" lang="si">' + versesHtml(v) + '</p>' +
+            '<button class="btn listen" id="listenBtn" type="button"><span aria-hidden="true">🔊</span> අහමු</button></section>' +
+          '<section class="card meaning-card"><div class="card-tag">💡 තේරුම</div><p>' + esc(v.moral) + '</p></section>' +
+          '<section class="card promise-card' + (on ? ' on' : '') + '" id="promiseCard"><div class="card-tag">🤝 මගේ පොරොන්දුව</div><p class="promise">“' + esc(v.promise) + '”</p>' +
+            '<button class="btn learn" id="learnBtn" type="button" aria-pressed="' + on + '">' + (on ? '🌸 ඉගෙන ගත්තා!' : '🌱 මම ඉගෙන ගත්තා') + '</button></section>' +
+          '<details class="more"><summary>🌍 English</summary><p lang="en">' + esc(v.en) + '</p></details>' +
+          '<details class="more"><summary>👩‍🏫 ගුරුවරුන්ට / දෙමාපියන්ට</summary><p><b>ගුණය:</b> ' + esc(v.value) + '</p><p>' + esc(v.note) + '</p>' +
+            '<p class="ask"><b>අසන්න:</b> රතු පින්තූරයේ වැරැද්ද කුමක්ද? කොළ පින්තූරයේ හොඳ දේ කුමක්ද? ඔබ අද එය කරන්නේ කෙසේද?</p></details>' +
+        '</div>' +
+      '</div>' +
+      '<nav class="pager" aria-label="කවි අතර">' +
+        (n > 1 ? '<a class="btn nav-btn" href="#/kavi/' + (n - 1) + '" rel="prev">◀ <span>පෙර</span></a>' : '<span class="btn nav-btn off">◀ <span>පෙර</span></span>') +
+        '<div class="dots">' + dots + '</div>' +
+        (n < TOTAL ? '<a class="btn nav-btn next" href="#/kavi/' + (n + 1) + '" rel="next"><span>ඊළඟ</span> ▶</a>' : '<a class="btn nav-btn next" href="#/quiz"><span>ප්‍රශ්න</span> ⭐</a>') +
+      '</nav>' +
+    '</article>';
+  }
+
+  var galleryCat = '', galleryQ = '';
+  function galleryCards() {
+    var q = galleryQ.trim().toLowerCase(), h = '', count = 0;
+    V.forEach(function (v) {
+      if (galleryCat && v.cat !== galleryCat) return;
+      if (q && (v.title + ' ' + v.verse + ' ' + v.cat + ' ' + v.titleEn + ' ' + v.moral + ' ' + v.id).toLowerCase().indexOf(q) === -1) return;
+      count++;
+      var c = CATS[v.cat];
+      h += '<a class="tile' + (learned[v.id] ? ' on' : '') + '" href="#/kavi/' + v.id + '" style="--c:' + c[1] + '">' +
+        '<div class="thumb" data-scene="' + v.id + '"></div>' +
+        '<div class="tile-body"><span class="tile-num">' + pad(v.id) + '</span><b>' + esc(v.title) + '</b><small>' + c[0] + ' ' + esc(v.cat) + '</small></div>' +
+        (learned[v.id] ? '<span class="tile-done" aria-label="ඉගෙන ගත්තා">🌸</span>' : '') + '</a>';
+    });
+    return count ? h : '<p class="empty">🔍 කිසිවක් හමු නොවීය. වෙනත් වචනයක් උත්සාහ කරන්න.</p>';
+  }
+  function pageGallery() {
+    var chips = '<button class="chip' + (galleryCat ? '' : ' active') + '" data-filter="" style="--c:#f59e0b" type="button">🌈 සියල්ල</button>';
+    Object.keys(CATS).forEach(function (k) {
+      chips += '<button class="chip' + (galleryCat === k ? ' active' : '') + '" data-filter="' + esc(k) + '" style="--c:' + CATS[k][1] + '" type="button">' + CATS[k][0] + ' ' + esc(k) + '</button>';
+    });
+    return '<section class="block first"><div class="block-head"><h1>📖 කවි 62</h1><p>පින්තූරයක් ඔබා කවිය බලන්න.</p></div>' +
+      '<label class="search"><span aria-hidden="true">🔍</span><input id="searchBox" type="search" placeholder="සොයන්න… (උදා: සතුන්, පාසල, 14)" value="' + esc(galleryQ) + '" aria-label="කවි සොයන්න"></label>' +
+      '<div class="chips scroll" id="filterChips">' + chips + '</div>' +
+      '<div class="tiles" id="tiles">' + galleryCards() + '</div></section>';
+  }
+  var thumbObs = null;
+  function hydrateThumbs() {
+    var els = app.querySelectorAll('.thumb[data-scene]');
+    function fill(el) { if (el.dataset.done) return; el.dataset.done = '1'; el.innerHTML = window.Scenes.render(+el.dataset.scene); }
+    if (thumbObs) thumbObs.disconnect();
+    if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(els, fill); return; }
+    thumbObs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { fill(e.target); thumbObs.unobserve(e.target); } }); }, { rootMargin: '300px' });
+    Array.prototype.forEach.call(els, function (el) { thumbObs.observe(el); });
+  }
+
+  function pageTaraka() {
+    var c = learnedCount(), look = Math.max(1, c), L = levelOf(look);
+    var cards = '';
+    LEVELS.forEach(function (lv) {
+      var done = levelDone(lv), all = lv.to - lv.from + 1, open = c >= lv.from - 1 || done > 0;
+      cards += '<a class="grow-card' + (done === all ? ' done' : '') + (lv.n === L.n ? ' now' : '') + '" style="--c:' + lv.color + '" href="#/kavi/' + lv.from + '">' +
+        '<div class="grow-pic' + (open ? '' : ' locked') + '">' + window.Scenes.portrait(lv.to, { bg: '#fff7e6' }) + '</div>' +
+        '<b>' + lv.icon + ' ' + esc(lv.stage) + '</b><span>' + esc(lv.name) + '</span><small>කවි ' + lv.from + '–' + lv.to + '</small>' +
+        '<div class="meter-bar"><i style="width:' + Math.round(done / all * 100) + '%"></i></div><em>' + done + ' / ' + all + '</em></a>';
+    });
+    var badges = '';
+    V.forEach(function (v) {
+      var on = !!learned[v.id];
+      badges += '<a class="badge' + (on ? ' on' : '') + '" href="#/kavi/' + v.id + '" style="--c:' + levelOf(v.id).color + '"><span aria-hidden="true">' + (on ? v.icon : '🔒') + '</span><b>' + pad(v.id) + '</b><small>' + esc(v.title) + '</small></a>';
+    });
+    var msg = c === 0 ? 'පළමු කවිය ඉගෙන ගෙන තාරක සමඟ ගමන පටන් ගනිමු!' :
+      c >= TOTAL ? 'සුබ පැතුම්! ඔබ කවි 62 ම ඉගෙන ගත්තා. ඔබේ මල්දම සම්පූර්ණයි! 👑' :
+      'ඔබ කවි ' + c + ' ක් ඉගෙන ගෙන ඇත. තව ' + (TOTAL - c) + ' යි!';
+    return '<section class="block first"><div class="block-head"><h1>🧒 තාරකගේ ගමන</h1><p>ඔබ හොඳ සිරිත් ඉගෙන ගන්නා විට තාරකත් හොඳ දරුවෙක් වෙයි.</p></div>' +
+      '<div class="me"><div class="me-pic">' + window.Scenes.portrait(look, { bg: '#fff1c9' }) + '</div>' +
+        '<div class="me-text"><span class="chip solid" style="--c:' + L.color + '">' + L.icon + ' ' + esc(L.stage) + ' · ' + esc(L.name) + '</span><h2>' + esc(msg) + '</h2>' +
+        '<div class="meter"><div class="meter-bar"><i style="width:' + Math.max(2, Math.round(c / TOTAL * 100)) + '%"></i></div><span>🌸 <b>' + c + '</b> / ' + TOTAL + '</span></div>' +
+        '<p class="stars-line">ප්‍රශ්න තරු: ' + starRow(bestStars) + '</p></div></div>' +
+      '<h2 class="sec">🌱 බීජයේ සිට මල්දම දක්වා</h2><div class="grow">' + cards + '</div>' +
+      '<h2 class="sec">🏅 මගේ ගුණ පදක්කම්</h2><div class="badges">' + badges + '</div></section>';
+  }
+  function starRow(n) { var s = ''; for (var i = 1; i <= 3; i++) s += '<span class="star' + (i <= n ? ' on' : '') + '">★</span>'; return s; }
+
+  /* ---------- quiz ---------- */
+  var quiz = null;
+  function newQuiz() {
+    var pics = shuffle(V).slice(0, 5).map(function (v) {
+      var wrong = shuffle(V.filter(function (x) { return x.id !== v.id && x.title !== v.title; })).slice(0, 2).map(function (x) { return x.title; });
+      var opts = shuffle([v.title].concat(wrong));
+      return { kind: 'pic', v: v.id, q: 'මේ පින්තූරය කියන්නේ කුමක්ද?', options: opts, correct: opts.indexOf(v.title) };
+    });
+    var txt = shuffle(D.quiz).slice(0, 3).map(function (q) {
+      var order = shuffle(q.options.map(function (_, i) { return i; }));
+      return { kind: 'txt', v: q.v, q: q.q, options: order.map(function (i) { return q.options[i]; }), correct: order.indexOf(q.correct) };
+    });
+    quiz = { items: shuffle(pics.concat(txt)), i: 0, score: 0, answered: false };
+  }
+  function pageQuiz() {
+    if (!quiz) {
+      return '<section class="block first quiz-intro"><div class="quiz-art">' + window.Scenes.portrait(40, { bg: '#fff1c9', armR: 'wave', armL: 'hip' }) + '</div>' +
+        '<h1>⭐ ප්‍රශ්න ක්‍රීඩාව</h1><p>ප්‍රශ්න 8 යි. පින්තූරය බලා නිවැරදි පිළිතුර තෝරන්න.</p>' +
+        '<p class="stars-line big">' + starRow(bestStars) + '</p>' +
+        '<button class="btn big" id="quizStart" type="button">▶ පටන් ගනිමු</button></section>';
+    }
+    if (quiz.i >= quiz.items.length) {
+      var s = quiz.score, n = quiz.items.length, stars = s >= n ? 3 : s >= n - 2 ? 2 : s >= Math.ceil(n / 2) ? 1 : 0;
+      var m = stars === 3 ? 'විශිෂ්ටයි! ඔබ සිරිත් මල්දම හොඳින් දන්නවා!' : stars === 2 ? 'ඉතා හොඳයි! තව ටිකක් කියවමු.' : stars === 1 ? 'හොඳයි! නැවත උත්සාහ කරමු.' : 'කමක් නැහැ! කවි නැවත බලා උත්සාහ කරමු.';
+      return '<section class="block first quiz-intro"><div class="quiz-art">' + window.Scenes.portrait(stars >= 2 ? 62 : 30, { bg: '#fff1c9' }) + '</div>' +
+        '<h1>' + s + ' / ' + n + '</h1><p class="stars-line big">' + starRow(stars) + '</p><p>' + m + '</p>' +
+        '<div class="hero-cta center"><button class="btn big" id="quizStart" type="button">🔁 නැවත</button><a class="btn ghost" href="#/mala">📖 කවි බලමු</a></div></section>';
+    }
+    var it = quiz.items[quiz.i], opts = '';
+    it.options.forEach(function (o, i) { opts += '<button class="opt" type="button" data-i="' + i + '"><span class="opt-k">' + ['අ', 'ආ', 'ඇ', 'ඈ'][i] + '</span><span>' + esc(o) + '</span></button>'; });
+    return '<section class="block first quiz"><div class="quiz-bar"><span>ප්‍රශ්නය ' + (quiz.i + 1) + ' / ' + quiz.items.length + '</span><div class="meter-bar"><i style="width:' + Math.round(quiz.i / quiz.items.length * 100) + '%"></i></div><span>⭐ ' + quiz.score + '</span></div>' +
+      '<div class="quiz-grid">' + (it.kind === 'pic' ? '<figure class="scene-card">' + window.Scenes.render(it.v) + '</figure>' : '<figure class="scene-card q-txt"><span aria-hidden="true">🤔</span></figure>') +
+      '<div><h2 class="quiz-q">' + esc(it.q) + '</h2><div class="opts" id="opts">' + opts + '</div>' +
+      '<div class="quiz-after" id="quizAfter" hidden><p id="quizMsg"></p><a class="btn ghost small" href="#/kavi/' + it.v + '">📖 කවිය ' + it.v + ' බලන්න</a> <button class="btn" id="quizNext" type="button">ඊළඟ ▶</button></div></div></div></section>';
+  }
+
+  function pageGuru() {
+    return '<section class="block first prose"><div class="block-head"><h1>👩‍🏫 ගුරුවරුන්ට සහ දෙමාපියන්ට</h1><p>මෙම පිටුව පන්තියේදී සහ ගෙදරදී භාවිත කරන හැටි.</p></div>' +
+      '<div class="guide">' +
+      '<div class="card"><h3>1. පින්තූරයෙන් පටන් ගන්න</h3><p>කවිය කියවීමට පෙර පින්තූරය පෙන්වන්න. <b class="no-t">රතු</b> රාමුවේ ඇත්තේ නොකළ යුතු දෙයයි. <b class="yes-t">කොළ</b> රාමුවේ ඇත්තේ හොඳ පුරුද්දයි. “මෙහි සිදු වන්නේ කුමක්ද?” යැයි දරුවන්ගෙන් අසන්න.</p></div>' +
+      '<div class="card"><h3>2. කවිය එකට කියන්න</h3><p>කවිය පේළියෙන් පේළිය හඬ නඟා කියවන්න. දරුවන් ඔබ පසුපස කියවීමට සලස්වන්න. “ලොකු තිරය” බොත්තම පන්ති කාමරයේ තිරයට සුදුසුය.</p></div>' +
+      '<div class="card"><h3>3. තේරුම කතා කරන්න</h3><p>තේරුම සරල වචනවලින් පැහැදිලි කරන්න. දරුවාගේ ජීවිතයෙන් උදාහරණයක් අසන්න.</p></div>' +
+      '<div class="card"><h3>4. පොරොන්දුව</h3><p>“මගේ පොරොන්දුව” දරුවා විසින් කියවා “මම ඉගෙන ගත්තා” බොත්තම ඔබන්න. මලක් පිපෙයි. මල් 62 න් මල්දම සම්පූර්ණ වෙයි.</p></div>' +
+      '<div class="card"><h3>5. ප්‍රශ්න ක්‍රීඩාව</h3><p>සතියකට වරක් ප්‍රශ්න ක්‍රීඩාව කරන්න. පින්තූරය බලා පුරුද්ද හඳුනා ගැනීම මතකය ශක්තිමත් කරයි.</p></div>' +
+      '<div class="card"><h3>සටහන</h3><p>ප්‍රගතිය සුරැකෙන්නේ මෙම උපාංගයේ බ්‍රවුසරයේ පමණි. කවි ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ “සිරිත් මල්දම” කෘතියෙනි.</p>' +
+      '<button class="btn ghost small danger" id="resetBtn" type="button">🗑️ ප්‍රගතිය මකන්න</button></div>' +
+      '</div></section>';
+  }
+
+  /* ---------- router ---------- */
+  function route() {
+    var h = (location.hash || '#/').replace(/^#\/?/, ''), parts = h.split('/'), name = parts[0] || 'home';
+    if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+    var html, nav = name;
+    if (name === 'kavi') {
+      var n = Math.min(TOTAL, Math.max(1, parseInt(parts[1], 10) || 1));
+      html = pagePoem(n); nav = 'mala'; lastRead = n; store.set('last', n); app.dataset.poem = n;
+      document.title = n + '. ' + V[n - 1].title + ' — සිරිත් මල්දම';
+    } else {
+      delete app.dataset.poem;
+      document.body.classList.remove('present');
+      if (name === 'mala') { html = pageGallery(); document.title = 'කවි 62 — සිරිත් මල්දම'; }
+      else if (name === 'taraka') { html = pageTaraka(); document.title = 'තාරකගේ ගමන — සිරිත් මල්දම'; }
+      else if (name === 'quiz') { html = pageQuiz(); document.title = 'ප්‍රශ්න — සිරිත් මල්දම'; }
+      else if (name === 'guru') { html = pageGuru(); document.title = 'ගුරුවරුන්ට — සිරිත් මල්දම'; }
+      else { nav = 'home'; html = pageHome(); document.title = 'සිරිත් මල්දම — පින්තූර කවි පොත'; }
+    }
+    app.innerHTML = html;
+    app.className = 'page-' + name;
+    Array.prototype.forEach.call(document.querySelectorAll('.nav a'), function (a) { a.classList.toggle('active', a.dataset.nav === nav); if (a.dataset.nav === nav) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    if (name === 'mala') hydrateThumbs();
+    paintProgress();
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- events ---------- */
+  app.addEventListener('click', function (e) {
+    var t = e.target.closest('button, a');
+    if (!t) return;
+    if (t.dataset.cat !== undefined) { galleryCat = t.dataset.cat; galleryQ = ''; if (location.hash === '#/mala') { e.preventDefault(); route(); } return; }
+    if (t.id === 'listenBtn') { readAloud(V[+app.dataset.poem - 1].verse, t); return; }
+    if (t.id === 'presentBtn') {
+      var onNow = document.body.classList.toggle('present');
+      t.textContent = onNow ? '✕ වසන්න' : '🖥️ ලොකු තිරය';
+      try { if (onNow && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function () {}); else if (!onNow && document.fullscreenElement) document.exitFullscreen(); } catch (err) { /* ignore */ }
+      return;
+    }
+    if (t.id === 'learnBtn') {
+      var n = +app.dataset.poem, was = !!learned[n];
+      if (was) delete learned[n]; else learned[n] = true;
+      saveLearned(); paintProgress();
+      t.setAttribute('aria-pressed', String(!was));
+      t.textContent = was ? '🌱 මම ඉගෙන ගත්තා' : '🌸 ඉගෙන ගත්තා!';
+      document.getElementById('promiseCard').classList.toggle('on', !was);
+      var d = app.querySelector('.dot.now'); if (d) d.classList.toggle('on', !was);
+      if (!was) {
+        confetti();
+        var c = learnedCount(), L = levelOf(n);
+        if (c >= TOTAL) { sfx.win(); toast('👑 සුබ පැතුම්! ඔබේ මල්දම සම්පූර්ණයි!'); }
+        else if (levelDone(L) === L.to - L.from + 1) { sfx.win(); toast(L.icon + ' ' + L.n + ' වන පියවර සම්පූර්ණයි! ශාබාෂ්!'); }
+        else { sfx.good(); toast('🌸 මලක් පිපුණා! දැන් මල් ' + c + ' යි.'); }
+      }
+      return;
+    }
+    if (t.dataset.filter !== undefined) {
+      galleryCat = t.dataset.filter;
+      Array.prototype.forEach.call(app.querySelectorAll('#filterChips .chip'), function (c) { c.classList.toggle('active', c === t); });
+      document.getElementById('tiles').innerHTML = galleryCards(); hydrateThumbs(); sfx.page(); return;
+    }
+    if (t.id === 'quizStart') { newQuiz(); sfx.page(); route(); return; }
+    if (t.id === 'quizNext') { quiz.i++; quiz.answered = false; if (quiz.i >= quiz.items.length) { var s = quiz.score, m = quiz.items.length, st = s >= m ? 3 : s >= m - 2 ? 2 : s >= Math.ceil(m / 2) ? 1 : 0; if (st > bestStars) { bestStars = st; store.set('stars', st); } if (st >= 2) { confetti(); sfx.win(); } } route(); return; }
+    if (t.classList.contains('opt') && quiz && !quiz.answered) {
+      quiz.answered = true;
+      var it = quiz.items[quiz.i], pick = +t.dataset.i, ok = pick === it.correct;
+      Array.prototype.forEach.call(app.querySelectorAll('.opt'), function (b, i) { b.disabled = true; if (i === it.correct) b.classList.add('right'); else if (i === pick) b.classList.add('wrong'); });
+      if (ok) { quiz.score++; sfx.good(); } else sfx.bad();
+      document.getElementById('quizMsg').textContent = ok ? '✅ නිවැරදියි! ශාබාෂ්!' : '💛 නිවැරදි පිළිතුර කොළ පාටින් පෙන්වා ඇත.';
+      document.getElementById('quizAfter').hidden = false;
+      document.getElementById('quizNext').focus();
+      return;
+    }
+    if (t.id === 'resetBtn') {
+      if (window.confirm('ඉගෙන ගත් සියලු මල් මකා දමන්නද?')) { learned = {}; bestStars = 0; lastRead = 1; saveLearned(); store.set('stars', 0); store.set('last', 1); paintProgress(); toast('ප්‍රගතිය මකා දමන ලදී.'); }
+      return;
+    }
+  });
+  app.addEventListener('input', function (e) {
+    if (e.target.id === 'searchBox') { galleryQ = e.target.value; document.getElementById('tiles').innerHTML = galleryCards(); hydrateThumbs(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!app.dataset.poem || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || ''))) return;
+    var n = +app.dataset.poem;
+    if (e.key === 'ArrowRight' && n < TOTAL) location.hash = '#/kavi/' + (n + 1);
+    else if (e.key === 'ArrowLeft' && n > 1) location.hash = '#/kavi/' + (n - 1);
+    else if (e.key === 'Escape' && document.body.classList.contains('present')) { document.body.classList.remove('present'); var b = document.getElementById('presentBtn'); if (b) b.textContent = '🖥️ ලොකු තිරය'; }
+  });
+  /* swipe between poems */
+  var sx = 0, sy = 0;
+  app.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].clientX; sy = e.changedTouches[0].clientY; }, { passive: true });
+  app.addEventListener('touchend', function (e) {
+    if (!app.dataset.poem) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy, n = +app.dataset.poem;
+    if (Math.abs(dx) < 70 || Math.abs(dy) > 50) return;
+    if (dx < 0 && n < TOTAL) location.hash = '#/kavi/' + (n + 1);
+    else if (dx > 0 && n > 1) location.hash = '#/kavi/' + (n - 1);
+  }, { passive: true });
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && document.body.classList.contains('present')) { document.body.classList.remove('present'); var b = document.getElementById('presentBtn'); if (b) b.textContent = '🖥️ ලොකු තිරය'; }
+  });
+
+  window.addEventListener('hashchange', function () { if (location.hash.indexOf('#/quiz') !== 0) quiz = null; sfx.page(); route(); });
+  paintSound();
+  route();
+})();

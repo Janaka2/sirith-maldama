@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>සිරිත් මල්දම — පින්තූර කවි පොත</title>
+  <meta name="description" content="සිරිත් මල්දම (1 කොටස): කවි 62 ක් පින්තූර සමඟ. ළමයින්ට හොඳ සිරිත් විරිත් ඉගෙන ගැනීමට.">
+  <meta name="theme-color" content="#f59e0b">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700;800;900&family=Noto+Serif+Sinhala:wght@600;700;800&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#app">අන්තර්ගතයට යන්න</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#e6f7ff"/></linearGradient>
+      <linearGradient id="gDawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd1a6"/><stop offset="1" stop-color="#fff3d6"/></linearGradient>
+      <linearGradient id="gNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2a5a"/><stop offset="1" stop-color="#3b4a8a"/></linearGradient>
+    </defs>
+  </svg>
+
+  <header class="top">
+    <div class="top-in">
+      <a class="brand" href="#/" aria-label="මුල් පිටුව">
+        <img class="brand-logo" src="assets/img/logo.jpg" alt="Mahamevnawa Dhamma School UK" width="50" height="50">
+        <span class="brand-text"><b>සිරිත් මල්දම</b><small>Mahamevnawa Dhamma School UK</small></span>
+      </a>
+      <nav class="nav" aria-label="ප්‍රධාන">
+        <a href="#/" data-nav="home"><span aria-hidden="true">🏠</span><span>මුල</span></a>
+        <a href="#/mala" data-nav="mala"><span aria-hidden="true">📖</span><span>කවි 62</span></a>
+        <a href="#/taraka" data-nav="taraka"><span aria-hidden="true">🧒</span><span>තාරක</span></a>
+        <a href="#/quiz" data-nav="quiz"><span aria-hidden="true">⭐</span><span>ප්‍රශ්න</span></a>
+        <a href="#/guru" data-nav="guru"><span aria-hidden="true">👩‍🏫</span><span>ගුරු</span></a>
+      </nav>
+      <div class="top-tools">
+        <a class="pill" href="#/taraka" id="progressPill" title="ඉගෙන ගත් කවි">🌸 <b id="progressCount">0</b>/62</a>
+        <button class="icon-btn" id="soundBtn" type="button" aria-label="ශබ්දය" title="ශබ්දය">🔊</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="foot">
+    <div class="foot-school"><img src="assets/img/logo.jpg" alt="" width="64" height="64" loading="lazy"><div><b>Mahamevnawa Dhamma School UK</b><span>මහමෙව්නාව දහම් පාසල · එක්සත් රාජධානිය</span></div></div>
+    <p><b>සිරිත් මල්දම (1 කොටස)</b> · ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ නිර්මාණයකි.</p>
+    <p class="foot-sub">ළමයින්ට හොඳ සිරිත් ඉගෙන ගැනීම සඳහා පින්තූර සමඟ සකස් කරන ලදී.</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="fx" class="fx" aria-hidden="true"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/art.js"></script>
+  <script src="assets/js/scenes.js"></script>
+  <script src="assets/js/app.js"></script>
+  <noscript><p style="padding:24px;text-align:center">මෙම පිටුව බැලීමට JavaScript සක්‍රිය කරන්න.</p></noscript>
+</body>
+</html>
