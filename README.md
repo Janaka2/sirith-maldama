@@ -6,6 +6,16 @@ An illustrated learning site for children, based on all three parts of
 Part 2 and part 3 verses come from Wikisource. Their meanings, English lines and
 child-friendly titles were written for this site and need review by a Sinhala teacher.
 
+## Dhamma sources
+
+Teaching on this site stays inside three sources: https://www.tripitaka.online/ ,
+https://mahamevnawa.lk/ and https://mahamegha.lk/ . Quotations are copied word for word
+from tripitaka.online. Check them at any time with:
+
+```bash
+python3 .claude/skills/mahamevnawa-dhamma/scripts/verify_citations.py
+```
+
 ## Run locally
 
 ```bash
@@ -29,6 +39,8 @@ The site is plain HTML, CSS and JavaScript. There is no build step.
 | `assets/css/style.css` | Styles and animations |
 | `assets/js/data.js` | Part 1 poems, meanings, child-friendly titles, quiz |
 | `assets/js/data2.js`, `data3.js` | Part 2 and 3 poems, meanings, child-friendly titles, quiz |
+| `assets/js/refs.js` | Verified citations and the poem-to-passage map |
+| `.claude/skills/mahamevnawa-dhamma/` | Claude Code skill that guards sources and style |
 | `assets/js/art.js` | Drawing library for characters, props, backgrounds |
 | `assets/js/scenes.js` | Part 1 pictures, one per poem |
 | `assets/js/scenes2.js`, `scenes3.js` | Part 2 and 3 pictures, one per poem |

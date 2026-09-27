@@ -202,6 +202,29 @@
     return h ? '<figcaption>' + h + '</figcaption>' : '';
   }
 
+  /* ---------- Dhamma citations (verbatim from tripitaka.online) ---------- */
+  var REFS = window.SM_REFS || { lib: {}, map: {}, articles: {}, amap: {}, sources: [] };
+  function refsFor(part, n) { return ((REFS.map[part] || {})[n] || []).map(function (k) { return REFS.lib[k]; }).filter(Boolean); }
+  function refHtml(r) {
+    var pali = r.pali ? '<p class="pali" lang="pi">' + r.pali.split('\n').map(esc).join('<br>') + '</p>' : '';
+    var si = r.si.split('\n').map(esc).join('<br>') + (r.more ? ' …' : '');
+    return '<div class="ref"><div class="ref-head"><b>' + esc(r.ref) + '</b><span>' + esc(r.coll) + '</span></div>' + pali +
+      '<blockquote class="ref-si' + (r.verse ? ' verse-si' : '') + '" lang="si">' + si + '</blockquote>' +
+      '<a class="ref-link" href="' + esc(r.url) + '" target="_blank" rel="noopener">tripitaka.online හි සම්පූර්ණයෙන් කියවන්න ↗</a></div>';
+  }
+  function dhammaCard(n) {
+    var rs = refsFor(PART, n), as = ((REFS.amap[PART] || {})[n] || []).map(function (k) { return REFS.articles[k]; }).filter(Boolean);
+    if (!rs.length && !as.length) return '';
+    var h = '<section class="card dhamma-card"><div class="card-tag">☸ බුදුරජාණන් වහන්සේ වදාළ දහම</div>';
+    if (rs.length) {
+      h += refHtml(rs[0]);
+      if (rs.length > 1) h += '<details class="ref-more"><summary>තවත් බුදු වදන් ' + (rs.length - 1) + ' ක්</summary>' + rs.slice(1).map(refHtml).join('') + '</details>';
+      h += '<p class="ref-by">සිංහල පරිවර්තනය: අතිපූජ්‍ය කිරිබත්ගොඩ ඤාණානන්ද ස්වාමීන් වහන්සේ</p>';
+    }
+    as.forEach(function (a) { h += '<a class="ref-article" href="' + esc(a.url) + '" target="_blank" rel="noopener"><span aria-hidden="true">📖</span><span><small>පුංචි අපේ දහම් පාසල · මහාමේඝ</small><b>' + esc(a.title) + ' ↗</b></span></a>'; });
+    return h + '</section>';
+  }
+
   function pagePoem(n) {
     var v = V[n - 1], L = levelOf(n), on = !!learned[n];
     var pic = window.Scenes.render(PART, n, v.title);
@@ -219,6 +242,7 @@
           '<section class="card verse-card"><div class="card-tag">📜 කවිය</div><p class="verse" lang="si">' + versesHtml(v) + '</p>' +
             '<button class="btn listen" id="listenBtn" type="button"><span aria-hidden="true">🔊</span> අහමු</button></section>' +
           '<section class="card meaning-card"><div class="card-tag">💡 තේරුම</div><p>' + esc(v.moral) + '</p></section>' +
+          dhammaCard(n) +
           '<section class="card promise-card' + (on ? ' on' : '') + '" id="promiseCard"><div class="card-tag">🤝 මගේ පොරොන්දුව</div><p class="promise">“' + esc(v.promise) + '”</p>' +
             '<button class="btn learn" id="learnBtn" type="button" aria-pressed="' + on + '">' + (on ? '🌸 ඉගෙන ගත්තා!' : '🌱 මම ඉගෙන ගත්තා') + '</button></section>' +
           '<details class="more"><summary>🌍 English</summary><p lang="en">' + esc(v.en) + '</p></details>' +
@@ -245,6 +269,7 @@
       h += '<a class="tile' + (learned[v.id] ? ' on' : '') + '" href="#/' + PART + '/kavi/' + v.id + '" style="--c:' + c[1] + '">' +
         '<div class="thumb" data-scene="' + v.id + '"></div>' +
         '<div class="tile-body"><span class="tile-num">' + pad(v.id) + '</span><b>' + esc(v.title) + '</b><small>' + c[0] + ' ' + esc(v.cat) + '</small></div>' +
+        (refsFor(PART, v.id).length ? '<span class="tile-ref" title="බුදු වදනක් සමඟ" aria-label="බුදු වදනක් සමඟ">☸</span>' : '') +
         (learned[v.id] ? '<span class="tile-done" aria-label="ඉගෙන ගත්තා">🌸</span>' : '') + '</a>';
     });
     return count ? h : '<p class="empty">🔍 කිසිවක් හමු නොවීය. වෙනත් වචනයක් උත්සාහ කරන්න.</p>';
@@ -334,6 +359,13 @@
   }
 
   function pageGuru() {
+    var cited = 0, total = 0;
+    Object.keys(PARTS).forEach(function (p) { total += PARTS[p].verses.length; cited += Object.keys(REFS.map[p] || {}).length; });
+    var src = REFS.sources.map(function (x) { return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener"><b>' + esc(x.name) + ' ↗</b></a><span>' + esc(x.about) + '</span></li>'; }).join('');
+    var sources = '<section class="block"><div class="block-head"><h2>☸ දහම් මූලාශ්‍ර</h2><p>මෙම පිටුවේ දහම් කරුණු ගනු ලබන්නේ පහත මූලාශ්‍ර තුනෙන් පමණි.</p></div>' +
+      '<div class="guide"><div class="card"><ul class="src-list">' + src + '</ul></div>' +
+      '<div class="card"><h3>බුදු වදන් දක්වා ඇති ආකාරය</h3><p>කවි ' + total + ' න් ' + cited + ' කට ගැළපෙන බුදු වදනක් දක්වා ඇත. සෑම පාළි පාඨයක් ම සහ සිංහල පරිවර්තනයක් ම tripitaka.online වෙතින් අකුරක් නෑර උපුටා ගෙන, සබැඳියක් සමඟ දක්වා ඇත.</p></div>' +
+      '<div class="card"><h3>බුදු වදනක් නැති කවි</h3><p>සමහර කවිවල ඇත්තේ පැරණි ගෘහ සිරිත්, පිරිසිදුකම සහ ආරක්ෂාව වැනි දේ ය. ඒවාට ගැළපෙන සූත්‍රයක් තහවුරු කර ගත නොහැකි වූ විට බුදු වදනක් ලෙස කිසිවක් දක්වා නැත.</p></div></div></section>';
     return '<section class="block first prose"><div class="block-head"><h1>👩‍🏫 ගුරුවරුන්ට සහ දෙමාපියන්ට</h1><p>මෙම පිටුව පන්තියේදී සහ ගෙදරදී භාවිත කරන හැටි.</p></div>' +
       '<div class="guide">' +
       '<div class="card"><h3>1. පින්තූරයෙන් පටන් ගන්න</h3><p>කවිය කියවීමට පෙර පින්තූරය පෙන්වන්න. <b class="no-t">රතු</b> රාමුවේ ඇත්තේ නොකළ යුතු දෙයයි. <b class="yes-t">කොළ</b> රාමුවේ ඇත්තේ හොඳ පුරුද්දයි. “මෙහි සිදු වන්නේ කුමක්ද?” යැයි දරුවන්ගෙන් අසන්න.</p></div>' +
@@ -343,7 +375,7 @@
       '<div class="card"><h3>5. ප්‍රශ්න ක්‍රීඩාව</h3><p>සතියකට වරක් ප්‍රශ්න ක්‍රීඩාව කරන්න. පින්තූරය බලා පුරුද්ද හඳුනා ගැනීම මතකය ශක්තිමත් කරයි.</p></div>' +
       '<div class="card"><h3>සටහන</h3><p>ප්‍රගතිය සුරැකෙන්නේ මෙම උපාංගයේ බ්‍රවුසරයේ පමණි. කවි ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ “සිරිත් මල්දම” කෘතියෙනි. 2 සහ 3 කොටස්වල කවි විකිමූලාශ්‍රයෙනි; ඒවායේ තේරුම් සහ ඉංග්‍රීසි පරිවර්තන මෙම පිටුව සඳහා ලියන ලදී.</p>' +
       '<button class="btn ghost small danger" id="resetBtn" type="button">🗑️ ' + esc(PARTS[PART].name) + ' ප්‍රගතිය මකන්න</button></div>' +
-      '</div></section>';
+      '</div></section>' + sources;
   }
 
   /* ---------- router ---------- */
