@@ -11,8 +11,8 @@ window.SM_DATA = {
    "en": "Study this garland of good conduct that brings immense peace, learn righteous ways, and attain double prosperity.",
    "cat": "ගෞරවය හා ආරම්භය",
    "icon": "☸",
-   "value": "සද්ධාව හා ආරම්භක කැපවීම",
-   "note": "අභ්‍යාසයක් ආරම්භයේදී ගෞරවනීය සිතක් ඇති කරගැනීමෙන් දරුවා තුළ ඉගෙනුම් සූදානම සහ උනන්දුව ඇති වේ."
+   "value": "හොඳ සිරිත් ඉගෙනීම",
+   "note": "“මල්දමක්” යනු කුමක්දැයි අසා, මල් එකින් එක ගොතන්නාක් මෙන් හොඳ පුරුදු එකින් එක ඉගෙන ගන්නා බව කියා දෙන්න."
   },
   {
    "id": 2,
@@ -24,8 +24,8 @@ window.SM_DATA = {
    "en": "To grow up well, a pure heart is needed at all times; harboring evil thoughts only brings misfortune upon us.",
    "cat": "සිත පිරිසිදු කිරීම",
    "icon": "❤️",
-   "value": "පිරිසිදු යහපත් චේතනාව",
-   "note": "ක්‍රියාවට පෙර චේතනාව පිරිසිදු කරගැනීමෙන් දරුවා තුළ කෝපය පාලනය වී ආදරණීය හැඟීම් වර්ධනය වේ."
+   "value": "හොඳ සිත",
+   "note": "හොඳ සිතකින් කළ දෙයක් සහ තරහින් කළ දෙයක් ගැන දරුවාගේ ම උදාහරණයක් අසන්න."
   },
   {
    "id": 3,
@@ -37,8 +37,8 @@ window.SM_DATA = {
    "en": "With an ill-natured mind, no good deed can be accomplished; if one does no good, human birth bears no fruit.",
    "cat": "සිත පිරිසිදු කිරීම",
    "icon": "🌱",
-   "value": "යහපත් ජීවිතයක අර්ථය",
-   "note": "තම උපතේ වටිනාකම තේරුම් ගැනීමෙන් දරුවා තුළ ඵලදායී යහපත් වැඩ කිරීමට පෙළඹවීමක් ඇති වේ."
+   "value": "හොඳ වැඩ කිරීම",
+   "note": "අද දවසේ කළ හොඳ වැඩක් එකිනෙකා ලවා කියවන්න."
   },
   {
    "id": 4,
@@ -50,8 +50,8 @@ window.SM_DATA = {
    "en": "Sin is inherently vile, bringing misery in both worlds; merit is supreme, yielding noble happiness everywhere.",
    "cat": "සිත පිරිසිදු කිරීම",
    "icon": "🧭",
-   "value": "පවට බිය හා පිනට ලැදියාව",
-   "note": "හරි වැරැද්ද සහ ක්‍රියාවේ ප්‍රතිඵලය තේරුම් ගැනීමෙන් දරුවා තුළ සදාචාරාත්මක ස්වයං-පාලනය ගොඩනැගේ."
+   "value": "පින හා පව",
+   "note": "පින් වැඩ සහ පව් වැඩ වෙන් කර ලැයිස්තු දෙකක් දරුවන් සමඟ සාදන්න."
   },
   {
    "id": 5,
@@ -63,8 +63,8 @@ window.SM_DATA = {
    "en": "Regard all living beings as dear as your own life; whenever you see them, extend unceasing affection.",
    "cat": "සතුන්ට කරුණාව",
    "icon": "🕊️",
-   "value": "සර්ව සත්ව කරුණාව (අහිංසාව)",
-   "note": "දුබල සතුන් කෙරෙහි තම පණ සේ දයාව දැක්වීමෙන් දරුවාගේ සමානුකම්පාව (Empathy) ගැඹුරු වේ."
+   "value": "සතුන්ට කරුණාව",
+   "note": "ගෙදර හෝ වත්තේ සිටින සතෙකුට කරුණාව දැක්වූ අවස්ථාවක් ගැන කතා කරන්න."
   },
   {
    "id": 6,
@@ -76,8 +76,8 @@ window.SM_DATA = {
    "en": "Even in playfulness, anger, or fleeting malice, tormenting innocent animals is utterly unbefitting.",
    "cat": "සතුන්ට කරුණාව",
    "icon": "🐶",
-   "value": "හිංසනයෙන් වැළකීම",
-   "note": "විනෝදයට සතුන් පෙළීමෙන් වැළකීමෙන් දරුවා තුළ සාධාරණත්වය සහ හිංසාකාරී හැඟීම් මර්දනය වේ."
+   "value": "සතුන්ට හිංසා නොකිරීම",
+   "note": "සෙල්ලමට වුවත් සතෙකුට රිදවූ විට ඌට දැනෙන දේ ගැන අසන්න."
   },
   {
    "id": 7,
@@ -89,8 +89,8 @@ window.SM_DATA = {
    "en": "Knowing how arduously others earned their wealth, steal it not; perceive another's gold as mere broken clay.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "💎",
-   "value": "නොසොරකම් කිරීම හා තෘප්තිය",
-   "note": "අනුන්ගේ දේට ආශා නොකිරීමෙන් දරුවා තුළ තෘප්තිමත් බව හා අවංකභාවය තහවුරු වේ."
+   "value": "සොරකම් නොකිරීම",
+   "note": "අනුන් වෙහෙසී උපයා ගත් දෙයක වටිනාකම ගැන කතා කරන්න."
   },
   {
    "id": 8,
@@ -102,8 +102,8 @@ window.SM_DATA = {
    "en": "If ever you find something lost by another, do not conceal it; kindly and gladly restore it to its owner.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "🤝",
-   "value": "අවංකකම හා සාධාරණත්වය",
-   "note": "අහුලාගත් දේ ආපසු දීමෙන් සමාජය ඉදිරියේ විශ්වාසවන්ත පුද්ගලයෙකු වීමේ සතුට දරුවා අත්විඳියි."
+   "value": "හමු වූ දේ ආපසු දීම",
+   "note": "පන්තියේදී හමු වූ දෙයක් භාර දෙන තැනක් නම් කරන්න."
   },
   {
    "id": 9,
@@ -115,8 +115,8 @@ window.SM_DATA = {
    "en": "Utter no foul vulgarities, whisper no slander, speak no deceitful lies, and fling no spiteful jibes.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "⭐",
-   "value": "වාචසික සංවරය",
-   "note": "වචනය පාලනය කරගැනීමට ඉගෙන ගැනීමෙන් සමාජය තුළ ආදරය හා ගෞරවය ලැබීමේ මාවත විවර වේ."
+   "value": "හොඳ වචන",
+   "note": "නරක වචන, කේළාම්, බොරු සහ ඇනුම්පද යන හතර වෙන වෙනම පැහැදිලි කරන්න."
   },
   {
    "id": 10,
@@ -128,8 +128,8 @@ window.SM_DATA = {
    "en": "Lying is utterly foul, baser than rotting serpent carcasses; truth is pristine, surpassing even kingly riches.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "🛡️",
-   "value": "සත්‍යවාදී බව (Truthfulness)",
-   "note": "සත්‍ය කතා කිරීමට පුරුදු වීමෙන් දරුවා බියෙන් හා සැකයෙන් තොර නිර්භීත චරිතයක් බවට පත්වේ."
+   "value": "ඇත්ත කීම",
+   "note": "ඇත්ත කීමට අපහසු වූ අවස්ථාවක් සහ එයින් වූ යහපත ගැන කතා කරන්න."
   },
   {
    "id": 11,
@@ -141,8 +141,8 @@ window.SM_DATA = {
    "en": "Do not stroll along roads locked arm-in-arm blocking pathways; never loiter aimlessly around shops.",
    "cat": "මඟතොට විනය",
    "icon": "🚶🏽‍♂️",
-   "value": "මහජන විනය හා සංවරය",
-   "note": "පොදු ස්ථානවල අනුන්ට බාධා නොවන ලෙස හැසිරීමෙන් පුරවැසි විනය කුඩා කලම පිහිටයි."
+   "value": "මඟ අවහිර නොකිරීම",
+   "note": "පාරේ පෙළට යන හැටි පන්තියේදී රඟ දක්වා පෙන්වන්න."
   },
   {
    "id": 12,
@@ -154,8 +154,8 @@ window.SM_DATA = {
    "en": "Wander not from house to house peering around; stand not gazing greedily while others eat.",
    "cat": "මඟතොට විනය",
    "icon": "👀",
-   "value": "ආචාරශීලී සංවරකම",
-   "note": "අනුන්ගේ පෞද්ගලිකත්වයට ගරු කිරීමට පුරුදු වීමෙන් ආත්ම ගරුත්වය සුරැකේ."
+   "value": "ආචාරශීලී බව",
+   "note": "අනුන් කන විට කළ යුතු දේ ගැන දරුවන්ගෙන් අසන්න."
   },
   {
    "id": 13,
@@ -167,8 +167,8 @@ window.SM_DATA = {
    "en": "Through crowded streets, tilt not umbrellas carelessly nor speak haughtily with swollen pride.",
    "cat": "මඟතොට විනය",
    "icon": "☂️",
-   "value": "අනෙකා ගැන සැලකිල්ල හා නිහතමානී බව",
-   "note": "තමාගේ ආම්පන්න වලින් අනුන්ට පීඩාවක් නොවන සේ හැසිරෙන පරහිතකාමී මනසක් බිහි වේ."
+   "value": "සෙනඟ අතර සංවරය",
+   "note": "කුඩයක් රැගෙන සෙනඟ අතර යන හැටි රඟ දක්වන්න."
   },
   {
    "id": 14,
@@ -180,8 +180,8 @@ window.SM_DATA = {
    "en": "When journeying along roads, keep safely to the right; walk calmly without wild jumping and running.",
    "cat": "මඟතොට විනය",
    "icon": "🚸",
-   "value": "මාර්ග ආරක්ෂක විනය",
-   "note": "මාර්ග නීති අනුගමනය කිරීමෙන් අනතුරු වළක්වා ගැනීමේ වගකීම තහවුරු වේ."
+   "value": "මාර්ග ආරක්ෂාව",
+   "note": "කවියේ “දකුණට” යැයි කියා ඇත. දරුවා වෙසෙන රටේ මාර්ග නීති දෙමාපියන් සමඟ ඉගෙන ගන්නා ලෙස කියන්න."
   },
   {
    "id": 15,
@@ -193,8 +193,8 @@ window.SM_DATA = {
    "en": "When visiting any household on an errand, enter not uninvited before seeing and greeting the hosts.",
    "cat": "මඟතොට විනය",
    "icon": "🚪",
-   "value": "ආගන්තුක සත්කාර ගෞරවය",
-   "note": "ඉවසීමෙන් අවසර ලබා ගැනීමට පුරුදු වීමෙන් ආචාර ධර්ම දරුවාගේ ජීවිතයට එක්වේ."
+   "value": "අවසර ගෙන ඇතුළු වීම",
+   "note": "දොරට තට්ටු කර, සුබ පතා, ඇතුළු වන හැටි රඟ දක්වන්න."
   },
   {
    "id": 16,
@@ -206,8 +206,8 @@ window.SM_DATA = {
    "en": "To gambling dens, sites of violent brawls, or liquor taverns—go not even to merely sit and gaze.",
    "cat": "නරක පුරුදු දුරු කිරීම",
    "icon": "🚫",
-   "value": "නපුරු ඇසුරෙන් දුරස් වීම",
-   "note": "නරක පරිසරයෙන් දුරස් වීමෙන් මනස අපිරිසිදු නොවී නිර්මලව පවත්වා ගැනීමට හැකි වේ."
+   "value": "නරක තැන්වලින් වැළකීම",
+   "note": "දරුවන්ට යාමට සුදුසු තැන් සහ නුසුදුසු තැන් ගැන කතා කරන්න."
   },
   {
    "id": 17,
@@ -219,8 +219,8 @@ window.SM_DATA = {
    "en": "To night street dramas, idle buffoonery, or occult devil exorcisms—wander not into such unbecoming grounds.",
    "cat": "නරක පුරුදු දුරු කිරීම",
    "icon": "🕯️",
-   "value": "කාලය හා මනසේ ආරක්ෂාව",
-   "note": "බිය හා අන්ධ විශ්වාස දනවන පරිසරයෙන් ඈත් වීමෙන් තාර්කික බුද්ධිය හා මනසේ ශාන්තිය රැකේ."
+   "value": "කාලය හොඳ දේට යෙදීම",
+   "note": "රාත්‍රියේ නියමිත වේලාවට නින්දට යාමේ වැදගත්කම කියන්න."
   },
   {
    "id": 18,
@@ -232,8 +232,8 @@ window.SM_DATA = {
    "en": "Having walked under hot sun or exhausted from play, do not gulp chilled water instantly despite your thirst.",
    "cat": "නිරෝගී සුවය",
    "icon": "💧",
-   "value": "කායික සෞඛ්‍ය සංයමය",
-   "note": "පිපාසය වැනි හදිසි ආවේගයන් ඉවසා පාලනය කරගැනීමට ඉගෙන ගැනීමෙන් ආත්ම සංයමය ගොඩනැගේ."
+   "value": "සෞඛ්‍යය රැකීම",
+   "note": "සෙල්ලමෙන් පසු මඳක් විවේක ගෙන වතුර බීමට කියන්න."
   },
   {
    "id": 19,
@@ -245,8 +245,8 @@ window.SM_DATA = {
    "en": "Take neither charcoal nor chalk to scrawl jokes here and there; deface not pillars or walls unjustly.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🏛️",
-   "value": "පොදු දේපළ රැකගැනීම",
-   "note": "පොදු පරිසරයේ සුන්දරත්වය තමාගේ නිවස සේ රැකගැනීමේ පුරවැසි විඥානය ඇති වේ."
+   "value": "පොදු දේ රැකීම",
+   "note": "පන්සලේ සහ පාසලේ බිත්ති පිරිසිදුව තැබීම සැමගේ වගකීමක් බව කියන්න."
   },
   {
    "id": 20,
@@ -258,8 +258,8 @@ window.SM_DATA = {
    "en": "A teacher's counsel is true; accepting it is paramount duty; wise sages affirm it yields immense prosperity.",
    "cat": "ගුරු ගෞරවය",
    "icon": "📜",
-   "value": "ගුරු භක්තිය හා ශික්ෂණය",
-   "note": "ගුරුවරුන්ගේ ප්‍රඥාවට ගරු කිරීමෙන් ජීවිතයේ අගනාම ඥානය පහසුවෙන් උකහා ගැනීමට හැකි වේ."
+   "value": "ගුරු වචනයට ගරු කිරීම",
+   "note": "ගුරුවරයෙකු කියා දුන් හොඳ දෙයක් එකිනෙකා ලවා කියවන්න."
   },
   {
    "id": 21,
@@ -271,8 +271,8 @@ window.SM_DATA = {
    "en": "Teachers never find joy in chastising students; remember this well and avoid wrongful deeds.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🧘🏽‍♂️",
-   "value": "වරදින් මිදීමේ නුවණ",
-   "note": "ගුරුවරුන් කෙරෙහි වෛර නොබැඳ, තම වැරදි නිවැරදි කරගැනීමට දරුවා සූදානම් වේ."
+   "value": "ගුරුවරුන් දුක් නොකිරීම",
+   "note": "ගුරුවරු වරද පෙන්වන්නේ ආදරයෙන් බව පැහැදිලි කරන්න."
   },
   {
    "id": 22,
@@ -284,8 +284,8 @@ window.SM_DATA = {
    "en": "If one acts roguishly, punishment surely follows; without correction, children never mature properly.",
    "cat": "ගුරු ගෞරවය",
    "icon": "⚖️",
-   "value": "විනය පිළිගැනීමේ ධෛර්යය",
-   "note": "විනයගරුක නීතිවලට යටත්වීමේ වැදගත්කම වටහාගෙන දරුවා මුරණ්ඩුකම අත්හරියි."
+   "value": "වරද හදා ගැනීම",
+   "note": "ඇදට වැඩෙන පැළයක් කෙළින් කිරීමේ උපමාව පින්තූරයෙන් පෙන්වන්න. කවියේ “දඬුවම්” යන්න වරද හදා දීමක් ලෙස පැහැදිලි කරන්න."
   },
   {
    "id": 23,
@@ -297,8 +297,8 @@ window.SM_DATA = {
    "en": "Punishment is given to wrongdoers solely for improvement; receptive souls submit obediently with folded hands.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🌾",
-   "value": "නිහතමානී කීකරුකම",
-   "note": "විවේචන සහ නිවැරදි කිරීම් ධනාත්මකව භාරගැනීමේ මානසික ශක්තිය ගොඩනැගේ."
+   "value": "කීකරුකම",
+   "note": "“සමාවෙන්න” කියන හැටි රඟ දක්වන්න."
   },
   {
    "id": 24,
@@ -310,8 +310,8 @@ window.SM_DATA = {
    "en": "Rise mindfully before sunrise, banish sluggish lethargy, and perform your chores to prosper.",
    "cat": "උදෑසන පුරුදු",
    "icon": "🌅",
-   "value": "කඩිසර උදෑසන පිබිදීම",
-   "note": "පාන්දරින් අවදි වීමෙන් දවස සැලසුම් සහගතව ගත කිරීමේ කාර්යක්ෂමතාව හා ප්‍රබෝධය ලැබේ."
+   "value": "උදෙන් නැගිටීම",
+   "note": "උදේ නැගිටින වේලාව සටහන් කරන සතියක වගුවක් දෙන්න."
   },
   {
    "id": 25,
@@ -323,8 +323,8 @@ window.SM_DATA = {
    "en": "Sweep the premises, wash your face cleanly, comb your hair, and study lessons joyously.",
    "cat": "උදෑසන පුරුදු",
    "icon": "🧹",
-   "value": "ප්‍රබෝධවත් පිළිවෙළ",
-   "note": "පරිසරය සහ ශරීරය පිරිසිදු කරගෙන ඉගෙනීම ඇරඹීමෙන් සිතේ ඒකාග්‍රතාවය උපරිම වේ."
+   "value": "උදෑසන පිළිවෙළ",
+   "note": "පින්තූරයේ පියවර හතර පිළිවෙළට කියවන්න."
   },
   {
    "id": 26,
@@ -336,8 +336,8 @@ window.SM_DATA = {
    "en": "Wash hands and feet, reject unwholesome foods, nourish with good sustenance, and prepare for school.",
    "cat": "උදෑසන පුරුදු",
    "icon": "🥣",
-   "value": "පෝෂණය හා සූදානම",
-   "note": "සෞඛ්‍ය සම්පන්න ආහාර රටාවකට හුරුවීමෙන් මතක ශක්තිය හා දවසේ උද්යෝගය ඉහළ යයි."
+   "value": "පාසලට සූදානම",
+   "note": "හොඳ කෑම සහ නරක කෑම වෙන් කරන ක්‍රීඩාවක් කරන්න."
   },
   {
    "id": 27,
@@ -349,8 +349,8 @@ window.SM_DATA = {
    "en": "Wear no stained or grubby shirts; dress always in clean, suitable attire whenever available.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "👔",
-   "value": "පිරිසිදු ඇඳුමේ ගෞරවය",
-   "note": "පිරිසිදු ඇඳුම් ඇඳීමෙන් දරුවා තුළ තමා ගැන ආත්ම අභිමානය හා ගෞරවය වර්ධනය වේ."
+   "value": "පිරිසිදු ඇඳුම්",
+   "note": "ඇඳුම් පිරිසිදුව තබා ගන්නා හැටි ගැන කතා කරන්න."
   },
   {
    "id": 28,
@@ -362,8 +362,8 @@ window.SM_DATA = {
    "en": "Overgrown nails are improper, clip them short; stained teeth appear ugly, brush them sparkling clean.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🦷",
-   "value": "නිය හා දත් සනීපාරක්ෂාව",
-   "note": "නිය හා දත් පිරිසිදුව තබා ගැනීමෙන් රෝගවලින් මිදී ප්‍රියමනාප පෞරුෂයක් හිමිවේ."
+   "value": "නිය හා දත්",
+   "note": "දත් මදින නිවැරදි ක්‍රමය පෙන්වන්න."
   },
   {
    "id": 29,
@@ -375,8 +375,8 @@ window.SM_DATA = {
    "en": "Dripping mucus, drooling saliva, and smearing grime looks utterly repulsive to anyone who looks.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🤧",
-   "value": "සනීපාරක්ෂක විනය",
-   "note": "අප්‍රසන්න පුරුදු දුරු කර පිරිසිදුව සිටීමෙන් සමාජයේ ප්‍රසාදය නිරතුරුවම හිමිවේ."
+   "value": "මුහුණේ පිරිසිදුකම",
+   "note": "ලේන්සුවක් ළඟ තබා ගැනීමට කියන්න."
   },
   {
    "id": 30,
@@ -388,8 +388,8 @@ window.SM_DATA = {
    "en": "With disheveled hair and dirty rags, looking like a ragged scarecrow is disgraceful and unseemly.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "💇🏽‍♂️",
-   "value": "පිළිවෙළැති රූපශෝභාව",
-   "note": "තම පෙනුම පිළිවෙළකට තබා ගැනීමෙන් සමාජය ඉදිරියේ නොපැකිළී පෙනී සිටීමේ ධෛර්යය ලැබේ."
+   "value": "පිළිවෙළැති පෙනුම",
+   "note": "පිටත් වීමට පෙර කැඩපත බැලීම පුරුද්දක් කරන්න."
   },
   {
    "id": 31,
@@ -401,8 +401,8 @@ window.SM_DATA = {
    "en": "Worship your religion, bow to father and mother, pay homage to teachers, and master your lessons well.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🌸",
-   "value": "දෙගුරු ගුරු වන්දනය",
-   "note": "වැඩිහිටියන්ට වැඳ ආශිර්වාදය ලබාගෙන වැඩ ඇරඹීමෙන් දරුවාට සිතේ ආරක්ෂිතභාවය සහ ආත්ම ශක්තිය ලැබේ."
+   "value": "වැඳීම හා ඉගෙනීම",
+   "note": "පින්තූරයේ පියවර හතර පිළිවෙළට කියවන්න."
   },
   {
    "id": 32,
@@ -414,8 +414,8 @@ window.SM_DATA = {
    "en": "On your way to and from school, cause no brawls anywhere; walk calmly like a serene observer of precepts.",
    "cat": "මඟතොට විනය",
    "icon": "🧘🏽",
-   "value": "සංවර පාසල් ගමන",
-   "note": "පාරේ යන විට සංවරව හැසිරීමෙන් අන්‍යයන්ගේ ගෞරවය හා ආදර්ශවත් ශිෂ්‍ය නාමය දිනාගත හැක."
+   "value": "සන්සුන් ගමන",
+   "note": "පාසල් යන එන මඟදී හැසිරිය යුතු හැටි ගැන අසන්න."
   },
   {
    "id": 33,
@@ -427,8 +427,8 @@ window.SM_DATA = {
    "en": "Take your books, sit in assigned places, make no commotion, and study deeply with focused mind.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "📚",
-   "value": "පන්ති කාමර ඒකාග්‍රතාවය",
-   "note": "නිහඬව පාඩමට අවධානය යොමු කිරීමෙන් ධාරණ ශක්තිය හා විභාග ජයගැනීමේ හැකියාව තහවුරු වේ."
+   "value": "නිහඬව පාඩම් කිරීම",
+   "note": "මිනිත්තු පහක නිහඬ කියවීමක් කරන්න."
   },
   {
    "id": 34,
@@ -440,8 +440,8 @@ window.SM_DATA = {
    "en": "Run not all over the school premises; sit without mischief and carry out what the teachers command.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "🎯",
-   "value": "පාසල් විනය හා කීකරුකම",
-   "note": "අනවශ්‍ය දඟලැවිල්ල පාලනය කරගැනීමෙන් මනස සන්සුන් වී විනයගරුක නායකත්ව ලක්ෂණ මතු වේ."
+   "value": "පන්තියේ හැසිරීම",
+   "note": "පන්ති නීති දරුවන් සමඟ එකතුව ලියන්න."
   },
   {
    "id": 35,
@@ -453,8 +453,8 @@ window.SM_DATA = {
    "en": "Snatch not nor take peers' books; if in need, ask politely and borrow with courtesy.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "💬",
-   "value": "අන්සතු දේට ගරු කිරීම",
-   "note": "අනුන්ගේ අවසරය ඇතිව දේ පරිහරණය කිරීමට පුරුදු වීමෙන් සහජීවනය සහ සැබෑ මිත්‍රත්වය දිනාගත හැක."
+   "value": "ඉල්ලා ගැනීම",
+   "note": "“කරුණාකර”, “ස්තුතියි” යන වචන භාවිත කර ඉල්ලන හැටි රඟ දක්වන්න."
   },
   {
    "id": 36,
@@ -466,8 +466,8 @@ window.SM_DATA = {
    "en": "Slates, books, pens, and pencils—if you care for them attentively, they will surely remain safe with you.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "✏️",
-   "value": "උපකරණ රැකබලා ගැනීමේ වගකීම",
-   "note": "තමාගේ ද්‍රව්‍ය කෙරෙහි වගකීමක් දැරීමෙන් වැඩිහිටි වියේදී වගකීම් සහගත පුරවැසියෙකු වීමට මඟ පෑදේ."
+   "value": "තමන්ගේ දේ රැකීම",
+   "note": "පොත්වල නම ලියා බෑගය පිළිවෙළට අසුරන හැටි පෙන්වන්න."
   },
   {
    "id": 37,
@@ -479,8 +479,8 @@ window.SM_DATA = {
    "en": "Never scrawl playful scribbles on slates or books; preserve all learning tools immaculate always.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "📖",
-   "value": "ශාස්ත්‍ර ගෞරවය හා පිරිසිදුකම",
-   "note": "අධ්‍යාපන උපකරණ පිරිසිදුව තබාගැනීමෙන් ඉගෙනීමට ඇති ආදරය සහ ගෞරවය තහවුරු වේ."
+   "value": "පොත් පිරිසිදුව තැබීම",
+   "note": "පොතකට කවරයක් දමන හැටි පෙන්වන්න."
   },
   {
    "id": 38,
@@ -492,8 +492,8 @@ window.SM_DATA = {
    "en": "Spit not anywhere across the school; blow not mucus onto the school grounds—such behavior is unbecoming.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🌿",
-   "value": "පොදු සනීපාරක්ෂාව",
-   "note": "පොදු ස්ථානවල අපිරිසිදු පුරුදු පාලනය කරගැනීමෙන් රෝග බෝවීම වැළකී සමාජ විනය රැකේ."
+   "value": "පාසල පිරිසිදුව තැබීම",
+   "note": "කුණු දැමිය යුතු තැන පෙන්වා දෙන්න."
   },
   {
    "id": 39,
@@ -505,8 +505,8 @@ window.SM_DATA = {
    "en": "Even begging for meals, wearing tattered rags, or sitting on bare ground—acquiring education yields great bliss.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "🎓",
-   "value": "අධ්‍යාපනයේ උත්තරීතර අගය",
-   "note": "දුෂ්කරතා මැද වුවද ඉගෙනීම අත්නොහැරීමේ අසීමිත ධෛර්යය හා අධිෂ්ඨානය දරුවා තුළ රෝපණය වේ."
+   "value": "ඉගෙනීමේ අගය",
+   "note": "දුෂ්කරතා මැද ඉගෙන ගැනීමේ වටිනාකම ගැන කතා කරන්න."
   },
   {
    "id": 40,
@@ -518,8 +518,8 @@ window.SM_DATA = {
    "en": "Never deceive parents to obtain what you crave; bow reverently at their feet and ask whatever you need.",
    "cat": "දෙමාපිය උපස්ථානය",
    "icon": "🗣️",
-   "value": "දෙමාපියන් කෙරෙහි අවංකකම",
-   "note": "රැවටිලි සහ බලහත්කාරකම් අත්හැර ගෞරවයෙන් ඉල්ලීමෙන් සෞඛ්‍ය සම්පන්න පවුල් සබඳතාවක් ගොඩනැගේ."
+   "value": "දෙමාපියන්ට ඇත්ත කීම",
+   "note": "යමක් අවශ්‍ය වූ විට ඇත්ත කියා ඉල්ලන හැටි ගැන කතා කරන්න."
   },
   {
    "id": 41,
@@ -531,8 +531,8 @@ window.SM_DATA = {
    "en": "Cause neither distress nor trouble to parents; boundless merit accrues when showing them loving devotion.",
    "cat": "දෙමාපිය උපස්ථානය",
    "icon": "🥛",
-   "value": "මාපිය උපස්ථානය හා ආදරය",
-   "note": "දෙමාපියන්ගේ වෙහෙස දැක ඔවුන්ට කරදර නොකිරීමෙන් දරුවා තුළ කෘතවේදීත්වය ගැඹුරින් තැන්පත් වේ."
+   "value": "දෙමාපියන්ට සැලකීම",
+   "note": "අද ගෙදරදී දෙමාපියන්ට කළ හැකි උදව්වක් තෝරා ගැනීමට කියන්න."
   },
   {
    "id": 42,
@@ -544,8 +544,8 @@ window.SM_DATA = {
    "en": "Sit not on higher seats above your father, your mother, your elder brother, or your elder sister.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🧎🏽",
-   "value": "වැඩිහිටි ගෞරව චාරිත්‍රය",
-   "note": "පවුලේ වැඩිහිටියන්ට සංකේතාත්මකව ගරු කිරීමෙන් ආත්මාර්ථකාමී අහංකාරය දුරු වේ."
+   "value": "වැඩිහිටියන්ට ගරු කිරීම",
+   "note": "අසුන් ගැනීමේදී වැඩිහිටියන්ට මුල් තැන දෙන හැටි රඟ දක්වන්න."
   },
   {
    "id": 43,
@@ -557,8 +557,8 @@ window.SM_DATA = {
    "en": "In anger, scold not nor strike your elder brother, elder sister, younger brother, or younger sister.",
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "🧸",
-   "value": "සහෝදර ප්‍රේමය හා ඉවසීම",
-   "note": "කෝපය පාලනය කර සහෝදරයන්ට අත නොතැබීමෙන් පවුල තුළ සාමය සහ ආරක්ෂාව සුරැකේ."
+   "value": "සහෝදර ආදරය",
+   "note": "සහෝදරයෙකු සමඟ තරහ ගිය විට කළ හැකි හොඳ දේ ගැන අසන්න."
   },
   {
    "id": 44,
@@ -570,8 +570,8 @@ window.SM_DATA = {
    "en": "Gaze not with greedy malice at gifts given to siblings; find genuine contentment in whatever you receive.",
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "✨",
-   "value": "මුදිතාව හා තෘප්තිය",
-   "note": "ඊර්ෂ්‍යාව බැහැර කර තමා සතු දෙයින් සතුටුවීමට ඉගෙන ගැනීමෙන් මානසික සුවය තහවුරු වේ."
+   "value": "ලද දෙයින් සතුටු වීම",
+   "note": "තමාට ලැබී ඇති දේවල් තුනක් ගැන සතුටු වීමට කියන්න."
   },
   {
    "id": 45,
@@ -583,8 +583,8 @@ window.SM_DATA = {
    "en": "No sin is committed by bowing to grandparents, aunts, uncles, or elder siblings; it yields splendid merit.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🌺",
-   "value": "ඥාති සත්කාරය හා පින් පිරීම",
-   "note": "වැඩිහිටි නෑදෑයින්ට වැඳ නමස්කාර කිරීමෙන් දරුවා සමාජය තුළ ආදරණීය දරුවෙකු බවට පත්වේ."
+   "value": "වැඩිහිටියන්ට වැඳීම",
+   "note": "සීයාට, ආච්චිට වඳින හැටි රඟ දක්වන්න."
   },
   {
    "id": 46,
@@ -596,8 +596,8 @@ window.SM_DATA = {
    "en": "Listen to Dhamma and kind counsel; reject it not with stubborn violence; the words of sages pave victory.",
    "cat": "සිත පිරිසිදු කිරීම",
    "icon": "🔔",
-   "value": "ධාර්මික සවන්දීම",
-   "note": "හොඳ උපදෙස් වලට නිහතමානීව සවන් දීමෙන් දරුවාගේ තීරණ ගැනීමේ ඥානය දියුණු වේ."
+   "value": "හොඳ අවවාද ඇසීම",
+   "note": "බණ අසන විට හැසිරිය යුතු හැටි ගැන කතා කරන්න."
   },
   {
    "id": 47,
@@ -609,8 +609,8 @@ window.SM_DATA = {
    "en": "Wrestle not while bathing; leap not wildly into waters; enter not deep rivers, nor ever bathe alone.",
    "cat": "ආරක්ෂාව හා නීති",
    "icon": "🌊",
-   "value": "ජල ආරක්ෂණ නීති පිළිපැදීම",
-   "note": "ජල අනතුරු පිළිබඳ බුද්ධිමත්ව සිතා ආරක්ෂිත සීමාවන් තුළ හැසිරීමේ විනය ලැබේ."
+   "value": "ජල ආරක්ෂාව",
+   "note": "වැඩිහිටියෙකු නැතිව වතුරට නොබැසිය යුතු බව අවධාරණය කරන්න."
   },
   {
    "id": 48,
@@ -622,8 +622,8 @@ window.SM_DATA = {
    "en": "Climb not perilous trees for fruit; play not with fire; sleep not in daylight; shun sluggish laziness.",
    "cat": "ආරක්ෂාව හා නීති",
    "icon": "🔥",
-   "value": "කායික ආරක්ෂාව හා කඩිසරකම",
-   "note": "අනතුරුදායක ක්‍රියාවලින් වැළකී, දහවල් අලසකම දුරු කිරීමෙන් කාර්යශූර දරුවෙකු බිහි වේ."
+   "value": "අනතුරුවලින් වැළකීම",
+   "note": "ගෙදර අනතුරු ඇති විය හැකි තැන් ගැන කතා කරන්න."
   },
   {
    "id": 49,
@@ -635,8 +635,8 @@ window.SM_DATA = {
    "en": "Crave not cigars; chew neither tobacco nor betel leaves; such vile habits never benefit personal growth.",
    "cat": "නිරෝගී සුවය",
    "icon": "🍃",
-   "value": "දුරාචාරයෙන් තොර පිරිසිදුකම",
-   "note": "නරක ඇබ්බැහිවීම් ප්‍රතික්ෂේප කිරීමෙන් මුළු ජීවිත කාලයටම නිරෝගීභාවය තහවුරු වේ."
+   "value": "නරක පුරුදුවලින් වැළකීම",
+   "note": "කවුරුන් හෝ දුම්වැටියක් දුන්නොත් “එපා” කියන හැටි පුහුණු කරන්න."
   },
   {
    "id": 50,
@@ -648,8 +648,8 @@ window.SM_DATA = {
    "en": "Greed not for food; clamor not shouting for more; never fling food in fury, nor eat standing outside.",
    "cat": "කෑම මේසයේ විනය",
    "icon": "🍽️",
-   "value": "ආහාරයට ගරු කිරීමේ විනය",
-   "note": "ආහාර වේලෙහි සංවරකම රැකගැනීමෙන් ආත්මාර්ථකාමීත්වය හා කෑදරකම පාලනය වේ."
+   "value": "කෑමට ගරු කිරීම",
+   "note": "කෑම නාස්ති නොකිරීම ගැන කතා කරන්න."
   },
   {
    "id": 51,
@@ -661,8 +661,8 @@ window.SM_DATA = {
    "en": "Grab not into dishes greedily; smack not your lips noisily; eat not weeping; dine always seated with joy.",
    "cat": "කෑම මේසයේ විනය",
    "icon": "🍚",
-   "value": "භෝජන ශිෂ්ටාචාරය",
-   "note": "සතුටින් හා ශිෂ්ටසම්පන්නව ආහාර ගැනීමෙන් ශරීරයට පෝෂණය මෙන්ම මානසික සුවයද ලැබේ."
+   "value": "කෑම මේසයේ හැසිරීම",
+   "note": "කෑම කන විට හැසිරිය යුතු හැටි රඟ දක්වන්න."
   },
   {
    "id": 52,
@@ -674,8 +674,8 @@ window.SM_DATA = {
    "en": "Buy not sweets on debt; wander not roads chewing food; if you obtain delicacies, devour them not alone.",
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "🍯",
-   "value": "බෙදාහදා ගැනීම හා මූල්‍ය විනය",
-   "note": "ණය නොවී සිටීම සහ තමා සතු රසවත් දේ බෙදාහදා ගැනීමෙන් උසස් සමාජ ගුණාංග පිහිටයි."
+   "value": "බෙදා ගැනීම",
+   "note": "කෑමක් යාළුවෙකු සමඟ බෙදා ගත් අවස්ථාවක් ගැන අසන්න."
   },
   {
    "id": 53,
@@ -687,8 +687,8 @@ window.SM_DATA = {
    "en": "Pollute not water with waste; wash hands cleanly away; dip not fingers into pots when offering water to drink.",
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🏺",
-   "value": "ජල පාරිශුද්ධිය හා ආගන්තුක සත්කාරය",
-   "note": "පානීය ජල මූලාශ්‍ර ආරක්ෂා කිරීමෙන් පරිසර හිතකාමී සහ සනීපාරක්ෂක චින්තනය වර්ධනය වේ."
+   "value": "වතුර පිරිසිදුව තැබීම",
+   "note": "අමුත්තෙකුට වතුර වීදුරුවක් පිළිගන්වන හැටි පෙන්වන්න."
   },
   {
    "id": 54,
@@ -700,8 +700,8 @@ window.SM_DATA = {
    "en": "Deem words like 'Hey devil' as foul; reject 'He and That one'; discard vulgar slurs and speak endearing words.",
    "cat": "සිත පිරිසිදු කිරීම",
    "icon": "🌸",
-   "value": "ප්‍රිය වචන භාෂණය (Gentle Speech)",
-   "note": "රළු භාෂාව දුරු කර ප්‍රිය වචන භාවිත කිරීමෙන් ඕනෑම කෙනෙකුගේ හදවත දිනාගත හැක."
+   "value": "මිහිරි වචන",
+   "note": "නරක වචනයක් වෙනුවට කිව හැකි හොඳ වචනයක් සොයන ක්‍රීඩාවක් කරන්න."
   },
   {
    "id": 55,
@@ -713,8 +713,8 @@ window.SM_DATA = {
    "en": "Neglect not duties; perform today's duties today; postpone nothing for tomorrow; act at the right season.",
    "cat": "පාසල හා අධ්‍යාපනය",
    "icon": "⏳",
-   "value": "කාල කළමනාකරණය හා උද්‍යෝගය",
-   "note": "වැඩ කල් දැමීමේ පුරුද්ද (Procrastination) දුරු කිරීමෙන් සාර්ථකත්වය සහ මනසේ සැහැල්ලුව ඇති වේ."
+   "value": "වැඩ කල් නොදැමීම",
+   "note": "අද කළ යුතු වැඩ ලැයිස්තුවක් ලියා, අවසන් කළ පසු සලකුණු කිරීමට කියන්න."
   },
   {
    "id": 56,
@@ -726,8 +726,8 @@ window.SM_DATA = {
    "en": "Brawl not while playing; exchange no crude abuse; ruin not tasks with excessive play; squander not time.",
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "⚽",
-   "value": "ක්‍රීඩාශීලී විනය",
-   "note": "සෙල්ලම සහ වගකීම් සමබර කරගැනීමට ඉගෙන ගැනීමෙන් ජීවිත පාලනයක් ඇති වේ."
+   "value": "සමගියෙන් සෙල්ලම් කිරීම",
+   "note": "සෙල්ලමේදී රණ්ඩුවක් ඇති වූ විට කළ යුතු දේ ගැන අසන්න."
   },
   {
    "id": 57,
@@ -739,8 +739,8 @@ window.SM_DATA = {
    "en": "Clash not with brethren; earn no demerit with harsh words; avoid scornful slurs; labor together in unity.",
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "🏰",
-   "value": "සහෝදර සමඟිය හා සාමූහිකත්වය",
-   "note": "පවුල තුළ එකමුතුකම රැකගැනීමෙන් නොබිඳෙන සමාජීය ශක්තියක් ගොඩනැගේ."
+   "value": "එකමුතුකම",
+   "note": "කණ්ඩායමක් ලෙස කළ හැකි කුඩා වැඩක් පන්තියට දෙන්න."
   },
   {
    "id": 58,
@@ -752,8 +752,8 @@ window.SM_DATA = {
    "en": "Rush not into brawls upon seeing peers; invite no reprimands; swear never falsely by sun, moon, gods, or parents.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "☀️",
-   "value": "අවිහිංසාව හා සත්‍ය ගරුත්වය",
-   "note": "බොරු දිවුරුම් දීමෙන් වැළකී සත්‍යවාදී වීමෙන් නිර්භීත ශක්තිමත් චරිතයක් හිමිවේ."
+   "value": "රණ්ඩු නොකිරීම",
+   "note": "රණ්ඩුවකින් ඉවත් වන හැටි රඟ දක්වන්න."
   },
   {
    "id": 59,
@@ -765,8 +765,8 @@ window.SM_DATA = {
    "en": "Slumber not too early at dusk; arise briskly at dawn; remember your faith, and attend to all tasks.",
    "cat": "උදෑසන පුරුදු",
    "icon": "🌙",
-   "value": "දිනචර්යාවේ විනය හා ආගමික භක්තිය",
-   "note": "නිරවුල් දිනචර්යාවක් සහ ආගමික සිහියක් පවත්වා ගැනීමෙන් මානසික සමාධිය රැකේ."
+   "value": "දවසේ පිළිවෙළ",
+   "note": "දවසක කාලසටහනක් දරුවන් ලවා අඳවන්න."
   },
   {
    "id": 60,
@@ -778,8 +778,8 @@ window.SM_DATA = {
    "en": "Listen as I proclaim a supreme deed: kneel humbly before parents, lovingly hold a sheaf of betel in both hands, and bow.",
    "cat": "දෙමාපිය උපස්ථානය",
    "icon": "🍃",
-   "value": "උත්තරීතර මාපිය වන්දනය",
-   "note": "දෙමාපියන්ට දණ නමා වැඳීමෙන් දරුවාගේ ජීවිතයේ අහංකාරය නැති වී දෙමාපිය ආශිර්වාදය හිමිවේ."
+   "value": "දෙමාපියන්ට වැඳීම",
+   "note": "බුලත් අතක් දී වඳින හැටි පන්තියේදී පෙන්වන්න."
   },
   {
    "id": 61,
@@ -791,8 +791,8 @@ window.SM_DATA = {
    "en": "Act appropriately for childhood; rush not haughtily toward adulthood; mature in modest humility, and nobility will follow.",
    "cat": "ගුරු ගෞරවය",
    "icon": "🇱🇰",
-   "value": "නිහතමානී උසස් නායකත්වය",
-   "note": "ළමා වියේ සීමාවන් හඳුනාගෙන නිහතමානීව හික්මීමෙන් අනාගතයේ ශ්‍රේෂ්ඨ නායකයෙකු වීමේ පදනම වැටේ."
+   "value": "නිහතමානීකම",
+   "note": "නිහතමානීව හැසිරුණු කෙනෙකු ගැන දරුවන්ගෙන් අසන්න."
   },
   {
    "id": 62,
@@ -804,8 +804,8 @@ window.SM_DATA = {
    "en": "May friends be blessed with happiness; may sorrow vanish; may prosperity abound; may eternal victory bless all children!",
    "cat": "ගෞරවය හා ආරම්භය",
    "icon": "👑",
-   "value": "සර්ව මෛත්‍රිය හා පූර්ණ ජයග්‍රහණය",
-   "note": "සියලු දෙනාට සෙත් පතන විශ්ව මෛත්‍රී චින්තනයෙන් දරුවා පරිපූර්ණ ආදර්ශවත් මිනිසෙකු බවට පත්වේ."
+   "value": "සැමට සුබ පැතීම",
+   "note": "පළමු කොටස අවසන් කිරීම කුඩා උත්සවයක් ලෙස සමරා, සැමට සුබ පැතීමෙන් අවසන් කරන්න."
   }
  ],
  "cats": {

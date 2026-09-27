@@ -172,6 +172,8 @@ a.chip:hover, button.chip:hover { background: color-mix(in srgb, var(--c) 24%, #
 .dot.now { outline: 3px solid var(--c); outline-offset: 2px; }
 
 /* Dhamma citations */
+.dear { font-weight: 800 !important; color: #1e40af; font-size: .95rem !important; margin-bottom: 2px; }
+.more p.src-note { color: #7c2d12; }
 .dhamma-card { border-color: #f3d58a; background: linear-gradient(180deg, #fffdf3, #fff7dc); }
 .dhamma-card .card-tag { background: #7c2d12; color: #fff3c4; }
 .ref { padding: 4px 0 2px; }

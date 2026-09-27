@@ -220,7 +220,7 @@
   S[22] = function () {
     return single('night',
       A.stars([[40, 40, 1.2], [110, 70, 1], [290, 50, 1.2], [360, 90, 1], [200, 30, 1.3], [330, 150, 0.9], [60, 130, 0.9]]) + '<circle cx="205" cy="180" r="150" fill="#fde68a" opacity=".16"/><circle cx="205" cy="180" r="100" fill="#fde68a" opacity=".18" class="glow"/>' +
-      A.cloud(80, 70, 1.1) + E(80, 58, 26, '👼') + A.cloud(320, 80, 1.1) + E(320, 68, 26, '🐉') +
+      A.cloud(80, 70, 1.1) + A.cloud(320, 80, 1.1) +
       A.bubble(200, 60, 120, 40, E(-36, 1, 20, '📜') + L(14, 0, 14, '… … ∞', '#7c2d12')) +
       mum({ x: 170, y: 250, s: 1, face: 'joy', halo: true }) + A.father({ x: 240, y: 250, s: 1, face: 'joy', halo: true }) +
       T(22, { x: 90, y: 274, s: 0.9, pose: 'kneel', face: 'calm', armL: 'worship', armR: 'worship' }) + A.girl({ x: 320, y: 274, s: 0.86, pose: 'kneel', face: 'calm', armL: 'worship', armR: 'worship', flip: true }) +

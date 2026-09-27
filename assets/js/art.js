@@ -65,8 +65,7 @@
 
     /* halo behind everything */
     if (p.halo) {
-      out += '<circle cx="0" cy="' + hy + '" r="' + (K.hr + 16) + '" fill="#fde68a" opacity=".55" class="glow"/>' +
-             '<circle cx="0" cy="' + hy + '" r="' + (K.hr + 9) + '" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 5" class="spin"/>';
+      out += '<circle cx="0" cy="' + (hy + 30) + '" r="' + (K.hr + 34) + '" fill="#fde68a" opacity=".4" class="glow"/>';
     }
 
     /* legs */

@@ -26,7 +26,17 @@ comparing strings.
 | --- | --- | --- |
 | Mind comes first | ධම්මපදය 1 | 11732 |
 | Sorrow and joy in both worlds | ධම්මපදය 15, 16 | 11732 |
+| Hatred is never ended by hatred | ධම්මපදය 5 | 11732 |
 | Look at your own deeds, not others' | ධම්මපදය 50 | 11735 |
+| Many good deeds, like many garlands from a heap of flowers | ධම්මපදය 53 | 11735 |
+| The fragrance of the good spreads everywhere | ධම්මපදය 54 | 11735 |
+| Be quick to do good, or the mind delights in wrong | ධම්මපදය 116 | 11740 |
+| Do not harm others for your own happiness | ධම්මපදය 131 | 11741 |
+| Speak harshly to no one | ධම්මපදය 133 | 11741 |
+| A liar can do any wrong | ධම්මපදය 176 | 11780 |
+| Speak truth, do not be angry, give | ධම්මපදය 224 | 11789 |
+| The wise are restrained in body, speech and mind | ධම්මපදය 234 | 11789 |
+| One who did wrong and says "I did not" | ධම්මපදය 306 | 11800 |
 | No friendship with the foolish | ධම්මපදය 61 | 11736 |
 | One who shows your faults is like one who shows treasure | ධම්මපදය 76 | 11737 |
 | Keep good friends | ධම්මපදය 78 | 11737 |
@@ -46,6 +56,10 @@ comparing strings.
 | Parents cannot easily be repaid | අංගුත්තර, දුක නිපාතය, සමචිත්ත වර්ගය 33 | 7368 |
 | By deeds, not birth | වසල සූත්‍රය, වාසෙට්ඨ සූත්‍රය | 12603, 12756 |
 | Causes of downfall | පරාභව සූත්‍රය | 12601 |
+| Sleepiness and laziness, and eating good things alone | පරාභව සූත්‍රය, verses 96 and 102 | 12601 |
+| Freedom from envy, humility, asking the wise, freedom from anger | චූළ කම්මවිභංග සූත්‍රය | 811 |
+| Right speech: no tale-bearing, kind words, useful words | සාලෙය්‍යක සූත්‍රය | 396 |
+| Parents' duties to children, teachers' duties to pupils, four true friends | සිගාල සූත්‍රය | 236 |
 | Well-spoken words | සුභාසිත සූත්‍රය, සුභාසිත වාචා සූත්‍රය | 12750, 9942 |
 | Duties to parents and teachers, false friends, dangers of drink, gambling, idleness, roaming at night | සිගාල සූත්‍රය | 236 |
 | Do not lie, and reflect before acting | අම්බලට්ඨික රාහුලෝවාද සූත්‍රය | 458 |
@@ -57,7 +71,17 @@ comparing strings.
 
 | Passage | Why it was not used |
 | --- | --- |
+| ධම්මපදය 152 (page 11742) | The translation speaks of learning the Dhamma, not school learning. |
+| ධම්මපදය 155 (page 11742) | It is about the holy life in youth, not study. |
+| ධම්මපදය 204 (page 11785) | The translation gives contentment a deeper meaning than being glad with a gift. Mangala verse 8 fits better. |
+| චූළ කම්මවිභංග, asking the wise, for "ask before starting a task" | The sutta is about asking what is wholesome. Used only where the poem is about hearing one's faults. |
 | භද්දේකරත්ත සූත්‍රය, "අජ්ජේව කිච්චමාතප්පං" (page 807) | It urges effort in the Dhamma today. Using it for schoolwork would bend its meaning. |
+
+## Choosing an excerpt
+
+- Prefer the passage that describes the good quality, not the fault.
+- Long prose may start or stop only at a sentence boundary. The site marks the cut with "…".
+- The කාලාම (කේසමුත්ති) සූත්‍රය was not found by name in the index. Do not cite it until found.
 
 ## Topics with no passage found
 

@@ -207,10 +207,17 @@
   function refsFor(part, n) { return ((REFS.map[part] || {})[n] || []).map(function (k) { return REFS.lib[k]; }).filter(Boolean); }
   function refHtml(r) {
     var pali = r.pali ? '<p class="pali" lang="pi">' + r.pali.split('\n').map(esc).join('<br>') + '</p>' : '';
-    var si = r.si.split('\n').map(esc).join('<br>') + (r.more ? ' …' : '');
+    var si = (r.pre ? '… ' : '') + r.si.split('\n').map(esc).join('<br>') + (r.more ? ' …' : '');
     return '<div class="ref"><div class="ref-head"><b>' + esc(r.ref) + '</b><span>' + esc(r.coll) + '</span></div>' + pali +
       '<blockquote class="ref-si' + (r.verse ? ' verse-si' : '') + '" lang="si">' + si + '</blockquote>' +
       '<a class="ref-link" href="' + esc(r.url) + '" target="_blank" rel="noopener">tripitaka.online හි සම්පූර්ණයෙන් කියවන්න ↗</a></div>';
+  }
+  function teacherSource(n) {
+    var rs = refsFor(PART, n);
+    if (!rs.length) return '<p class="src-note"><b>මූලාශ්‍රය:</b> මෙය යහපත් සිරිතකි. මෙයට ගැළපෙන බුදු වදනක් තහවුරු කර ගත නොහැකි වූ බැවින් කිසිවක් දක්වා නැත.</p>';
+    var seen = {}, names = [];
+    rs.forEach(function (r) { if (!seen[r.ref]) { seen[r.ref] = 1; names.push(r.ref); } });
+    return '<p class="src-note"><b>බුදු වදන:</b> ' + esc(names.join(', ')) + '. ඉහත දැක්වෙන බුදු වදන දරුවන්ට කියවා දී, කවිය සමඟ සසඳා පෙන්වන්න.</p>';
   }
   function dhammaCard(n) {
     var rs = refsFor(PART, n), as = ((REFS.amap[PART] || {})[n] || []).map(function (k) { return REFS.articles[k]; }).filter(Boolean);
@@ -241,12 +248,12 @@
         '<div class="poem-side">' +
           '<section class="card verse-card"><div class="card-tag">📜 කවිය</div><p class="verse" lang="si">' + versesHtml(v) + '</p>' +
             '<button class="btn listen" id="listenBtn" type="button"><span aria-hidden="true">🔊</span> අහමු</button></section>' +
-          '<section class="card meaning-card"><div class="card-tag">💡 තේරුම</div><p>' + esc(v.moral) + '</p></section>' +
+          '<section class="card meaning-card"><div class="card-tag">💡 තේරුම</div><p class="dear">පින්වත් දුවේ පුතේ,</p><p>' + esc(v.moral) + '</p></section>' +
           dhammaCard(n) +
           '<section class="card promise-card' + (on ? ' on' : '') + '" id="promiseCard"><div class="card-tag">🤝 මගේ පොරොන්දුව</div><p class="promise">“' + esc(v.promise) + '”</p>' +
             '<button class="btn learn" id="learnBtn" type="button" aria-pressed="' + on + '">' + (on ? '🌸 ඉගෙන ගත්තා!' : '🌱 මම ඉගෙන ගත්තා') + '</button></section>' +
           '<details class="more"><summary>🌍 English</summary><p lang="en">' + esc(v.en) + '</p></details>' +
-          '<details class="more"><summary>👩‍🏫 ගුරුවරුන්ට / දෙමාපියන්ට</summary><p><b>ගුණය:</b> ' + esc(v.value) + '</p><p>' + esc(v.note) + '</p>' +
+          '<details class="more"><summary>👩‍🏫 ගුරුවරුන්ට / දෙමාපියන්ට</summary><p><b>ගුණය:</b> ' + esc(v.value) + '</p><p><b>ඉගැන්වීමට:</b> ' + esc(v.note) + '</p>' + teacherSource(n) +
             '<p class="ask"><b>අසන්න:</b> රතු පින්තූරයේ වැරැද්ද කුමක්ද? කොළ පින්තූරයේ හොඳ දේ කුමක්ද? ඔබ අද එය කරන්නේ කෙසේද?</p></details>' +
         '</div>' +
       '</div>' +

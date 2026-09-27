@@ -161,7 +161,7 @@
    "cat": "ගුරු ගෞරවය",
    "icon": "📜",
    "value": "ගුරු වචනයේ අගය",
-   "note": "පළමු කොටසේ 20 වන කවිය සමඟ සම්බන්ධ කරන්න."
+   "note": "පළමු කොටසේ 20 වන කවිය මතක් කර දෙන්න."
   },
   {
    "id": 13,
@@ -265,7 +265,7 @@
    "cat": "වරද හදා ගැනීම",
    "icon": "🤥",
    "value": "අවංකකම",
-   "note": "දෙවන කොටසේ 13 වන කවිය සමඟ සම්බන්ධ කරන්න."
+   "note": "දෙවන කොටසේ 13 වන කවිය මතක් කර දෙන්න."
   },
   {
    "id": 21,
@@ -303,8 +303,8 @@
    "en": "Your own hand is nearest your own head, and another's is not always there; remember this and strive to grow up well.",
    "cat": "වැඩ හා උත්සාහය",
    "icon": "💪",
-   "value": "ස්වයං විශ්වාසය",
-   "note": "“අත්තා හි අත්තනෝ නාථෝ” ධම්මපද ගාථාව සමඟ සම්බන්ධ කළ හැක."
+   "value": "තමාගේ උත්සාහය",
+   "note": "කවියේ අදහස සහ ඉහත දැක්වෙන ධම්මපද ගාථාව සසඳා පෙන්වන්න."
   },
   {
    "id": 24,
@@ -316,7 +316,7 @@
    "en": "Though his own faults are heaped like Mount Meru and another's are as small as a mustard seed, one who sees only the other's comes to ruin.",
    "cat": "වරද හදා ගැනීම",
    "icon": "🔍",
-   "value": "ස්වයං විමර්ශනය",
+   "value": "තමාගේ වරද බැලීම",
    "note": "කැඩපතක් භාවිතයෙන් “මුලින් මා දෙස බලමි” යන අදහස පෙන්වන්න."
   },
   {
@@ -369,7 +369,7 @@
    "cat": "පිරිසිදුකම හා රැකවරණය",
    "icon": "🧼",
    "value": "පෞද්ගලික පිරිසිදුකම",
-   "note": "පළමු කොටසේ 25 සිට 30 දක්වා කවි සමඟ සම්බන්ධ කරන්න."
+   "note": "පළමු කොටසේ 25 සිට 30 දක්වා කවි මතක් කර දෙන්න."
   },
   {
    "id": 29,
@@ -486,7 +486,7 @@
    "cat": "මිත්‍රත්වය හා සහජීවනය",
    "icon": "🧭",
    "value": "යහපත් ඇසුර",
-   "note": "දෙවන කොටසේ 2 සහ 3 වන කවි සමඟ සම්බන්ධ කරන්න."
+   "note": "දෙවන කොටසේ 2 සහ 3 වන කවි මතක් කර දෙන්න."
   },
   {
    "id": 38,
@@ -602,8 +602,8 @@
    "en": "Drink disturbs the blood, confuses the mind, weakens the body and eyes, and brings poverty and an early death.",
    "cat": "නිරෝගී සුවය",
    "icon": "🚱",
-   "value": "පස්වන සිල් පදය",
-   "note": "පංච ශීලයේ පස්වන සිල් පදය සමඟ සම්බන්ධ කරන්න."
+   "value": "මත්පැනින් වැළකීම",
+   "note": "ඉහත දැක්වෙන සිගාල සූත්‍රයේ කරුණු එකින් එක කියවා කවිය සමඟ සසඳන්න."
   },
   {
    "id": 47,
@@ -628,8 +628,8 @@
    "en": "There is plenty of fruit to eat; do not kill animals out of greed for meat. Is it right to live by causing them pain?",
    "cat": "සතුන්ට කරුණාව",
    "icon": "🥭",
-   "value": "පළමු සිල් පදය",
-   "note": "පංච ශීලයේ පළමු සිල් පදය සමඟ සම්බන්ධ කරන්න. විවිධ පවුල්වල ආහාර පුරුදුවලට ගරු කරන්න."
+   "value": "සතුන් නොමැරීම",
+   "note": "ඉහත දැක්වෙන බුදු වදන් කියවා දෙන්න. විවිධ පවුල්වල ආහාර පුරුදුවලට ගරු කරන්න."
   },
   {
    "id": 49,
@@ -641,8 +641,8 @@
    "en": "People toil night and day for what they have and hold it dear; think of them as yourself and never take it with a thief's mind.",
    "cat": "අවංකකම හා සත්‍යය",
    "icon": "🌾",
-   "value": "දෙවන සිල් පදය",
-   "note": "පළමු කොටසේ 7 වන කවිය සමඟ සම්බන්ධ කරන්න."
+   "value": "සොරකම් නොකිරීම",
+   "note": "පළමු කොටසේ 7 වන කවිය මතක් කර දෙන්න."
   },
   {
    "id": 50,

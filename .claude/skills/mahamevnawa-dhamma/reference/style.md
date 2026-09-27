@@ -51,3 +51,7 @@ Long prose may be cut only at the end of a sentence, and the cut is marked with 
 - Fear as the main motive. The children's articles explain results gently.
 - Claims about what a sutta "really means" beyond the translation given.
 - Pictures of the Buddha drawn by us. Use a stupa, Bodhi tree, lotus or lamp instead.
+- Haloes or rays around ordinary people. A soft glow is enough.
+- Imagery from other religions, such as angels, devils or horns.
+- Teacher notes written as psychology. Give a simple classroom activity and point to the
+  Buddha-word shown on the page.

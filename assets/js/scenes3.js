@@ -86,7 +86,7 @@
   S[2] = function () {
     return split(
       ['room', R({ x: 84, y: 266, s: 0.9, pose: 'sitFloor', face: 'sly', armL: 'head', armR: 'head' }) + A.zzz(30, 170, 0.7) +
-        A.think(110, 90, 130, 64, E(-36, 0, 26, '😈') + E(0, 0, 24, '🪨') + E(36, 0, 24, '💢'), { fill: '#e5e7eb', tail: 'left' }) + A.clock(160, 190, 16, 3, 0)],
+        A.think(110, 90, 130, 64, E(-36, 0, 26, '😠') + E(0, 0, 24, '🪨') + E(36, 0, 24, '💢'), { fill: '#e5e7eb', tail: 'left' }) + A.clock(160, 190, 16, 3, 0)],
       ['garden', A.sun(160, 40, 16) + A.sapling(150, 270, 1.2) + T(2, { x: 80, y: PY, s: PS, face: 'joy', armR: { e: [30, -52], h: [46, -46] }, holdR: E(8, 4, 24, '🚿') }) +
         A.think(70, 80, 110, 50, E(-28, 0, 22, '📖') + E(0, 0, 22, '🌱') + E(28, 0, 22, '🎨'), { tail: 'right' }) + A.sparkle([[30, 170, 1.2]])]
     );
@@ -299,7 +299,7 @@
 
   S[25] = function () {
     return split(
-      ['gloom', R({ x: 80, y: PY, s: 0.9, face: 'angry', armR: 'point', armL: 'hip' }) + E(30, 120, 20, '😈') + E(60, 80, 20, '🤥') + E(110, 70, 20, '😡') + E(40, 170, 18, '🦥') +
+      ['gloom', R({ x: 80, y: PY, s: 0.9, face: 'angry', armR: 'point', armL: 'hip' }) + E(30, 120, 20, '😠') + E(60, 80, 20, '🤥') + E(110, 70, 20, '😡') + E(40, 170, 18, '🦥') +
         A.friend({ x: 154, y: PY, s: 0.76, face: 'sad', armL: 'out' }) + bad(140, 130, 'යන්න!', { w: 70, tail: 'left' })],
       ['garden', A.sun(160, 40, 16) + G(25, { x: 70, y: PY, s: 0.9, face: 'joy', armR: 'out' }) + A.friend({ x: 146, y: PY, s: 0.8, face: 'joy', armL: 'out' }) +
         E(30, 120, 20, '😊') + E(70, 84, 20, '📖') + E(116, 90, 20, '🌸') + A.hearts([[108, 160, 1]])]
@@ -318,7 +318,7 @@
   S[27] = function () {
     return split(
       ['gloom', aunty({ x: 144, y: PY, s: 0.72, face: 'sad', armL: 'out' }) + R({ x: 60, y: PY, s: 0.88, pose: 'walk', face: 'sly', armL: 'low', holdL: A.gift(-6, 12, 1, '#94a3b8') }) +
-        '<path d="M 46 146 l -6 -14 l 10 8 Z M 74 146 l 6 -14 l -10 8 Z" fill="#dc2626"/>' + A.think(60, 90, 90, 38, L(0, 0, 11, 'ස්තුති නෑ', '#991b1b', 900), { fill: '#e5e7eb', tail: 'left' })],
+        A.think(60, 90, 90, 38, L(0, 0, 11, 'ස්තුති නෑ', '#991b1b', 900), { fill: '#e5e7eb', tail: 'left' })],
       ['garden', A.rays(64, 170, 110, '#fde68a') + aunty({ x: 144, y: PY, s: 0.72, face: 'joy', armL: 'out' }) + G(27, { x: 64, y: PY, s: 0.9, face: 'joy', halo: true, armL: 'worship', armR: 'worship' }) +
         A.gift(104, 268, 0.9, '#f43f5e') + good(70, 90, 'ස්තුතියි!', { w: 90 }) + A.hearts([[108, 150, 1]])]
     );
