@@ -57,13 +57,22 @@ then show one class at a time, or sort by "Total points".
 
 If a child forgets the secret code, look it up in the "Secret code" column.
 
+## Parents' consent
+
+The join form has a part for parents. A parent types their name and ticks a box to agree.
+The sheet records the parent's name and the date in the last two columns of the Children
+tab. The script refuses any child who joins without it.
+
+A tick box cannot prove that a parent filled it in. To make it stronger, give the class
+code to parents only, not to the children.
+
 ## Privacy
 
 You are collecting information about children, so please:
 
 - Ask for a **first name or nickname only**. Do not collect surnames, dates of birth,
   addresses or photos.
-- Get a parent's or guardian's agreement before a child joins.
+- Give the class code to parents, so that a parent completes the consent part.
 - Share the spreadsheet only with teachers who need it.
 - Delete a child's row when they leave the class, or when a parent asks.
 - Change the class code if it becomes known outside the class.

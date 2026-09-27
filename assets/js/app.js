@@ -173,8 +173,16 @@
     pill.classList.toggle('in', !!pr);
     document.getElementById('meName').textContent = pr ? pr.name : 'එක් වන්න';
   }
-  var ERR = { 'bad-class-code': 'පන්ති කේතය වැරදියි. ගුරුතුමාගෙන් අසන්න.', 'name-needed': 'ඔබේ නම ලියන්න.', 'place-needed': 'ඔබ සහභාගී වන තැන තෝරන්න.', 'class-needed': 'ඔබේ පන්තිය තෝරන්න.', 'not-found': 'නම හෝ රහස් කේතය වැරදියි. නැවත බලන්න.', 'network': 'අන්තර්ජාලය නැත. පසුව නැවත උත්සාහ කරන්න.', 'not-set-up': 'ගුරුතුමා තවම පන්ති කේතයක් සකසා නැත.', 'off': 'ප්‍රගති සටහන තවම සක්‍රිය කර නැත.' };
+  var ERR = { 'bad-class-code': 'පන්ති කේතය වැරදියි. ගුරුතුමාගෙන් අසන්න.', 'name-needed': 'ඔබේ නම ලියන්න.', 'place-needed': 'ඔබ සහභාගී වන තැන තෝරන්න.', 'class-needed': 'ඔබේ පන්තිය තෝරන්න.', 'consent-needed': 'දෙමාපියෙකුගේ එකඟතාව අවශ්‍යයි. Please ask a parent to complete the consent part.', 'not-found': 'නම හෝ රහස් කේතය වැරදියි. නැවත බලන්න.', 'network': 'අන්තර්ජාලය නැත. පසුව නැවත උත්සාහ කරන්න.', 'not-set-up': 'ගුරුතුමා තවම පන්ති කේතයක් සකසා නැත.', 'off': 'ප්‍රගති සටහන තවම සක්‍රිය කර නැත.' };
   function meMsg(text, ok) { var m = document.getElementById('meMsg'); if (m) { m.textContent = text; m.className = 'me-msg ' + (ok ? 'ok' : 'bad'); } }
+  function privacyHtml() {
+    return '<div class="privacy"><ul>' +
+      '<li><b>ගබඩා වන දේ:</b> දරුවාගේ මුල් නම, පන්තිය, රට, ඉගෙන ගත් පාඩම්, ප්‍රශ්න තරු, ලකුණු, සහ එකඟතාව දුන් දෙමාපියාගේ නම හා දිනය.<br><span lang="en"><b>What is stored:</b> the child\'s first name, class, country, lessons learned, quiz stars, points, and the name of the parent who agreed with the date.</span></li>' +
+      '<li><b>ගබඩා නොවන දේ:</b> වාසගම, උපන් දිනය, ලිපිනය, දුරකථන අංකය, ඊමේල්, ඡායාරූප.<br><span lang="en"><b>Not stored:</b> surname, date of birth, address, phone number, email or photos.</span></li>' +
+      '<li><b>දකින්නේ කවුද:</b> දහම් පාසලේ ගුරුවරුන් පමණි. එය ගුරුවරුන්ගේ Google Sheet එකක තැන්පත් වේ.<br><span lang="en"><b>Who can see it:</b> only the Dhamma school teachers. It is kept in the teachers\' Google Sheet.</span></li>' +
+      '<li><b>මකා දැමීමට:</b> ඕනෑම වේලාවක ගුරුතුමාට කියන්න. දරුවාගේ සටහන මකා දමනු ලැබේ.<br><span lang="en"><b>To delete:</b> tell the teacher at any time and the child\'s record will be deleted.</span></li>' +
+      '</ul></div>';
+  }
   function pageMe() {
     var head = '<section class="block first"><div class="block-head"><h1>🙋 මගේ ප්‍රගතිය</h1><p>ඔබ ඉගෙන ගන්නා දේ ගුරුතුමාට පෙනේ. ඔබට ලකුණු ලැබේ.</p></div>';
     if (!Trk || !Trk.isOn()) return head + '<div class="fav-empty"><span aria-hidden="true">📋</span><b>ප්‍රගති සටහන තවම සක්‍රිය කර නැත</b><p>ගුරුතුමා මෙය සක්‍රිය කළ පසු ඔබට එක් විය හැක. එතෙක් ඔබේ ප්‍රගතිය මෙම උපාංගයේ සුරැකේ.</p></div></section>';
@@ -201,8 +209,14 @@
         '<label>ඔබේ පන්තිය<input name="cls" required maxlength="40" list="classList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="classList">' + copts + '</datalist></label>' +
         '<label>ඔබ සහභාගී වන රට<input name="place" required maxlength="60" list="placeList" placeholder="තෝරන්න හෝ ලියන්න"><datalist id="placeList">' + opts + '</datalist></label>' +
         '<label>පන්ති කේතය <small>(ගුරුතුමා දෙන)</small><input name="classCode" required maxlength="40" autocapitalize="characters"></label>' +
+        '<fieldset class="consent"><legend>👪 දෙමාපියන් සඳහා · For parents</legend>' +
+          '<p class="me-note">මෙම කොටස අම්මා, තාත්තා හෝ භාරකරු විසින් පිරවිය යුතුය.<br><span lang="en">This part must be completed by a parent or guardian.</span></p>' +
+          '<label>දෙමාපියෙකුගේ නම · <span lang="en">Parent or guardian name</span><input name="guardian" required minlength="2" maxlength="60" autocomplete="off"></label>' +
+          '<label class="tick"><input type="checkbox" name="consent" required><span>මම මෙම දරුවාගේ දෙමාපියෙක් හෝ භාරකරුවෙක් වෙමි. දරුවාගේ මුල් නම, පන්තිය, රට සහ ඉගෙනීමේ ප්‍රගතිය දහම් පාසලේ ගුරුවරුන්ගේ සටහනේ ගබඩා කිරීමට මම එකඟ වෙමි.<br><span lang="en">I am this child\'s parent or guardian. I agree that the child\'s first name, class, country and learning progress are stored in the Dhamma school teachers\' record.</span></span></label>' +
+          '<details class="consent-more"><summary>ගබඩා වන්නේ මොනවාද? · What is stored?</summary>' + privacyHtml() + '</details>' +
+        '</fieldset>' +
         '<button class="btn big" type="submit">එක් වෙමු</button>' +
-        '<p class="me-note">🔒 ඔබේ නම සහ ප්‍රගතිය පෙනෙන්නේ ගුරුතුමාට පමණි. එක් වීමට පෙර අම්මාගෙන් හෝ තාත්තාගෙන් අවසර ගන්න.</p></form>' +
+        '<p class="me-note">🔒 ඔබේ නම සහ ප්‍රගතිය පෙනෙන්නේ ගුරුවරුන්ට පමණි.</p></form>' +
       '<form class="card me-form" id="resumeForm" autocomplete="off"><h2>▶ දිගටම කරමු</h2><p class="me-note">කලින් එක් වී තිබේ නම්, නම සහ රහස් කේතය ලියන්න.</p>' +
         '<label>ඔබේ නම<input name="name" required minlength="2" maxlength="40"></label>' +
         '<label>රහස් කේතය<input name="code" required maxlength="12" autocapitalize="characters" placeholder="උදා: K7M2QX"></label>' +
@@ -230,7 +244,7 @@
       sfx.win(); confetti(); paintProgress(); paintMe(); route();
       toast(joined ? '🎉 සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!' : '👋 නැවත සාදරයෙන් පිළිගනිමු, ' + res.profile.name + '!');
     };
-    if (f.id === 'joinForm') Trk.join(f.elements.name.value, f.elements.cls.value, f.elements.place.value, f.elements.classCode.value).then(function (r) { done(r, true); });
+    if (f.id === 'joinForm') Trk.join(f.elements.name.value, f.elements.cls.value, f.elements.place.value, f.elements.classCode.value, { agreed: f.elements.consent.checked === true, guardian: f.elements.guardian.value }).then(function (r) { done(r, true); });
     else Trk.resume(f.elements.name.value, f.elements.code.value).then(function (r) { done(r, false); });
   });
 
@@ -511,6 +525,7 @@
       '<div class="guide"><div class="card"><ul class="src-list">' + src + '</ul></div>' +
       '<div class="card"><h3>බුදු වදන් දක්වා ඇති ආකාරය</h3><p>කවි ' + total + ' න් ' + cited + ' කට ගැළපෙන බුදු වදනක් දක්වා ඇත. සෑම පාළි පාඨයක් ම සහ සිංහල පරිවර්තනයක් ම tripitaka.online වෙතින් අකුරක් නෑර උපුටා ගෙන, සබැඳියක් සමඟ දක්වා ඇත.</p></div>' +
       '<div class="card"><h3>බුදු වදනක් නැති කවි</h3><p>සමහර කවිවල ඇත්තේ පැරණි ගෘහ සිරිත්, පිරිසිදුකම සහ ආරක්ෂාව වැනි දේ ය. ඒවාට ගැළපෙන සූත්‍රයක් තහවුරු කර ගත නොහැකි වූ විට බුදු වදනක් ලෙස කිසිවක් දක්වා නැත.</p></div></div></section>';
+    var priv = (Trk && Trk.isOn()) ? '<section class="block"><div class="block-head"><h2>🔒 දරුවන්ගේ තොරතුරු · Children\'s information</h2><p>ප්‍රගති සටහන සඳහා ගබඩා වන දේ. <span lang="en">What the progress record stores.</span></p></div><div class="card">' + privacyHtml() + '</div></section>' : '';
     return '<section class="block first prose"><div class="block-head"><h1>👩‍🏫 ගුරුවරුන්ට සහ දෙමාපියන්ට</h1><p>මෙම පිටුව පන්තියේදී සහ ගෙදරදී භාවිත කරන හැටි.</p></div>' +
       '<div class="guide">' +
       '<div class="card"><h3>1. පින්තූරයෙන් පටන් ගන්න</h3><p>කවිය කියවීමට පෙර පින්තූරය පෙන්වන්න. <b class="no-t">රතු</b> රාමුවේ ඇත්තේ නොකළ යුතු දෙයයි. <b class="yes-t">කොළ</b> රාමුවේ ඇත්තේ හොඳ පුරුද්දයි. “මෙහි සිදු වන්නේ කුමක්ද?” යැයි දරුවන්ගෙන් අසන්න.</p></div>' +
@@ -520,7 +535,7 @@
       '<div class="card"><h3>5. ප්‍රශ්න ක්‍රීඩාව</h3><p>සතියකට වරක් ප්‍රශ්න ක්‍රීඩාව කරන්න. පින්තූරය බලා පුරුද්ද හඳුනා ගැනීම මතකය ශක්තිමත් කරයි.</p></div>' +
       '<div class="card"><h3>සටහන</h3><p>ප්‍රගතිය සුරැකෙන්නේ මෙම උපාංගයේ බ්‍රවුසරයේ පමණි. කවි ඇම්. ඇල්. සිල්වා ගුරු මුහන්දිරම් මැතිඳුන්ගේ “සිරිත් මල්දම” කෘතියෙනි. 2 සහ 3 කොටස්වල කවි විකිමූලාශ්‍රයෙනි; ඒවායේ තේරුම් සහ ඉංග්‍රීසි පරිවර්තන මෙම පිටුව සඳහා ලියන ලදී.</p>' +
       '<button class="btn ghost small danger" id="resetBtn" type="button">🗑️ ' + esc(PARTS[PART].name) + ' ප්‍රගතිය මකන්න</button></div>' +
-      '</div></section>' + sources;
+      '</div></section>' + sources + priv;
   }
 
   /* ---------- router ---------- */

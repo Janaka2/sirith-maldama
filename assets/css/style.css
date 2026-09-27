@@ -227,6 +227,15 @@ a.chip:hover, button.chip:hover { background: color-mix(in srgb, var(--c) 24%, #
 .me-row:hover { border-color: var(--brand); }
 .me-sync { font-weight: 800; color: var(--ink2); }
 
+.consent { border: 3px solid #bfdbfe; background: #f5f9ff; border-radius: 20px; padding: 14px 16px 16px; display: grid; gap: 12px; margin: 0; min-width: 0; }
+.consent legend { font-weight: 900; color: #1e40af; padding: 0 8px; font-size: 1.02rem; }
+.me-form label.tick { grid-template-columns: 30px 1fr; align-items: start; gap: 10px; font-weight: 700; font-size: .95rem; line-height: 1.6; }
+.me-form label.tick input { width: 26px; height: 26px; padding: 0; margin-top: 3px; accent-color: #2563eb; }
+[lang="en"] { font-family: 'Baloo 2', system-ui, sans-serif; color: var(--ink2); font-weight: 600; }
+.consent-more summary { cursor: pointer; font-weight: 800; color: #1e40af; }
+.privacy ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 10px; font-size: .92rem; line-height: 1.6; font-weight: 600; }
+.poem-head .sub, .tile-body, .more p[lang="en"] { color: inherit; }
+
 /* Dhamma citations */
 .dear { font-weight: 800 !important; color: #1e40af; font-size: .95rem !important; margin-bottom: 2px; }
 .more p.src-note { color: #7c2d12; }

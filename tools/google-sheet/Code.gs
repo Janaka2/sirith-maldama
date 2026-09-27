@@ -8,7 +8,8 @@
  *   event   the child learned a lesson, finished a quiz, and so on
  */
 
-// ====== SETTINGS: change these ======
+// ====== SETTINGS: change these IN THE GOOGLE EDITOR, after pasting. ======
+// Do not type your real class code into the copy kept in the project folder: that folder is public.
 var CLASS_CODE = 'CHANGE-ME';      // give this word to your pupils; the site asks for it when they join
 var POINTS_PER_LESSON = 10;        // points for each lesson marked as learned
 var POINTS_PER_QUIZ_STAR = 5;      // points for each quiz star
@@ -16,9 +17,10 @@ var BONUS_SECTION_COMPLETE = 50;   // extra points when every lesson of a sectio
 // ====================================
 
 var CHILD_HEAD = ['Child ID', 'Name', 'Class', 'Place', 'Secret code', 'Joined', 'Last active', 'Lessons learned', 'Quiz stars',
-  'Last lesson', 'Progress summary', 'Points earned', 'Teacher bonus points', 'Total points', 'Saved progress (do not edit)'];
+  'Last lesson', 'Progress summary', 'Points earned', 'Teacher bonus points', 'Total points', 'Saved progress (do not edit)',
+  'Parent or guardian', 'Consent given on'];
 var LOG_HEAD = ['Time', 'Child ID', 'Name', 'Class', 'Place', 'Lesson set', 'Event', 'Section', 'Lesson', 'Value'];
-var COL = { id: 1, name: 2, cls: 3, place: 4, code: 5, joined: 6, active: 7, learned: 8, stars: 9, last: 10, summary: 11, earned: 12, bonus: 13, total: 14, state: 15 };
+var COL = { id: 1, name: 2, cls: 3, place: 4, code: 5, joined: 6, active: 7, learned: 8, stars: 9, last: 10, summary: 11, earned: 12, bonus: 13, total: 14, state: 15, parent: 16, consent: 17 };
 
 function doGet() { return out_({ ok: true, service: 'daham-pasala-tracker' }); }
 
@@ -47,6 +49,9 @@ function sheet_(name, head) {
   if (sh.getLastRow() === 0) { sh.appendRow(head); sh.setFrozenRows(1); }
   else if (sh.getLastRow() === 1) { sh.getRange(1, 1, 1, head.length).setValues([head]); }   // only a heading row: keep it up to date
   else if (String(sh.getRange(1, 1, 1, head.length).getValues()[0].join('|')) !== head.join('|')) {
+    var old = sh.getRange(1, 1, 1, head.length).getValues()[0], grown = true;
+    for (var i = 0; i < head.length; i++) if (String(old[i]) !== '' && String(old[i]) !== head[i]) grown = false;
+    if (grown) { sh.getRange(1, 1, 1, head.length).setValues([head]); return sh; }   // new columns were added at the end
     throw new Error('The "' + name + '" tab has an older layout. Rename that tab (for example to "' + name + ' old") and try again.');
   }
   return sh;
@@ -99,6 +104,8 @@ function join_(req) {
   if (name.length < 2) return { ok: false, error: 'name-needed' };
   if (!cls) return { ok: false, error: 'class-needed' };
   if (!place) return { ok: false, error: 'place-needed' };
+  var parent = clean_(req.guardian, 60);
+  if (req.consent !== true || parent.length < 2) return { ok: false, error: 'consent-needed' };
   var sh = sheet_('Children', CHILD_HEAD);
   var reqId = clean_(req.rid, 40);
   if (reqId) {   // the same request sent twice (a slow reply) must not make two children
@@ -110,8 +117,8 @@ function join_(req) {
   }
   var first = emptyState_(); if (reqId) first.rid = reqId;
   var id = 'C' + (sh.getLastRow() + 1000), code = code_(), now = new Date();
-  sh.appendRow([id, name, cls, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(first)]);
-  sheet_('Log', LOG_HEAD).appendRow([now, id, name, cls, place, '', 'joined', '', '', '']);
+  sh.appendRow([id, name, cls, place, code, now, now, 0, 0, '', '', 0, 0, 0, JSON.stringify(first), parent, now]);
+  sheet_('Log', LOG_HEAD).appendRow([now, id, name, cls, place, '', 'joined', '', '', 'consent: ' + parent]);
   return { ok: true, childId: id, code: code, profile: { name: name, cls: cls, place: place, joined: now.getTime() }, progress: emptyState_(), points: { earned: 0, bonus: 0, total: 0 } };
 }
 

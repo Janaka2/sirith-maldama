@@ -57,12 +57,13 @@
     set(P_KEY, p); return p;
   }
 
-  function join(name, cls, place, classCode) {
+  function join(name, cls, place, classCode, consent) {
+    consent = consent || {};
     if (!isOn()) return Promise.resolve({ ok: false, error: 'off' });
     /* the same child pressing "join" again after a lost reply reuses the same request id */
     var who = [name, cls, place].join('|').toLowerCase(), held = get('daham.tracker.joining', null);
     if (!held || held.who !== who || Date.now() - held.at > 3600000) { held = { who: who, rid: rid(), at: Date.now() }; set('daham.tracker.joining', held); }
-    return send({ action: 'join', rid: held.rid, name: name, cls: cls, place: place, classCode: classCode }, 3).then(function (res) {
+    return send({ action: 'join', rid: held.rid, name: name, cls: cls, place: place, classCode: classCode, consent: consent.agreed === true, guardian: consent.guardian || '' }, 3).then(function (res) {
       if (res.ok) { del('daham.tracker.joining'); keep(res); emit('joined', res); }
       return res;
     }).catch(function () { return { ok: false, error: 'network' }; });
