@@ -136,6 +136,64 @@
     paintBowl();
   }
 
+  /* ---------- the heart of the lesson: body / speech / mind  x  before / during / after ----------
+     The sutta gives nine reflections. The "after" step is NOT the same for all three: a deed of body
+     or speech is told to a teacher, while a thought is only felt remorse for. Keep that difference. */
+  var DOORS = [
+    { key: 'BODY', emo: '🙌', name: 'කය', sub: 'කරන දේ' },
+    { key: 'SPEECH', emo: '🗣️', name: 'වචනය', sub: 'කියන දේ' },
+    { key: 'MIND', emo: '💭', name: 'මනස', sub: 'හිතන දේ' }
+  ];
+  var TIMES = [
+    { key: 'BEFORE', emo: '🔮', name: 'කලින්', sub: 'අනාගතය' },
+    { key: 'DURING', emo: '⏳', name: 'කරන අතර', sub: 'වර්තමානය' },
+    { key: 'AFTER', emo: '📜', name: 'කළාට පස්සේ', sub: 'අතීතය' }
+  ];
+  var CELL = {
+    BODY_BEFORE: 'මම මේක <b>කරන්නද?</b> මේකෙන් මට විපතක් වෙයිද? අනිත් අයට විපතක් වෙයිද? නරකයි නම් <b>කරන්නේම නෑ</b>.',
+    BODY_DURING: 'කරමින් ඉන්නකොටත් බලනවා. නරකයි කියලා තේරුණොත් <b>එතනින්ම නවත්වනවා</b>.',
+    BODY_AFTER: 'කරලා ඉවර වුණාමත් බලනවා. වැරදිලා නම් ගුරුතුමාට හෝ අම්මට තාත්තට <b>කියනවා</b>, නැවත නොකරන්න සංවර වෙනවා.',
+    SPEECH_BEFORE: 'මම මේක <b>කියන්නද?</b> මේක බොරුවක්ද? කාටහරි රිදෙයිද? නරකයි නම් <b>කියන්නේම නෑ</b>.',
+    SPEECH_DURING: 'කතා කරමින් ඉන්නකොටත් බලනවා. වැරදි පාරකට යනවා නම් <b>එතනින්ම නවත්වනවා</b>.',
+    SPEECH_AFTER: 'කියලා ඉවර වුණාමත් බලනවා. වැරදි වචනයක් කිව්වා නම් හංගන්නේ නෑ — <b>කියනවා</b>, නැවත නොකියන්න සංවර වෙනවා.',
+    MIND_BEFORE: 'මම මේක <b>හිතන්නද?</b> මේක තරහක්ද? ඊර්ෂ්‍යාවක්ද? නරක හිතක් නම් <b>ඒක හදාගන්නේම නෑ</b>.',
+    MIND_DURING: 'හිතමින් ඉන්නකොටත් බලනවා. නරක හිතක් නම් <b>එතනින්ම නවත්වනවා</b>.',
+    MIND_AFTER: 'හිතලා ඉවර වුණාමත් බලනවා. නරක දෙයක් හිතුවා නම් <b>ලැජ්ජා වෙලා, පිළිකුල් කරලා</b>, නැවත එහෙම නොහිතන්න සංවර වෙනවා.'
+  };
+  var cell = 'SPEECH_BEFORE';
+  function paintGrid() {
+    var d = DOORS.filter(function (x) { return cell.indexOf(x.key + '_') === 0; })[0];
+    var t = TIMES.filter(function (x) { return cell.indexOf('_' + x.key) > 0; })[0];
+    $('g9Head').innerHTML = d.emo + ' ' + esc(d.name) + ' <small>(' + esc(d.sub) + ')</small> &nbsp;×&nbsp; ' + t.emo + ' ' + esc(t.name) + ' <small>(' + esc(t.sub) + ')</small>';
+    $('g9Kid').innerHTML = CELL[cell];
+    $('g9Ref').innerHTML = refCard('RAHULA_' + cell);
+    Array.prototype.forEach.call(document.querySelectorAll('#grid9 .g9-cell'), function (b) {
+      b.classList.toggle('on', b.dataset.cell === cell);
+      b.setAttribute('aria-pressed', b.dataset.cell === cell ? 'true' : 'false');
+    });
+  }
+  function buildGrid() {
+    var h = '<div class="g9-corner" aria-hidden="true"></div>';
+    TIMES.forEach(function (t) {
+      h += '<div class="g9-head"><span aria-hidden="true">' + t.emo + '</span><b>' + esc(t.name) + '</b><small>' + esc(t.sub) + '</small></div>';
+    });
+    DOORS.forEach(function (d) {
+      h += '<div class="g9-side"><span aria-hidden="true">' + d.emo + '</span><b>' + esc(d.name) + '</b><small>' + esc(d.sub) + '</small></div>';
+      TIMES.forEach(function (t) {
+        var k = d.key + '_' + t.key;
+        h += '<button class="g9-cell" type="button" data-cell="' + k + '" aria-pressed="false">' +
+          '<span class="g9-k" aria-hidden="true">' + d.emo + t.emo + '</span>' +
+          '<span class="g9-t"><b>' + esc(d.name) + '</b> ' + esc(t.name) + '</span></button>';
+      });
+    });
+    $('grid9').innerHTML = h;
+    $('grid9').addEventListener('click', function (e) {
+      var b = e.target.closest('.g9-cell'); if (!b) return;
+      cell = b.dataset.cell; paintGrid();
+    });
+    paintGrid();
+  }
+
   /* ---------- my promise ---------- */
   var VOWS = [
     'මම විහිළුවකටවත් බොරු කියන්නේ නෑ.',
@@ -184,7 +242,16 @@
       bad: ['ලොකු අය බලනවද කියා', 'ඉක්මන්ද, ප්‍රමාදද කියා', 'ලාබද, වියදම්ද කියා'], go: '#prashnathuna' },
     { ask: 'වචනයෙන් වැරැද්දක් කළා කියා තේරුණොත් කළ යුත්තේ කුමක්ද?',
       ok: 'ගුරුතුමන්ලාට හෝ නැණවත් අයට පවසා, නැවත එසේ නොවන්නට සංවර වීම',
-      bad: ['කාටවත් නොකියා ඉඳීම', 'තවත් බොරුවක් කියා වසන් කිරීම', 'අමතක කර දැමීම'], go: '#werradunot' }
+      bad: ['කාටවත් නොකියා ඉඳීම', 'තවත් බොරුවක් කියා වසන් කිරීම', 'අමතක කර දැමීම'], go: '#werradunot' },
+    { ask: 'විමසා බැලිය යුතු ක්‍රියා තුන මොනවාද?',
+      ok: 'කයින් කරන, වචනයෙන් කරන සහ මනසින් කරන ක්‍රියා',
+      bad: ['ඇවිදීම, දිවීම සහ නැටීම', 'කියවීම, ලිවීම සහ ගණන් කිරීම', 'කෑම, බීම සහ නිදීම'], go: '#thunwara' },
+    { ask: 'ඒ ක්‍රියා තුන විමසා බැලිය යුත්තේ කවර වාර තුනකදීද?',
+      ok: 'කරන්න කලින්, කරන අතරතුර සහ කර අවසන් වූ පසු',
+      bad: ['කරන්න කලින් විතරයි', 'කර අවසන් වූ පසු විතරයි', 'අවුරුද්දකට වරක් විතරයි'], go: '#thunwara' },
+    { ask: 'මනසින් වැරදි දෙයක් හිතුණා කියා තේරුණොත් සූත්‍රයේ වදාළේ කුමක්ද?',
+      ok: 'කම්පාවට හා ලැජ්ජාවට පත්වී, පිළිකුල් කර, නැවත එසේ නොවන්නට සංවර වීම',
+      bad: ['ගමේ හැමෝටම කියා දැක්වීම', 'ඒ ගැන කිසිවක් නොසිතා සිටීම', 'තවත් එසේම සිතා බැලීම'], go: '#werradunot' }
   ];
 
   var test = null;
@@ -199,9 +266,9 @@
   function paintTest() {
     var el = $('testArea');
     if (!test) {
-      el.innerHTML = '<div class="exam-intro"><h1>✍️ දැන් ප්‍රශ්න අටයි</h1>' +
+      el.innerHTML = '<div class="exam-intro"><h1>✍️ දැන් ප්‍රශ්න ' + QS.length + ' යි</h1>' +
         '<p class="exam-sub">හෙමින් කියවන්න. හිතලා උත්තර දෙන්න. වැරදුණත් කමක් නෑ — නැවත කියවලා තේරුම් ගන්න පුළුවන්.</p>' +
-        '<ul class="exam-rules"><li><b>8</b><span>ප්‍රශ්න අටක් ඇත.</span></li>' +
+        '<ul class="exam-rules"><li><b>' + QS.length + '</b><span>ප්‍රශ්න ' + QS.length + ' ක් ඇත.</span></li>' +
         '<li class="ok"><b>🌸</b><span>ලකුණු නෑ, තරග නෑ. තේරුණාද කියලා බලන්න විතරයි.</span></li>' +
         '<li><b>🔁</b><span>කැමති නම් නැවත නැවත කරන්න පුළුවන්.</span></li></ul>' +
         '<button class="btn big" id="testStart" type="button">▶ පටන් ගනිමු</button></div>';
@@ -284,6 +351,7 @@
   /* ---------- go ---------- */
   fillRefs();
   buildBowl();
+  buildGrid();
   buildVows();
   paintTest();
   bindTest();

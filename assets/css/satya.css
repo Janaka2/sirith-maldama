@@ -46,14 +46,33 @@
 .q3 li { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 20px; background: #fff; border: 3px solid #bae6fd; font-weight: 800; line-height: 1.6; }
 .q3 b { font-family: 'Baloo 2', var(--font); font-size: 1.8rem; text-align: center; color: #0369a1; }
 
-/* ---------- before / during / after ---------- */
-.when3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
-.when-card { display: grid; gap: 10px; align-content: start; }
-.when-emo { font-size: 2.4rem; line-height: 1; }
-.when-card h3 { font-size: 1.2rem; font-weight: 900; color: #7c2d12; }
-.when-card .dhamma-card { font-size: .95rem; }
+/* ---------- the heart: body / speech / mind  x  before / during / after ---------- */
+.grid9-wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 18px; align-items: start; background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.grid9 { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: 7px; }
+.g9-head, .g9-side { display: grid; place-content: center; text-align: center; padding: 8px 6px; border-radius: 14px; background: #eaf6fd; border: 2px solid #bae6fd; line-height: 1.3; }
+.g9-head span, .g9-side span { font-size: 1.3rem; }
+.g9-head b, .g9-side b { display: block; font-weight: 900; color: #075985; font-size: .95rem; }
+.g9-head small, .g9-side small { display: block; font-weight: 700; color: #0369a1; font-size: .72rem; }
+.g9-side { background: #fff7dc; border-color: #f3d58a; }
+.g9-side b { color: #7c2d12; } .g9-side small { color: #b45309; }
+.g9-cell { display: grid; place-content: center; gap: 2px; text-align: center; padding: 14px 6px; border-radius: 16px; border: 3px solid var(--line); background: #fffaf0; transition: transform .12s, border-color .12s, background .12s; }
+.g9-cell:hover { border-color: var(--brand); transform: translateY(-2px); }
+.g9-cell .g9-k { font-size: 1.25rem; line-height: 1.1; }
+.g9-cell .g9-t { font-weight: 800; font-size: .78rem; color: var(--ink2); line-height: 1.35; }
+.g9-cell .g9-t b { display: block; color: #7c2d12; font-size: .86rem; }
+.g9-cell.on { background: #0ea5e9; border-color: #0369a1; box-shadow: 0 4px 0 #0369a1; }
+.g9-cell.on .g9-t, .g9-cell.on .g9-t b { color: #fff; }
+.grid9-say h3 { font-size: 1.15rem; font-weight: 900; color: #7c2d12; line-height: 1.5; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px dashed var(--line); }
+.grid9-say h3 small { font-weight: 700; color: var(--ink2); font-size: .82rem; }
 
 /* ---------- putting it right ---------- */
+.fix-card { display: grid; gap: 12px; align-content: start; }
+.fix-card.tell { border-color: #bbf7d0; background: linear-gradient(180deg, #fbfffc, #f0fdf4); }
+.fix-card.tell .card-tag { background: #15803d; color: #dcfce7; }
+.fix-card.think { border-color: #e9d5ff; background: linear-gradient(180deg, #fdfbff, #f6f0fe); }
+.fix-card.think .card-tag { background: #6b21a8; color: #f3e8ff; }
+.good-end { margin-top: 16px; }
+
 .fix3 { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; font-weight: 700; line-height: 1.8; }
 .fix3 b { color: #b45309; }
 
@@ -80,8 +99,8 @@
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
-  .sat-hero, .sat-two, .bowl-stage { grid-template-columns: 1fr; }
-  .when3, .q3 { grid-template-columns: 1fr; }
+  .sat-hero, .sat-two, .bowl-stage, .grid9-wrap { grid-template-columns: 1fr; }
+  .q3 { grid-template-columns: 1fr; }
   .sat-hero-art { max-width: 340px; margin: 0 auto; }
   .bowl-pic { max-width: 320px; margin: 0 auto; }
 }
@@ -91,5 +110,17 @@
   .satya .nav a { padding: 8px 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bowl-tab, .vow, .review-link { transition: none; }
+  .bowl-tab, .vow, .review-link, .g9-cell { transition: none; }
+}
+
+/* very small phones: the row and column headers already name each cell, so the
+   repeated wording inside the cell can go rather than be clipped */
+@media (max-width: 380px) {
+  .grid9 { gap: 5px; }
+  .g9-cell { padding: 12px 3px; }
+  .g9-cell .g9-k { font-size: 1.15rem; }
+  .g9-cell .g9-t { display: none; }
+  .g9-head, .g9-side { padding: 6px 3px; }
+  .g9-head b, .g9-side b { font-size: .8rem; }
+  .g9-head small, .g9-side small { font-size: .62rem; }
 }
