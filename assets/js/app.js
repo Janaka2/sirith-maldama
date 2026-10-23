@@ -517,6 +517,14 @@
       '<span class="sutta-go" aria-hidden="true">→</span>' +
     '</a>' +
 
+    '<a class="sutta-card gold" href="bodu.html">' +
+      '<span class="sutta-emo" aria-hidden="true">🪷</span>' +
+      '<span class="sutta-text"><small>නව දහම් පාඩම · අපේකම · Level 06 · පාඩම 02</small>' +
+      '<b>බොදු නිවසක සිරිය දකිමු</b>' +
+      '<i>බෞද්ධ නිවසක තිබෙන ලස්සන සිරිත් විරිත්. උදෑසන බුද්ධ වන්දනාවේ සිට පෝය දින සිල් සමාදන් වීම දක්වා, බුදු වදන් සමඟ.</i></span>' +
+      '<span class="sutta-go" aria-hidden="true">→</span>' +
+    '</a>' +
+
     '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම · ' + esc(PARTS[PART].name) + '</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
     '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
   }
