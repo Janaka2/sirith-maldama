@@ -1,0 +1,95 @@
+/* සත්‍යවාදී වෙමු — styles for satya.html only.
+   Everything else is borrowed from style.css so the page feels like the rest of the school site. */
+
+.satya { --c: #0ea5e9; }
+.satya .block { margin: 30px 0; }
+.satya .block-head { margin-bottom: 14px; }
+.satya .block-head h2 { font-size: clamp(1.35rem, 3.4vw, 1.9rem); font-weight: 900; color: #7c2d12; line-height: 1.45; }
+.satya .block-head p { color: var(--ink2); font-weight: 700; }
+.satya p + p { margin-top: 10px; }
+
+/* ---------- hero ---------- */
+.sat-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 24px; align-items: center; margin: 10px 0 26px; }
+.sat-hero .eyebrow { font-weight: 800; color: #0369a1; font-size: .9rem; letter-spacing: .02em; }
+.sat-hero h1 { font-size: clamp(2.1rem, 7vw, 3.6rem); font-weight: 900; color: #7c2d12; line-height: 1.25; margin: 4px 0 10px; }
+.sat-hero .lead { font-size: clamp(1.02rem, 2.3vw, 1.2rem); font-weight: 700; color: #4a2410; line-height: 1.8; }
+.sat-hero .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.sat-hero-art { background: linear-gradient(180deg, #ffffff, #fff6df); border: 3px solid var(--line); border-radius: 30px; padding: 12px; box-shadow: var(--shadow); }
+.sat-hero-art svg { display: block; width: 100%; height: auto; }
+
+/* ---------- greeting ---------- */
+.sat-greet { border-color: #f3d58a; background: linear-gradient(180deg, #fffdf3, #fff7dc); font-size: 1.04rem; }
+.sat-greet .card-tag { background: #7c2d12; color: #fff3c4; }
+
+/* ---------- two-column text / citation pairs ---------- */
+.sat-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.sat-two > div { display: grid; gap: 16px; align-content: start; }
+.sat-you { margin-top: 12px; padding: 10px 14px; border-radius: 16px; background: #f0f9ff; border: 2px solid #bae6fd; font-weight: 800; color: #075985; }
+.sat-point { border-color: #bae6fd; background: linear-gradient(180deg, #f8fdff, #eaf6fd); }
+.sat-point .card-tag { background: #0369a1; color: #e0f2fe; }
+.sat-strong .sat-big { font-family: 'Baloo 2', var(--font); font-size: clamp(1.4rem, 4.2vw, 2.1rem); font-weight: 800; color: #b45309; text-align: center; line-height: 1.5; padding: 10px 6px 14px; }
+
+/* ---------- the water bowl ---------- */
+.bowl-wrap { background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.bowl-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
+.bowl-tab { padding: 10px 8px; border-radius: 16px; border: 3px solid var(--line); background: #fffaf0; font-weight: 800; font-size: .95rem; color: #7c2d12; line-height: 1.4; transition: transform .12s, border-color .12s, background .12s; }
+.bowl-tab:hover { border-color: var(--brand); transform: translateY(-2px); }
+.bowl-tab.on { background: #0ea5e9; border-color: #0369a1; color: #fff; box-shadow: 0 4px 0 #0369a1; }
+.bowl-stage { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px; align-items: start; }
+.bowl-pic { background: linear-gradient(180deg, #eaf6fd, #ffffff); border: 3px solid #bae6fd; border-radius: 24px; padding: 8px; }
+.bowl-pic svg { display: block; width: 100%; height: auto; }
+.bowl-kid { font-size: 1.08rem; font-weight: 700; line-height: 1.85; color: #3a1d0c; margin-bottom: 14px; }
+.bowl-kid b { color: #b45309; }
+
+/* ---------- the three questions ---------- */
+.q3 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.q3 li { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 20px; background: #fff; border: 3px solid #bae6fd; font-weight: 800; line-height: 1.6; }
+.q3 b { font-family: 'Baloo 2', var(--font); font-size: 1.8rem; text-align: center; color: #0369a1; }
+
+/* ---------- before / during / after ---------- */
+.when3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.when-card { display: grid; gap: 10px; align-content: start; }
+.when-emo { font-size: 2.4rem; line-height: 1; }
+.when-card h3 { font-size: 1.2rem; font-weight: 900; color: #7c2d12; }
+.when-card .dhamma-card { font-size: .95rem; }
+
+/* ---------- putting it right ---------- */
+.fix3 { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; font-weight: 700; line-height: 1.8; }
+.fix3 b { color: #b45309; }
+
+/* ---------- my promise ---------- */
+.vows { display: grid; gap: 10px; }
+.vow { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: center; padding: 14px 18px; border-radius: 20px; background: #fff; border: 3px solid var(--line); font-weight: 800; font-size: 1.04rem; line-height: 1.6; cursor: pointer; transition: border-color .15s, background .15s; }
+.vow:hover { border-color: var(--brand); }
+.vow input { width: 28px; height: 28px; accent-color: #16a34a; cursor: pointer; }
+.vow.on { background: #f0fdf4; border-color: #bbf7d0; color: #14532d; }
+
+/* ---------- the test ---------- */
+.exam-card { box-shadow: var(--shadow); }
+.satya .exam-opts { grid-template-columns: 1fr; opacity: 1; }
+.satya .exam-pts { background: #e0f2fe; border-color: #7dd3fc; color: #075985; }
+.miss { display: grid; gap: 8px; margin: 0 0 18px; text-align: left; }
+.miss b { font-weight: 900; color: #7c2d12; }
+.review-link { display: block; padding: 10px 14px; border-radius: 14px; background: #fffaf0; border: 2px solid var(--line); font-weight: 800; color: #7c2d12; }
+.review-link:hover { border-color: var(--brand); }
+
+/* ---------- sources ---------- */
+.src-card { line-height: 1.85; }
+.src-card hr { border: 0; border-top: 2px dashed var(--line); margin: 14px 0; }
+.sat-review { margin-top: 14px; padding: 12px 16px; border-radius: 16px; background: #fffbeb; border: 2px solid #fde68a; font-weight: 700; color: #78350f; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 900px) {
+  .sat-hero, .sat-two, .bowl-stage { grid-template-columns: 1fr; }
+  .when3, .q3 { grid-template-columns: 1fr; }
+  .sat-hero-art { max-width: 340px; margin: 0 auto; }
+  .bowl-pic { max-width: 320px; margin: 0 auto; }
+}
+@media (max-width: 560px) {
+  .bowl-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .satya .nav span:not([aria-hidden]) { display: none; }
+  .satya .nav a { padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bowl-tab, .vow, .review-link { transition: none; }
+}

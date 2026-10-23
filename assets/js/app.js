@@ -501,6 +501,14 @@
       '<div class="how-card"><span>🌸</span><b>4. කරමු</b><p>පොරොන්දු වී මලක් ලබා ගනිමු.</p></div>' +
     '</section>' +
 
+    '<a class="sutta-card" href="satya.html">' +
+      '<span class="sutta-emo" aria-hidden="true">💧</span>' +
+      '<span class="sutta-text"><small>නව දහම් පාඩම · අම්බලට්ඨික රාහුලෝවාද සූත්‍රය</small>' +
+      '<b>සත්‍යවාදී වෙමු</b>' +
+      '<i>බොරු කීම කොතරම් නරකද? බුදුරජාණන් වහන්සේ රාහුල හිමියන්ට දිය බඳුනක් පෙන්වා වදාළ දහම ඉගෙන ගනිමු. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
+      '<span class="sutta-go" aria-hidden="true">→</span>' +
+    '</a>' +
+
     '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම · ' + esc(PARTS[PART].name) + '</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
     '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
   }

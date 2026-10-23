@@ -17,6 +17,8 @@
   --serif: 'Noto Serif Sinhala', 'Noto Sans Sinhala', 'Iskoola Pota', serif;
 }
 * { box-sizing: border-box; }
+/* `hidden` must win over any display we set, or a hidden panel such as .exam-after stays on screen */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; min-height: 100vh; display: flex; flex-direction: column;
@@ -572,3 +574,13 @@ body.present .poem-top { justify-content: flex-end; }
   .ref-link, .ref-article { text-decoration: none; }
   * { animation: none !important; }
 }
+
+/* ---------- link to the සත්‍යවාදී වෙමු lesson (satya.html) ---------- */
+.sutta-card { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; margin: 26px 0; padding: 18px 22px; border-radius: 28px; background: linear-gradient(135deg, #eaf6fd, #fff6df); border: 3px solid #bae6fd; box-shadow: var(--shadow); transition: transform .15s, border-color .15s; }
+.sutta-card:hover { transform: translateY(-2px); border-color: var(--brand); }
+.sutta-emo { font-size: 2.6rem; line-height: 1; }
+.sutta-text small { display: block; font-size: .78rem; font-weight: 800; color: #0369a1; letter-spacing: .02em; }
+.sutta-text b { display: block; font-size: clamp(1.25rem, 3.2vw, 1.7rem); font-weight: 900; color: #7c2d12; line-height: 1.35; margin: 2px 0 4px; }
+.sutta-text i { display: block; font-style: normal; font-weight: 700; color: var(--ink2); line-height: 1.65; font-size: .95rem; }
+.sutta-go { font-size: 1.8rem; font-weight: 900; color: #0369a1; }
+@media (max-width: 560px) { .sutta-card { grid-template-columns: auto 1fr; padding: 16px; } .sutta-go { display: none; } }
