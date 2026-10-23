@@ -1,0 +1,56 @@
+/* සතුන්ට කරුණාව — extras for nirmansha.html and nirmansha-guru.html.
+   The shared look comes from style.css and satya.css; only what is new lives here. */
+
+.nirmansha { --c: #16a34a; }
+.nirmansha .sat-hero-art { background: linear-gradient(180deg, #ffffff, #f0fdf4); }
+.nirmansha .sat-point { border-color: #bbf7d0; background: linear-gradient(180deg, #fbfffc, #f0fdf4); }
+.nirmansha .sat-point .card-tag { background: #15803d; color: #dcfce7; }
+.nirmansha .sat-you { background: #f0fdf4; border-color: #bbf7d0; color: #14532d; }
+
+.step-h { font-size: 1.15rem; font-weight: 900; color: #7c2d12; margin: 20px 0 8px; padding-left: 12px; border-left: 6px solid var(--brand); line-height: 1.5; }
+.step-p { font-weight: 700; color: var(--ink2); margin-bottom: 12px; }
+
+/* the කැප / අකැප pair */
+.two-rule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; margin-bottom: 16px; }
+.rule-card { display: grid; gap: 12px; align-content: start; }
+.rule-card.no { border-color: #fecaca; background: linear-gradient(180deg, #fffbfb, #fef2f2); }
+.rule-card.no .card-tag { background: #b91c1c; color: #fee2e2; }
+.rule-card.yes { border-color: #bbf7d0; background: linear-gradient(180deg, #fbfffc, #f0fdf4); }
+.rule-card.yes .card-tag { background: #15803d; color: #dcfce7; }
+
+/* the five ways */
+.five { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.five li { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: start; padding: 10px 14px; border-radius: 16px; background: #fffaf0; border: 2px solid var(--line); font-weight: 700; line-height: 1.65; }
+.five span { display: grid; place-content: center; width: 32px; height: 32px; border-radius: 50%; background: #fecaca; color: #991b1b; font-family: 'Baloo 2', var(--font); font-size: 1.1rem; font-weight: 800; }
+.five b { color: #b45309; }
+
+/* what the real stench is */
+.stench { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 7px; }
+.stench li { padding: 9px 14px; border-radius: 14px; background: #fffaf0; border: 2px solid var(--line); font-weight: 800; }
+.sat-big-line { margin-top: 14px; font-family: 'Baloo 2', var(--font); font-size: clamp(1.1rem, 3.2vw, 1.5rem); font-weight: 800; color: #b45309; text-align: center; line-height: 1.6; padding: 12px; border-radius: 16px; background: #fffbeb; border: 3px solid #fde68a; }
+
+/* the three closing cards */
+.end3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; margin-bottom: 16px; }
+.end-card { display: grid; gap: 8px; align-content: start; }
+.end-emo { font-size: 2.2rem; line-height: 1; }
+.end-card h3 { font-size: 1.08rem; font-weight: 900; color: #7c2d12; line-height: 1.5; }
+
+.src-list { margin: 10px 0; padding-left: 1.2em; display: grid; gap: 7px; font-weight: 700; line-height: 1.7; }
+
+/* ---------- teachers' page ---------- */
+.adults { border-color: #fca5a5; background: linear-gradient(180deg, #fffbfb, #fef2f2); margin-bottom: 20px; }
+.adults .card-tag { background: #b91c1c; color: #fee2e2; }
+.guru-toc { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.guru-toc a { display: block; padding: 11px 16px; border-radius: 14px; background: #fff; border: 2px solid var(--line); font-weight: 800; color: #7c2d12; }
+.guru-toc a:hover { border-color: var(--brand); }
+.guru-sec { margin: 26px 0; }
+.guru-sec h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 900; color: #7c2d12; line-height: 1.5; margin-bottom: 10px; padding-left: 12px; border-left: 6px solid var(--brand); }
+.guru-sec p { line-height: 1.85; }
+.guru-sec p + p { margin-top: 10px; }
+.guru-sec ul, .guru-sec ol { line-height: 1.85; padding-left: 1.3em; margin: 10px 0; display: grid; gap: 7px; }
+.book-quote { margin: 12px 0; padding: 12px 18px; border-left: 5px solid #f59e0b; background: #fffbeb; border-radius: 0 14px 14px 0; font-weight: 600; line-height: 1.8; }
+.book-quote cite { display: block; margin-top: 6px; font-size: .82rem; font-weight: 800; color: var(--ink2); font-style: normal; }
+
+@media (max-width: 900px) {
+  .two-rule, .end3, .guru-toc { grid-template-columns: 1fr; }
+}

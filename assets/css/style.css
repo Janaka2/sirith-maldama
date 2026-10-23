@@ -584,3 +584,6 @@ body.present .poem-top { justify-content: flex-end; }
 .sutta-text i { display: block; font-style: normal; font-weight: 700; color: var(--ink2); line-height: 1.65; font-size: .95rem; }
 .sutta-go { font-size: 1.8rem; font-weight: 900; color: #0369a1; }
 @media (max-width: 560px) { .sutta-card { grid-template-columns: auto 1fr; padding: 16px; } .sutta-go { display: none; } }
+.sutta-card.green { background: linear-gradient(135deg, #eafaf0, #fff6df); border-color: #bbf7d0; }
+.sutta-card.green .sutta-text small { color: #15803d; }
+.sutta-card.green .sutta-go { color: #15803d; }

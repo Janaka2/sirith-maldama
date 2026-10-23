@@ -509,6 +509,14 @@
       '<span class="sutta-go" aria-hidden="true">→</span>' +
     '</a>' +
 
+    '<a class="sutta-card green" href="nirmansha.html">' +
+      '<span class="sutta-emo" aria-hidden="true">🕊️</span>' +
+      '<span class="sutta-text"><small>නව දහම් පාඩම · ජීවක සූත්‍රය සහ ආමගන්ධ සූත්‍රය</small>' +
+      '<b>සතුන්ට කරුණාව</b>' +
+      '<i>“බෞද්ධයෙක් මස් කනවා නම් සිල් කැඩෙනවද?” බුදුරජාණන් වහන්සේ ඇත්තටම වදාළේ මොකක්ද කියා ඉගෙන ගනිමු. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
+      '<span class="sutta-go" aria-hidden="true">→</span>' +
+    '</a>' +
+
     '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම · ' + esc(PARTS[PART].name) + '</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
     '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
   }
