@@ -525,6 +525,14 @@
       '<span class="sutta-go" aria-hidden="true">→</span>' +
     '</a>' +
 
+    '<a class="sutta-card saffron" href="kathina.html">' +
+      '<span class="sutta-emo" aria-hidden="true">🧡</span>' +
+      '<span class="sutta-text"><small>නව දහම් පාඩම · දක්ඛිණා විභංග සූත්‍රය සහ ඡළංගදාන සූත්‍රය</small>' +
+      '<b>කඨින චීවර පූජාව</b>' +
+      '<i>වසරකට එක් වරක් පමණක් ලැබෙන උතුම් පින. වස් විසීමේ සිට කඨින පූජාව දක්වා, සහ දායකයාගේ තුන් සිත. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
+      '<span class="sutta-go" aria-hidden="true">→</span>' +
+    '</a>' +
+
     '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම · ' + esc(PARTS[PART].name) + '</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
     '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
   }

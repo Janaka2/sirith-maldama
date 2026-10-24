@@ -590,3 +590,6 @@ body.present .poem-top { justify-content: flex-end; }
 .sutta-card.gold { background: linear-gradient(135deg, #fff7dc, #ffeccf); border-color: #f3d58a; }
 .sutta-card.gold .sutta-text small { color: #b45309; }
 .sutta-card.gold .sutta-go { color: #b45309; }
+.sutta-card.saffron { background: linear-gradient(135deg, #fff1e2, #fff7dc); border-color: #fed7aa; }
+.sutta-card.saffron .sutta-text small { color: #c2410c; }
+.sutta-card.saffron .sutta-go { color: #c2410c; }

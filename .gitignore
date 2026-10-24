@@ -1,3 +1,4 @@
 .DS_Store
 # original single-file version, kept locally only
 sirith_maldama_visual_storybook.html
+__pycache__/

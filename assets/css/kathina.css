@@ -1,0 +1,67 @@
+/* කඨින චීවර පූජාව — extras for kathina.html and kathina-guru.html.
+   The shared look comes from style.css, satya.css and nirmansha.css. */
+
+.kathina { --c: #ea580c; }
+.kathina .sat-hero-art { background: linear-gradient(180deg, #ffffff, #fff1e2); }
+.kathina .sat-point { border-color: #fed7aa; background: linear-gradient(180deg, #fffcf9, #fff4ea); }
+.kathina .sat-point .card-tag { background: #c2410c; color: #ffedd5; }
+.kathina .sat-you { background: #fff7ed; border-color: #fed7aa; color: #7c2d12; }
+
+/* ---------- the five steps from Esala to Kathina ---------- */
+.kathina .bowl-tab.on { background: #ea580c; border-color: #c2410c; box-shadow: 0 4px 0 #c2410c; }
+.kathina .bowl-pic { background: linear-gradient(180deg, #fff4ea, #ffffff); border-color: #fed7aa; }
+.step-when { display: inline-block; margin-bottom: 8px; padding: 3px 12px; border-radius: 999px; background: #ffedd5; border: 2px solid #fed7aa; font-weight: 800; font-size: .8rem; color: #9a3412; }
+.bowl-steps.five-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* ---------- why this robe is different ---------- */
+.rules6 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.rule6 { display: grid; gap: 6px; align-content: start; padding: 16px 18px; border-radius: 22px; background: #fff; border: 3px solid #fed7aa; box-shadow: var(--shadow); }
+.rule6 span { font-size: 2rem; line-height: 1; }
+.rule6 b { font-weight: 900; color: #9a3412; font-size: 1.02rem; line-height: 1.45; }
+.rule6 p { font-weight: 700; color: var(--ink2); line-height: 1.7; font-size: .95rem; }
+
+/* ---------- the three states of mind: before, while, after ---------- */
+.cet3-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 18px; align-items: start; background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.cet3 { display: grid; gap: 10px; }
+.cet-btn { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; text-align: left; padding: 14px 16px; border-radius: 20px; border: 3px solid var(--line); background: #fff7ed; transition: transform .12s, border-color .12s, background .12s; }
+.cet-btn:hover { border-color: var(--brand); transform: translateY(-2px); }
+.cet-btn .cet-e { font-size: 2rem; line-height: 1; text-align: center; }
+.cet-btn .cet-n { font-weight: 900; color: #9a3412; font-size: 1.08rem; line-height: 1.4; }
+.cet-btn .cet-s { display: block; font-weight: 700; color: var(--ink2); font-size: .84rem; }
+.cet-btn.on { background: #ea580c; border-color: #c2410c; box-shadow: 0 4px 0 #c2410c; }
+.cet-btn.on .cet-n, .cet-btn.on .cet-s { color: #fff; }
+.cet-say h3 { font-size: 1.15rem; font-weight: 900; color: #7c2d12; line-height: 1.5; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px dashed var(--line); }
+.cet-say h3 small { font-weight: 700; color: var(--ink2); font-size: .82rem; }
+.cet-say p { line-height: 1.85; font-weight: 700; }
+.cet-say p + p { margin-top: 9px; }
+.cet-warn { margin-top: 12px; padding: 11px 15px; border-radius: 16px; background: #fef2f2; border: 2px solid #fecaca; font-weight: 700; color: #7f1d1d; line-height: 1.75; }
+
+/* ---------- what the merit brings ---------- */
+.gain-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.gain-list li { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 18px; background: #fff; border: 2px solid #fed7aa; font-weight: 700; line-height: 1.65; }
+.gain-list span { font-size: 1.5rem; line-height: 1; text-align: center; }
+
+/* ---------- what a child can do ---------- */
+.can-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 9px; }
+.can-list li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 11px 15px; border-radius: 16px; background: #fffaf0; border: 2px solid var(--line); font-weight: 700; line-height: 1.65; }
+.can-list span { font-size: 1.45rem; line-height: 1; text-align: center; }
+
+/* ---------- the day itself ---------- */
+.day5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.day5 .day-card { background: linear-gradient(180deg, #fffcf9, #fff4ea); border-color: #fed7aa; }
+.day5 .day-card h3 { font-size: 1.02rem; }
+.day5 .day-card p { font-size: .94rem; }
+
+@media (max-width: 1000px) { .rules6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) {
+  .cet3-wrap { grid-template-columns: 1fr; }
+  .day5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gain-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .bowl-steps.five-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rules6, .day5 { grid-template-columns: 1fr; }
+  .cet-btn { grid-template-columns: 44px 1fr; gap: 10px; }
+  .cet-btn .cet-e { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) { .cet-btn { transition: none; } }
