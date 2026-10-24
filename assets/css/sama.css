@@ -1,0 +1,78 @@
+/* සමචරියාව — extras for sama.html and sama-guru.html.
+   The shared look comes from style.css, satya.css and nirmansha.css. */
+
+.sama { --c: #0d9488; }
+.sama .sat-hero-art { background: linear-gradient(180deg, #ffffff, #effcfa); }
+.sama .sat-point { border-color: #99f6e4; background: linear-gradient(180deg, #fbfefe, #f0fdfa); }
+.sama .sat-point .card-tag { background: #0f766e; color: #ccfbf1; }
+.sama .sat-you { background: #f0fdfa; border-color: #99f6e4; color: #115e59; }
+.sama .bowl-tab.on { background: #0d9488; border-color: #0f766e; box-shadow: 0 4px 0 #0f766e; }
+
+/* ---------- the three doors and the ten ways ---------- */
+.door-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.door-tab { display: grid; gap: 2px; place-items: center; padding: 13px 8px; border-radius: 20px; border: 3px solid var(--line); background: #f8fffe; transition: transform .12s, border-color .12s, background .12s; }
+.door-tab:hover { border-color: var(--brand); transform: translateY(-2px); }
+.door-tab span { font-size: 1.7rem; line-height: 1.1; }
+.door-tab b { font-weight: 900; font-size: 1rem; color: #115e59; line-height: 1.35; }
+.door-tab small { display: block; font-weight: 700; font-size: .78rem; color: var(--ink2); }
+.door-tab.on { background: #0d9488; border-color: #0f766e; box-shadow: 0 4px 0 #0f766e; }
+.door-tab.on b, .door-tab.on small { color: #fff; }
+
+.ten-wrap { background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 18px 20px 20px; box-shadow: var(--shadow); }
+.ten-why { margin: 2px 0 14px; font-weight: 700; color: var(--ink2); line-height: 1.8; }
+.ten-list { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 9px; }
+.ten-list li { padding: 0; }
+.ten-btn { display: grid; grid-template-columns: 34px 42px 1fr; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 12px 15px; border-radius: 18px; background: #f8fffe; border: 3px solid var(--line); font-weight: 700; line-height: 1.7; transition: transform .12s, border-color .12s, background .12s; }
+.ten-btn:hover { border-color: var(--brand); transform: translateY(-2px); }
+.ten-num { display: grid; place-content: center; width: 30px; height: 30px; border-radius: 50%; background: #ccfbf1; color: #0f766e; font-family: 'Baloo 2', var(--font); font-size: 1rem; font-weight: 800; }
+.ten-emo { font-size: 1.5rem; line-height: 1; text-align: center; }
+.ten-btn.on { background: #0d9488; border-color: #0f766e; box-shadow: 0 4px 0 #0f766e; color: #fff; }
+.ten-btn.on .ten-num { background: #fff; color: #0f766e; }
+
+.ten-say { margin-top: 4px; }
+.ten-say h3 { font-size: 1.12rem; font-weight: 900; color: #115e59; line-height: 1.5; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 2px dashed var(--line); }
+.ten-say p { line-height: 1.85; font-weight: 700; }
+.ten-say .sat-you { margin-top: 10px; }
+
+/* ---------- the even road and the broken road ---------- */
+.road2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; margin-bottom: 16px; }
+.road { display: grid; gap: 10px; align-content: start; padding: 16px 18px; border-radius: 24px; border: 3px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+.road svg { display: block; width: 100%; height: auto; }
+.road h3 { font-size: 1.1rem; font-weight: 900; line-height: 1.45; }
+.road p { font-weight: 700; color: var(--ink2); line-height: 1.75; }
+.road.bad { border-color: #fecaca; background: linear-gradient(180deg, #fffbfb, #fef2f2); }
+.road.bad h3 { color: #991b1b; }
+.road.good { border-color: #99f6e4; background: linear-gradient(180deg, #fbfefe, #f0fdfa); }
+.road.good h3 { color: #115e59; }
+
+/* ---------- the three merit-makings ---------- */
+.three-pin { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+.pin-card { display: grid; gap: 8px; align-content: start; padding: 16px 18px; border-radius: 22px; border: 3px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+.pin-card span { font-size: 2rem; line-height: 1; }
+.pin-card b { font-weight: 900; font-size: 1.08rem; color: #115e59; line-height: 1.4; }
+.pin-card p { font-weight: 700; color: var(--ink2); line-height: 1.7; font-size: .95rem; }
+.pin-card a { font-weight: 800; }
+.pin-card.on { border-color: #0d9488; background: linear-gradient(180deg, #fbfefe, #ccfbf1); }
+
+/* ---------- teachers' page ---------- */
+.conc { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .94rem; }
+.conc th, .conc td { border: 2px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; line-height: 1.7; }
+.conc th { background: #f0fdfa; font-weight: 900; color: #115e59; }
+.conc td b { color: #115e59; }
+.conc-wrap { overflow-x: auto; border-radius: 16px; }
+
+@media (max-width: 900px) {
+  .road2, .three-pin { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  /* The other lessons have multi-word titles that wrap; "සමචරියාව" is one unbreakable
+     word, so the shared 2.1rem floor is wider than a 320px screen. Give it its own. */
+  .sama .sat-hero h1 { font-size: clamp(1.5rem, 8.5vw, 2.6rem); }
+  .door-tabs { grid-template-columns: 1fr; }
+  .ten-btn { grid-template-columns: 28px 32px 1fr; gap: 9px; padding: 11px 12px; }
+  .ten-emo { font-size: 1.25rem; }
+  .ten-num { width: 26px; height: 26px; font-size: .9rem; }
+  .sama .nav span:not([aria-hidden]) { display: none; }
+  .sama .nav a { padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .door-tab, .ten-btn { transition: none; } }
