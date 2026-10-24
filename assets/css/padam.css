@@ -1,0 +1,75 @@
+/* දහම් පාඩම් — the lesson hub (padam.html).
+   Each card carries its own lesson colour in --lc, so a child recognises the card
+   and the page it opens by the same colour. */
+
+.padam { --c: #b45309; }
+.padam .block { margin: 30px 0; }
+.padam .block-head { margin-bottom: 16px; }
+.padam .block-head h2 { font-size: clamp(1.35rem, 3.4vw, 1.9rem); font-weight: 900; color: #7c2d12; line-height: 1.45; }
+.padam .block-head p { color: var(--ink2); font-weight: 700; }
+
+/* ---------- hero ---------- */
+.hub-hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; margin: 10px 0 26px; padding: 22px 26px; border-radius: 32px; border: 3px solid var(--line); background: linear-gradient(135deg, #fffdf3, #fff1e2 55%, #f3f8ff); box-shadow: var(--shadow); }
+.hub-hero h1 { font-size: clamp(1.9rem, 6vw, 3.1rem); font-weight: 900; color: #7c2d12; line-height: 1.25; margin: 4px 0 10px; }
+.hub-hero .eyebrow { font-weight: 800; color: #b45309; font-size: .9rem; letter-spacing: .02em; }
+.hub-hero .lead { font-size: clamp(1rem, 2.2vw, 1.14rem); font-weight: 700; color: #4a2410; line-height: 1.85; max-width: 46em; }
+.hub-logo { width: 104px; height: 104px; border-radius: 26px; border: 3px solid var(--line); background: #fff; padding: 6px; }
+.hub-logo img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 20px; }
+
+/* ---------- the lesson cards ---------- */
+/* 380px keeps the four lesson cards in a tidy 2 x 2 inside the 1180px page, and
+   drops to one column below roughly 800px rather than orphaning a card. */
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; }
+.lcard { display: grid; grid-template-rows: auto 1fr; border-radius: 28px; border: 3px solid var(--lc-soft, var(--line)); background: #fff; box-shadow: var(--shadow); overflow: hidden; transition: transform .14s, border-color .14s, box-shadow .14s; }
+.lcard:hover { transform: translateY(-3px); border-color: var(--lc, var(--brand)); box-shadow: 0 10px 22px rgba(124, 45, 18, .12); }
+.lcard.wide { grid-column: 1 / -1; grid-template-rows: auto; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); }
+
+.lc-art { display: grid; place-items: center; padding: 14px; background: var(--lc-wash, #fff7ed); border-bottom: 3px solid var(--lc-soft, var(--line)); }
+.lcard.wide .lc-art { border-bottom: 0; border-right: 3px solid var(--lc-soft, var(--line)); }
+.lc-art svg { display: block; width: 100%; max-width: 230px; height: auto; }
+
+.lc-body { display: grid; align-content: start; gap: 8px; padding: 18px 20px 20px; }
+.lc-eyebrow { font-size: .78rem; font-weight: 800; color: var(--lc, #b45309); letter-spacing: .02em; line-height: 1.5; }
+.lc-body h3 { font-size: clamp(1.25rem, 3vw, 1.6rem); font-weight: 900; color: #7c2d12; line-height: 1.35; }
+.lc-desc { font-weight: 700; color: var(--ink2); line-height: 1.75; font-size: .97rem; }
+
+.lc-tags { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.lc-tags li { padding: 3px 11px; border-radius: 999px; background: var(--lc-wash, #fff7ed); border: 2px solid var(--lc-soft, var(--line)); font-size: .78rem; font-weight: 800; color: #7c2d12; }
+.lc-tags li.done { background: #f0fdf4; border-color: #bbf7d0; color: #14532d; }
+
+.lc-bar { height: 12px; border-radius: 999px; background: #f1e5d2; overflow: hidden; margin-top: 4px; }
+.lc-bar i { display: block; height: 100%; border-radius: 999px; background: var(--lc, var(--brand)); transition: width .4s; }
+.lc-barlab { font-size: .8rem; font-weight: 800; color: var(--ink2); }
+
+.lc-go { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.lc-go .btn { background: var(--lc, var(--brand)); border-color: var(--lc-dark, var(--brand-d)); box-shadow: 0 4px 0 var(--lc-dark, var(--brand-d)); }
+.lc-go .btn.ghost { background: #fff; color: var(--lc-dark, #7c2d12); box-shadow: none; }
+.lc-parts { display: flex; flex-wrap: wrap; gap: 8px; }
+.lc-parts a { padding: 10px 15px; border-radius: 14px; background: #fff; border: 2px solid var(--lc-soft, var(--line)); font-weight: 800; font-size: .9rem; color: #7c2d12; }
+.lc-parts a:hover { border-color: var(--lc, var(--brand)); }
+
+/* ---------- teachers' strip ---------- */
+.guru-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.guru-strip a { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 14px 18px; border-radius: 20px; background: #fff; border: 3px solid var(--line); font-weight: 800; color: #7c2d12; line-height: 1.5; }
+.guru-strip a:hover { border-color: var(--brand); }
+.guru-strip span { font-size: 1.6rem; line-height: 1; }
+.guru-strip small { display: block; font-size: .78rem; font-weight: 700; color: var(--ink2); }
+
+/* ---------- sources ---------- */
+.src3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.src3 .card { display: grid; gap: 6px; align-content: start; }
+.src3 b { font-size: 1.02rem; color: #7c2d12; }
+.src3 p { font-weight: 700; color: var(--ink2); line-height: 1.7; font-size: .94rem; }
+
+@media (max-width: 760px) {
+  .hub-hero { grid-template-columns: 1fr; text-align: left; }
+  .hub-logo { width: 84px; height: 84px; }
+  .lcard.wide { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+  .lcard.wide .lc-art { border-right: 0; border-bottom: 3px solid var(--lc-soft, var(--line)); }
+}
+@media (max-width: 420px) {
+  .hub-grid { grid-template-columns: 1fr; }
+  .padam .nav span:not([aria-hidden]) { display: none; }
+  .padam .nav a { padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .lcard, .lc-bar i { transition: none; } }

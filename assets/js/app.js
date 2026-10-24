@@ -472,6 +472,14 @@
     return Object.keys(CATS).filter(function (k) { return seen[k]; });
   }
 
+  /* The lesson pages that live outside this app. padam.html lists them all in full. */
+  var LESSONS = [
+    { href: 'satya.html', emo: '💧', c: '#0ea5e9', name: 'සත්‍යවාදී වෙමු', sub: 'අම්බලට්ඨික රාහුලෝවාද සූත්‍රය' },
+    { href: 'nirmansha.html', emo: '🕊️', c: '#16a34a', name: 'සතුන්ට කරුණාව', sub: 'ජීවක සූත්‍රය · ආමගන්ධ සූත්‍රය' },
+    { href: 'bodu.html', emo: '🪷', c: '#f59e0b', name: 'බොදු නිවසක සිරිය දකිමු', sub: 'අපේකම · Level 06 · පාඩම 02' },
+    { href: 'kathina.html', emo: '🧡', c: '#ea580c', name: 'කඨින චීවර පූජාව', sub: 'දක්ඛිණා විභංග · ඡළංගදාන සූත්‍ර' }
+  ];
+
   function pageHome() {
     var c = learnedCount();
     var next = 1;
@@ -501,37 +509,15 @@
       '<div class="how-card"><span>🌸</span><b>4. කරමු</b><p>පොරොන්දු වී මලක් ලබා ගනිමු.</p></div>' +
     '</section>' +
 
-    '<a class="sutta-card" href="satya.html">' +
-      '<span class="sutta-emo" aria-hidden="true">💧</span>' +
-      '<span class="sutta-text"><small>නව දහම් පාඩම · අම්බලට්ඨික රාහුලෝවාද සූත්‍රය</small>' +
-      '<b>සත්‍යවාදී වෙමු</b>' +
-      '<i>බොරු කීම කොතරම් නරකද? බුදුරජාණන් වහන්සේ රාහුල හිමියන්ට දිය බඳුනක් පෙන්වා වදාළ දහම ඉගෙන ගනිමු. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
-      '<span class="sutta-go" aria-hidden="true">→</span>' +
-    '</a>' +
-
-    '<a class="sutta-card green" href="nirmansha.html">' +
-      '<span class="sutta-emo" aria-hidden="true">🕊️</span>' +
-      '<span class="sutta-text"><small>නව දහම් පාඩම · ජීවක සූත්‍රය සහ ආමගන්ධ සූත්‍රය</small>' +
-      '<b>සතුන්ට කරුණාව</b>' +
-      '<i>“බෞද්ධයෙක් මස් කනවා නම් සිල් කැඩෙනවද?” බුදුරජාණන් වහන්සේ ඇත්තටම වදාළේ මොකක්ද කියා ඉගෙන ගනිමු. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
-      '<span class="sutta-go" aria-hidden="true">→</span>' +
-    '</a>' +
-
-    '<a class="sutta-card gold" href="bodu.html">' +
-      '<span class="sutta-emo" aria-hidden="true">🪷</span>' +
-      '<span class="sutta-text"><small>නව දහම් පාඩම · අපේකම · Level 06 · පාඩම 02</small>' +
-      '<b>බොදු නිවසක සිරිය දකිමු</b>' +
-      '<i>බෞද්ධ නිවසක තිබෙන ලස්සන සිරිත් විරිත්. උදෑසන බුද්ධ වන්දනාවේ සිට පෝය දින සිල් සමාදන් වීම දක්වා, බුදු වදන් සමඟ.</i></span>' +
-      '<span class="sutta-go" aria-hidden="true">→</span>' +
-    '</a>' +
-
-    '<a class="sutta-card saffron" href="kathina.html">' +
-      '<span class="sutta-emo" aria-hidden="true">🧡</span>' +
-      '<span class="sutta-text"><small>නව දහම් පාඩම · දක්ඛිණා විභංග සූත්‍රය සහ ඡළංගදාන සූත්‍රය</small>' +
-      '<b>කඨින චීවර පූජාව</b>' +
-      '<i>වසරකට එක් වරක් පමණක් ලැබෙන උතුම් පින. වස් විසීමේ සිට කඨින පූජාව දක්වා, සහ දායකයාගේ තුන් සිත. අවසානයේ කුඩා ප්‍රශ්න මාලාවක් ද ඇත.</i></span>' +
-      '<span class="sutta-go" aria-hidden="true">→</span>' +
-    '</a>' +
+    '<section class="block" id="padamBlock"><div class="block-head">' +
+      '<h2>📚 දහම් පාඩම්</h2><p>සිරිත් මල්දම හැරුණු විට, තව දහම් පාඩම් ' + (LESSONS.length) + ' ක් තියෙනවා. කැමති එකක් ඔබන්න.</p></div>' +
+      '<div class="lesson-tiles">' + LESSONS.map(function (l) {
+        return '<a class="ltile" href="' + l.href + '" style="--lt:' + l.c + '">' +
+          '<span class="lt-emo" aria-hidden="true">' + l.emo + '</span>' +
+          '<span class="lt-text"><b>' + esc(l.name) + '</b><i>' + esc(l.sub) + '</i></span></a>';
+      }).join('') + '</div>' +
+      '<a class="all-padam" href="padam.html">📚 සියලු පාඩම් එක තැනක බලන්න →</a>' +
+    '</section>' +
 
     '<section class="block"><div class="block-head"><h2>🌸 මගේ මල්දම · ' + esc(PARTS[PART].name) + '</h2><p>මලක් ඔබා කවිය බලන්න. ඉගෙන ගත් කවිවල මල් පිපෙයි.</p></div>' + garland() + '</section>' +
     '<section class="block"><div class="block-head"><h2>🎨 මාතෘකා අනුව</h2><p>කැමති මාතෘකාවක් තෝරන්න.</p></div><div class="chips">' + cats + '</div></section>';
@@ -768,14 +754,15 @@
     app.innerHTML = html;
     app.className = 'page-' + name;
     var paths = { home: '', mala: 'mala', taraka: 'taraka', quiz: 'quiz', guru: 'guru' };
-    Array.prototype.forEach.call(document.querySelectorAll('.nav a'), function (a) { a.setAttribute('href', '#/' + PART + '/' + paths[a.dataset.nav]); });
+    /* [data-nav] only: the lesson-hub link in the nav is an ordinary page link, not a route */
+    Array.prototype.forEach.call(document.querySelectorAll('.nav a[data-nav]'), function (a) { a.setAttribute('href', '#/' + PART + '/' + paths[a.dataset.nav]); });
     document.getElementById('progressPill').setAttribute('href', '#/' + PART + '/taraka');
     document.querySelector('.brand').setAttribute('href', '#/' + PART + '/');
     document.getElementById('partBadge').textContent = PART;
     var fp = document.getElementById('favPill'); fp.setAttribute('href', '#/' + PART + '/fav'); fp.classList.toggle('active', nav === 'fav');
     paintFavCount(); paintMe();
     var mp = document.getElementById('mePill'); if (mp) mp.classList.toggle('active', nav === 'mama');
-    Array.prototype.forEach.call(document.querySelectorAll('.nav a'), function (a) { a.classList.toggle('active', a.dataset.nav === nav); if (a.dataset.nav === nav) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    Array.prototype.forEach.call(document.querySelectorAll('.nav a[data-nav]'), function (a) { a.classList.toggle('active', a.dataset.nav === nav); if (a.dataset.nav === nav) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (name === 'mala') hydrateThumbs();
     if (name === 'test' && exam && !exam.done) armOptions();
     paintProgress();
