@@ -1,0 +1,33 @@
+/* මෛත්‍රී සිත — extras for maitri.html and maitri-guru.html.
+   The shared look comes from style.css, satya.css and nirmansha.css. */
+
+.maitri { --c: #e11d48; }
+.maitri .sat-hero-art { background: linear-gradient(180deg, #ffffff, #fff1f4); }
+.maitri .sat-point { border-color: #fecdd3; background: linear-gradient(180deg, #fffcfd, #fff1f4); }
+.maitri .sat-point .card-tag { background: #be123c; color: #ffe4e6; }
+.maitri .sat-you { background: #fff1f4; border-color: #fecdd3; color: #881337; }
+
+/* ---------- the eleven benefits ---------- */
+.ani11 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 11px; margin-bottom: 16px; }
+.ani { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; padding: 13px 15px; border-radius: 18px; background: #fff; border: 3px solid #fecdd3; font-weight: 700; line-height: 1.6; box-shadow: var(--shadow); }
+.ani b { display: grid; place-content: center; width: 30px; height: 30px; border-radius: 50%; background: #ffe4e6; color: #be123c; font-family: 'Baloo 2', var(--font); font-size: .95rem; font-weight: 800; }
+.ani span { font-size: .98rem; }
+.ani em { font-style: normal; display: block; font-size: 1.3rem; }
+
+/* ---------- the wishes a child can say ---------- */
+.wish-box { background: linear-gradient(180deg, #fffcfd, #fff1f4); border: 3px solid #fecdd3; border-radius: 28px; padding: 20px 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.wish-box h3 { font-size: 1.12rem; font-weight: 900; color: #be123c; margin-bottom: 10px; }
+.wish-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.wish-list li { padding: 12px 18px; border-radius: 16px; background: #fff; border: 2px solid #fecdd3; font-family: 'Baloo 2', var(--font); font-size: clamp(1.02rem, 2.6vw, 1.22rem); font-weight: 700; color: #881337; line-height: 1.7; text-align: center; }
+
+/* ---------- the moon and the stars ---------- */
+.moon16 { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px; align-items: center; background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 18px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.moon16 svg { display: block; width: 100%; height: auto; }
+.moon16 p { font-weight: 700; line-height: 1.85; }
+.moon16 p + p { margin-top: 9px; }
+
+@media (max-width: 900px) { .moon16 { grid-template-columns: 1fr; } }
+@media (max-width: 420px) {
+  .maitri .nav span:not([aria-hidden]) { display: none; }
+  .maitri .nav a { padding: 8px 12px; }
+}

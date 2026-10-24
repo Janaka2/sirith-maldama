@@ -336,8 +336,11 @@ body.is-busy { overflow: hidden; }
 .ref-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 6px; }
 .ref-head b { font-weight: 900; color: #7c2d12; font-size: 1.02rem; }
 .ref-head span { font-size: .82rem; font-weight: 700; color: var(--ink2); }
-.pali { font-family: var(--serif); font-weight: 700; color: #92400e; line-height: 1.85; font-size: 1.02rem; padding: 8px 14px; border-left: 4px solid #f59e0b; background: rgba(255, 255, 255, .7); border-radius: 0 12px 12px 0; margin-bottom: 8px; }
-.ref-si { margin: 0 0 8px; font-weight: 600; font-size: 1.02rem; line-height: 1.8; color: #3a1d0c; }
+/* `anywhere` rather than `break-word`: a Pali compound such as පරවිත්තූපකරණං offers no
+   break opportunity and is wider than a 320px screen, and only `anywhere` lowers the
+   min-content width, which is what stops it pushing the whole grid column out. */
+.pali { font-family: var(--serif); font-weight: 700; color: #92400e; line-height: 1.85; font-size: 1.02rem; padding: 8px 14px; border-left: 4px solid #f59e0b; background: rgba(255, 255, 255, .7); border-radius: 0 12px 12px 0; margin-bottom: 8px; overflow-wrap: anywhere; }
+.ref-si { margin: 0 0 8px; font-weight: 600; font-size: 1.02rem; line-height: 1.8; color: #3a1d0c; overflow-wrap: anywhere; }
 .ref-si.verse-si { font-family: var(--serif); }
 .ref-link { display: inline-block; font-weight: 800; font-size: .88rem; color: #1d4ed8; text-decoration: underline; text-underline-offset: 3px; }
 .ref-more { margin-top: 10px; }

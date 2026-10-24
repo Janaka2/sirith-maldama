@@ -1,0 +1,54 @@
+/* දානය — extras for dana.html and dana-guru.html.
+   The shared look comes from style.css, satya.css and nirmansha.css. */
+
+.dana { --c: #9333ea; }
+.dana .sat-hero-art { background: linear-gradient(180deg, #ffffff, #f8f3ff); }
+.dana .sat-point { border-color: #e9d5ff; background: linear-gradient(180deg, #fdfbff, #f8f3ff); }
+.dana .sat-point .card-tag { background: #6b21a8; color: #f3e8ff; }
+.dana .sat-you { background: #faf5ff; border-color: #e9d5ff; color: #581c87; }
+
+/* ---------- the two gifts ---------- */
+.two-gift { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.gift { display: grid; gap: 8px; align-content: start; padding: 18px 20px; border-radius: 24px; border: 3px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+.gift span { font-size: 2.1rem; line-height: 1; }
+.gift b { font-weight: 900; font-size: 1.15rem; line-height: 1.4; }
+.gift p { font-weight: 700; color: var(--ink2); line-height: 1.75; }
+.gift.amisa { border-color: #e9d5ff; background: linear-gradient(180deg, #fdfbff, #f8f3ff); }
+.gift.amisa b { color: #6b21a8; }
+.gift.dhamma { border-color: #fde68a; background: linear-gradient(180deg, #fffdf3, #fff7dc); }
+.gift.dhamma b { color: #b45309; }
+.gift .top-tag { display: inline-block; padding: 2px 11px; border-radius: 999px; background: #fef3c7; color: #92400e; font-size: .76rem; font-weight: 800; }
+
+/* ---------- how a gift is given: five pairs ---------- */
+.how5 { background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 16px 18px 18px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.how-head { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.how-head div { padding: 9px 12px; border-radius: 14px; font-weight: 900; text-align: center; line-height: 1.4; }
+.how-head .bad { background: #fef2f2; border: 2px solid #fecaca; color: #991b1b; }
+.how-head .good { background: #f0fdf4; border: 2px solid #bbf7d0; color: #14532d; }
+.how-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 9px; }
+.how-row > div { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: center; padding: 11px 14px; border-radius: 16px; font-weight: 700; line-height: 1.65; border: 2px solid var(--line); background: #fffaf0; }
+.how-row .x { background: #fffbfb; border-color: #fecaca; }
+.how-row .v { background: #fbfffc; border-color: #bbf7d0; }
+.how-row i { font-style: normal; font-size: 1.15rem; text-align: center; }
+
+/* ---------- when to give: five times ---------- */
+.when5 { list-style: none; margin: 0 0 16px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 11px; }
+.when5 li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 13px 16px; border-radius: 18px; background: #fff; border: 3px solid #e9d5ff; font-weight: 700; line-height: 1.65; }
+.when5 span { font-size: 1.5rem; line-height: 1; text-align: center; }
+
+/* ---------- eight reasons people give ---------- */
+.why8 { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 8px; counter-reset: w; }
+.why8 li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: center; padding: 11px 15px; border-radius: 16px; background: #fffaf0; border: 2px solid var(--line); font-weight: 700; line-height: 1.7; }
+.why8 li::before { counter-increment: w; content: counter(w); display: grid; place-content: center; width: 26px; height: 26px; border-radius: 50%; background: #ede9fe; color: #6b21a8; font-family: 'Baloo 2', var(--font); font-weight: 800; font-size: .9rem; }
+.why8 li.best { background: #f5f3ff; border-color: #c4b5fd; }
+.why8 li.best::before { background: #9333ea; color: #fff; }
+
+@media (max-width: 760px) {
+  .two-gift { grid-template-columns: 1fr; }
+  .how-head, .how-row { grid-template-columns: 1fr; }
+  .how-row { margin-bottom: 14px; }
+}
+@media (max-width: 420px) {
+  .dana .nav span:not([aria-hidden]) { display: none; }
+  .dana .nav a { padding: 8px 12px; }
+}

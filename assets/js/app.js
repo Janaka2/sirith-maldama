@@ -478,7 +478,9 @@
     { href: 'nirmansha.html', emo: '🕊️', c: '#16a34a', name: 'සතුන්ට කරුණාව', sub: 'ජීවක සූත්‍රය · ආමගන්ධ සූත්‍රය' },
     { href: 'bodu.html', emo: '🪷', c: '#f59e0b', name: 'බොදු නිවසක සිරිය දකිමු', sub: 'අපේකම · Level 06 · පාඩම 02' },
     { href: 'kathina.html', emo: '🧡', c: '#ea580c', name: 'කඨින චීවර පූජාව', sub: 'දක්ඛිණා විභංග · ඡළංගදාන සූත්‍ර' },
-    { href: 'sama.html', emo: '🌿', c: '#0d9488', name: 'සමචරියාව', sub: 'සාලෙය්‍යක සූත්‍රය · ක්‍රම දහයක්' }
+    { href: 'sama.html', emo: '🌿', c: '#0d9488', name: 'සමචරියාව', sub: 'සාලෙය්‍යක සූත්‍රය · ක්‍රම දහයක්' },
+    { href: 'dana.html', emo: '🤲', c: '#9333ea', name: 'දානය', sub: 'දාන සංවිභාග · කාලදාන සූත්‍ර' },
+    { href: 'maitri.html', emo: '💗', c: '#e11d48', name: 'මෛත්‍රී සිත', sub: 'මෙත්තානිසංස · කරණීයමෙත්ත සූත්‍ර' }
   ];
 
   function pageHome() {
