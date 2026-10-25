@@ -483,7 +483,8 @@
     { href: 'maitri.html', emo: '💗', c: '#e11d48', name: 'මෛත්‍රී සිත', sub: 'මෙත්තානිසංස · කරණීයමෙත්ත සූත්‍ර' },
     { href: 'buduguna.html', emo: '🪷', c: '#a16207', name: 'බුදුගුණ', sub: 'ධජග්ග · ද්‍රෝණ · කේසී සූත්‍ර' },
     { href: 'dahamguna.html', emo: '📖', c: '#1d4ed8', name: 'ධම්ම ගුණ', sub: 'සන්දිට්ඨික · පහාරාද සූත්‍ර' },
-    { href: 'sagaguna.html', emo: '🌾', c: '#4d7c0f', name: 'සඟගුණ', sub: 'අග්ගප්පසාද · උපඩ්ඪ සූත්‍ර' }
+    { href: 'sagaguna.html', emo: '🌾', c: '#4d7c0f', name: 'සඟගුණ', sub: 'අග්ගප්පසාද · උපඩ්ඪ සූත්‍ර' },
+    { href: 'kasavakantha.html', emo: '🏵️', c: '#9a3412', name: 'කාසාවකණ්ඨා', sub: 'දක්ඛිණා විභංග · ථේර ගාථා' }
   ];
 
   function pageHome() {

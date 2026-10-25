@@ -44,7 +44,8 @@
     { tag: 'tagMaitri', key: 'daham.maitri.vows', total: 7 },
     { tag: 'tagBuduguna', key: 'daham.buduguna.vows', total: 7 },
     { tag: 'tagDahamguna', key: 'daham.dahamguna.vows', total: 7 },
-    { tag: 'tagSagaguna', key: 'daham.sagaguna.vows', total: 7 }
+    { tag: 'tagSagaguna', key: 'daham.sagaguna.vows', total: 7 },
+    { tag: 'tagKasavakantha', key: 'daham.kasavakantha.vows', total: 7 }
   ];
   function paintVows() {
     VOWS.forEach(function (v) {
