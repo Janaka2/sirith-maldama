@@ -1,0 +1,88 @@
+/* බුදුගුණ · ධම්ම ගුණ · සඟගුණ — extras shared by the three “ගුණ” lessons.
+   The shared look comes from style.css, satya.css and nirmansha.css.
+
+   One file for three lessons: they are the same page three times over (a list of
+   qualities, a formula, a few suttas that unpack one quality each), so splitting the
+   rules would only mean keeping three copies of the same grid in step. */
+
+.buduguna { --c: #a16207; --gn-soft: #fef3c7; --gn-line: #fde68a; --gn-wash: #fffbeb; --gn-dark: #713f12; }
+.dahamguna { --c: #1d4ed8; --gn-soft: #dbeafe; --gn-line: #bfdbfe; --gn-wash: #eff6ff; --gn-dark: #1e3a8a; }
+.sagaguna { --c: #4d7c0f; --gn-soft: #ecfccb; --gn-line: #d9f99d; --gn-wash: #f7fee7; --gn-dark: #365314; }
+
+.buduguna .sat-hero-art,
+.dahamguna .sat-hero-art,
+.sagaguna .sat-hero-art { background: linear-gradient(180deg, #ffffff, var(--gn-wash)); }
+.buduguna .sat-point,
+.dahamguna .sat-point,
+.sagaguna .sat-point { border-color: var(--gn-line); background: linear-gradient(180deg, #ffffff, var(--gn-wash)); }
+.buduguna .sat-point .card-tag,
+.dahamguna .sat-point .card-tag,
+.sagaguna .sat-point .card-tag { background: var(--gn-dark); color: #fff; }
+.buduguna .sat-you,
+.dahamguna .sat-you,
+.sagaguna .sat-you { background: var(--gn-wash); border-color: var(--gn-line); color: var(--gn-dark); }
+
+/* ---------- the list of qualities ----------
+   Each quality is one card: the Pali word, the Sinhala rendering the Most Venerable Thero
+   gives in the formula itself, and a line a child can hold on to. The badge says whether
+   the Sutta Pitaka unpacks that word anywhere, or only names it in the formula — that is
+   not decoration, it is the honest part of the page. */
+.guna-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 13px; margin-bottom: 16px; }
+.guna { display: grid; grid-template-columns: 40px 1fr; gap: 13px; align-items: start; padding: 15px 17px; border-radius: 22px; background: #fff; border: 3px solid var(--gn-line); box-shadow: var(--shadow); }
+.guna > b { display: grid; place-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--gn-soft); color: var(--gn-dark); font-family: 'Baloo 2', var(--font); font-size: 1.05rem; font-weight: 800; }
+.guna h3 { font-size: 1.1rem; font-weight: 900; color: var(--gn-dark); line-height: 1.45; }
+.guna .gn-pali { display: block; font-size: .9rem; font-weight: 700; color: var(--ink2); letter-spacing: .01em; margin-top: 1px; overflow-wrap: anywhere; }
+.guna p { margin-top: 7px; font-weight: 700; line-height: 1.75; }
+.guna .gn-you { margin-top: 8px; padding: 8px 13px; border-radius: 13px; background: var(--gn-wash); border: 2px solid var(--gn-line); color: var(--gn-dark); font-size: .95rem; line-height: 1.65; }
+.gn-tag { display: inline-block; margin-top: 8px; padding: 2px 11px; border-radius: 999px; font-size: .73rem; font-weight: 800; }
+.gn-tag.sutta { background: var(--gn-soft); color: var(--gn-dark); }
+.gn-tag.only { background: #e2e8f0; color: #475569; }
+
+/* ---------- the three jewels strip, on all three lessons ---------- */
+.jewel3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.jw { display: grid; gap: 4px; place-items: center; text-align: center; padding: 16px 12px; border-radius: 22px; border: 3px solid var(--line); background: #fff; font-weight: 800; color: var(--ink); transition: transform .12s, border-color .12s; }
+.jw:hover { transform: translateY(-2px); border-color: var(--c); }
+.jw em { font-style: normal; font-size: 1.9rem; line-height: 1.1; }
+.jw b { font-size: 1.02rem; }
+.jw small { font-size: .8rem; font-weight: 700; color: var(--ink2); line-height: 1.5; }
+.jw.here { border-color: var(--c); background: var(--gn-wash); box-shadow: 0 4px 0 var(--gn-line); }
+
+/* ---------- a plain numbered list of things the sutta names ---------- */
+.gn-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 9px; }
+.gn-list li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 16px; background: #fff; border: 2px solid var(--gn-line); font-weight: 700; line-height: 1.7; }
+.gn-list li b { display: grid; place-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--gn-soft); color: var(--gn-dark); font-family: 'Baloo 2', var(--font); font-size: .92rem; font-weight: 800; }
+.gn-list li em { font-style: normal; font-weight: 800; color: var(--gn-dark); }
+
+/* ---------- the pairs of persons in the Sangha ---------- */
+.pairs4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.pair { padding: 14px 17px; border-radius: 20px; background: linear-gradient(180deg, #ffffff, var(--gn-wash)); border: 3px solid var(--gn-line); box-shadow: var(--shadow); }
+.pair h3 { font-size: 1.04rem; font-weight: 900; color: var(--gn-dark); line-height: 1.45; margin-bottom: 7px; }
+.pair ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pair li { padding: 8px 13px; border-radius: 12px; background: #fff; border: 2px solid var(--gn-line); font-weight: 700; font-size: .95rem; line-height: 1.6; }
+.pair li span { display: block; font-size: .83rem; font-weight: 700; color: var(--ink2); }
+
+/* ---------- picture beside text ---------- */
+.gn-two { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px; align-items: center; background: #fff; border: 3px solid var(--line); border-radius: 28px; padding: 18px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.gn-two svg { display: block; width: 100%; height: auto; }
+.gn-two p { font-weight: 700; line-height: 1.85; }
+.gn-two p + p { margin-top: 9px; }
+
+/* ---------- teachers' pages ---------- */
+.buduguna .guru-sec h2,
+.dahamguna .guru-sec h2,
+.sagaguna .guru-sec h2 { color: var(--gn-dark); }
+
+@media (max-width: 900px) { .gn-two { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .jewel3 { grid-template-columns: 1fr; }
+  .jw { grid-template-columns: 40px 1fr; display: grid; place-items: center start; text-align: left; }
+  .guna { grid-template-columns: 32px 1fr; gap: 10px; }
+  .guna > b { width: 30px; height: 30px; font-size: .95rem; }
+}
+@media (max-width: 420px) {
+  .buduguna .nav span:not([aria-hidden]),
+  .dahamguna .nav span:not([aria-hidden]),
+  .sagaguna .nav span:not([aria-hidden]) { display: none; }
+  .buduguna .nav a, .dahamguna .nav a, .sagaguna .nav a { padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .jw { transition: none; } }

@@ -480,7 +480,10 @@
     { href: 'kathina.html', emo: '🧡', c: '#ea580c', name: 'කඨින චීවර පූජාව', sub: 'දක්ඛිණා විභංග · ඡළංගදාන සූත්‍ර' },
     { href: 'sama.html', emo: '🌿', c: '#0d9488', name: 'සමචරියාව', sub: 'සාලෙය්‍යක සූත්‍රය · ක්‍රම දහයක්' },
     { href: 'dana.html', emo: '🤲', c: '#9333ea', name: 'දානය', sub: 'දාන සංවිභාග · කාලදාන සූත්‍ර' },
-    { href: 'maitri.html', emo: '💗', c: '#e11d48', name: 'මෛත්‍රී සිත', sub: 'මෙත්තානිසංස · කරණීයමෙත්ත සූත්‍ර' }
+    { href: 'maitri.html', emo: '💗', c: '#e11d48', name: 'මෛත්‍රී සිත', sub: 'මෙත්තානිසංස · කරණීයමෙත්ත සූත්‍ර' },
+    { href: 'buduguna.html', emo: '🪷', c: '#a16207', name: 'බුදුගුණ', sub: 'ධජග්ග · ද්‍රෝණ · කේසී සූත්‍ර' },
+    { href: 'dahamguna.html', emo: '📖', c: '#1d4ed8', name: 'ධම්ම ගුණ', sub: 'සන්දිට්ඨික · පහාරාද සූත්‍ර' },
+    { href: 'sagaguna.html', emo: '🌾', c: '#4d7c0f', name: 'සඟගුණ', sub: 'අග්ගප්පසාද · උපඩ්ඪ සූත්‍ර' }
   ];
 
   function pageHome() {
