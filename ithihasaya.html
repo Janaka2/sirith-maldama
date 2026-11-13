@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>බුදුසසුනේ වසර 2,500ක ගමන — මහමෙව්නාව දහම් පාසල UK</title>
+<meta name="description" content="ශ්‍රී ලංකා ඉතිහාසය සහ බුදුසසුන: කාලරේඛාව, විනාශය සහ පුනරුදය, අගනුවර සහ දළදා ගමන, රජවරු සහ ප්‍රශ්නාවලිය.">
+<meta name="theme-color" content="#A8710A">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@500;700;800&family=Abhaya+Libre:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a palm-leaf (ola) manuscript strip as the spine — one long horizontal timeline, gold above for the Sasana, red below for harm, teal on the line for works for the country; story chapters and tools stack below. */
+:root{
+  --bg:#F3F1EA;          /* pale granite */
+  --surface:#FFFDF7;
+  --ink:#1E2229;
+  --muted:#5D6470;
+  --line:#D9D4C4;
+  --gold:#A8710A;        /* saffron / gold leaf */
+  --gold-soft:#F6E7C4;
+  --red:#A3241B;         /* laterite red: harm */
+  --red-deep:#5E140F;
+  --red-soft:#F7DEDA;
+  --teal:#1C6B73;        /* water works, the state */
+  --teal-soft:#D8ECEC;
+  --display:"Gemunu Libre","Noto Sans Sinhala","Iskoola Pota",sans-serif;
+  --body:"Abhaya Libre","Noto Serif Sinhala","Iskoola Pota",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#13161B;--surface:#1B1F26;--ink:#ECE7DA;--muted:#A4A9B2;--line:#343944;
+    --gold:#E2A93C;--gold-soft:#3A2E16;--red:#E5574B;--red-deep:#2C0E0C;--red-soft:#3A1916;
+    --teal:#56B6BF;--teal-soft:#16302F;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13161B;--surface:#1B1F26;--ink:#ECE7DA;--muted:#A4A9B2;--line:#343944;
+  --gold:#E2A93C;--gold-soft:#3A2E16;--red:#E5574B;--red-deep:#2C0E0C;--red-soft:#3A1916;
+  --teal:#56B6BF;--teal-soft:#16302F;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.65}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance;margin:0}
+a{color:var(--teal)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.prose{max-width:66ch}
+
+/* Site bar (links back to the Dhamma School site) */
+.sitebar{background:var(--surface);border-bottom:1px solid var(--line)}
+.sitebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.sitebar .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.sitebar .brand img{border-radius:50%}
+.sitebar .brand b{font-family:var(--display);font-size:19px;display:block;line-height:1.1}
+.sitebar .brand small{font-size:13px;color:var(--muted)}
+.sitebar nav{display:flex;gap:6px;flex-wrap:wrap}
+.sitebar nav a{font-family:var(--display);font-size:16px;text-decoration:none;color:var(--ink);padding:5px 12px;border-radius:999px;border:1px solid var(--line)}
+.sitebar nav a:hover{border-color:var(--gold)}
+.review{background:var(--gold-soft);border-left:5px solid var(--gold);border-radius:8px;padding:12px 16px;font-size:16px;margin-top:14px}
+.kind-note{font-size:17px;margin:0 0 12px;color:#F3D08A}
+/* Header */
+header.hero{padding:36px 0 18px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--display);letter-spacing:.04em;color:var(--gold);font-size:18px}
+h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;margin:6px 0 10px}
+.lede{font-size:20px;color:var(--muted);max-width:62ch;margin:0}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+nav.toc a{font-family:var(--display);font-size:17px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:6px 14px;border-radius:999px}
+nav.toc a:hover{border-color:var(--gold)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:16px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.g{background:var(--gold)}.dot.r{background:var(--red)}.dot.t{background:var(--teal);border-radius:2px}
+
+section{padding:40px 0 10px}
+section > .wrap > h2{font-size:clamp(28px,3.6vw,38px);margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 18px;max-width:70ch}
+
+/* Timeline */
+.tl-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;-webkit-overflow-scrolling:touch}
+.tl-scroll svg{display:block}
+.tl-hint{font-size:15px;color:var(--muted);margin:8px 2px 0}
+.ev{cursor:pointer}
+.ev text{font-family:var(--display);font-size:15px;fill:var(--ink)}
+.ev:hover text,.ev.sel text{font-weight:700}
+.ev.sel circle,.ev.sel rect{stroke:var(--ink);stroke-width:2.5}
+.era-label{font-family:var(--display);font-size:14px;fill:var(--muted)}
+.yr{font-family:var(--display);font-size:12px;fill:var(--muted)}
+.detail{margin-top:14px;display:grid;grid-template-columns:6px 1fr;gap:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.detail .bar{border-radius:3px;background:var(--gold)}
+.detail.r .bar{background:var(--red)}.detail.t .bar{background:var(--teal)}
+.detail h3{font-size:24px}
+.detail .when{font-family:var(--display);color:var(--muted);font-size:16px}
+.detail p{margin:6px 0}
+.src{font-size:15px;color:var(--muted)}
+.src a{margin-right:10px}
+.badge{display:inline-block;font-family:var(--display);font-size:13px;padding:1px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:6px;vertical-align:2px}
+
+/* Crisis & revival */
+.pair{display:grid;grid-template-columns:1fr 44px 1fr;align-items:stretch;margin:14px 0}
+.pair .card{border-radius:10px;padding:16px 18px}
+.crisis{background:var(--red-soft);border-left:6px solid var(--red)}
+.revival{background:var(--gold-soft);border-left:6px solid var(--gold)}
+.pair .arrow{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:28px;color:var(--muted)}
+.card .tag{font-family:var(--display);font-size:14px;letter-spacing:.03em}
+.crisis .tag{color:var(--red)}.revival .tag{color:var(--gold)}
+.card h3{font-size:22px;margin:2px 0 6px}
+.card p{margin:0 0 6px}
+
+.magha{background:var(--red-deep);color:#F6E9E6;border-radius:12px;padding:28px 26px;margin:10px 0 26px}
+:root .magha a{color:#F5C9A4}
+.magha .tag{font-family:var(--display);color:#F08A7E;font-size:16px;letter-spacing:.05em}
+.magha h3{font-size:clamp(28px,3.4vw,40px);margin:4px 0 6px;color:#fff}
+.magha .when{font-family:var(--display);color:#E8B9B2}
+.magha-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;margin-top:14px}
+.magha ul{margin:0;padding-left:20px}
+.magha li{margin:4px 0}
+.magha .recover{background:rgba(255,255,255,.07);border-radius:10px;padding:14px 16px;border-left:5px solid #E2A93C}
+.magha .recover h4{font-family:var(--display);font-size:20px;margin:0 0 6px;color:#F3D08A}
+.magha .note{font-size:15px;color:#E8C7C1;margin-top:14px;border-top:1px solid rgba(255,255,255,.15);padding-top:10px}
+
+/* Photographs */
+.ph{margin:12px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px}
+.ph img{display:block;width:100%;height:auto;border-radius:6px;filter:sepia(.25)}
+.ph figcaption{font-family:var(--display);font-size:15px;color:var(--muted);margin-top:6px}
+.detail .ph{max-width:560px}
+.phpair{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;margin-bottom:6px}
+.phpair .arrow{display:flex;justify-content:center;font-family:var(--display);font-size:28px;color:var(--muted)}
+.phgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:12px}
+.phgrid .ph img{height:220px;object-fit:cover;object-position:center 30%}
+@media (max-width:760px){.phpair{grid-template-columns:1fr}.phpair .arrow{transform:rotate(90deg);height:30px}}
+/* Map */
+.map-grid{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:start}
+.map-box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
+.map-box svg{width:100%;height:auto;display:block}
+.island{fill:var(--teal-soft);stroke:var(--teal);stroke-width:1.2}
+.route{fill:none;stroke:var(--gold);stroke-width:2.2;stroke-dasharray:5 4}
+.cap circle{fill:var(--surface);stroke:var(--gold);stroke-width:2}
+.cap.on circle{fill:var(--gold)}
+.cap text{font-family:var(--display);font-size:11px;fill:var(--ink)}
+.cap .num{font-size:9px;fill:var(--ink);font-weight:700}
+.cap.on .num{fill:#fff}
+.site rect{fill:var(--teal)}
+.site text{font-family:var(--display);font-size:10px;fill:var(--teal)}
+.step-panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.step-panel h3{font-size:26px}
+.step-panel .when{font-family:var(--display);color:var(--muted)}
+.steps{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+button{font-family:var(--display);font-size:17px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 16px;cursor:pointer}
+button.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+button:hover{border-color:var(--gold)}
+.capbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.capbtns button{font-size:15px;padding:4px 10px}
+.capbtns button.on{background:var(--gold-soft);border-color:var(--gold)}
+
+/* Kings */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{font-size:16px;padding:5px 12px}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font-size:15px;padding:4px 12px}
+.filters button[aria-pressed="true"].g{background:var(--gold-soft);border-color:var(--gold)}
+.filters button[aria-pressed="true"].r{background:var(--red-soft);border-color:var(--red)}
+.filters button[aria-pressed="true"].t{background:var(--teal-soft);border-color:var(--teal)}
+input[type=search]{font-family:var(--body);font-size:17px;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:220px}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.king{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-top:5px solid var(--line)}
+.king.has-g{border-top-color:var(--gold)}
+.king.has-r{border-top-color:var(--red)}
+.king.has-g.has-r{border-top:5px solid;border-image:linear-gradient(90deg,var(--gold) 50%,var(--red) 50%) 1}
+.king h3{font-size:22px}
+.king .when{font-family:var(--display);color:var(--muted);font-size:15px}
+.king .row{font-size:17px;display:grid;grid-template-columns:72px 1fr;gap:8px}
+.king .row b{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);padding-top:2px}
+.king .row.r span{color:var(--red)}
+.count{font-size:15px;color:var(--muted)}
+
+/* Quiz */
+.quiz{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.q p{margin:0 0 8px;font-weight:600}
+.q .opts{display:flex;flex-direction:column;gap:6px}
+.q .opts button{text-align:left;font-family:var(--body);font-size:17px}
+.q .opts button.ok{background:var(--teal-soft);border-color:var(--teal)}
+.q .opts button.no{background:var(--red-soft);border-color:var(--red)}
+.q .why{font-size:15px;color:var(--muted);margin-top:8px;min-height:1em}
+.score{font-family:var(--display);font-size:20px;margin:10px 0}
+
+/* Sources */
+.srcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.srcgrid .s{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.srcgrid h3{font-size:20px}
+.srcgrid p{margin:4px 0;font-size:16px;color:var(--muted)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
+
+@media (max-width:760px){
+  body{font-size:18px}
+  .pair{grid-template-columns:1fr}
+  .pair .arrow{transform:rotate(90deg);height:34px}
+  .magha-grid,.map-grid{grid-template-columns:1fr}
+  .king .row{grid-template-columns:62px 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="sitebar">
+  <div class="wrap">
+    <a class="brand" href="padam.html" aria-label="දහම් පාඩම් වෙත">
+      <img src="assets/img/logo.jpg" alt="Mahamevnawa Dhamma School UK" width="40" height="40">
+      <span><b>දහම් පාඩම්</b><small>Mahamevnawa Dhamma School UK</small></span>
+    </a>
+    <nav aria-label="දහම් පාසල">
+      <a href="index.html">සිරිත් මල්දම</a>
+      <a href="padam.html">පාඩම්</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">ශ්‍රී ලංකා ඉතිහාසය · ක්‍රි.පූ. 543 – ක්‍රි.ව. 2026</div>
+    <h1>බුදුසසුනේ වසර 2,500ක ගමන</h1>
+    <p class="lede">සසුන ගොඩනැඟූ රජවරු, එයට හානි කළ අවස්ථා, සහ හැම විනාශයකින්ම පසු සසුන නැවත නැඟී සිටි ආකාරය. සෑම කරුණකටම මහාවංශය, චූලවංශය හෝ රාජාවලිය වැනි මූලාශ්‍රයක සබැඳියක් ඇත.</p>
+    <nav class="toc" aria-label="පිටුවේ කොටස්">
+      <a href="#timeline">කාලරේඛාව</a>
+      <a href="#crisis">විනාශය සහ පුනරුදය</a>
+      <a href="#photos">පැරණි ඡායාරූප</a>
+      <a href="#map">අගනුවර සහ දළදා ගමන</a>
+      <a href="#kings">රජවරු</a>
+      <a href="#quiz">ප්‍රශ්නාවලිය</a>
+      <a href="#sources">මූලාශ්‍ර</a>
+    </nav>
+    <div class="legend" aria-label="වර්ණ අර්ථය">
+      <span><i class="dot g"></i> බුදුසසුනට කළ සේවය</span>
+      <span><i class="dot r"></i> බුදුසසුනට වූ හානිය</span>
+      <span><i class="dot t"></i> රටට කළ සේවය (වැව්, නගර, ජයග්‍රහණ)</span>
+    </div>
+  </div>
+</header>
+
+<section id="timeline">
+  <div class="wrap">
+    <h2>කාලරේඛාව</h2>
+    <p class="sub">රේඛාවට ඉහළින් සසුනට කළ සේවය, පහළින් හානිය, රේඛාව මත රටට කළ සේවය. සලකුණ විශාල වන තරමට සිදුවීමේ බලපෑම විශාලය. ඕනෑම සලකුණක් ඔබා විස්තරය සහ මූලාශ්‍රය බලන්න.</p>
+    <div class="tl-scroll" id="tlScroll"><svg id="tl" role="img" aria-label="ශ්‍රී ලංකා ඉතිහාසයේ සහ බුදුසසුනේ කාලරේඛාව"></svg></div>
+    <p class="tl-hint">← දකුණට අදින්න / ස්ක්‍රෝල් කරන්න →</p>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="crisis">
+  <div class="wrap">
+    <h2>විනාශය සහ පුනරුදය</h2>
+    <p class="sub">සසුනට සිදු වූ බරපතළම හානි අවස්ථා සහ ඉන් පසු එය නැවත ගොඩනැඟූ අය. හැම අර්බුදයකින්ම පසු සසුන නැවත නැඟී සිටියේ රජවරුන්, සංඝයා සහ ජනතාව එක්ව කළ වෙහෙස නිසාය.</p>
+    <div id="magha"></div>
+    <div id="pairs"></div>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="wrap">
+    <h2>1908 දී අනුරාධපුරය: පැරණි ඡායාරූප</h2>
+    <p class="sub">යුද්ධ, ආක්‍රමණ සහ සියවස් ගණනාවක් අත්හැර දැමීම නිසා අනුරාධපුරයේ මහා දාගැබ් කැලෑවෙන් වැසී ගියේය. මේ ඡායාරූප ගත්තේ ඒවා ප්‍රතිසංස්කරණය කිරීමට පටන් ගත් කාලයේය. වම් පස ප්‍රතිසංස්කරණයට පෙර, දකුණු පස පසු.</p>
+    <div id="phpairs"></div>
+    <div class="phgrid" id="phgrid"></div>
+    <p class="src">ඡායාරූප: බ්‍රහ්මචාරී වලිසිංහ හරිශ්චන්ද්‍ර, <i>The Sacred City of Anuradhapura</i>, 1908 (<a href="https://archive.org/details/sacredcityofanur00haririch" target="_blank" rel="noopener">archive.org</a>). එක් එක් හානිය කවර ආක්‍රමණයකින් සිදු වූවාදැයි මේ ඡායාරූපවලින් කිව නොහැක.</p>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap">
+    <h2>අගනුවර මාරුව සහ දළදා වහන්සේගේ ගමන</h2>
+    <p class="sub">ආක්‍රමණ සහ යුද්ධ නිසා අගනුවර දකුණටත් කඳුකරයටත් ගෙන ගියේය. දළදා වහන්සේ රජකමේ සංකේතය වූ බැවින් හැම අගනුවරකටම වැඩම කළහ.</p>
+    <div class="map-grid">
+      <div class="map-box"><svg id="mapsvg" viewBox="0 0 280 420" role="img" aria-label="ශ්‍රී ලංකාවේ සරල සිතියම: අගනුවර සහ පූජනීය ස්ථාන"></svg></div>
+      <div>
+        <div class="step-panel" id="stepPanel" aria-live="polite"></div>
+        <div class="steps">
+          <button type="button" id="prevCap">← පෙර</button>
+          <button type="button" class="primary" id="nextCap">ඊළඟ අගනුවර →</button>
+        </div>
+        <div class="capbtns" id="capBtns"></div>
+        <p class="src" style="margin-top:12px">සිතියම සරල කළ රූපයකි; දුර ප්‍රමාණ නිවැරදි නොවේ. කොළ කොටු = පූජනීය ස්ථාන.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kings">
+  <div class="wrap">
+    <h2>රජවරු සහ පාලකයන්</h2>
+    <p class="sub">එක් එක් පාලකයා රටට කළ දේ සහ සසුනට කළ දේ. යුගය තෝරන්න, නමින් සොයන්න, නැතහොත් වර්ගය අනුව පෙරන්න.</p>
+    <div class="tools">
+      <div class="tabs" role="tablist" id="eraTabs"></div>
+    </div>
+    <div class="tools">
+      <label for="kq" class="count">සොයන්න:</label>
+      <input type="search" id="kq" placeholder="උදා: පරාක්‍රමබාහු">
+      <div class="filters" id="kfilters">
+        <button type="button" class="g" data-f="g" aria-pressed="false">සසුනට සේවය</button>
+        <button type="button" class="r" data-f="r" aria-pressed="false">හානි</button>
+        <button type="button" class="t" data-f="t" aria-pressed="false">රටට සේවය</button>
+      </div>
+      <span class="count" id="kcount"></span>
+    </div>
+    <div class="kgrid" id="kgrid"></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <h2>ප්‍රශ්නාවලිය</h2>
+    <p class="sub">ඔබ ඉගෙන ගත් දේ පරීක්ෂා කර බලන්න. පිළිතුරක් ඔබූ විට නිවැරදි පිළිතුර සහ මූලාශ්‍රය පෙන්වයි.</p>
+    <div class="score" id="score">ලකුණු: 0 / 8</div>
+    <div class="quiz" id="quizbox"></div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <h2>මූලාශ්‍ර සහ තවදුරටත් කියවීමට</h2>
+    <p class="sub">මෙහි සෑම කරුණක්ම පහත මූලාශ්‍රවලින් ගෙන ඇත. සාක්ෂි මට්ටම: <b>A</b> ශිලා ලේඛන/පුරාවිද්‍යාව · <b>B</b> මහාවංශය/චූලවංශය · <b>C</b> පසුකාලීන වංශකතා හෝ සම්ප්‍රදාය.</p>
+    <div class="srcgrid" id="srcgrid"></div>
+    <p class="review"><b>ගුරුතුමන්ලාට:</b> අපේ අනෙක් දහම් පාඩම් tripitaka.online, mahamevnawa.lk සහ mahamegha.lk යන මූලාශ්‍ර තුනෙන් පමණක් සකස් කර ඇත. මෙම ඉතිහාස පාඩම පමණක් රාජාවලිය සහ චූලවංශයද භාවිත කරයි; මහසේන රජුගෙන් පසු කාලය ඒවායින් ගත් බැවිනි. මෙහි ඇති පැහැදිලි කිරීම් මහමෙව්නාව ස්වාමීන් වහන්සේ නමක් හෝ දහම් පාසල් ගුරුතුමෙකු විසින් පරීක්ෂා කර අනුමත කළ යුතුය.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">සකස් කළේ 2026 නොවැම්බර් 13. වර්ෂ ගණන් සාම්ප්‍රදායික කාලානුක්‍රමය අනුවය; පුරාණ දින වසර කිහිපයකින් වෙනස් විය හැක.</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+/* ---------- Sources ---------- */
+var VOL1="https://books.lakdiva.org.lk/culavamsa/vol_1.html", VOL2="https://books.lakdiva.org.lk/culavamsa/vol_2.html";
+var RJ="https://archive.org/details/in.ernet.dli.2015.42908";
+var TP={340:"චූළහත්ථිපදෝපම සූත්‍රය",782:"බාලපණ්ඩිත සූත්‍රය",783:"දේවදූත සූත්‍රය"};
+function pad(n){return n<10?"0"+n:""+n}
+function srcLink(k){
+  var p=k.split(":"),t=p[0],v=p[1];
+  if(t==="mv")return {l:"මහාවංශය "+v,u:"https://mahamevnawa.lk/mahawanshaya-cp-"+pad(+v)+"/"};
+  if(t==="cv")return {l:"චූලවංශය "+v,u:(+v<=79?VOL1:VOL2)};
+  if(t==="rj")return {l:"රාජාවලිය පි. "+v,u:RJ};
+  if(t==="tp")return {l:TP[v]||"ත්‍රිපිටකය",u:"https://www.tripitaka.online/sutta/"+v};
+  if(t==="mm")return {l:"මහාමේඝ ලිපිය",u:"https://mahamegha.lk/2021/08/14/mahawansaya/"};
+  if(t==="pr")return {l:"ThePrint/ANI 2024",u:"https://theprint.in/world/sri-lanka-president-dissanayake-swears-in-21-member-cabinet-harini-amarasuriya-appointed-as-pm/2361825/"};
+  return {l:v||t,u:""};
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function srcHTML(list){
+  if(!list||!list.length)return "";
+  return '<div class="src">මූලාශ්‍ර: '+list.map(function(k){var s=srcLink(k);return s.u?'<a href="'+s.u+'" target="_blank" rel="noopener">'+esc(s.l)+'</a>':esc(s.l)}).join(" ")+'</div>';
+}
+function yr(y){return y<0?"ක්‍රි.පූ. "+(-y):"ක්‍රි.ව. "+y}
+
+/* ---------- Eras ---------- */
+var ERAS=[
+  {k:"pre",n:"අනුරාධපුරයට පෙර",a:-543,b:-437},
+  {k:"anu",n:"අනුරාධපුර",a:-437,b:1017},
+  {k:"pol",n:"චෝළ සහ පොළොන්නරුව",a:1017,b:1232},
+  {k:"tra",n:"දඹදෙණිය සිට කෝට්ටේ",a:1232,b:1597},
+  {k:"kan",n:"සීතාවක සහ මහනුවර",a:1597,b:1815},
+  {k:"col",n:"බ්‍රිතාන්‍ය යුගය",a:1815,b:1948},
+  {k:"mod",n:"නිදහස් ලංකාව",a:1948,b:2026}
+];
+
+/* ---------- Timeline events: s = g (Sasana), r (harm), t (country); m = size 1-3 ---------- */
+var EV=[
+  {y:-543,s:"t",m:1,n:"විජය පැමිණීම",d:"සාම්ප්‍රදායික වංශකතාවට අනුව විජය කුමරු සහ පිරිස තම්බපණ්ණියට පැමිණ රාජ්‍යය පිහිටුවීම. මෙම දිනය වංශකතා දිනයකි.",e:"B/C",src:["mv:6","mv:7","rj:15–20"]},
+  {y:-437,s:"t",m:2,n:"අනුරාධපුර නගරය",d:"පණ්ඩුකාභය රජු අනුරාධපුරය සැලසුම් සහගත අගනුවරක් කළේය; අභයවාපිය (බසවක්කුළම) තැනුවේය; දිවයින පුරා ගම් මායිම් නියම කළේය.",e:"B",src:["mv:10","rj:22"]},
+  {y:-306,s:"g",m:3,n:"මිහිඳු හිමියන්ගේ පැමිණීම",ph:"mihintale-steps",d:"පොසොන් දිනෙක මිහින්තලේදී මිහිඳු මහරහතන් වහන්සේ දේවානම්පියතිස්ස රජුට චූළහත්ථිපදෝපම සූත්‍රය දේශනා කළහ. මහාමේඝ උයන සංඝයාට පූජා කර මහාවිහාරය පිහිටුවිණි.",e:"A/B",src:["mv:13","mv:14","mv:15","tp:340"]},
+  {y:-288,s:"g",m:3,n:"ශ්‍රී මහා බෝධිය",ph:"sri-maha-bodhi",d:"සංඝමිත්තා තෙරණිය බුද්ධගයාවේ බෝධියේ දකුණු ශාඛාව රැගෙන ආවාය; අනුරාධපුරයේ රෝපණය කෙරිණි. භික්ෂුණී සසුනද පිහිටියේය.",e:"B",src:["mv:18","mv:19"]},
+  {y:-161,s:"t",m:3,n:"දුටුගැමුණු රට එක් කරයි",d:"එළාර ඇතුළු ප්‍රාදේශීය පාලකයන් 32 දෙනා පරාජය කර දිවයින එක් රාජ්‍යයක් කළේය. පරාජිත එළාරට ගෞරව සහිත ස්මාරකයක් තැනුවේය.",e:"B",src:["mv:25","rj:~28–44"]},
+  {y:-140,s:"g",m:3,n:"රුවන්වැලි මහා සෑය",ph:"ruwanweli-murage",d:"දුටුගැමුණු රජු මිරිසවැටිය, ලෝවාමහාපාය සහ රුවන්වැලි මහා සෑය ඉදි කළේය. සෑයේ වැඩ සද්ධාතිස්ස රජු නිම කළේය.",e:"A/B",src:["mv:26","mv:27","mv:28","mv:31","mv:33"]},
+  {y:-103,s:"r",m:2,n:"ආක්‍රමණය සහ සාගතය",d:"වළගම්බා රජු දකුණු ඉන්දීය ආක්‍රමණිකයන්ගෙන් පරාජය වී පලා ගියේය. වසර 14කට වැඩි කාලයක් රට විදේශ පාලනයට යටත් විය; සසුන් ආයතන දුර්වල විය.",e:"B",src:["mv:33"]},
+  {y:-88,s:"g",m:2,n:"අභයගිරි විහාරය",ph:"abhayagiri-before",d:"රාජ්‍යය යළි ලබාගත් වළගම්බා රජු අභයගිරි විහාරය ඉදි කළේය.",e:"B",src:["mv:33","rj:~45"]},
+  {y:-80,s:"g",m:3,n:"ත්‍රිපිටකය ලියැවේ",d:"කටපාඩමින් ආ ත්‍රිපිටකය සහ අට්ඨකථා ඉටිපත්වල ලියා තැබූ බව මහාවංශය කියයි (අලුවිහාර සම්ප්‍රදාය). ලොව ප්‍රථම වරට පාලි ත්‍රිපිටකය ලේඛනගත වූයේ මෙසේය.",e:"B",src:["mv:33"]},
+  {y:-58,s:"r",m:2,n:"චෝරනාග: විහාර 18ක් විනාශ",d:"තමාට සැඟවීමට ඉඩ නොදුන් විහාර 18ක් චෝරනාග රජු විනාශ කළ බව මහාවංශයත් රාජාවලියත් කියයි.",e:"B",src:["mv:34","rj:~46"]},
+  {y:30,s:"r",m:1,n:"භික්ෂූන් 60ක් ඝාතනය",d:"කුමන්ත්‍රණයක් කළ බවට චෝදනා කළ භික්ෂූන් 60ක් කණිරජානු තිස්ස රජු ප්‍රපාතයකින් හෙළවූ බව මහාවංශය කියයි.",e:"B",src:["mv:35"]},
+  {y:85,s:"t",m:2,n:"වසභ රජුගේ වැව් 12",d:"වසභ රජු වැව් 12ක්, නගර ප්‍රාකාරය සහ දොරටු ඉදි කළේය.",e:"A/B",src:["mv:35","rj:~47–48"]},
+  {y:276,s:"r",m:2,n:"මහාවිහාරයට පීඩනය",ph:"jetavana",d:"මහසේන රජු මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. භික්ෂූන් රුහුණට සහ කඳුකරයට පලා ගියහ. පසුව සමාව ඉල්ලා ප්‍රතිසංස්කරණය කළේය.",e:"B",src:["mv:37"]},
+  {y:285,s:"t",m:3,n:"මින්නේරිය සහ වැව් 16",d:"මහසේන රජු මින්නේරිය මහවැව ඇතුළු වැව් 16ක් ඉදි කළේය. ජනතාව ඔහුට 'මින්නේරි දෙවියෝ' ලෙස පුදති.",e:"B",src:["mv:37","rj:~51–52"]},
+  {y:310,s:"g",m:3,n:"දළදා වහන්සේ වැඩම කරති",ph:"thuparama-dalada-ruins",d:"සිරිමේඝවණ්ණ රජුගේ 9 වන වසරේ කාලිංග දේශයෙන් දළදා වහන්සේ ලංකාවට වැඩම කළහ. එතැන් සිට දළදාව රජකමේ සංකේතය විය.",e:"B",src:["cv:37","rj:~53"]},
+  {y:415,s:"g",m:2,n:"බුද්ධඝෝෂ හිමි",d:"මහානාම රජු දවස බුද්ධඝෝෂ හිමියන් මහාවිහාරයේ වැඩ වසමින් සිංහල අට්ඨකථා පාලියට නැඟූහ.",e:"B",src:["cv:37","rj:~54"]},
+  {y:460,s:"t",m:2,n:"කලාවැව",d:"විදේශ පාලනය අවසන් කළ ධාතුසේන රජු කලාවැව සහ වැව් 18ක් ඉදි කළේය.",e:"B",src:["cv:38","rj:~55"]},
+  {y:480,s:"t",m:2,n:"සීගිරිය",d:"කාශ්‍යප I රජු සීගිරි නගරය සහ උයන් ඉදි කළේය.",e:"B",src:["cv:39"]},
+  {y:640,s:"r",m:2,n:"සිවිල් යුද්ධවල හානිය",d:"7 වන සියවසේ සිවිල් යුද්ධවලදී විහාර වස්තුව යුද වියදම්වලට ගැනිණි. දාඨෝපතිස්ස I ථූපාරාමයේ රන් අලංකාර ගලවා ගත්තේය.",e:"B",src:["cv:44","cv:45"]},
+  {y:840,s:"r",m:2,n:"පාණ්ඩ්‍ය කොල්ලය",d:"සේන I රජු දවස පාණ්ඩ්‍ය හමුදාව අනුරාධපුරය කොල්ලකා රන් පිළිම රැගෙන ගියේය. සේන II මදුරාව ආක්‍රමණය කර ඒවා ආපසු ගෙනාවේය.",e:"B",src:["cv:50","cv:51"]},
+  {y:1017,s:"r",m:3,n:"චෝළ ආක්‍රමණය",d:"චෝළ රාජේන්ද්‍ර I ගේ හමුදාව අනුරාධපුරය විනාශ කර මහින්ද V රජු අල්ලා ගෙන ගියේය. වසර 50කට ආසන්න කාලයක් රජරට චෝළ පාලනයට යටත් විය; විහාර කොල්ලකෑවිණි.",e:"B",src:["cv:55"]},
+  {y:1070,s:"t",m:3,n:"විජයබාහු I රට නිදහස් කරයි",d:"චෝළයන් පලවා හැර පොළොන්නරුව අගනුවර කළේය.",e:"A/B",src:["cv:58","rj:~59–60"]},
+  {y:1075,s:"g",m:3,n:"බුරුමයෙන් උපසම්පදාව",d:"උපසම්පදාව නැති වී ගිය බැවින් විජයබාහු I රජු රාමඤ්ඤ (බුරුම) දේශයෙන් භික්ෂූන් ගෙන්වා එය යළි පිහිටුවීය.",e:"B",src:["cv:60"]},
+  {y:1165,s:"g",m:3,n:"සංඝ ඒකීකරණය",d:"පරාක්‍රමබාහු I රජු නිකාය තුන එක් සංඝ සංවිධානයකට ගෙනාවේය (ගල්විහාර කතිකාවත).",e:"A/B",src:["cv:78"]},
+  {y:1170,s:"t",m:3,n:"පරාක්‍රම සමුද්‍රය",d:"වැසි දිය බිඳක්වත් ප්‍රයෝජනයකින් තොරව මුහුදට නොයා යුතු බව රජුගේ ප්‍රතිපත්තිය ලෙස චූලවංශය දක්වයි. මහා වාරි ව්‍යාපෘති රැසක් ඉදි විය.",e:"B",src:["cv:68","cv:79"]},
+  {y:1190,s:"g",m:2,n:"නිස්සංක මල්ල",d:"හැටදාගේ, රන්කොත් වෙහෙර සහ දඹුල්ල අලුත්වැඩියාව. ගල්පොත ඇතුළු ශිලා ලේඛන.",e:"A",src:["cv:80","rj:~63"]},
+  {y:1215,s:"r",m:3,n:"කාලිංග මාඝ",d:"සසුනට සිදු වූ බරපතළම විනාශයකි. විහාර කොල්ලකෑම, පොත් විනාශය, භික්ෂූන්ට සහ ජනතාවට පීඩනය. පොළොන්නරු රාජ්‍යය බිඳ වැටිණි. පහත 'විනාශය සහ පුනරුදය' කොටස බලන්න.",e:"B/C",src:["cv:80","rj:~63–64"]},
+  {y:1240,s:"g",m:3,n:"පරාක්‍රමබාහු II ගේ පුනරුදය",d:"මාඝ පලවා හැර සංඝයා යළි සංවිධානය කළේය; දකුණු ඉන්දියාවෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය. කව්සිළුමිණ රචනා කළ 'කලිකාල සාහිත්‍ය සර්වඥ පණ්ඩිත' රජු ය.",e:"B",src:["cv:81","cv:87","rj:~65"]},
+  {y:1284,s:"r",m:1,n:"දළදාව මදුරාවට",d:"පාණ්ඩ්‍ය ආක්‍රමණයෙන් දළදා වහන්සේ මදුරාවට ගෙන ගියහ. පරාක්‍රමබාහු III සාකච්ඡාවෙන් ආපසු වැඩම කළේය.",e:"B",src:["cv:90"]},
+  {y:1450,s:"t",m:2,n:"අවසන් එක්සත් ලංකාව",d:"පරාක්‍රමබාහු VI යටතේ සපුමල් කුමරු යාපනය අල්ලා ගැනීමෙන් සමස්ත දිවයින එක් පාලනයක් විය. කෝට්ටේ සාහිත්‍ය ස්වර්ණ යුගය.",e:"A/B",src:["cv:91","rj:~68–70"]},
+  {y:1505,s:"t",m:1,n:"පෘතුගීසීන් පැමිණෙති",d:"ධර්ම පරාක්‍රමබාහු IX රජු දවස පෘතුගීසීන් කොළඹට පැමිණියහ.",e:"B",src:["rj:~71–74"]},
+  {y:1560,s:"r",m:3,n:"පෘතුගීසි ප්‍රතිපත්තිය",d:"වෙරළබඩ ප්‍රදේශවල විහාර ඉඩම් සහ ආදායම් මිෂනාරීන්ට පැවරිණි; විහාර විනාශ කෙරිණි. ධර්මපාල රජු බව්තීස්ම වී රාජ්‍යය පෘතුගාලයට පැවරුවේය.",e:"B",src:["rj:~80","rj:~86–100"]},
+  {y:1562,s:"t",m:2,n:"මුල්ලේරියාව",d:"සීතාවක රාජසිංහ (I) පෘතුගීසි හමුදාව පරාජය කළේය.",e:"B",src:["rj:~87–88"]},
+  {y:1590,s:"r",m:2,n:"රාජසිංහ I පිළිබඳ චෝදනා",d:"ශෛව ආගමට හැරී, භික්ෂූන් මරා, ශ්‍රී පාදය ශෛව පූජකයන්ට දුන් බව පසුකාලීන බෞද්ධ වංශකතා කියයි. මේවා පසුකාලීන මූලාශ්‍ර බැවින් සාවධානව කියවිය යුතුය.",e:"C",src:["cv:93","rj:~87–95"]},
+  {y:1594,s:"t",m:2,n:"දන්තුර ජයග්‍රහණය",d:"විමලධර්මසූරිය I පෘතුගීසි හමුදාව සම්පූර්ණයෙන් පරාජය කළේය.",e:"B",src:["cv:94","rj:~97–101"]},
+  {y:1597,s:"g",m:2,n:"ගැටම්බේ උපසම්පදාව",d:"විමලධර්මසූරිය I දළදාව මහනුවරට වැඩම කරවා, අරකානයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය.",e:"B",src:["cv:94"]},
+  {y:1638,s:"t",m:2,n:"ගන්නෝරුව",d:"රාජසිංහ II පෘතුගීසීන් පරාජය කළේය; ලන්දේසි සහාය ඇතිව 1658 වන විට පෘතුගීසීන් පලවා හැරිණි.",e:"B",src:["cv:96","rj:~101–103"]},
+  {y:1753,s:"g",m:3,n:"සියම් උපසම්පදාව",d:"කීර්ති ශ්‍රී රාජසිංහ රජු, වැලිවිට සරණංකර හිමියන්ගේ මඟපෙන්වීමෙන් සියමෙන් උපාලි හිමි ඇතුළු පිරිස ගෙන්වා උපසම්පදාව යළි පිහිටුවීය. සියම් නිකාය ආරම්භය.",e:"A/B",src:["cv:99","cv:100"]},
+  {y:1807,s:"t",m:1,n:"මහනුවර වැව",d:"ශ්‍රී වික්‍රම රාජසිංහ කිරි මුහුද (මහනුවර වැව) සහ පත්තිරිප්පුව ඉදි කළේය.",e:"B",src:["cv:101"]},
+  {y:1815,s:"r",m:2,n:"රාජාණ්ඩුව අවසන්",d:"මහනුවර ගිවිසුමෙන් දිවයින බ්‍රිතාන්‍යයට යටත් විය. 5 වන වගන්තියෙන් බුදුදහම රැකීමට පොරොන්දු වුවද, පසුව රාජ්‍ය අනුග්‍රහය අහිමි විය.",e:"A",src:["cv:101"]},
+  {y:1873,s:"g",m:2,n:"බෞද්ධ පුනරුදය",ph:"ruwanweli-restoration",d:"පානදුර වාදය, විද්‍යෝදය පිරිවෙන, ඔල්කට් (1880) සහ අනගාරික ධර්මපාල. රුවන්වැලි සෑයේ ප්‍රතිසංස්කරණය ආරම්භ විය (1873–1940).",e:"A",src:["mm:"]},
+  {y:1885,s:"g",m:1,n:"වෙසක් නිවාඩුව",d:"ආණ්ඩුකාර ආතර් ගෝර්ඩන් යටතේ වෙසක් පොදු නිවාඩු දිනයක් විය.",e:"A",src:[]},
+  {y:1948,s:"t",m:3,n:"නිදහස",d:"1948 පෙබරවාරි 4 ලංකාව නිදහස ලැබීය.",e:"A",src:[]},
+  {y:1956,s:"g",m:2,n:"බුද්ධ ජයන්තිය",d:"බුද්ධ පරිනිර්වාණයෙන් වසර 2,500 සැමරුම: ත්‍රිපිටක සිංහල පරිවර්තනය සහ බෞද්ධ විශ්වකෝෂය ආරම්භ විය.",e:"A",src:[]},
+  {y:1978,s:"g",m:2,n:"ව්‍යවස්ථාවේ 9 වන වගන්තිය",d:"බුදුදහමට ප්‍රමුඛස්ථානය සහ බුද්ධ ශාසනය රැකීමේ රාජ්‍ය යුතුකම, අනෙක් ආගම්වල අයිතිවාසිකම් සමඟ (1972 දී 6 වන වගන්තියෙන් මුලින්).",e:"A",src:[]},
+  {y:2019,s:"g",m:1,n:"ත්‍රිපිටකය ජාතික උරුමය",d:"2019 දී ත්‍රිපිටකය ජාතික උරුමයක් ලෙස ප්‍රකාශයට පත් කෙරිණි.",e:"A",src:[]}
+];
+
+/* ---------- Photographs (Harischandra, The Sacred City of Anuradhapura, 1908) ---------- */
+var IMG="assets/img/ithihasaya/";
+var PH={
+  "mihintale-steps":{t:"මිහින්තලේ පළමු පඩිපෙළ",n:"I"},
+  "thuparama-dalada-ruins":{t:"ථූපාරාමය සහ අනුරාධපුරයේ පැරණි දළදා මාලිගාවේ නටබුන්",n:"VI"},
+  "sri-maha-bodhi":{t:"ජය ශ්‍රී මහා බෝධිය",n:"X"},
+  "isurumuni-before":{t:"ඉසුරුමුණි විහාරය — ප්‍රතිසංස්කරණයට පෙර",n:"XI"},
+  "isurumuni-after":{t:"ඉසුරුමුණි විහාරය — ප්‍රතිසංස්කරණයෙන් පසු",n:"XII"},
+  "mirisaweti":{t:"මිරිසවැටි දාගැබ",n:"XIII"},
+  "lovamahapaya-pillars":{t:"ලෝවාමහාපායේ ගල් කණු",n:"XV"},
+  "ruwanweli-murage":{t:"රුවන්වැලි දාගැබ සහ මුරගේ",n:"XVI"},
+  "ruwanweli-restoration":{t:"රුවන්වැලි දාගැබේ ප්‍රතිසංස්කරණ වැඩ",n:"XVIII"},
+  "abhayagiri-before":{t:"අභයගිරි දාගැබ — ප්‍රතිසංස්කරණයට පෙර",n:"XXII"},
+  "abhayagiri-partly-restored":{t:"අභයගිරි දාගැබ — කොටසක් ප්‍රතිසංස්කරණය කළ පසු",n:"XXIII"},
+  "jetavana":{t:"ජේතවනාරාම දාගැබ",n:"XXIV"},
+  "damaged-buddha-statue":{t:"හානි වූ බුද්ධ ප්‍රතිමාවක්",n:"XL"}
+};
+function imgSrc(k){return IMG+k+".jpg"}
+function fig(k){var p=PH[k];if(!p)return "";return '<figure class="ph"><img src="'+imgSrc(k)+'" alt="'+esc(p.t)+' (1908)" loading="lazy"><figcaption>'+esc(p.t)+' · 1908 · ඡායාරූපය '+p.n+'</figcaption></figure>'}
+function buildPhotos(){
+  var pairs=[["isurumuni-before","isurumuni-after"],["abhayagiri-before","abhayagiri-partly-restored"]];
+  document.getElementById("phpairs").innerHTML=pairs.map(function(x){return '<div class="phpair">'+fig(x[0])+'<div class="arrow" aria-hidden="true">→</div>'+fig(x[1])+'</div>'}).join("");
+  var rest=["damaged-buddha-statue","thuparama-dalada-ruins","jetavana","lovamahapaya-pillars","mirisaweti","ruwanweli-murage","ruwanweli-restoration","sri-maha-bodhi","mihintale-steps"];
+  document.getElementById("phgrid").innerHTML=rest.map(fig).join("");
+}
+
+/* ---------- Timeline render ---------- */
+var X0=-560, X1=2040, BRK=1000, P1=0.85, P2=2.0, W=Math.round((BRK-X0)*P1+(X1-BRK)*P2)+60, H=520, AX=265;
+function xs(y){return 20+(y<=BRK?(y-X0)*P1:(BRK-X0)*P1+(y-BRK)*P2)}
+function tw(s){return s.length*7.2+12}
+function buildTimeline(){
+  var svg=document.getElementById("tl");
+  svg.setAttribute("width",W);svg.setAttribute("height",H);svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  var ns="http://www.w3.org/2000/svg",out=[];
+  var tints=["var(--line)","transparent"];
+  ERAS.forEach(function(e,i){
+    var x=xs(e.a),w=xs(e.b)-x;
+    out.push('<rect x="'+x+'" y="0" width="'+w+'" height="'+H+'" fill="'+(i%2?"transparent":"var(--bg)")+'" opacity="0.6"/>');
+    out.push('<text class="era-label" x="'+(x+6)+'" y="'+(H-10)+'">'+esc(e.n)+'</text>');
+  });
+  out.push('<line x1="10" x2="'+(W-10)+'" y1="'+AX+'" y2="'+AX+'" stroke="var(--muted)" stroke-width="2"/>');
+  for(var y=-500;y<=2000;y+=100){
+    var x=xs(y);
+    out.push('<line x1="'+x+'" x2="'+x+'" y1="'+(AX-4)+'" y2="'+(AX+4)+'" stroke="var(--muted)"/>');
+    if(y%200===0||y===-500||y>1000)out.push('<text class="yr" x="'+x+'" y="'+(AX+18)+'" text-anchor="middle">'+(y<0?"ක්‍රි.පූ. "+(-y):(y===0?"0":y))+'</text>');
+  }
+  var lanes={g:[],r:[],t:[]};
+  EV.forEach(function(ev,i){
+    var x=xs(ev.y), side=ev.s, L=lanes[side], lane=0, r=4+ev.m*3, label=ev.n, g;
+    while(L[lane]!==undefined && x-r<L[lane]) lane++;
+    L[lane]=x+r+tw(label);
+    if(side==="t"){
+      var ly = AX+36+lane*20;
+      out.push('<g class="ev" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(yr(ev.y)+" "+label)+'">'+
+        '<line x1="'+x+'" x2="'+x+'" y1="'+AX+'" y2="'+(ly+(ly<AX?4:-12))+'" stroke="var(--teal)" stroke-width="1" opacity=".6"/>'+
+        '<rect x="'+(x-r)+'" y="'+(AX-r)+'" width="'+(2*r)+'" height="'+(2*r)+'" rx="2" fill="var(--teal)"/>'+
+        '<text x="'+(x+4)+'" y="'+ly+'" fill="var(--teal)" style="fill:var(--teal)">'+esc(label)+'</text></g>');
+    }else{
+      var up=side==="g", stem=(up?40:100)+lane*34, cy=up?AX-stem:AX+stem;
+      var col=up?"var(--gold)":"var(--red)";
+      out.push('<g class="ev" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(yr(ev.y)+" "+label)+'">'+
+        '<line x1="'+x+'" x2="'+x+'" y1="'+AX+'" y2="'+cy+'" stroke="'+col+'" stroke-width="'+(ev.m===3?2.5:1.5)+'"/>'+
+        '<circle cx="'+x+'" cy="'+cy+'" r="'+r+'" fill="'+col+'"/>'+
+        '<text x="'+(x+r+4)+'" y="'+(cy+5)+'">'+esc(label)+'</text></g>');
+    }
+  });
+  svg.innerHTML=out.join("");
+  svg.addEventListener("click",function(e){var g=e.target.closest(".ev");if(g)select(+g.dataset.i)});
+  svg.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("ev")){e.preventDefault();select(+e.target.dataset.i)}});
+}
+function select(i){
+  var ev=EV[i];
+  document.querySelectorAll("#tl .ev").forEach(function(g){g.classList.toggle("sel",+g.dataset.i===i)});
+  var d=document.getElementById("detail");
+  d.className="detail "+ev.s;
+  var kind=ev.s==="g"?"බුදුසසුනට කළ සේවය":ev.s==="r"?"බුදුසසුනට වූ හානිය":"රටට කළ සේවය";
+  d.innerHTML='<div class="bar"></div><div><div class="when">'+yr(ev.y)+' · '+kind+'<span class="badge">සාක්ෂි '+ev.e+'</span></div><h3>'+esc(ev.n)+'</h3><p>'+esc(ev.d)+'</p>'+srcHTML(ev.src)+(ev.ph?fig(ev.ph):'')+'</div>';
+}
+
+/* ---------- Crisis & revival ---------- */
+var PAIRS=[
+  {c:"වළගම්බා යුගයේ ආක්‍රමණය සහ සාගතය",cy:"ක්‍රි.පූ. 103",cd:"රජු පලා ගිය අතර වසර 14ක් පමණ රට විදේශ පාලනයට යටත් විය. භික්ෂූන් ජීවත් වීමට දුෂ්කර විය.",r:"අභයගිරිය සහ ත්‍රිපිටකය ලියැවීම",ry:"ක්‍රි.පූ. 89–77",rd:"රාජ්‍යය යළි ලබාගත් වළගම්බා අභයගිරිය තැනුවේය; කටපාඩමින් ආ ධර්මය නැති නොවන ලෙස ලියා තැබිණි.",src:["mv:33"]},
+  {c:"මහසේන: මහාවිහාරයට පීඩනය",cy:"ක්‍රි.ව. 274–301",cd:"මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. මහාවිහාරය වසර ගණනක් හිස්ව තිබිණි.",r:"මේඝවණ්ණාභය ඇමතිගේ මැදිහත්වීම",ry:"එම රාජ්‍ය කාලයේම",rd:"ඇමතියා විරෝධය පෑ විට රජු සමාව ඉල්ලා මහාවිහාරය යළි ගොඩනැඟීමට ඉඩ දුන්නේය; භික්ෂූන් ආපසු පැමිණියහ.",src:["mv:37"]},
+  {c:"7 වන සියවසේ සිවිල් යුද්ධ",cy:"ක්‍රි.ව. 623–652",cd:"රජ පවුල් අතර යුද්ධවලදී විහාර වස්තුව යුද වියදම්වලට ගැනිණි; ථූපාරාමයේ රන් අලංකාර ගැලවිණි.",r:"යුද්ධයෙන් පසු ප්‍රතිසංස්කරණ",ry:"ක්‍රි.ව. 652–726",rd:"කාශ්‍යප II සහ මානවම්ම යටතේ ස්ථාවර පාලනයක් ඇති වී විහාර ජීවිතය යළි ශක්තිමත් විය.",src:["cv:44","cv:45","cv:47"]},
+  {c:"චෝළ ආක්‍රමණය",cy:"ක්‍රි.ව. 1017",cd:"අනුරාධපුරය විනාශ විය; රජු අල්ලා ගෙන ගියේය; වසර 50කට ආසන්න කාලයක් රජරට චෝළ පාලනයේ විය. උපසම්පදාව පවා නැති විය.",r:"විජයබාහු I",ry:"ක්‍රි.ව. 1070",rd:"චෝළයන් පලවා හැර, බුරුමයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව යළි පිහිටුවීය; විහාර සහ පිරිවෙන් අලුත්වැඩියා කළේය.",src:["cv:55","cv:58","cv:60"]},
+  {c:"පෘතුගීසි ප්‍රතිපත්තිය සහ රාජසිංහ I",cy:"1550–1650",cd:"වෙරළබඩ විහාර දේපළ මිෂනාරීන්ට ගියේය; විහාර විනාශ කෙරිණි. රාජසිංහ I භික්ෂූන්ට පීඩා කළ බව පසුකාලීන වංශකතා කියයි (සාක්ෂි C).",r:"විමලධර්මසූරිය I",ry:"1592–1604",rd:"දන්තුරේදී පෘතුගීසීන් පරාජය කර, දළදාව මහනුවරට ගෙනැවිත්, අරකානයෙන් භික්ෂූන් ගෙන්වා 1597 දී උපසම්පදාව කළේය.",src:["cv:93","cv:94","rj:~80","rj:~97–101"]},
+  {c:"උපසම්පදාව නැති වීම",cy:"18 වන සියවස මුල",cd:"නිසි උපසම්පදාව ඇති භික්ෂූන් නැති තරම් විය; සසුන සාමණේරයන් සහ 'ගණින්නාන්සේලා' මත රැඳී තිබිණි.",r:"1753 සියම් උපසම්පදාව",ry:"1753",rd:"කීර්ති ශ්‍රී රාජසිංහ රජු සහ වැලිවිට සරණංකර හිමියන් සියමෙන් උපාලි හිමි ඇතුළු පිරිස ගෙන්වා උපසම්පදාව යළි පිහිටුවූහ.",src:["cv:99","cv:100"]},
+  {c:"බ්‍රිතාන්‍ය යුගයේ ආයතනික පසුබෑම",cy:"1815–1870",cd:"රාජ්‍ය අනුග්‍රහය අහිමි විය; මිෂනාරි පාසල්වලට රාජ්‍ය සහාය ලැබුණු අතර පන්සල් අධ්‍යාපනය පසුබැස්සේය.",r:"බෞද්ධ පුනරුදය",ry:"1873–1940",rd:"පානදුර වාදය, බෞද්ධ පාසල්, වෙසක් නිවාඩුව (1885) සහ රුවන්වැලි සෑයේ ප්‍රතිසංස්කරණය. මේ වතාවේ සසුන රැක්කේ රජවරු නොව සංඝයා සහ ජනතාවයි.",src:["mm:"]}
+];
+function buildCrisis(){
+  document.getElementById("magha").innerHTML=
+  '<article class="magha" aria-labelledby="mh">'+
+   '<div class="tag">බරපතළම විනාශය</div>'+
+   '<h3 id="mh">කාලිංග මාඝ</h3>'+
+   '<div class="when">ක්‍රි.ව. 1215–1236 · පොළොන්නරුව සහ රජරට · සාක්ෂි B/C</div>'+
+   '<p class="kind-note">පින්වත් දරුවනේ, අපි මේ ඉතිහාසය ඉගෙන ගන්නේ කිසිම ජාතියකට හෝ ආගමකට වෛර කරන්න නොවේ. සසුන රැකගන්න අපේ මුතුන් මිත්තන් කොතරම් වෙහෙසුණාද කියා තේරුම් ගන්නයි.</p>'+
+   '<div class="magha-grid">'+
+    '<div><p>කාලිංගයේ සිට සෙබළුන් දහස් ගණනක් සමඟ (චූලවංශයට අනුව 24,000ක්, රාජාවලියට අනුව 20,000ක්) ගොඩබැසූ මාඝ, රජු අල්ලා ඇස් අන්ධ කර පොළොන්නරුව අත්පත් කර ගත්තේය. වංශකතා විස්තර කරන හානිය:</p>'+
+    '<ul>'+
+     '<li>විහාර සහ දාගැබ් කොල්ලකෑම, ධාතු නිධාන සොයා දාගැබ් බිඳීම</li>'+
+     '<li>ධර්ම ග්‍රන්ථ ලිහා විසිරීම සහ විනාශ කිරීම</li>'+
+     '<li>භික්ෂූන්ට සහ ජනතාවට වධ දීම, ධනවතුන්ගෙන් වස්තුව උදුරා ගැනීම</li>'+
+     '<li>විහාර ඉඩම් සහ ගම් ඔහුගේ සෙබළුන්ට බෙදා දීම; විහාරවල හමුදා කඳවුරු</li>'+
+     '<li>බොහෝ භික්ෂූන් දකුණටත් කඳුකරයටත් ඉන්දියාවටත් පලා යාම</li>'+
+    '</ul>'+
+    '<p>මෙයින් පසු රජරට ශිෂ්ටාචාරය නැවත කිසි දිනෙක පෙර තත්ත්වයට පත් නොවීය; අගනුවර දකුණු-බටහිරට ගියේය.</p></div>'+
+    '<div class="recover"><h4>නැවත ගොඩනැඟූ අය</h4>'+
+     '<p><b>විජයබාහු III</b> (1232–1236): කොත්මලේ සඟවා තිබූ දළදාව සහ පාත්‍ර ධාතුව බේරාගෙන දඹදෙණිය රාජ්‍යය පිහිටුවීය; බෙලිගල දළදා මන්දිරය.</p>'+
+     '<p><b>පරාක්‍රමබාහු II</b> (1236–1270): මාඝ පලවා හැර, සංඝයා යළි සංවිධානය කර, දකුණු ඉන්දියාවෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය; දඹදෙණි කතිකාවත.</p>'+
+     srcHTML(["cv:80","cv:81","rj:~63–65"])+
+    '</div>'+
+   '</div>'+
+   '<p class="note">සටහන: මාඝගේ විනාශය චූලවංශය සහ රාජාවලිය දෙකෙහිම දැඩිව විස්තර වේ. එහෙත් රුවන්වැලි මහා සෑයේ පසුකාලීන බිඳවැටීම මුළුමනින්ම මාඝට පැවරීමට පුරාවිද්‍යා සාක්ෂි නැත. ඒ නිසා එම කරුණ මෙහි ඇතුළත් කර නැත.</p>'+
+  '</article>';
+  document.getElementById("pairs").innerHTML=PAIRS.map(function(p){
+    return '<div class="pair">'+
+      '<div class="card crisis"><div class="tag">හානිය · '+esc(p.cy)+'</div><h3>'+esc(p.c)+'</h3><p>'+esc(p.cd)+'</p></div>'+
+      '<div class="arrow" aria-hidden="true">→</div>'+
+      '<div class="card revival"><div class="tag">පුනරුදය · '+esc(p.ry)+'</div><h3>'+esc(p.r)+'</h3><p>'+esc(p.rd)+'</p>'+srcHTML(p.src)+'</div>'+
+    '</div>';
+  }).join("");
+}
+
+/* ---------- Map ---------- */
+function P(lat,lon){return [((lon-79.6)*105+12).toFixed(1),((9.95-lat)*98+10).toFixed(1)]}
+var COAST=[[9.82,80.05],[9.83,80.23],[9.62,80.45],[9.27,80.81],[8.95,81.0],[8.57,81.23],[8.15,81.43],[7.72,81.7],[7.41,81.83],[6.87,81.84],[6.52,81.7],[6.21,81.33],[6.12,81.12],[6.02,80.79],[5.92,80.59],[6.03,80.22],[6.42,80.0],[6.58,79.96],[6.93,79.85],[7.21,79.83],[7.58,79.79],[8.0,79.82],[8.23,79.76],[8.45,79.87],[8.98,79.95],[9.45,80.15],[9.66,80.02]];
+var CAPS=[
+  {n:"අනුරාධපුරය",ll:[8.31,80.40],y:"ක්‍රි.පූ. 437 – ක්‍රි.ව. 1017",d:"වසර 1,400කට වැඩි කාලයක අගනුවර. මහාවිහාරය, අභයගිරිය, ජේතවනය, රුවන්වැලි සෑය සහ ශ්‍රී මහා බෝධිය මෙහිය. ක්‍රි.ව. 310 දළදාව මෙහි වැඩම කළහ. චෝළ ආක්‍රමණයෙන් අත්හැරිණි.",src:["mv:10","cv:37","cv:55"]},
+  {n:"පොළොන්නරුව",ll:[7.94,81.0],y:"1070 – 1215",d:"චෝළයන් පලවා හැරීමෙන් පසු විජයබාහු I අගනුවර කළේය. පරාක්‍රමබාහු I ගේ පරාක්‍රම සමුද්‍රය, ගල්විහාරය, වටදාගේ. මාඝ ආක්‍රමණයෙන් අත්හැරිණි.",src:["cv:58","cv:78","cv:80"]},
+  {n:"දඹදෙණිය",ll:[7.37,80.15],y:"1232 – 1272",d:"මාඝගෙන් ආරක්ෂා වීමට දකුණු-බටහිර කඳු ප්‍රදේශයට ගිය අගනුවර. දළදාව බෙලිගල සහ දඹදෙණියේ තැන්පත් කෙරිණි.",src:["cv:81","rj:~64–65"]},
+  {n:"යාපහුව",ll:[7.82,80.31],y:"1272 – 1284",d:"භුවනෙකබාහු I ගේ පර්වත බළකොටුව සහ දළදා මන්දිරය. පාණ්ඩ්‍ය ආක්‍රමණයෙන් දළදාව මදුරාවට ගෙන ගියේ මෙතැනිනි.",src:["cv:90"]},
+  {n:"කුරුණෑගල",ll:[7.49,80.36],y:"1293 – 1341",d:"පරාක්‍රමබාහු III සාකච්ඡාවෙන් ආපසු ගෙනා දළදාව සමඟ පැවති අගනුවර. ජාතක කතා සිංහලට නැඟුණු යුගය.",src:["cv:90"]},
+  {n:"ගම්පොළ",ll:[7.16,80.57],y:"1341 – 1408",d:"කඳුකරයේ අගනුවර. ගඩලාදෙණිය සහ ලංකාතිලක විහාර. ඇමති අලකේශ්වර උතුරේ ආර්යචක්‍රවර්ති පරාජය කළේය.",src:["cv:90","rj:~66–67"]},
+  {n:"කෝට්ටේ",ll:[6.89,79.91],y:"1411 – 1597",d:"පරාක්‍රමබාහු VI අවසන් වරට සමස්ත දිවයින එක් කළේය; සාහිත්‍ය ස්වර්ණ යුගය. පසුව පෘතුගීසි බලපෑමට යටත් විය.",src:["cv:91","rj:~68–70"]},
+  {n:"මහනුවර",ll:[7.29,80.63],y:"1592 – 1815",d:"යුරෝපීය ආක්‍රමණවලට වසර 200කට වැඩි කාලයක් ඔරොත්තු දුන් අවසන් සිංහල රාජධානිය. දළදා මාලිගාව; 1753 සියම් උපසම්පදාව.",src:["cv:94","cv:99","cv:101"]}
+];
+var SITES=[
+  {n:"මිහින්තලේ",ll:[8.35,80.51],dx:6,dy:-6},
+  {n:"සීගිරිය",ll:[7.96,80.76],dx:-38,dy:-6},
+  {n:"මහියංගණය",ll:[7.32,81.0],dx:7,dy:-4},
+  {n:"කැලණිය",ll:[6.96,79.92],dx:-40,dy:-8},
+  {n:"සීතාවක",ll:[6.95,80.21],dx:6,dy:10},
+  {n:"මාගම/තිස්ස",ll:[6.28,81.29],dx:-58,dy:4},
+  {n:"නල්ලූර් (යාපනය)",ll:[9.67,80.03],dx:6,dy:12}
+];
+var capIdx=0;
+function buildMap(){
+  var svg=document.getElementById("mapsvg"),o=[];
+  o.push('<polygon class="island" points="'+COAST.map(function(c){return P(c[0],c[1]).join(",")}).join(" ")+'"/>');
+  o.push('<polyline class="route" points="'+CAPS.map(function(c){return P(c.ll[0],c.ll[1]).join(",")}).join(" ")+'"/>');
+  SITES.forEach(function(s){var p=P(s.ll[0],s.ll[1]);o.push('<g class="site"><rect x="'+(p[0]-3)+'" y="'+(p[1]-3)+'" width="6" height="6"/><text x="'+(+p[0]+s.dx)+'" y="'+(+p[1]+s.dy)+'">'+esc(s.n)+'</text></g>')});
+  var off=[[-72,4],[12,4],[-66,4],[-54,4],[12,4],[-56,6],[-48,18],[10,20]];
+  CAPS.forEach(function(c,i){var p=P(c.ll[0],c.ll[1]);o.push('<g class="cap" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(c.n)+'" style="cursor:pointer"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="8"/><text class="num" x="'+p[0]+'" y="'+(+p[1]+3)+'" text-anchor="middle">'+(i+1)+'</text><text x="'+(+p[0]+off[i][0])+'" y="'+(+p[1]+off[i][1])+'">'+esc(c.n)+'</text></g>')});
+  svg.innerHTML=o.join("");
+  svg.addEventListener("click",function(e){var g=e.target.closest(".cap");if(g)showCap(+g.dataset.i)});
+  svg.addEventListener("keydown",function(e){var g=e.target.closest&&e.target.closest(".cap");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();showCap(+g.dataset.i)}});
+  document.getElementById("capBtns").innerHTML=CAPS.map(function(c,i){return '<button type="button" data-i="'+i+'">'+(i+1)+'. '+esc(c.n)+'</button>'}).join("");
+  document.getElementById("capBtns").addEventListener("click",function(e){var b=e.target.closest("button");if(b)showCap(+b.dataset.i)});
+  document.getElementById("nextCap").onclick=function(){showCap((capIdx+1)%CAPS.length)};
+  document.getElementById("prevCap").onclick=function(){showCap((capIdx-1+CAPS.length)%CAPS.length)};
+  showCap(0);
+}
+function showCap(i){
+  capIdx=i;var c=CAPS[i];
+  document.querySelectorAll("#mapsvg .cap").forEach(function(g){g.classList.toggle("on",+g.dataset.i<=i)});
+  document.querySelectorAll("#capBtns button").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i)});
+  document.getElementById("stepPanel").innerHTML='<div class="when">'+(i+1)+' / '+CAPS.length+' · '+esc(c.y)+'</div><h3>'+esc(c.n)+'</h3><p>'+esc(c.d)+'</p>'+srcHTML(c.src);
+}
+
+/* ---------- Kings ---------- */
+/* fields: n, y, e(era), c(country), s(sasana), t(tags), v(evidence), src */
+var K=[
+ {n:"විජය",y:"ක්‍රි.පූ. 543–505",e:"pre",c:"තම්බපණ්ණි රාජ්‍යය පිහිටුවීම; ඇමතිවරුන් අනුරාධගාම, උපතිස්සගාම ආදී ගම් පිහිටුවීම; පාණ්ඩ්‍ය කුමරිය සමඟ විවාහය.",s:"බුදුසසුන තවම නොපැමිණි යුගයකි.",t:["t"],v:"B/C",src:["mv:6","mv:7","rj:15–20"]},
+ {n:"පණ්ඩුවාසදේව",y:"ක්‍රි.පූ. 504–474",e:"pre",c:"ශාක්‍ය කුමරුන් පැමිණ ගම් පිහිටුවීම.",s:"—",t:[],v:"B",src:["mv:8","mv:9"]},
+ {n:"පණ්ඩුකාභය",y:"ක්‍රි.පූ. 437–367",e:"anu",c:"අනුරාධපුරය සැලසුම් සහගත අගනුවරක් කිරීම; අභයවාපිය සහ ජයවාපිය; පොදු සුසාන, නගර සනීපාරක්ෂක සේවකයන්; දිවයින පුරා ගම් මායිම්.",s:"ජෛන, ආජීවක, බ්‍රාහ්මණ, තාපසයන්ට නේවාස (සියලු ආගම්වලට ඉඩ).",t:["t"],v:"B",src:["mv:10","rj:22"]},
+ {n:"මුටසීව",y:"ක්‍රි.පූ. 367–307",e:"anu",c:"මහාමේඝ උයන සෑදීම.",s:"පසුව එම උයන මහාවිහාරයට පූජා විය.",t:["t"],v:"B",src:["mv:11"]},
+ {n:"දේවානම්පියතිස්ස",y:"ක්‍රි.පූ. 307–267",e:"anu",c:"අශෝක අධිරාජයා සමඟ දූත සබඳතා; තිසාවැව.",s:"මිහිඳු හිමියන් පිළිගැනීම; මහාවිහාරය, මිහින්තලේ ලෙන් 68, ථූපාරාමය, ශ්‍රී මහා බෝධිය, භික්ෂුණී සසුන.",t:["g","t"],v:"A/B",src:["mv:11","mv:14","mv:15","mv:17","mv:19","tp:340","rj:23–24"]},
+ {n:"උත්තිය",y:"ක්‍රි.පූ. 267–257",e:"anu",c:"—",s:"මිහිඳු හිමි සහ සංඝමිත්තා තෙරණියගේ අවසන් කටයුතු; ධාතු ස්තූප.",t:["g"],v:"B",src:["mv:20"]},
+ {n:"සූරතිස්ස",y:"ක්‍රි.පූ. 247–237",e:"anu",c:"—",s:"මහවැලි දෙපස විහාර 500ක් පමණ.",t:["g"],v:"B",src:["mv:21"]},
+ {n:"එළාර",y:"ක්‍රි.පූ. 205–161",e:"anu",c:"යුක්තියට ප්‍රසිද්ධය: යුක්ති සීනුව, වස්සා සහ පුත්‍රයාගේ කතාව.",s:"මිථ්‍යා දෘෂ්ටිකයකු වුවද හානි වූ ස්තූපයක් කහවණු 15,000කින් ප්‍රතිසංස්කරණය කළේය.",t:["t"],v:"B",src:["mv:21","rj:~41–42"]},
+ {n:"කාවන්තිස්ස",y:"ක්‍රි.පූ. 2 වන සියවස (රුහුණ)",e:"anu",c:"රුහුණ ශක්තිමත් කිරීම; දස මහා යෝධයන් ඇතුළු දුටුගැමුණුගේ යුද පදනම.",s:"රුහුණේ විහාර අනුග්‍රහය.",t:["g","t"],v:"B",src:["mv:22","mv:23"]},
+ {n:"දුටුගැමුණු",y:"ක්‍රි.පූ. 161–137",e:"anu",c:"ප්‍රාදේශීය පාලකයන් 32 දෙනා පරාජය කර රට එක් කිරීම; එළාරට ගෞරව සහිත ස්මාරකය.",s:"මිරිසවැටිය, ලෝවාමහාපාය (මහල් 9), රුවන්වැලි මහා සෑය.",t:["g","t"],v:"A/B",src:["mv:25","mv:26","mv:27","mv:31","rj:~28–44"]},
+ {n:"සද්ධාතිස්ස",y:"ක්‍රි.පූ. 137–119",e:"anu",c:"දුරතිස්ස වැව; රාජාවලියට අනුව වැව් 18ක්.",s:"රුවන්වැලි ඡත්‍රය සහ හුණු; ගිනිගත් ලෝවාමහාපාය මහල් 7කින් යළි; දීඝවාපි විහාරය.",t:["g","t"],v:"B",src:["mv:33","rj:~44"]},
+ {n:"ලජ්ජතිස්ස",y:"ක්‍රි.පූ. 119–109",e:"anu",c:"ගම්වල භික්ෂූන්ට බෙහෙත්; කුලුම්බක වැව අසල බිම් පිරවීම.",s:"ගිරිකුම්භිල, රිටිගල විහාර; භික්ෂුණීන්ට සහාය.",t:["g"],v:"B",src:["mv:33"]},
+ {n:"වළගම්බා",y:"ක්‍රි.පූ. 103; 89–77",e:"anu",c:"ආක්‍රමණිකයන්ගෙන් රට යළි නිදහස් කිරීම.",s:"අභයගිරි විහාරය; මෙම යුගයේ ත්‍රිපිටකය ලියැවිණි.",t:["g","t"],v:"B",src:["mv:33","rj:~45"]},
+ {n:"මහාචූලි මහාතිස්ස",y:"ක්‍රි.පූ. 77–63",e:"anu",c:"ධාර්මික පාලකයෙක්.",s:"කම්කරුවකු ලෙස වැඩ කර උපයා දන් දීම; විහාර කිහිපයක්.",t:["g"],v:"B",src:["mv:34","rj:~46"]},
+ {n:"චෝරනාග",y:"ක්‍රි.පූ. 63–51",e:"anu",c:"—",s:"තමාට සැඟවීමට ඉඩ නොදුන් විහාර 18ක් විනාශ කළේය.",t:["r"],v:"B",src:["mv:34","rj:~46"]},
+ {n:"අනුලා රැජින",y:"ක්‍රි.පූ. 48–44",e:"anu",c:"ලංකාවේ පළමු ස්වයං රැජින; ස්වාමිපුරුෂයන් වස දී මරා බලය ගත්තාය.",s:"—",t:[],v:"B",src:["mv:34"]},
+ {n:"කුටකණ්ණතිස්ස",y:"ක්‍රි.පූ. 44–22",e:"anu",c:"වණ්ණක මහා ඇළ; අම්බදුග්ග සහ භයෝලුප්පල වැව්; නගර ප්‍රාකාරය රියන් 7ක් දක්වා.",s:"සීගිරියේ උපෝසථාගාරය; භික්ෂුණී ආරාමය.",t:["g","t"],v:"B",src:["mv:34"]},
+ {n:"භාතිකාභය",y:"ක්‍රි.පූ. 22 – ක්‍රි.ව. 7",e:"anu",c:"නගරය අවට උයන්.",s:"රුවන්වැලි සෑයට මහා පූජා; වසර 28ක් වෙසක් උත්සව.",t:["g"],v:"B",src:["mv:34","rj:~46–47"]},
+ {n:"මහාදාඨික මහානාග",y:"ක්‍රි.ව. 7–19",e:"anu",c:"සිරකරුවන් නිදහස් කිරීම.",s:"අම්බස්ථල සෑය; ගිරිභණ්ඩ මහා පූජාව.",t:["g"],v:"B",src:["mv:34","rj:~47"]},
+ {n:"ආමණ්ඩගාමණි අභය",y:"ක්‍රි.ව. 19–29",e:"anu",c:"ලංකාව පුරා සත්ව ඝාතනය තහනම් කිරීම (මාඝාත); මහාගාමෙන්ඩි වැව; පලතුරු වගාව.",s:"රුවන්වැලි සෑයට දෙවන ඡත්‍රය; රිදී ලෙන් විහාරය.",t:["g","t"],v:"B",src:["mv:35","rj:~47"]},
+ {n:"කණිරජානු තිස්ස",y:"ක්‍රි.ව. 29–32",e:"anu",c:"—",s:"කුමන්ත්‍රණය කළ බවට චෝදනා කළ භික්ෂූන් 60ක් ප්‍රපාතයකින් හෙළීම.",t:["r"],v:"B",src:["mv:35"]},
+ {n:"ඉළනාග",y:"ක්‍රි.ව. 33–43",e:"anu",c:"තිස්ස සහ දුරතිස්ස වැව්.",s:"නාගමහාවිහාරය.",t:["g","t"],v:"B",src:["mv:35"]},
+ {n:"වසභ",y:"ක්‍රි.ව. 67–111",e:"anu",c:"වැව් 12ක්; අනුරාධපුර ප්‍රාකාරය, දොරටු, පොකුණු; ආහාර සැපයීම.",s:"උපෝසථාගාර; ථූපාරාම වටදාගෙය (රාජාවලිය); මෙත්තාදේවි ස්තූපය.",t:["g","t"],v:"A/B",src:["mv:35","rj:~47–48"]},
+ {n:"ගජබාහු I",y:"ක්‍රි.ව. 114–136",e:"anu",c:"ගාමිණිතිස්ස වැව. රාජාවලියට පමණක් අනුව: චෝළ රටින් සිංහල සිරකරුවන් 12,000ක් සහ තවත් 12,000ක් ගෙනාවේය.",s:"අභයගිරි ස්තූපය විශාල කිරීම; රාමක විහාරය.",t:["g","t"],v:"B/C",src:["mv:35","rj:~48–49"]},
+ {n:"සිරිනාග I",y:"ක්‍රි.ව. 189–209",e:"anu",c:"කුලම්බණ බද්ද අහෝසි කිරීම.",s:"රුවන්වැලි ඡත්‍රය; ලෝවාමහාපාය ප්‍රතිසංස්කරණය.",t:["g","t"],v:"B",src:["mv:36"]},
+ {n:"වෝහාරික තිස්ස",y:"ක්‍රි.ව. 209–231",e:"anu",c:"වේදනාත්මක දඬුවම් නැති යුක්ති ක්‍රමය (එබැවින් 'වෝහාරික'); ණය බර භික්ෂූන් වෙනුවෙන් කහවණු 300,000ක්.",s:"වෛතුල්‍ය වාදය මර්දනය; විහාර 5ක ගිලන් සාත්තු අරමුදල්; ආරියවංස දේශනා.",t:["g","t"],v:"B",src:["mv:36"]},
+ {n:"ශ්‍රී සංඝබෝධි I",y:"ක්‍රි.ව. 247–249",e:"anu",c:"නියඟය සහ වසංගතය (රත්අස යක්ෂයා) අතරතුර ජනතාව රැකීම.",s:"මහාවිහාර දානශාලාව; තම හිස පූජා කළ කතාව.",t:["g","t"],v:"B/C",src:["mv:36","rj:~50–51"]},
+ {n:"ගෝඨාභය",y:"ක්‍රි.ව. 249–262",e:"anu",c:"දිවයින පුරා පැරණි විහාර ප්‍රතිසංස්කරණය.",s:"මහාබෝධි ගල් ශාලාව; වෛතුල්‍ය මත දැරූ භික්ෂූන් 60ක් පිටුවහල් කිරීම.",t:["g"],v:"B",src:["mv:36","rj:~51"]},
+ {n:"ජෙට්ඨතිස්ස I",y:"ක්‍රි.ව. 263–273",e:"anu",c:"කාළුමති සහ අලම්බගාම වැව්.",s:"ලෝවාමහාපාය මහල් 7 සම්පූර්ණ කිරීම.",t:["g","t"],v:"B",src:["mv:36"]},
+ {n:"මහසේන",y:"ක්‍රි.ව. 274–301",e:"anu",c:"මින්නේරිය මහවැව ඇතුළු වැව් 16ක් සහ ඇළ මාර්ග (රාජාවලියට අනුව 17).",s:"ජේතවනාරාමය. මහාවිහාරයට දන් දීම තහනම් කර ගොඩනැගිලි අභයගිරියට ගෙන ගියේය; පසුව සමාව ඉල්ලා ප්‍රතිසංස්කරණය කළේය.",t:["g","t","r"],v:"B",src:["mv:37","rj:~51–52"]},
+ {n:"සිරිමේඝවණ්ණ",y:"ක්‍රි.ව. 301–328",e:"anu",c:"කාලිංගය සමඟ සබඳතා.",s:"දළදා වහන්සේ ලංකාවට; මහාවිහාරය යළි ගොඩනැඟීම.",t:["g"],v:"B",src:["cv:37","rj:~53"]},
+ {n:"බුද්ධදාස",y:"ක්‍රි.ව. 337–365",e:"anu",c:"ගම් 10කට එක් වෙදෙකු; සත්ව වෙදකම; සාරාර්ථ සංග්‍රහය.",s:"විහාර; ධර්ම දේශකයන්ට අනුග්‍රහය.",t:["g","t"],v:"B",src:["cv:37","rj:~53–54"]},
+ {n:"මහානාම",y:"ක්‍රි.ව. 406–428",e:"anu",c:"චීනයට දූත පිරිස්.",s:"බුද්ධඝෝෂ හිමියන් අට්ඨකථා පාලියට නැඟීම.",t:["g"],v:"B",src:["cv:37","rj:~54"]},
+ {n:"ධාතුසේන",y:"ක්‍රි.ව. 455–473",e:"anu",c:"විදේශ පාලනය අවසන් කර රට එක් කිරීම; කලාවැව සහ යෝද ඇළ; වැව් 18ක්.",s:"විහාර 18ක්; මිහිඳු උත්සවයේ දීපවංශය සජ්ඣායනය.",t:["g","t"],v:"B",src:["cv:38","rj:~55"]},
+ {n:"කාශ්‍යප I",y:"ක්‍රි.ව. 473–491",e:"anu",c:"සීගිරි නගරය සහ උයන්.",s:"අවසානයේ විහාර පූජා.",t:["t"],v:"B",src:["cv:39","rj:~55–56"]},
+ {n:"මොග්ගල්ලාන I",y:"ක්‍රි.ව. 491–508",e:"anu",c:"අනුරාධපුරය යළි අගනුවර කිරීම; වෙරළ ආරක්ෂාව.",s:"සීගිරිය භික්ෂූන්ට පූජා කිරීම; කේශ ධාතු පූජාව.",t:["g","t"],v:"B",src:["cv:39","rj:~56"]},
+ {n:"අග්ගබෝධි I",y:"ක්‍රි.ව. 564–598",e:"anu",c:"කුරුහුදු වැව ඇතුළු වාරි කර්මාන්ත.",s:"විහාර ප්‍රතිසංස්කරණය.",t:["g","t"],v:"B",src:["cv:42","rj:~56"]},
+ {n:"අග්ගබෝධි II",y:"ක්‍රි.ව. 598–608",e:"anu",c:"රාජාවලියට අනුව වැව් 13ක්.",s:"වෙළුන්න විහාරය.",t:["g","t"],v:"B",src:["cv:42","rj:~57"]},
+ {n:"දාඨෝපතිස්ස I",y:"ක්‍රි.ව. 640–652",e:"anu",c:"සිවිල් යුද්ධය.",s:"ථූපාරාමයේ රන් අලංකාර ගැලවීම; සෙබළුන් විහාරවලට හානි කිරීම.",t:["r"],v:"B",src:["cv:44","cv:45"]},
+ {n:"මානවම්ම",y:"ක්‍රි.ව. 691–726",e:"anu",c:"පල්ලව සහායෙන් බලයට පැමිණ ස්ථාවර පාලනයක් ඇති කිරීම.",s:"සංඝ ජීවිතය යළි ශක්තිමත් වීම.",t:["g","t"],v:"B",src:["cv:47"]},
+ {n:"සේන I",y:"ක්‍රි.ව. 846–866",e:"anu",c:"පාණ්ඩ්‍ය ආක්‍රමණය; අනුරාධපුරය කොල්ලකෑම.",s:"රන් පිළිම ආක්‍රමණිකයන් රැගෙන යාම.",t:["r"],v:"B",src:["cv:50"]},
+ {n:"සේන II",y:"ක්‍රි.ව. 866–901",e:"anu",c:"මදුරාව ආක්‍රමණය කර කොල්ලය ආපසු ගෙනීම; වාරි කර්මාන්ත.",s:"ලෝවාමහාපාය ප්‍රතිසංස්කරණය.",t:["g","t"],v:"B",src:["cv:51","rj:~58"]},
+ {n:"මහින්ද IV",y:"ක්‍රි.ව. 975–991",e:"anu",c:"චෝළ ආක්‍රමණයක් පරාජය කිරීම.",s:"මිහින්තලේ පුවරු ලිපි මගින් විහාර පරිපාලන නීති.",t:["g","t"],v:"A",src:["cv:54"]},
+ {n:"මහින්ද V",y:"ක්‍රි.ව. 982–1017",e:"anu",c:"චෝළයන් රජු අල්ලා ගෙන යාම; අනුරාධපුර රාජ්‍යය අවසන්.",s:"විහාර කොල්ලකෑම; සසුන් ආයතන බිඳ වැටීම.",t:["r"],v:"B",src:["cv:55"]},
+ {n:"විජයබාහු I",y:"1055–1110",e:"pol",c:"චෝළ පාලනය අවසන් කර රට එක් කිරීම; පොළොන්නරුව අගනුවර; වැව් ප්‍රතිසංස්කරණය.",s:"බුරුමයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව; විහාර, පිරිවෙන් අලුත්වැඩියාව.",t:["g","t"],v:"A/B",src:["cv:58","cv:60","rj:~59–60"]},
+ {n:"පරාක්‍රමබාහු I",y:"1153–1186",e:"pol",c:"රට එක් කිරීම; පරාක්‍රම සමුද්‍රය ඇතුළු මහා වාරි පද්ධති; බුරුමයට සහ දකුණු ඉන්දියාවට හමුදා.",s:"නිකාය තුන එක් කිරීම (ගල්විහාර කතිකාවත); ගල්විහාරය; අනුරාධපුර ස්තූප ප්‍රතිසංස්කරණය.",t:["g","t"],v:"A/B",src:["cv:68","cv:78","cv:79","rj:~60–63"]},
+ {n:"නිස්සංක මල්ල",y:"1187–1196",e:"pol",c:"බදු අඩු කිරීම; දිවයින පුරා ගමන්; ගල්පොත ඇතුළු ශිලා ලේඛන.",s:"හැටදාගේ, රන්කොත් වෙහෙර, නිස්සංක ලතා මණ්ඩපය; දඹුල්ල අලුත්වැඩියාව.",t:["g","t"],v:"A",src:["cv:80","rj:~63"]},
+ {n:"කාලිංග මාඝ",y:"1215–1236",e:"pol",c:"පොළොන්නරු රාජ්‍යය බිඳ වැටීම; ජනතාව රජරටින් සංක්‍රමණය.",s:"විහාර කොල්ලකෑම, ග්‍රන්ථ විනාශය, භික්ෂූන්ට සහ ජනතාවට වධ, විහාර ඉඩම් සෙබළුන්ට.",t:["r"],v:"B/C",src:["cv:80","rj:~63–64"]},
+ {n:"විජයබාහු III",y:"1232–1236",e:"tra",c:"දඹදෙණිය රාජ්‍යය පිහිටුවීම.",s:"කොත්මලේ සඟවා තිබූ දළදාව සහ පාත්‍ර ධාතුව බේරා ගැනීම; බෙලිගල; සංඝ සංවිධානය.",t:["g","t"],v:"B",src:["cv:81","rj:~64–65"]},
+ {n:"පරාක්‍රමබාහු II",y:"1236–1270",e:"tra",c:"මාඝ පලවා හැරීම; ජාවක චන්ද්‍රභානු පරාජය; කව්සිළුමිණ.",s:"සංඝ ප්‍රතිසංස්කරණය; දකුණු ඉන්දියාවෙන් භික්ෂූන්; උපසම්පදාව; දඹදෙණි කතිකාවත.",t:["g","t"],v:"B",src:["cv:81","cv:87","rj:~65"]},
+ {n:"භුවනෙකබාහු I",y:"1272–1284",e:"tra",c:"යාපහුව බළකොටුව; ඊජිප්තුවේ මම්ලූක් සුල්තාන් වෙත දූත පිරිස.",s:"යාපහුව දළදා මන්දිරය.",t:["g","t"],v:"A/B",src:["cv:90"]},
+ {n:"පරාක්‍රමබාහු III",y:"c. 1287–1293",e:"tra",c:"—",s:"මදුරාවට ගෙන ගිය දළදාව සාකච්ඡාවෙන් ආපසු ගෙනීම.",t:["g"],v:"B",src:["cv:90"]},
+ {n:"අලකේශ්වර (ඇමති)",y:"14 වන සියවස",e:"tra",c:"කෝට්ටේ බළකොටුව; ගොරකානේදී ආර්යචක්‍රවර්ති පරාජය කිරීම.",s:"—",t:["t"],v:"B",src:["rj:~66–67"]},
+ {n:"පරාක්‍රමබාහු VI",y:"1411–1466",e:"tra",c:"අවසන් වරට සමස්ත දිවයින එක් කිරීම (සපුමල් කුමරු යාපනය අල්ලා ගැනීම).",s:"සාහිත්‍ය ස්වර්ණ යුගය: තොටගමුවේ ශ්‍රී රාහුල, වීදගම මෛත්‍රී හිමිවරු; පිරිවෙන් අධ්‍යාපනය.",t:["g","t"],v:"A/B",src:["cv:91","rj:~68–70"]},
+ {n:"භුවනෙකබාහු VI (සපුමල් කුමරු)",y:"1469–1477",e:"tra",c:"යාපනය ජයගත් සේනාපතියා.",s:"කැලණියේදී බුරුම භික්ෂූන්ට උපසම්පදාව (බුරුමයේ කල්‍යාණි ශිලා ලේඛන).",t:["g","t"],v:"A",src:["rj:~70"]},
+ {n:"විජයබාහු VI",y:"1513–1521",e:"tra",c:"විජයබා කොල්ලය: පුතුන් තිදෙනා කෝට්ටේ, සීතාවක, රයිගම ලෙස රට බෙදා ගැනීම.",s:"—",t:[],v:"B",src:["rj:~74"]},
+ {n:"දොන් ජුවන් ධර්මපාල",y:"1551–1597",e:"tra",c:"පෘතුගීසීන් රජ කළ පාලකයා; ඔහුගේ මරණයෙන් පසු පහතරට පෘතුගීසි පාලනයට.",s:"දළදා මාලිගාව ඇතුළු විහාර ආදායම් මිෂනාරීන්ට පැවරීම.",t:["r"],v:"B",src:["rj:~80","rj:~86–100"]},
+ {n:"මායාදුන්නේ",y:"1521–1581",e:"kan",c:"පෘතුගීසි ව්‍යාප්තියට එරෙහි ප්‍රධාන සිංහල බලවේගය.",s:"—",t:["t"],v:"B",src:["rj:~78–86"]},
+ {n:"රාජසිංහ I",y:"1581–1593",e:"kan",c:"මුල්ලේරියාවේදී පෘතුගීසීන් පරාජය; කඩුදෙවුල සහ රග්ගහවත්තේ බළකොටු; කොළඹ වටලීම.",s:"ශෛව ආගමට හැරී භික්ෂූන් මරා, ශ්‍රී පාදය ශෛව පූජකයන්ට දුන් බව පසුකාලීන වංශකතා කියයි (සාක්ෂි C).",t:["t","r"],v:"C",src:["cv:93","rj:~87–95"]},
+ {n:"විමලධර්මසූරිය I",y:"1592–1604",e:"kan",c:"1594 දන්තුර ජයග්‍රහණය; මහනුවර නිදහස ස්ථිර කිරීම.",s:"දළදාව මහනුවරට; දළදා මාලිගාව; 1597 ගැටම්බේ උපසම්පදාව.",t:["g","t"],v:"B",src:["cv:94","rj:~92–101"]},
+ {n:"සේනරත්",y:"1604–1635",e:"kan",c:"දියතිලක නගරය; 1630 රන්දෙනිවෙල සටන.",s:"ආක්‍රමණ අතරතුර දළදාව ආරක්ෂා කිරීම.",t:["g","t"],v:"B",src:["cv:95","rj:~100–101"]},
+ {n:"රාජසිංහ II",y:"1635–1687",e:"kan",c:"1638 ගන්නෝරුව ජයග්‍රහණය; ලන්දේසි සහායෙන් 1658 වන විට පෘතුගීසීන් පලවා හැරීම.",s:"පෙර රජවරුන්ට වඩා අඩු සසුන් අනුග්‍රහයක් ලෙස සැලකේ.",t:["t"],v:"B",src:["cv:96","rj:~101–103"]},
+ {n:"විමලධර්මසූරිය II",y:"1687–1707",e:"kan",c:"සාමකාමී පාලනය.",s:"තෙමහල් දළදා මන්දිරය; අරකානයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව.",t:["g"],v:"B",src:["cv:97"]},
+ {n:"වීර නරේන්ද්‍රසිංහ",y:"1707–1739",e:"kan",c:"අවසන් සිංහල රජු; කුන්දසාලේ මාලිගාව.",s:"දළදා මාලිගා අලුත්වැඩියාව; සරණංකර හිමියන්ගේ ව්‍යාපාරය ආරම්භය.",t:["g"],v:"B",src:["cv:97"]},
+ {n:"කීර්ති ශ්‍රී රාජසිංහ",y:"1747–1782",e:"kan",c:"ලන්දේසි යුද්ධය (1762–1766); මහනුවර චිත්‍ර කලාව.",s:"1753 සියමෙන් උපාලි හිමි ගෙන්වා උපසම්පදාව — සියම් නිකාය; සංඝරාජ පදවිය; ඇසළ පෙරහැරේ දළදාව ප්‍රධාන කිරීම.",t:["g","t"],v:"A/B",src:["cv:99","cv:100"]},
+ {n:"ශ්‍රී වික්‍රම රාජසිංහ",y:"1798–1815",e:"kan",c:"කිරි මුහුද (මහනුවර වැව); පත්තිරිප්පුව; 1803 බ්‍රිතාන්‍ය ආක්‍රමණය පරාජය. 1815 රාජාණ්ඩුව අවසන්.",s:"දළදා මාලිගා පරිශ්‍රය විශාල කිරීම.",t:["g","t"],v:"B",src:["cv:101"]},
+ {n:"රොබට් බ්‍රවුන්රිග් (ආණ්ඩුකාර)",y:"1812–1820",e:"col",c:"1815 මහනුවර ගිවිසුම; 1818 ඌව-වෙල්ලස්ස කැරැල්ල දරුණු ලෙස මර්දනය.",s:"ගිවිසුමේ 5 වන වගන්තියෙන් බුදුදහම රැකීමට පොරොන්දු වීම.",t:["t"],v:"A",src:[]},
+ {n:"විලියම් ග්‍රෙගරි (ආණ්ඩුකාර)",y:"1872–1877",e:"col",c:"පැරණි වැව් ප්‍රතිසංස්කරණය; කොළඹ කෞතුකාගාරය.",s:"1877 මහාවංශ සිංහල පරිවර්තනය පිළිගැනීම; රුවන්වැලි ප්‍රතිසංස්කරණයට ආධාර.",t:["g","t"],v:"A",src:["mm:"]},
+ {n:"ආතර් ගෝර්ඩන් (ආණ්ඩුකාර)",y:"1883–1890",e:"col",c:"වාරි වැඩ ව්‍යාප්තිය.",s:"1885 වෙසක් පොදු නිවාඩුව; 1889 බෞද්ධ කාලීන රාජ්‍යය පනත.",t:["g"],v:"A",src:[]},
+ {n:"D. S. සේනානායක",y:"1947–1952 (අගමැති)",e:"mod",c:"නිදහස; ගල්ඔය යෝජනාව; ගොවි ජනපද.",s:"—",t:["t"],v:"A",src:[]},
+ {n:"S. W. R. D. බණ්ඩාරනායක",y:"1956–1959 (අගමැති)",e:"mod",c:"1956 රාජ්‍ය භාෂා පනත; වරාය සහ බස් ජාතිකරණය.",s:"1956 බුද්ධ ජයන්තිය; බුද්ධ ශාසන කොමිසම.",t:["g","t"],v:"A",src:[]},
+ {n:"සිරිමාවෝ බණ්ඩාරනායක",y:"1960–65, 1970–77, 1994–2000 (අගමැති)",e:"mod",c:"ලෝකයේ පළමු කාන්තා අගමැතිනිය; 1972 ජනරජය; ඉඩම් ප්‍රතිසංස්කරණ.",s:"1972 ව්‍යවස්ථාවේ 6 වන වගන්තිය: බුදුදහමට ප්‍රමුඛස්ථානය.",t:["g","t"],v:"A",src:[]},
+ {n:"J. R. ජයවර්ධන",y:"1978–1989 (ජනාධිපති)",e:"mod",c:"1977 විවෘත ආර්ථිකය; කඩිනම් මහවැලි; 1978 ව්‍යවස්ථාව.",s:"9 වන වගන්තිය: බුදුදහමට ප්‍රමුඛස්ථානය සහ ශාසනය රැකීමේ රාජ්‍ය යුතුකම.",t:["g","t"],v:"A",src:[]},
+ {n:"රණසිංහ ප්‍රේමදාස",y:"1989–1993 (ජනාධිපති)",e:"mod",c:"ගම්උදාව, ලක්ෂ සලසම් නිවාස, ජනසවිය, ඇඟලුම් කම්හල් 200.",s:"—",t:["t"],v:"A",src:[]},
+ {n:"චන්ද්‍රිකා කුමාරතුංග",y:"1994–2005 (ජනාධිපති)",e:"mod",c:"බලය බෙදීමේ යෝජනා; 2002 සටන් විරාමය.",s:"9 වන වගන්තිය අඛණ්ඩව.",t:["t"],v:"A",src:[]},
+ {n:"මහින්ද රාජපක්ෂ",y:"2005–2015 (ජනාධිපති)",e:"mod",c:"2009 යුද්ධය අවසන්; අධිවේගී මාර්ග, හම්බන්තොට වරාය.",s:"බෞද්ධ සහ පුරාවිද්‍යා ස්ථාන සඳහා රාජ්‍ය වැඩසටහන්.",t:["t"],v:"A",src:[]},
+ {n:"මෛත්‍රීපාල සිරිසේන",y:"2015–2019 (ජනාධිපති)",e:"mod",c:"19 වන සංශෝධනය; තොරතුරු දැනගැනීමේ පනත.",s:"2019 ත්‍රිපිටකය ජාතික උරුමයක් ලෙස ප්‍රකාශ කිරීම.",t:["g","t"],v:"A",src:[]},
+ {n:"ගෝඨාභය රාජපක්ෂ",y:"2019–2022 (ජනාධිපති)",e:"mod",c:"20 වන සංශෝධනය; 2022 ආර්ථික අර්බුදය; ජන අරගලයෙන් පසු ඉල්ලා අස්වීම.",s:"—",t:[],v:"A",src:[]},
+ {n:"රනිල් වික්‍රමසිංහ",y:"2022–2024 (ජනාධිපති)",e:"mod",c:"IMF වැඩසටහන සහ ආර්ථික ස්ථායීකරණය.",s:"—",t:["t"],v:"A",src:[]},
+ {n:"අනුර කුමාර දිසානායක",y:"2024 සිට (ජනාධිපති)",e:"mod",c:"2024 මැතිවරණයෙන් තුනෙන් දෙකේ බහුතරය; හරිනී අමරසූරිය අගමැතිනිය.",s:"සමස්ත ඉතිහාසමය තීන්දුවක් කාලයට පෙරය.",t:[],v:"A",src:["pr:"]}
+];
+var curEra="all", q="", fset={g:false,r:false,t:false};
+function buildKings(){
+  var tabs=[{k:"all",n:"සියල්ල"}].concat(ERAS.map(function(e){return {k:e.k,n:e.n}}));
+  var T=document.getElementById("eraTabs");
+  T.innerHTML=tabs.map(function(t){return '<button type="button" role="tab" data-k="'+t.k+'" aria-selected="'+(t.k===curEra)+'">'+esc(t.n)+'</button>'}).join("");
+  T.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;curEra=b.dataset.k;T.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-selected",x===b)});renderKings()});
+  document.getElementById("kq").addEventListener("input",function(e){q=e.target.value.trim();renderKings()});
+  document.getElementById("kfilters").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var f=b.dataset.f;fset[f]=!fset[f];b.setAttribute("aria-pressed",fset[f]);renderKings()});
+  renderKings();
+}
+function renderKings(){
+  var act=Object.keys(fset).filter(function(k){return fset[k]});
+  var list=K.filter(function(k){
+    if(curEra!=="all"&&k.e!==curEra)return false;
+    if(q&&(k.n+k.c+k.s).indexOf(q)<0)return false;
+    if(act.length&&!act.some(function(f){return k.t.indexOf(f)>=0}))return false;
+    return true;
+  });
+  document.getElementById("kcount").textContent=list.length+" ක් පෙන්වයි";
+  document.getElementById("kgrid").innerHTML=list.map(function(k){
+    var cls="king"+(k.t.indexOf("g")>=0?" has-g":"")+(k.t.indexOf("r")>=0?" has-r":"");
+    var harm=k.t.indexOf("r")>=0;
+    return '<article class="'+cls+'"><div class="when">'+esc(k.y)+'<span class="badge">සාක්ෂි '+k.v+'</span></div><h3>'+esc(k.n)+'</h3>'+
+      '<div class="row"><b>රටට</b><span>'+esc(k.c)+'</span></div>'+
+      '<div class="row'+(harm?" r":"")+'"><b>සසුනට</b><span>'+esc(k.s)+'</span></div>'+srcHTML(k.src)+'</article>';
+  }).join("")||'<p class="count">ගැළපෙන පාලකයෙක් නැත. සෙවුම හෝ පෙරහන වෙනස් කරන්න.</p>';
+}
+
+/* ---------- Quiz ---------- */
+var QZ=[
+ {q:"ලංකාවට බුදුදහම රැගෙන ආවේ කවුද?",o:["බුද්ධඝෝෂ හිමි","මිහිඳු මහරහතන් වහන්සේ","උපාලි හිමි","සංඝමිත්තා තෙරණිය"],a:1,w:"දේවානම්පියතිස්ස රජු දවස මිහින්තලේදී.",src:["mv:14"]},
+ {q:"ත්‍රිපිටකය ප්‍රථම වරට ලියා තැබුවේ කවර රජුගේ යුගයේද?",o:["දුටුගැමුණු","වළගම්බා","මහසේන","ධාතුසේන"],a:1,w:"වළගම්බා (වට්ටගාමණි අභය) යුගයේ.",src:["mv:33"]},
+ {q:"මින්නේරිය වැව ඉදි කළේ කවුද?",o:["මහසේන","පරාක්‍රමබාහු I","වසභ","පණ්ඩුකාභය"],a:0,w:"මහසේන රජුගේ වැව් 16 අතර මින්නේරිය ප්‍රධානය.",src:["mv:37"]},
+ {q:"දළදා වහන්සේ ලංකාවට වැඩම කළේ කවර රජු දවසද?",o:["දේවානම්පියතිස්ස","සිරිමේඝවණ්ණ","විජයබාහු I","කීර්ති ශ්‍රී රාජසිංහ"],a:1,w:"සිරිමේඝවණ්ණ රජුගේ 9 වන වසරේ.",src:["cv:37"]},
+ {q:"1215 දී පොළොන්නරු රාජ්‍යය බිඳ වැටීමට හේතු වූ ආක්‍රමණිකයා කවුද?",o:["එළාර","රාජේන්ද්‍ර චෝළ","කාලිංග මාඝ","චන්ද්‍රභානු"],a:2,w:"කාලිංග මාඝගේ ආක්‍රමණය සසුනට වූ බරපතළම හානියකි.",src:["cv:80"]},
+ {q:"මාඝගෙන් පසු සංඝයා යළි සංවිධානය කළ 'කලිකාල සාහිත්‍ය සර්වඥ පණ්ඩිත' රජු කවුද?",o:["පරාක්‍රමබාහු I","පරාක්‍රමබාහු II","පරාක්‍රමබාහු VI","විජයබාහු IV"],a:1,w:"දඹදෙණියේ පරාක්‍රමබාහු II.",src:["cv:81"]},
+ {q:"1753 දී සියමෙන් පැමිණ උපසම්පදාව යළි පිහිටුවූ හිමියන් කවුද?",o:["උපාලි හිමි","වැලිවිට සරණංකර හිමි","හික්කඩුවේ සුමංගල හිමි","තොටගමුවේ ශ්‍රී රාහුල හිමි"],a:0,w:"කීර්ති ශ්‍රී රාජසිංහ රජුගේ ආරාධනයෙන්.",src:["cv:100"]},
+ {q:"විහාර 18ක් විනාශ කළ බව මහාවංශයේ සඳහන් රජු කවුද?",o:["කණිරජානු තිස්ස","චෝරනාග","ජෙට්ඨතිස්ස","දාඨෝපතිස්ස"],a:1,w:"චෝරනාග (ක්‍රි.පූ. 63–51).",src:["mv:34"]}
+];
+var score=0,answered={};
+function buildQuiz(){
+  var box=document.getElementById("quizbox");
+  box.innerHTML=QZ.map(function(x,i){return '<div class="q" data-q="'+i+'"><p>'+(i+1)+'. '+esc(x.q)+'</p><div class="opts">'+x.o.map(function(o,j){return '<button type="button" data-j="'+j+'">'+esc(o)+'</button>'}).join("")+'</div><div class="why" aria-live="polite"></div></div>'}).join("");
+  box.addEventListener("click",function(e){
+    var b=e.target.closest("button");if(!b)return;var card=b.closest(".q"),i=+card.dataset.q;if(answered[i])return;answered[i]=true;
+    var x=QZ[i],j=+b.dataset.j;
+    card.querySelectorAll("button").forEach(function(btn){var k=+btn.dataset.j;if(k===x.a)btn.classList.add("ok");else if(k===j)btn.classList.add("no");btn.disabled=true});
+    if(j===x.a)score++;
+    card.querySelector(".why").innerHTML=(j===x.a?"නිවැරදියි. ":"නිවැරදි පිළිතුර: "+esc(x.o[x.a])+". ")+esc(x.w)+srcHTML(x.src);
+    document.getElementById("score").textContent="ලකුණු: "+score+" / "+QZ.length;
+  });
+}
+
+/* ---------- Sources ---------- */
+var SRC=[
+ {h:"මහාවංශය — සිංහල (මහමෙව්නා)",d:"පූජ්‍ය කිරිබත්ගොඩ ඤාණානන්ද හිමියන්ගේ 'ශ්‍රේෂ්ඨ උත්තමයන්ගේ පරම්පරා කථාව'. පරිච්ඡේද 1–37: විජයගේ සිට මහසේන දක්වා.",l:[["පරිච්ඡේද සූචිය","https://mahamevnawa.lk/sinhala-mahawanshaya/"],["පරි. 33","https://mahamevnawa.lk/mahawanshaya-cp-33/"],["පරි. 37","https://mahamevnawa.lk/mahawanshaya-cp-37/"]]},
+ {h:"රාජාවලිය",d:"B. Gunasekara සංස්කරණය, කොළඹ, 1900 (ඉංග්‍රීසි). විජයගේ සිට රාජසිංහ II දක්වා. පිටු අංක ආසන්න අගයන් (~).",l:[["archive.org","https://archive.org/details/in.ernet.dli.2015.42908"],["සම්පූර්ණ පාඨය","https://archive.org/stream/in.ernet.dli.2015.42908/2015.42908.The-Rajavaliya_djvu.txt"]]},
+ {h:"චූලවංශය",d:"W. Geiger ඉංග්‍රීසි පරිවර්තනය, 1929–30. සිරිමේඝවණ්ණගේ සිට 1815 දක්වා. පරිච්ඡේද 37–79 වෙළුම 1 හි, 80–101 වෙළුම 2 හි.",l:[["වෙළුම 1","https://books.lakdiva.org.lk/culavamsa/vol_1.html"],["වෙළුම 2","https://books.lakdiva.org.lk/culavamsa/vol_2.html"]]},
+ {h:"සූත්‍ර පිටකය (tripitaka.online)",d:"මිහිඳු හිමියන් ලංකාවේ දේශනා කළ සූත්‍ර මුල් පාලි-සිංහල පාඨයෙන් කියවන්න.",l:[["චූළහත්ථිපදෝපම","https://www.tripitaka.online/sutta/340"],["බාලපණ්ඩිත","https://www.tripitaka.online/sutta/782"],["දේවදූත","https://www.tripitaka.online/sutta/783"]]},
+ {h:"මහාමේඝ සඟරාව",d:"මහාවංශයේ ඉතිහාසය සහ එහි සිංහල පරිවර්තන (1877 සිට).",l:[["මහාවංශය ලිපිය","https://mahamegha.lk/2021/08/14/mahawansaya/"],["මහාවංශ ලිපි සියල්ල","https://mahamegha.lk/?s=%E0%B6%B8%E0%B7%84%E0%B7%8F%E0%B7%80%E0%B6%82%E0%B7%81%E0%B6%BA"]]},
+ {h:"පැරණි ඡායාරූප",d:"බ්‍රහ්මචාරී වලිසිංහ හරිශ්චන්ද්‍ර, The Sacred City of Anuradhapura, කොළඹ, 1908. ඡායාරූප 46ක් සහිත පොත.",l:[["archive.org","https://archive.org/details/sacredcityofanur00haririch"]]},
+ {h:"තවදුරටත් කියවීමට",d:"වල්පොළ රාහුල හිමි, History of Buddhism in Ceylon (1956) · K. M. de Silva, A History of Sri Lanka (1981) · H. R. Perera, Buddhism in Sri Lanka: A Short History.",l:[["H. R. Perera (Access to Insight)","https://www.accesstoinsight.org/lib/authors/perera/wheel100.html"]]}
+];
+function buildSources(){
+  document.getElementById("srcgrid").innerHTML=SRC.map(function(s){return '<div class="s"><h3>'+esc(s.h)+'</h3><p>'+esc(s.d)+'</p><div class="src">'+s.l.map(function(l){return '<a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>'}).join(" ")+'</div></div>'}).join("");
+}
+
+buildTimeline(); select(EV.findIndex(function(e){return e.y===1215}));
+buildCrisis(); buildPhotos(); buildMap(); buildKings(); buildQuiz(); buildSources();
+})();
+</script>
+</body>
+</html>

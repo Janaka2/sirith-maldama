@@ -16,6 +16,13 @@ from tripitaka.online. Check them at any time with:
 python3 .claude/skills/mahamevnawa-dhamma/scripts/verify_citations.py
 ```
 
+## History page
+
+`ithihasaya.html` ("බුදුසසුනේ වසර 2,500ක ගමන") is a self-contained history lesson: a
+timeline, damage and revival, the capitals and the Tooth Relic's journey, 80 rulers and a
+short quiz. By the owner's decision of 2026-11-13 it may also cite the Rajavaliya and the
+Culavamsa, for the period after Mahasena. See CLAUDE.md.
+
 ## Favourites
 
 `assets/js/favourites.js` is a self-contained module. It is not tied to the poems, so any
