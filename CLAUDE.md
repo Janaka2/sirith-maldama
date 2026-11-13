@@ -37,6 +37,8 @@ anything but tripitaka.online. The page states this in its teachers' note.
 
 - Keep each event's evidence level (A, B, C) and source link.
 - Name no ethnic group as the cause of harm; name the ruler or the event.
+- Never call a stupa, Bodhi tree or sacred site a "ස්මාරක" (monument). Use සෑය, චෛත්‍ය,
+  ස්තූප, පූජනීය පුදබිම or පූජනීය ස්ථාන; they are places of worship, not memorials.
 - Its text still needs review by a Mahamevnawa monk or Dhamma school teacher.
 
 ## Language
