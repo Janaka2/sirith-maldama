@@ -133,6 +133,25 @@ section > .wrap > h2{font-size:clamp(28px,3.6vw,38px);margin-bottom:6px}
 .phgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:12px}
 .phgrid .ph img{height:220px;object-fit:cover;object-position:center 30%}
 @media (max-width:760px){.phpair{grid-template-columns:1fr}.phpair .arrow{transform:rotate(90deg);height:30px}}
+/* Vaitulya and Kalinga */
+.vt{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}
+.vt .steps3{display:flex;flex-direction:column;gap:10px}
+.vt .st{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--red);border-radius:8px;padding:12px 14px}
+.vt .st.ok{border-left-color:var(--gold)}
+.vt .st b{font-family:var(--display);font-size:18px;display:block}
+.vt blockquote{margin:8px 0;padding:8px 12px;border-left:3px solid var(--line);color:var(--muted);font-size:17px}
+.vt .lesson{background:var(--gold-soft);border-radius:10px;padding:14px 16px}
+.vt .lesson h3{font-size:20px;margin-bottom:6px}
+.more{font-family:var(--display);font-size:15px}
+.kal{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:start;margin-top:28px}
+.kal svg{width:100%;height:auto;display:block}
+.land{fill:var(--teal-soft);stroke:var(--teal);stroke-width:1}
+.kalinga{fill:var(--gold);fill-opacity:.35;stroke:var(--gold);stroke-width:1.5}
+.sea{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:6 4}
+.kal text{font-family:var(--display);fill:var(--ink)}
+.kal ul{margin:8px 0 0;padding-left:20px}
+.kal li{margin:6px 0}
+@media (max-width:760px){.vt,.kal{grid-template-columns:1fr}}
 /* Map */
 .map-grid{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:start}
 .map-box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
@@ -232,6 +251,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
       <a href="#crisis">විනාශය සහ පුනරුදය</a>
       <a href="#photos">පැරණි ඡායාරූප</a>
       <a href="#map">අගනුවර සහ දළදා ගමන</a>
+      <a href="#kalinga">කාලිංගය සහ චෝළ රට</a>
+      <a href="#vaitulya">වෛතුල්‍ය වාදය</a>
       <a href="#kings">රජවරු</a>
       <a href="#quiz">ප්‍රශ්නාවලිය</a>
       <a href="#sources">මූලාශ්‍ර</a>
@@ -260,6 +281,33 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
     <p class="sub">සසුනට සිදු වූ බරපතළම හානි අවස්ථා සහ ඉන් පසු එය නැවත ගොඩනැඟූ අය. හැම අර්බුදයකින්ම පසු සසුන නැවත නැඟී සිටියේ රජවරුන්, සංඝයා සහ ජනතාව එක්ව කළ වෙහෙස නිසාය.</p>
     <div id="magha"></div>
     <div id="pairs"></div>
+
+    <article id="vaitulya" aria-labelledby="vth" style="margin-top:30px">
+      <h3 id="vth" style="font-size:clamp(24px,3vw,32px)">වෛතුල්‍ය වාදය යනු කුමක්ද?</h3>
+      <p class="sub">අනුරාධපුර යුගයේ මහාවිහාරයට සහ සසුනට මහත් කරදරයක් වූ මතයකි. මහාවංශය එය හඳුන්වන්නේ <b>"අධර්මය"</b> ලෙසය; එනම් බුදුරජාණන් වහන්සේ දේශනා කොට වදාළ ශ්‍රී සද්ධර්මයට එකඟ නොවන මතයකි. එය පැවසුවේ අභයගිරියේ වාසය කළ භික්ෂූන් පිරිසකි.</p>
+      <div class="vt">
+        <div class="steps3">
+          <div class="st"><b>1. වෝහාරික තිස්ස රජු (ක්‍රි.ව. 209–231)</b>රජු කපිල නම් ඇමතියා ලවා මේ මතය මර්දනය කළේය; එය පිළිගත් භික්ෂූන්ට නිග්‍රහ කළේය.
+            <blockquote>"…කපිල නම් ඇමතියා ලවා වෛතුල්‍ය වාදය නමැති අධර්මය මර්දනය කරලා…"</blockquote>
+            <div class="src">මූලාශ්‍රය: <a href="https://mahamevnawa.lk/mahawanshaya-cp-36/" target="_blank" rel="noopener">මහාවංශය 36</a></div></div>
+          <div class="st"><b>2. ගෝඨාභය රජු (ක්‍රි.ව. 249–262)</b>මතය නැවත මතු වූ විට, එය පැවසූ අභයගිරිවාසී භික්ෂූන් සැට නමක් රටින් පිටුවහල් කළේය.
+            <blockquote>"…ශාසනයට මහත් අර්බුදයක් වූ අභයගිරිවාසී වෛතුල්‍ය මත පවසන භික්ෂූන් සැට නමක් අල්ලාගෙන…"</blockquote>
+            <div class="src">මූලාශ්‍රය: <a href="https://mahamevnawa.lk/mahawanshaya-cp-36/" target="_blank" rel="noopener">මහාවංශය 36</a></div></div>
+          <div class="st"><b>3. සංඝමිත්‍ර භික්ෂුව සහ මහසේන රජු (ක්‍රි.ව. 274–301)</b>පිටුවහල් කළ තෙර නමක් ඇසුරු කළ, සීලයෙන් තොර සංඝමිත්‍ර නම් භික්ෂුවක් රජ මාලිගාවට ළං විය. මහාවිහාරයේ භික්ෂූන් විනයානුකූල නොවන බව මහසේන රජුට පවසා, මහාවිහාරය කඩා බිඳ දැමීමට රජු පෙලඹවීය.
+            <div class="src">මූලාශ්‍රය: <a href="https://mahamevnawa.lk/mahawanshaya-cp-36/" target="_blank" rel="noopener">මහාවංශය 36</a>, <a href="https://mahamevnawa.lk/mahawanshaya-cp-37/" target="_blank" rel="noopener">37</a></div></div>
+          <div class="st ok"><b>4. මහාවිහාරය නැවත නැඟී සිටියි</b>මේඝවණ්ණාභය ඇමතියා ද්‍රව්‍ය රැගෙන ඇවිත් මහාවිහාරයේ පිරිවෙන් නැවත කෙරෙව්වේය; භික්ෂූන් වහන්සේලා ආපසු වැඩම කළහ.
+            <div class="src">මූලාශ්‍රය: <a href="https://mahamevnawa.lk/mahawanshaya-cp-37/" target="_blank" rel="noopener">මහාවංශය 37</a></div></div>
+        </div>
+        <div>
+          <div class="lesson">
+            <h3>පින්වත් දරුවනේ, අපට මෙයින් ඉගෙන ගන්න තියෙන්නේ…</h3>
+            <p>බුදුරජාණන් වහන්සේ වදාළ ධර්මය වෙනස් නොකර, එලෙසම රැකගන්න අපේ රජවරුත් භික්ෂූන් වහන්සේලාත් කොතරම් වෙහෙසුණාද කියායි. මිහිඳු මහරහතන් වහන්සේ පිහිටුවූ මහාවිහාරය ඒ නිර්මල ධර්මය අද දක්වාම අපට ලබා දුන්නේය.</p>
+            <p><b>අපට කළ හැකි දේ:</b> අපිත් බුදු වදන් ඉගෙන ගන්නේ නිවැරදි මූලාශ්‍රයෙන්මයි. ඔයාලාගේ ගුරුතුමා සමඟ <a href="https://www.tripitaka.online/" target="_blank" rel="noopener">tripitaka.online</a> හි සූත්‍රයක් කියවා බලන්න.</p>
+          </div>
+          <p class="src" style="margin-top:12px">සටහන: මේ මතයේ ඉගැන්වීම් හරියටම මොනවාදැයි මහාවංශයේ විස්තර කර නැත. අපේ දහම් පාසල භාවිත කරන මූලාශ්‍ර තුනෙන් පිටත තොරතුරු නොගන්නා නිසා, ඒවා මෙහි ලියා නැත.</p>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -287,6 +335,16 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
         </div>
         <div class="capbtns" id="capBtns"></div>
         <p class="src" style="margin-top:12px">සිතියම සරල කළ රූපයකි; දුර ප්‍රමාණ නිවැරදි නොවේ. කොළ කොටු = පූජනීය ස්ථාන.</p>
+      </div>
+    </div>
+    <div class="kal" id="kalinga">
+      <div class="map-box"><svg id="kalsvg" viewBox="0 0 440 330" role="img" aria-label="ඉතිහාසයේ සඳහන් ඉන්දියාවේ සහ අග්නිදිග ආසියාවේ ප්‍රදේශ පෙන්වන සරල සිතියම"></svg>
+        <div class="capbtns" id="regBtns"></div></div>
+      <div>
+        <h3 style="font-size:26px">කාලිංගය, චෝළ රට සහ අනෙක් රටවල්</h3>
+        <p>ලංකා ඉතිහාසයේ සඳහන් වන, ලංකාවෙන් පිටත ප්‍රදේශ මේ සිතියමේ ඇත. කහ පැහැයෙන් කාලිංගයත්, රතු පැහැයෙන් චෝළ රටත් පෙන්වයි. ප්‍රදේශයක් ඔබා එහි සිදු වූ දේ සහ මූලාශ්‍රය බලන්න.</p>
+        <div class="step-panel" id="regPanel" aria-live="polite"></div>
+        <p class="src" style="margin-top:10px">සිතියම සරල කළ රූපයකි; පැරණි රාජ්‍යවල මායිම් කාලයෙන් කාලයට වෙනස් විය. ලකුණු දළ වශයෙන් පමණි.</p>
       </div>
     </div>
   </div>
@@ -503,7 +561,7 @@ function select(i){
 /* ---------- Crisis & revival ---------- */
 var PAIRS=[
   {c:"වළගම්බා යුගයේ ආක්‍රමණය සහ සාගතය",cy:"ක්‍රි.පූ. 103",cd:"රජු පලා ගිය අතර වසර 14ක් පමණ රට විදේශ පාලනයට යටත් විය. භික්ෂූන් ජීවත් වීමට දුෂ්කර විය.",r:"අභයගිරිය සහ ත්‍රිපිටකය ලියැවීම",ry:"ක්‍රි.පූ. 89–77",rd:"රාජ්‍යය යළි ලබාගත් වළගම්බා අභයගිරිය තැනුවේය; කටපාඩමින් ආ ධර්මය නැති නොවන ලෙස ලියා තැබිණි.",src:["mv:33"]},
-  {c:"මහසේන: මහාවිහාරයට පීඩනය",cy:"ක්‍රි.ව. 274–301",cd:"මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. මහාවිහාරය වසර ගණනක් හිස්ව තිබිණි.",r:"මේඝවණ්ණාභය ඇමතිගේ මැදිහත්වීම",ry:"එම රාජ්‍ය කාලයේම",rd:"ඇමතියා විරෝධය පෑ විට රජු සමාව ඉල්ලා මහාවිහාරය යළි ගොඩනැඟීමට ඉඩ දුන්නේය; භික්ෂූන් ආපසු පැමිණියහ.",src:["mv:37"]},
+  {c:"මහසේන: මහාවිහාරයට පීඩනය",cy:"ක්‍රි.ව. 274–301",cd:"මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. මහාවිහාරය වසර ගණනක් හිස්ව තිබිණි.",r:"මේඝවණ්ණාභය ඇමතිගේ මැදිහත්වීම",ry:"එම රාජ්‍ය කාලයේම",rd:"ඇමතියා විරෝධය පෑ විට රජු සමාව ඉල්ලා මහාවිහාරය යළි ගොඩනැඟීමට ඉඩ දුන්නේය; භික්ෂූන් ආපසු පැමිණියහ.",src:["mv:37"],more:"#vaitulya"},
   {c:"7 වන සියවසේ සිවිල් යුද්ධ",cy:"ක්‍රි.ව. 623–652",cd:"රජ පවුල් අතර යුද්ධවලදී විහාර වස්තුව යුද වියදම්වලට ගැනිණි; ථූපාරාමයේ රන් අලංකාර ගැලවිණි.",r:"යුද්ධයෙන් පසු ප්‍රතිසංස්කරණ",ry:"ක්‍රි.ව. 652–726",rd:"කාශ්‍යප II සහ මානවම්ම යටතේ ස්ථාවර පාලනයක් ඇති වී විහාර ජීවිතය යළි ශක්තිමත් විය.",src:["cv:44","cv:45","cv:47"]},
   {c:"චෝළ ආක්‍රමණය",cy:"ක්‍රි.ව. 1017",cd:"අනුරාධපුරය විනාශ විය; රජු අල්ලා ගෙන ගියේය; වසර 50කට ආසන්න කාලයක් රජරට චෝළ පාලනයේ විය. උපසම්පදාව පවා නැති විය.",r:"විජයබාහු I",ry:"ක්‍රි.ව. 1070",rd:"චෝළයන් පලවා හැර, බුරුමයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව යළි පිහිටුවීය; විහාර සහ පිරිවෙන් අලුත්වැඩියා කළේය.",src:["cv:55","cv:58","cv:60"]},
   {c:"පෘතුගීසි ප්‍රතිපත්තිය සහ රාජසිංහ I",cy:"1550–1650",cd:"වෙරළබඩ විහාර දේපළ මිෂනාරීන්ට ගියේය; විහාර විනාශ කෙරිණි. රාජසිංහ I භික්ෂූන්ට පීඩා කළ බව පසුකාලීන වංශකතා කියයි (සාක්ෂි C).",r:"විමලධර්මසූරිය I",ry:"1592–1604",rd:"දන්තුරේදී පෘතුගීසීන් පරාජය කර, දළදාව මහනුවරට ගෙනැවිත්, අරකානයෙන් භික්ෂූන් ගෙන්වා 1597 දී උපසම්පදාව කළේය.",src:["cv:93","cv:94","rj:~80","rj:~97–101"]},
@@ -539,7 +597,7 @@ function buildCrisis(){
     return '<div class="pair">'+
       '<div class="card crisis"><div class="tag">හානිය · '+esc(p.cy)+'</div><h3>'+esc(p.c)+'</h3><p>'+esc(p.cd)+'</p></div>'+
       '<div class="arrow" aria-hidden="true">→</div>'+
-      '<div class="card revival"><div class="tag">පුනරුදය · '+esc(p.ry)+'</div><h3>'+esc(p.r)+'</h3><p>'+esc(p.rd)+'</p>'+srcHTML(p.src)+'</div>'+
+      '<div class="card revival"><div class="tag">පුනරුදය · '+esc(p.ry)+'</div><h3>'+esc(p.r)+'</h3><p>'+esc(p.rd)+'</p>'+(p.more?'<a class="more" href="'+p.more+'">වෛතුල්‍ය වාදය යනු කුමක්ද? →</a>':'')+srcHTML(p.src)+'</div>'+
     '</div>';
   }).join("");
 }
@@ -588,6 +646,75 @@ function showCap(i){
   document.querySelectorAll("#mapsvg .cap").forEach(function(g){g.classList.toggle("on",+g.dataset.i<=i)});
   document.querySelectorAll("#capBtns button").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i)});
   document.getElementById("stepPanel").innerHTML='<div class="when">'+(i+1)+' / '+CAPS.length+' · '+esc(c.y)+'</div><h3>'+esc(c.n)+'</h3><p>'+esc(c.d)+'</p>'+srcHTML(c.src);
+}
+
+/* ---------- Regional map: places outside Lanka named in the history ---------- */
+function KP(lat,lon){return [((lon-72)*14.4+8).toFixed(1),((26.6-lat)*14.4+8).toFixed(1)]}
+var REG=[
+ {k:"kalinga",n:"කාලිංගය",ll:[19.8,84.6],a:"middle",dx:0,dy:-10,d:"ඉන්දියාවේ නැගෙනහිර වෙරළ; අද ඔඩිශා ප්‍රාන්තය සහ ආන්ද්‍ර ප්‍රදේශයේ උතුරු වෙරළ, දළ වශයෙන් මහානදී ගඟේ සිට ගෝදාවරී ගඟ දක්වා. ලංකාවට කිලෝමීටර 1,000ක් පමණ උතුරින්.",ev:[
+   ["විජය කුමරුගේ පරම්පරාව","වංග රජුගේ බිසව කාලිංග රජුගේ දියණියක් බව මහාවංශය කියයි.",["mv:6"]],
+   ["දළදා වහන්සේ (ක්‍රි.ව. 310 පමණ)","සිරිමේඝවණ්ණ රජු දවස කාලිංග දේශයෙන් ලංකාවට වැඩම කළහ.",["cv:37"]],
+   ["නිස්සංක මල්ල (1187–1196)","කාලිංග වංශයෙන් පැවත එන පොළොන්නරු රජෙකි.",["cv:80"]],
+   ["කාලිංග මාඝ (1215)","වංශකතා ඔහු පැමිණියේ කාලිංගයේ සිට බව කියයි. ඔහු හරියටම පැමිණියේ මේ කාලිංගයෙන්ද යන්න ගැන ඉතිහාසඥයන් අතර එකඟතාවක් නැත.",["cv:80","rj:~63–64"]]]},
+ {k:"chola",n:"චෝළ රට",ll:[10.9,79.2],a:"start",dx:8,dy:4,d:"කාවේරි ගඟ අවට, අද තමිල්නාඩුවේ නැගෙනහිර වෙරළ. අගනුවර තංජාවූර්.",ev:[
+   ["එළාර (ක්‍රි.පූ. 205–161)","චෝළ රටින් පැමිණ අනුරාධපුරයේ රජකම ලබාගත්තේය; යුක්තියට ප්‍රසිද්ධය.",["mv:21"]],
+   ["සංඝමිත්‍ර භික්ෂුව (ක්‍රි.ව. 3 වන සියවස)","මහාවිහාරයට එරෙහිව මහසේන රජු පෙලඹවූ 'සොලී' (චෝළ) භික්ෂුවකි.",["mv:36","mv:37"]],
+   ["චෝළ ආක්‍රමණය (1017)","අනුරාධපුරය විනාශ කර මහින්ද V රජු අල්ලා ගෙන ගියේය; වසර 50කට ආසන්න කාලයක් රජරට චෝළ පාලනයේ විය.",["cv:55"]],
+   ["විජයබාහු I (1070)","චෝළයන් පලවා හැර රට නිදහස් කළේය.",["cv:58"]],
+   ["පරාක්‍රමබාහු II (13 වන සියවස)","සසුන යළි ගොඩනැඟීමට චෝළ රටින් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය.",["cv:84"]]]},
+ {k:"pandya",n:"පාණ්ඩ්‍ය රට",ll:[9.93,78.12],a:"end",dx:-7,dy:4,d:"ඉන්දියාවේ දකුණු කෙළවර; අගනුවර මදුරාව.",ev:[
+   ["විජය කුමරුගේ බිසව","විජය රජු පාණ්ඩ්‍ය කුමරියක් සරණ පාවා ගත්තේය.",["mv:7"]],
+   ["පාණ්ඩ්‍ය කොල්ලය (9 වන සියවස)","සේන I රජු දවස පාණ්ඩ්‍ය හමුදාව අනුරාධපුරය කොල්ලකෑවේය. සේන II මදුරාව ආක්‍රමණය කර කොල්ලය ආපසු ගෙනාවේය.",["cv:50","cv:51"]],
+   ["දළදාව මදුරාවට (1284)","පාණ්ඩ්‍ය ආක්‍රමණයෙන් දළදා වහන්සේ මදුරාවට ගෙන ගියහ; පරාක්‍රමබාහු III සාකච්ඡාවෙන් ආපසු වැඩම කළේය.",["cv:90"]]]},
+ {k:"pallava",n:"පල්ලව රට",ll:[12.83,79.7],a:"end",dx:-7,dy:-4,d:"අද චෙන්නායි අසල. පල්ලව රජවරුන්ගේ අගනුවර කාංචිපුරය.",ev:[
+   ["මානවම්ම (ක්‍රි.ව. 691)","පල්ලව රජුගේ හමුදා සහාය ඇතිව ලංකාවේ රජකම ලබාගෙන ස්ථාවර පාලනයක් ඇති කළේය.",["cv:47"]]]},
+ {k:"magadha",n:"මගධය (පාටලීපුත්‍රය)",ll:[25.6,85.1],a:"start",dx:8,dy:0,d:"අද බිහාර් ප්‍රාන්තයේ පට්නා. අශෝක අධිරාජයාගේ අගනුවර.",ev:[
+   ["අශෝක අධිරාජයා","දේවානම්පියතිස්ස රජු මෙහි දූත පිරිසක් යැවීය; අශෝක රජුගේ පුත් මිහිඳු මහරහතන් වහන්සේ ලංකාවට වැඩම කළහ.",["mv:11","mv:13"]]]},
+ {k:"gaya",n:"බුද්ධගයාව",ll:[24.7,85.0],a:"end",dx:-7,dy:6,d:"බුදුරජාණන් වහන්සේ බුද්ධත්වයට පත් වූ ස්ථානය.",ev:[
+   ["ශ්‍රී මහා බෝධිය","සංඝමිත්තා තෙරණිය බුද්ධගයාවේ බෝධියේ දකුණු ශාඛාව ලංකාවට වැඩම කළාය.",["mv:18","mv:19"]]]},
+ {k:"vanga",n:"වංග රට",ll:[23.6,89.2],a:"start",dx:7,dy:4,d:"අද බංග්ලාදේශය සහ බටහිර බෙංගාලය අවට.",ev:[
+   ["විජය කුමරුගේ මුතුන් මිත්තන්","විජය කුමරුගේ පරම්පරාව වංග රාජ කුලයෙන් ආරම්භ වූ බව මහාවංශය කියයි.",["mv:6"]]]},
+ {k:"goa",n:"ගෝවා",ll:[15.5,73.85],a:"start",dx:7,dy:4,d:"ඉන්දියාවේ බටහිර වෙරළ. ආසියාවේ පෘතුගීසි මූලස්ථානය.",ev:[
+   ["පෘතුගීසි බලය","ලංකාවේ පෘතුගීසීන්ට හමුදා ලැබුණේ ගෝවෙනි. කොනප්පු බණ්ඩාර (පසු විමලධර්මසූරිය I) ගෝවට යවනු ලැබීය.",["rj:~88","rj:~92"]]]},
+ {k:"ramanna",n:"රාමඤ්ඤ (බුරුමය)",ll:[17.3,96.5],a:"start",dx:7,dy:4,d:"අද මියන්මාරයේ පහළ ප්‍රදේශය (පෙගු).",ev:[
+   ["විජයබාහු I (11 වන සියවස)","චෝළ පාලනයෙන් පසු නැති වූ උපසම්පදාව යළි පිහිටුවීමට රාමඤ්ඤ දේශයෙන් භික්ෂූන් ගෙන්වීය.",["cv:60"]],
+   ["කැලණි උපසම්පදාව (1476)","බුරුම භික්ෂූන් කැලණියට පැමිණ උපසම්පදාව ලැබූහ.",["rj:~70"]]]},
+ {k:"arakan",n:"අරකානය",ll:[20.6,93.2],a:"start",dx:7,dy:-4,d:"අද මියන්මාරයේ රාඛයින් ප්‍රදේශය.",ev:[
+   ["ගැටම්බේ උපසම්පදාව (1597)","විමලධර්මසූරිය I අරකානයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය.",["cv:94"]],
+   ["විමලධර්මසූරිය II (1697 පමණ)","නැවතත් අරකානයෙන් භික්ෂූන් ගෙන්වා උපසම්පදාව කළේය.",["cv:97"]]]},
+ {k:"siam",n:"සියම (අයුතියාව)",ll:[14.35,100.56],a:"end",dx:-7,dy:-8,d:"අද තායිලන්තය. පැරණි අගනුවර අයුතියාව.",ev:[
+   ["සියම් උපසම්පදාව (1753)","කීර්ති ශ්‍රී රාජසිංහ රජුගේ ආරාධනයෙන් උපාලි හිමි ඇතුළු පිරිස සියමෙන් වැඩම කර උපසම්පදාව යළි පිහිටුවූහ.",["cv:100"]]]},
+ {k:"javaka",n:"ජාවක (තම්බලිංග)",ll:[8.4,99.95],a:"end",dx:-7,dy:4,d:"මලය අර්ධද්වීපයේ උතුරු කොටස; අද තායිලන්තයේ දකුණ.",ev:[
+   ["චන්ද්‍රභානු (13 වන සියවස)","ජාවක රජු චන්ද්‍රභානු ලංකාව ආක්‍රමණය කළේය; පරාක්‍රමබාහු II ඔහු පරාජය කළේය.",["cv:83"]]]}
+];
+function buildKalinga(){
+  var land=[[26.6,72],[26.6,101],[12.7,101],[13.4,100.4],[12.6,99.95],[11.0,99.4],[9.4,99.2],[8.4,100.1],[7.2,100.6],[6.2,101],[5,101],[5,100.3],[6.5,99.8],[8.0,98.3],[10.0,98.5],[12.0,98.6],[14.0,98.2],[16.5,97.6],[16.8,96.2],[15.9,95.3],[16.0,94.6],[17.6,94.5],[19.4,93.6],[20.2,92.9],[21.4,92.0],[22.3,91.8],[22.7,91.0],[22.0,90.4],[21.8,89.5],[21.7,88.2],[21.5,87.0],[20.3,86.7],[19.8,85.8],[19.3,84.9],[18.3,83.9],[17.7,83.3],[16.9,82.3],[16.3,81.3],[15.5,80.2],[14.4,80.1],[13.1,80.3],[12.0,79.85],[11.0,79.85],[10.3,79.85],[9.3,79.1],[8.8,78.2],[8.08,77.55],[8.5,76.95],[9.9,76.2],[11.2,75.8],[12.9,74.8],[14.8,74.1],[15.5,73.8],[17.0,73.3],[18.9,72.85],[21.0,72.7],[22.3,72.6],[23.0,72]];
+  var kal=[[21.5,87.0],[20.3,86.7],[19.8,85.8],[19.3,84.9],[18.3,83.9],[17.7,83.3],[16.9,82.3],[17.7,81.5],[19.4,82.4],[20.9,83.8],[21.8,85.6]];
+  var chola=[[12.0,79.85],[11.0,79.85],[10.3,79.85],[10.1,79.2],[10.6,78.4],[11.4,78.3],[11.9,79.0]];
+  function poly(a){return a.map(function(c){return KP(c[0],c[1]).join(",")}).join(" ")}
+  var o=['<polygon class="land" points="'+poly(land)+'"/>','<polygon class="land" points="'+poly(COAST)+'"/>',
+    '<polygon class="kalinga" points="'+poly(kal)+'"/>','<polygon class="kalinga" points="'+poly(chola)+'" style="fill:var(--red);stroke:var(--red)"/>'];
+  var lk=KP(7.9,80.7);
+  REG.forEach(function(r){var p=KP(r.ll[0],r.ll[1]);o.push('<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+lk[0]+'" y2="'+lk[1]+'" stroke="var(--gold)" stroke-width=".8" stroke-dasharray="3 3" opacity=".55"/>')});
+  REG.forEach(function(r,i){var p=KP(r.ll[0],r.ll[1]);o.push('<g class="reg" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(r.n)+'" style="cursor:pointer"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="var(--surface)" stroke="var(--gold)" stroke-width="2"/><text x="'+(+p[0]+r.dx)+'" y="'+(+p[1]+r.dy)+'" font-size="11" text-anchor="'+r.a+'">'+esc(r.n)+'</text></g>')});
+  var sl=KP(6.1,81.9);o.push('<text x="'+sl[0]+'" y="'+sl[1]+'" font-size="12">ශ්‍රී ලංකාව</text>');
+  var bb=KP(15.0,87.0);o.push('<text x="'+bb[0]+'" y="'+bb[1]+'" font-size="11" text-anchor="middle" style="fill:var(--teal)">බෙංගාල බොක්ක</text>');
+  var ind=KP(22.0,78.0);o.push('<text x="'+ind[0]+'" y="'+ind[1]+'" font-size="15" text-anchor="middle" style="fill:var(--muted)">ඉන්දියාව</text>');
+  o.push('<text x="10" y="318" font-size="10" style="fill:var(--muted)">← ඊජිප්තුව, යුරෝපය</text>');
+  o.push('<text x="430" y="20" font-size="10" text-anchor="end" style="fill:var(--muted)">චීනය ↑</text>');
+  var svg=document.getElementById("kalsvg");svg.innerHTML=o.join("");
+  svg.addEventListener("click",function(e){var g=e.target.closest(".reg");if(g)showReg(+g.dataset.i)});
+  svg.addEventListener("keydown",function(e){var g=e.target.closest&&e.target.closest(".reg");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();showReg(+g.dataset.i)}});
+  var B=document.getElementById("regBtns");
+  B.innerHTML=REG.map(function(r,i){return '<button type="button" data-i="'+i+'">'+esc(r.n)+'</button>'}).join("");
+  B.addEventListener("click",function(e){var b=e.target.closest("button");if(b)showReg(+b.dataset.i)});
+  showReg(0);
+}
+function showReg(i){
+  var r=REG[i];
+  document.querySelectorAll("#kalsvg .reg circle").forEach(function(c,j){c.setAttribute("fill",j===i?"var(--gold)":"var(--surface)")});
+  document.querySelectorAll("#regBtns button").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i)});
+  document.getElementById("regPanel").innerHTML='<h3>'+esc(r.n)+'</h3><p class="when">'+esc(r.d)+'</p>'+r.ev.map(function(e){return '<p><b>'+esc(e[0])+':</b> '+esc(e[1])+'</p>'+srcHTML(e[2])}).join("");
 }
 
 /* ---------- Kings ---------- */
@@ -696,9 +823,10 @@ function renderKings(){
   document.getElementById("kgrid").innerHTML=list.map(function(k){
     var cls="king"+(k.t.indexOf("g")>=0?" has-g":"")+(k.t.indexOf("r")>=0?" has-r":"");
     var harm=k.t.indexOf("r")>=0;
+    var vt=(k.s.indexOf("වෛතුල්‍ය")>=0)?'<a class="more" href="#vaitulya">වෛතුල්‍ය වාදය යනු කුමක්ද? →</a>':'';
     return '<article class="'+cls+'"><div class="when">'+esc(k.y)+'<span class="badge">සාක්ෂි '+k.v+'</span></div><h3>'+esc(k.n)+'</h3>'+
       '<div class="row"><b>රටට</b><span>'+esc(k.c)+'</span></div>'+
-      '<div class="row'+(harm?" r":"")+'"><b>සසුනට</b><span>'+esc(k.s)+'</span></div>'+srcHTML(k.src)+'</article>';
+      '<div class="row'+(harm?" r":"")+'"><b>සසුනට</b><span>'+esc(k.s)+'</span></div>'+vt+srcHTML(k.src)+'</article>';
   }).join("")||'<p class="count">ගැළපෙන පාලකයෙක් නැත. සෙවුම හෝ පෙරහන වෙනස් කරන්න.</p>';
 }
 
@@ -742,7 +870,7 @@ function buildSources(){
 }
 
 buildTimeline(); select(EV.findIndex(function(e){return e.y===1215}));
-buildCrisis(); buildPhotos(); buildMap(); buildKings(); buildQuiz(); buildSources();
+buildCrisis(); buildPhotos(); buildMap(); buildKalinga(); buildKings(); buildQuiz(); buildSources();
 })();
 </script>
 </body>
