@@ -20,6 +20,23 @@ teacher will read or see about the Dhamma or good conduct.
   finishing. A failure blocks the work.
 - New teaching text needs review by a Mahamevnawa monk or Dhamma school teacher. Say so.
 
+### One exception: the history page
+
+Decided by the owner on 2026-11-13. `ithihasaya.html` ("බුදුසසුනේ වසර 2,500ක ගමන") is a
+history lesson, not a Dhamma lesson. It may also cite:
+
+- *The Rajavaliya*, ed. B. Gunasekara, 1900 (archive.org)
+- *Culavamsa*, tr. W. Geiger, 1929–30 (books.lakdiva.org.lk)
+
+These cover the kings after Mahasena, which the mahamevnawa.lk Mahavamsa (chapters 1–37)
+does not. The exception covers this page only. It does not allow these sources, or any
+other, anywhere else on the site, and it never allows quoting the Buddha's word from
+anything but tripitaka.online. The page states this in its teachers' note.
+
+- Keep each event's evidence level (A, B, C) and source link.
+- Name no ethnic group as the cause of harm; name the ruler or the event.
+- Its text still needs review by a Mahamevnawa monk or Dhamma school teacher.
+
 ## Language
 
 The site is in **Sinhala**. One exception, decided by the owner on 2026-09-27:
