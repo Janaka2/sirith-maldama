@@ -27,6 +27,8 @@ history lesson, not a Dhamma lesson. It may also cite:
 
 - *The Rajavaliya*, ed. B. Gunasekara, 1900 (archive.org)
 - *Culavamsa*, tr. W. Geiger, 1929–30 (books.lakdiva.org.lk)
+- Photographs from *The Sacred City of Anuradhapura*, B. W. Harischandra, 1908
+  (archive.org, public domain), kept in `assets/img/ithihasaya/`
 
 These cover the kings after Mahasena, which the mahamevnawa.lk Mahavamsa (chapters 1–37)
 does not. The exception covers this page only. It does not allow these sources, or any

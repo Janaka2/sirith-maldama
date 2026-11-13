@@ -123,6 +123,16 @@ section > .wrap > h2{font-size:clamp(28px,3.6vw,38px);margin-bottom:6px}
 .magha .recover h4{font-family:var(--display);font-size:20px;margin:0 0 6px;color:#F3D08A}
 .magha .note{font-size:15px;color:#E8C7C1;margin-top:14px;border-top:1px solid rgba(255,255,255,.15);padding-top:10px}
 
+/* Photographs */
+.ph{margin:12px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px}
+.ph img{display:block;width:100%;height:auto;border-radius:6px;filter:sepia(.25)}
+.ph figcaption{font-family:var(--display);font-size:15px;color:var(--muted);margin-top:6px}
+.detail .ph{max-width:560px}
+.phpair{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;margin-bottom:6px}
+.phpair .arrow{display:flex;justify-content:center;font-family:var(--display);font-size:28px;color:var(--muted)}
+.phgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:12px}
+.phgrid .ph img{height:220px;object-fit:cover;object-position:center 30%}
+@media (max-width:760px){.phpair{grid-template-columns:1fr}.phpair .arrow{transform:rotate(90deg);height:30px}}
 /* Map */
 .map-grid{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:start}
 .map-box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
@@ -220,6 +230,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
     <nav class="toc" aria-label="පිටුවේ කොටස්">
       <a href="#timeline">කාලරේඛාව</a>
       <a href="#crisis">විනාශය සහ පුනරුදය</a>
+      <a href="#photos">පැරණි ඡායාරූප</a>
       <a href="#map">අගනුවර සහ දළදා ගමන</a>
       <a href="#kings">රජවරු</a>
       <a href="#quiz">ප්‍රශ්නාවලිය</a>
@@ -249,6 +260,16 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:15px}
     <p class="sub">සසුනට සිදු වූ බරපතළම හානි අවස්ථා සහ ඉන් පසු එය නැවත ගොඩනැඟූ අය. හැම අර්බුදයකින්ම පසු සසුන නැවත නැඟී සිටියේ රජවරුන්, සංඝයා සහ ජනතාව එක්ව කළ වෙහෙස නිසාය.</p>
     <div id="magha"></div>
     <div id="pairs"></div>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="wrap">
+    <h2>1908 දී අනුරාධපුරය: පැරණි ඡායාරූප</h2>
+    <p class="sub">යුද්ධ, ආක්‍රමණ සහ සියවස් ගණනාවක් අත්හැර දැමීම නිසා අනුරාධපුරයේ මහා දාගැබ් කැලෑවෙන් වැසී ගියේය. මේ ඡායාරූප ගත්තේ ඒවා ප්‍රතිසංස්කරණය කිරීමට පටන් ගත් කාලයේය. වම් පස ප්‍රතිසංස්කරණයට පෙර, දකුණු පස පසු.</p>
+    <div id="phpairs"></div>
+    <div class="phgrid" id="phgrid"></div>
+    <p class="src">ඡායාරූප: බ්‍රහ්මචාරී වලිසිංහ හරිශ්චන්ද්‍ර, <i>The Sacred City of Anuradhapura</i>, 1908 (<a href="https://archive.org/details/sacredcityofanur00haririch" target="_blank" rel="noopener">archive.org</a>). එක් එක් හානිය කවර ආක්‍රමණයකින් සිදු වූවාදැයි මේ ඡායාරූපවලින් කිව නොහැක.</p>
   </div>
 </section>
 
@@ -354,19 +375,19 @@ var ERAS=[
 var EV=[
   {y:-543,s:"t",m:1,n:"විජය පැමිණීම",d:"සාම්ප්‍රදායික වංශකතාවට අනුව විජය කුමරු සහ පිරිස තම්බපණ්ණියට පැමිණ රාජ්‍යය පිහිටුවීම. මෙම දිනය වංශකතා දිනයකි.",e:"B/C",src:["mv:6","mv:7","rj:15–20"]},
   {y:-437,s:"t",m:2,n:"අනුරාධපුර නගරය",d:"පණ්ඩුකාභය රජු අනුරාධපුරය සැලසුම් සහගත අගනුවරක් කළේය; අභයවාපිය (බසවක්කුළම) තැනුවේය; දිවයින පුරා ගම් මායිම් නියම කළේය.",e:"B",src:["mv:10","rj:22"]},
-  {y:-306,s:"g",m:3,n:"මිහිඳු හිමියන්ගේ පැමිණීම",d:"පොසොන් දිනෙක මිහින්තලේදී මිහිඳු මහරහතන් වහන්සේ දේවානම්පියතිස්ස රජුට චූළහත්ථිපදෝපම සූත්‍රය දේශනා කළහ. මහාමේඝ උයන සංඝයාට පූජා කර මහාවිහාරය පිහිටුවිණි.",e:"A/B",src:["mv:13","mv:14","mv:15","tp:340"]},
-  {y:-288,s:"g",m:3,n:"ශ්‍රී මහා බෝධිය",d:"සංඝමිත්තා තෙරණිය බුද්ධගයාවේ බෝධියේ දකුණු ශාඛාව රැගෙන ආවාය; අනුරාධපුරයේ රෝපණය කෙරිණි. භික්ෂුණී සසුනද පිහිටියේය.",e:"B",src:["mv:18","mv:19"]},
+  {y:-306,s:"g",m:3,n:"මිහිඳු හිමියන්ගේ පැමිණීම",ph:"mihintale-steps",d:"පොසොන් දිනෙක මිහින්තලේදී මිහිඳු මහරහතන් වහන්සේ දේවානම්පියතිස්ස රජුට චූළහත්ථිපදෝපම සූත්‍රය දේශනා කළහ. මහාමේඝ උයන සංඝයාට පූජා කර මහාවිහාරය පිහිටුවිණි.",e:"A/B",src:["mv:13","mv:14","mv:15","tp:340"]},
+  {y:-288,s:"g",m:3,n:"ශ්‍රී මහා බෝධිය",ph:"sri-maha-bodhi",d:"සංඝමිත්තා තෙරණිය බුද්ධගයාවේ බෝධියේ දකුණු ශාඛාව රැගෙන ආවාය; අනුරාධපුරයේ රෝපණය කෙරිණි. භික්ෂුණී සසුනද පිහිටියේය.",e:"B",src:["mv:18","mv:19"]},
   {y:-161,s:"t",m:3,n:"දුටුගැමුණු රට එක් කරයි",d:"එළාර ඇතුළු ප්‍රාදේශීය පාලකයන් 32 දෙනා පරාජය කර දිවයින එක් රාජ්‍යයක් කළේය. පරාජිත එළාරට ගෞරව සහිත ස්මාරකයක් තැනුවේය.",e:"B",src:["mv:25","rj:~28–44"]},
-  {y:-140,s:"g",m:3,n:"රුවන්වැලි මහා සෑය",d:"දුටුගැමුණු රජු මිරිසවැටිය, ලෝවාමහාපාය සහ රුවන්වැලි මහා සෑය ඉදි කළේය. සෑයේ වැඩ සද්ධාතිස්ස රජු නිම කළේය.",e:"A/B",src:["mv:26","mv:27","mv:28","mv:31","mv:33"]},
+  {y:-140,s:"g",m:3,n:"රුවන්වැලි මහා සෑය",ph:"ruwanweli-murage",d:"දුටුගැමුණු රජු මිරිසවැටිය, ලෝවාමහාපාය සහ රුවන්වැලි මහා සෑය ඉදි කළේය. සෑයේ වැඩ සද්ධාතිස්ස රජු නිම කළේය.",e:"A/B",src:["mv:26","mv:27","mv:28","mv:31","mv:33"]},
   {y:-103,s:"r",m:2,n:"ආක්‍රමණය සහ සාගතය",d:"වළගම්බා රජු දකුණු ඉන්දීය ආක්‍රමණිකයන්ගෙන් පරාජය වී පලා ගියේය. වසර 14කට වැඩි කාලයක් රට විදේශ පාලනයට යටත් විය; සසුන් ආයතන දුර්වල විය.",e:"B",src:["mv:33"]},
-  {y:-88,s:"g",m:2,n:"අභයගිරි විහාරය",d:"රාජ්‍යය යළි ලබාගත් වළගම්බා රජු අභයගිරි විහාරය ඉදි කළේය.",e:"B",src:["mv:33","rj:~45"]},
+  {y:-88,s:"g",m:2,n:"අභයගිරි විහාරය",ph:"abhayagiri-before",d:"රාජ්‍යය යළි ලබාගත් වළගම්බා රජු අභයගිරි විහාරය ඉදි කළේය.",e:"B",src:["mv:33","rj:~45"]},
   {y:-80,s:"g",m:3,n:"ත්‍රිපිටකය ලියැවේ",d:"කටපාඩමින් ආ ත්‍රිපිටකය සහ අට්ඨකථා ඉටිපත්වල ලියා තැබූ බව මහාවංශය කියයි (අලුවිහාර සම්ප්‍රදාය). ලොව ප්‍රථම වරට පාලි ත්‍රිපිටකය ලේඛනගත වූයේ මෙසේය.",e:"B",src:["mv:33"]},
   {y:-58,s:"r",m:2,n:"චෝරනාග: විහාර 18ක් විනාශ",d:"තමාට සැඟවීමට ඉඩ නොදුන් විහාර 18ක් චෝරනාග රජු විනාශ කළ බව මහාවංශයත් රාජාවලියත් කියයි.",e:"B",src:["mv:34","rj:~46"]},
   {y:30,s:"r",m:1,n:"භික්ෂූන් 60ක් ඝාතනය",d:"කුමන්ත්‍රණයක් කළ බවට චෝදනා කළ භික්ෂූන් 60ක් කණිරජානු තිස්ස රජු ප්‍රපාතයකින් හෙළවූ බව මහාවංශය කියයි.",e:"B",src:["mv:35"]},
   {y:85,s:"t",m:2,n:"වසභ රජුගේ වැව් 12",d:"වසභ රජු වැව් 12ක්, නගර ප්‍රාකාරය සහ දොරටු ඉදි කළේය.",e:"A/B",src:["mv:35","rj:~47–48"]},
-  {y:276,s:"r",m:2,n:"මහාවිහාරයට පීඩනය",d:"මහසේන රජු මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. භික්ෂූන් රුහුණට සහ කඳුකරයට පලා ගියහ. පසුව සමාව ඉල්ලා ප්‍රතිසංස්කරණය කළේය.",e:"B",src:["mv:37"]},
+  {y:276,s:"r",m:2,n:"මහාවිහාරයට පීඩනය",ph:"jetavana",d:"මහසේන රජු මහාවිහාරයට දන් දීම තහනම් කර, එහි ගොඩනැගිලි අභයගිරියට ගෙන ගියේය. භික්ෂූන් රුහුණට සහ කඳුකරයට පලා ගියහ. පසුව සමාව ඉල්ලා ප්‍රතිසංස්කරණය කළේය.",e:"B",src:["mv:37"]},
   {y:285,s:"t",m:3,n:"මින්නේරිය සහ වැව් 16",d:"මහසේන රජු මින්නේරිය මහවැව ඇතුළු වැව් 16ක් ඉදි කළේය. ජනතාව ඔහුට 'මින්නේරි දෙවියෝ' ලෙස පුදති.",e:"B",src:["mv:37","rj:~51–52"]},
-  {y:310,s:"g",m:3,n:"දළදා වහන්සේ වැඩම කරති",d:"සිරිමේඝවණ්ණ රජුගේ 9 වන වසරේ කාලිංග දේශයෙන් දළදා වහන්සේ ලංකාවට වැඩම කළහ. එතැන් සිට දළදාව රජකමේ සංකේතය විය.",e:"B",src:["cv:37","rj:~53"]},
+  {y:310,s:"g",m:3,n:"දළදා වහන්සේ වැඩම කරති",ph:"thuparama-dalada-ruins",d:"සිරිමේඝවණ්ණ රජුගේ 9 වන වසරේ කාලිංග දේශයෙන් දළදා වහන්සේ ලංකාවට වැඩම කළහ. එතැන් සිට දළදාව රජකමේ සංකේතය විය.",e:"B",src:["cv:37","rj:~53"]},
   {y:415,s:"g",m:2,n:"බුද්ධඝෝෂ හිමි",d:"මහානාම රජු දවස බුද්ධඝෝෂ හිමියන් මහාවිහාරයේ වැඩ වසමින් සිංහල අට්ඨකථා පාලියට නැඟූහ.",e:"B",src:["cv:37","rj:~54"]},
   {y:460,s:"t",m:2,n:"කලාවැව",d:"විදේශ පාලනය අවසන් කළ ධාතුසේන රජු කලාවැව සහ වැව් 18ක් ඉදි කළේය.",e:"B",src:["cv:38","rj:~55"]},
   {y:480,s:"t",m:2,n:"සීගිරිය",d:"කාශ්‍යප I රජු සීගිරි නගරය සහ උයන් ඉදි කළේය.",e:"B",src:["cv:39"]},
@@ -392,13 +413,39 @@ var EV=[
   {y:1753,s:"g",m:3,n:"සියම් උපසම්පදාව",d:"කීර්ති ශ්‍රී රාජසිංහ රජු, වැලිවිට සරණංකර හිමියන්ගේ මඟපෙන්වීමෙන් සියමෙන් උපාලි හිමි ඇතුළු පිරිස ගෙන්වා උපසම්පදාව යළි පිහිටුවීය. සියම් නිකාය ආරම්භය.",e:"A/B",src:["cv:99","cv:100"]},
   {y:1807,s:"t",m:1,n:"මහනුවර වැව",d:"ශ්‍රී වික්‍රම රාජසිංහ කිරි මුහුද (මහනුවර වැව) සහ පත්තිරිප්පුව ඉදි කළේය.",e:"B",src:["cv:101"]},
   {y:1815,s:"r",m:2,n:"රාජාණ්ඩුව අවසන්",d:"මහනුවර ගිවිසුමෙන් දිවයින බ්‍රිතාන්‍යයට යටත් විය. 5 වන වගන්තියෙන් බුදුදහම රැකීමට පොරොන්දු වුවද, පසුව රාජ්‍ය අනුග්‍රහය අහිමි විය.",e:"A",src:["cv:101"]},
-  {y:1873,s:"g",m:2,n:"බෞද්ධ පුනරුදය",d:"පානදුර වාදය, විද්‍යෝදය පිරිවෙන, ඔල්කට් (1880) සහ අනගාරික ධර්මපාල. රුවන්වැලි සෑයේ ප්‍රතිසංස්කරණය ආරම්භ විය (1873–1940).",e:"A",src:["mm:"]},
+  {y:1873,s:"g",m:2,n:"බෞද්ධ පුනරුදය",ph:"ruwanweli-restoration",d:"පානදුර වාදය, විද්‍යෝදය පිරිවෙන, ඔල්කට් (1880) සහ අනගාරික ධර්මපාල. රුවන්වැලි සෑයේ ප්‍රතිසංස්කරණය ආරම්භ විය (1873–1940).",e:"A",src:["mm:"]},
   {y:1885,s:"g",m:1,n:"වෙසක් නිවාඩුව",d:"ආණ්ඩුකාර ආතර් ගෝර්ඩන් යටතේ වෙසක් පොදු නිවාඩු දිනයක් විය.",e:"A",src:[]},
   {y:1948,s:"t",m:3,n:"නිදහස",d:"1948 පෙබරවාරි 4 ලංකාව නිදහස ලැබීය.",e:"A",src:[]},
   {y:1956,s:"g",m:2,n:"බුද්ධ ජයන්තිය",d:"බුද්ධ පරිනිර්වාණයෙන් වසර 2,500 සැමරුම: ත්‍රිපිටක සිංහල පරිවර්තනය සහ බෞද්ධ විශ්වකෝෂය ආරම්භ විය.",e:"A",src:[]},
   {y:1978,s:"g",m:2,n:"ව්‍යවස්ථාවේ 9 වන වගන්තිය",d:"බුදුදහමට ප්‍රමුඛස්ථානය සහ බුද්ධ ශාසනය රැකීමේ රාජ්‍ය යුතුකම, අනෙක් ආගම්වල අයිතිවාසිකම් සමඟ (1972 දී 6 වන වගන්තියෙන් මුලින්).",e:"A",src:[]},
   {y:2019,s:"g",m:1,n:"ත්‍රිපිටකය ජාතික උරුමය",d:"2019 දී ත්‍රිපිටකය ජාතික උරුමයක් ලෙස ප්‍රකාශයට පත් කෙරිණි.",e:"A",src:[]}
 ];
+
+/* ---------- Photographs (Harischandra, The Sacred City of Anuradhapura, 1908) ---------- */
+var IMG="assets/img/ithihasaya/";
+var PH={
+  "mihintale-steps":{t:"මිහින්තලේ පළමු පඩිපෙළ",n:"I"},
+  "thuparama-dalada-ruins":{t:"ථූපාරාමය සහ අනුරාධපුරයේ පැරණි දළදා මාලිගාවේ නටබුන්",n:"VI"},
+  "sri-maha-bodhi":{t:"ජය ශ්‍රී මහා බෝධිය",n:"X"},
+  "isurumuni-before":{t:"ඉසුරුමුණි විහාරය — ප්‍රතිසංස්කරණයට පෙර",n:"XI"},
+  "isurumuni-after":{t:"ඉසුරුමුණි විහාරය — ප්‍රතිසංස්කරණයෙන් පසු",n:"XII"},
+  "mirisaweti":{t:"මිරිසවැටි දාගැබ",n:"XIII"},
+  "lovamahapaya-pillars":{t:"ලෝවාමහාපායේ ගල් කණු",n:"XV"},
+  "ruwanweli-murage":{t:"රුවන්වැලි දාගැබ සහ මුරගේ",n:"XVI"},
+  "ruwanweli-restoration":{t:"රුවන්වැලි දාගැබේ ප්‍රතිසංස්කරණ වැඩ",n:"XVIII"},
+  "abhayagiri-before":{t:"අභයගිරි දාගැබ — ප්‍රතිසංස්කරණයට පෙර",n:"XXII"},
+  "abhayagiri-partly-restored":{t:"අභයගිරි දාගැබ — කොටසක් ප්‍රතිසංස්කරණය කළ පසු",n:"XXIII"},
+  "jetavana":{t:"ජේතවනාරාම දාගැබ",n:"XXIV"},
+  "damaged-buddha-statue":{t:"හානි වූ බුද්ධ ප්‍රතිමාවක්",n:"XL"}
+};
+function imgSrc(k){return IMG+k+".jpg"}
+function fig(k){var p=PH[k];if(!p)return "";return '<figure class="ph"><img src="'+imgSrc(k)+'" alt="'+esc(p.t)+' (1908)" loading="lazy"><figcaption>'+esc(p.t)+' · 1908 · ඡායාරූපය '+p.n+'</figcaption></figure>'}
+function buildPhotos(){
+  var pairs=[["isurumuni-before","isurumuni-after"],["abhayagiri-before","abhayagiri-partly-restored"]];
+  document.getElementById("phpairs").innerHTML=pairs.map(function(x){return '<div class="phpair">'+fig(x[0])+'<div class="arrow" aria-hidden="true">→</div>'+fig(x[1])+'</div>'}).join("");
+  var rest=["damaged-buddha-statue","thuparama-dalada-ruins","jetavana","lovamahapaya-pillars","mirisaweti","ruwanweli-murage","ruwanweli-restoration","sri-maha-bodhi","mihintale-steps"];
+  document.getElementById("phgrid").innerHTML=rest.map(fig).join("");
+}
 
 /* ---------- Timeline render ---------- */
 var X0=-560, X1=2040, BRK=1000, P1=0.85, P2=2.0, W=Math.round((BRK-X0)*P1+(X1-BRK)*P2)+60, H=520, AX=265;
@@ -450,7 +497,7 @@ function select(i){
   var d=document.getElementById("detail");
   d.className="detail "+ev.s;
   var kind=ev.s==="g"?"බුදුසසුනට කළ සේවය":ev.s==="r"?"බුදුසසුනට වූ හානිය":"රටට කළ සේවය";
-  d.innerHTML='<div class="bar"></div><div><div class="when">'+yr(ev.y)+' · '+kind+'<span class="badge">සාක්ෂි '+ev.e+'</span></div><h3>'+esc(ev.n)+'</h3><p>'+esc(ev.d)+'</p>'+srcHTML(ev.src)+'</div>';
+  d.innerHTML='<div class="bar"></div><div><div class="when">'+yr(ev.y)+' · '+kind+'<span class="badge">සාක්ෂි '+ev.e+'</span></div><h3>'+esc(ev.n)+'</h3><p>'+esc(ev.d)+'</p>'+srcHTML(ev.src)+(ev.ph?fig(ev.ph):'')+'</div>';
 }
 
 /* ---------- Crisis & revival ---------- */
@@ -687,6 +734,7 @@ var SRC=[
  {h:"චූලවංශය",d:"W. Geiger ඉංග්‍රීසි පරිවර්තනය, 1929–30. සිරිමේඝවණ්ණගේ සිට 1815 දක්වා. පරිච්ඡේද 37–79 වෙළුම 1 හි, 80–101 වෙළුම 2 හි.",l:[["වෙළුම 1","https://books.lakdiva.org.lk/culavamsa/vol_1.html"],["වෙළුම 2","https://books.lakdiva.org.lk/culavamsa/vol_2.html"]]},
  {h:"සූත්‍ර පිටකය (tripitaka.online)",d:"මිහිඳු හිමියන් ලංකාවේ දේශනා කළ සූත්‍ර මුල් පාලි-සිංහල පාඨයෙන් කියවන්න.",l:[["චූළහත්ථිපදෝපම","https://www.tripitaka.online/sutta/340"],["බාලපණ්ඩිත","https://www.tripitaka.online/sutta/782"],["දේවදූත","https://www.tripitaka.online/sutta/783"]]},
  {h:"මහාමේඝ සඟරාව",d:"මහාවංශයේ ඉතිහාසය සහ එහි සිංහල පරිවර්තන (1877 සිට).",l:[["මහාවංශය ලිපිය","https://mahamegha.lk/2021/08/14/mahawansaya/"],["මහාවංශ ලිපි සියල්ල","https://mahamegha.lk/?s=%E0%B6%B8%E0%B7%84%E0%B7%8F%E0%B7%80%E0%B6%82%E0%B7%81%E0%B6%BA"]]},
+ {h:"පැරණි ඡායාරූප",d:"බ්‍රහ්මචාරී වලිසිංහ හරිශ්චන්ද්‍ර, The Sacred City of Anuradhapura, කොළඹ, 1908. ඡායාරූප 46ක් සහිත පොත.",l:[["archive.org","https://archive.org/details/sacredcityofanur00haririch"]]},
  {h:"තවදුරටත් කියවීමට",d:"වල්පොළ රාහුල හිමි, History of Buddhism in Ceylon (1956) · K. M. de Silva, A History of Sri Lanka (1981) · H. R. Perera, Buddhism in Sri Lanka: A Short History.",l:[["H. R. Perera (Access to Insight)","https://www.accesstoinsight.org/lib/authors/perera/wheel100.html"]]}
 ];
 function buildSources(){
@@ -694,7 +742,7 @@ function buildSources(){
 }
 
 buildTimeline(); select(EV.findIndex(function(e){return e.y===1215}));
-buildCrisis(); buildMap(); buildKings(); buildQuiz(); buildSources();
+buildCrisis(); buildPhotos(); buildMap(); buildKings(); buildQuiz(); buildSources();
 })();
 </script>
 </body>
