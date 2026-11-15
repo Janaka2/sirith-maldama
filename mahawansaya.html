@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>මහාවංශය — දිනපතා අධ්‍යයනය (ගුරුවරුන්ට)</title>
+  <meta name="description" content="මහාවංශයේ පරිච්ඡේද 37 ම දිනපතා උදේ, දවල් සහ හවස විනාඩි 5 බැගින් කියවා අවසන් කිරීමට ගුරුවරුන් සඳහා අධ්‍යයන මාර්ගෝපදේශය සහ නොකඩවා කියවීමේ සටහන.">
+  <meta name="theme-color" content="#7c2d12">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700;800;900&family=Noto+Serif+Sinhala:wght@600;700;800&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root { --mv: #7c2d12; --mv2: #b45309; --mvs: #fdf1e2; --ok: #15803d; }
+    #app { max-width: 1100px; }
+    .mv-sub { position: sticky; top: 66px; z-index: 20; display: flex; gap: 6px; overflow-x: auto; padding: 8px 2px; margin: -6px 0 10px; background: rgba(255, 248, 236, .94); backdrop-filter: blur(8px); }
+    .mv-sub a { flex: none; padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: .92rem; color: var(--mv); border: 2px solid #f1dfc1; background: #fff; }
+    .mv-sub a:hover { background: #ffedc9; }
+    .mv-sec { margin: 22px 0 28px; scroll-margin-top: 120px; }
+    .mv-sec > h2 { font-family: var(--serif); color: var(--mv); font-size: 1.45rem; margin-bottom: 4px; }
+    .mv-sec > p.lead { color: var(--ink2); margin-bottom: 12px; }
+    .mv-hero { background: linear-gradient(135deg, #fff7ea, #ffe9cc); border: 3px solid #f1d4a3; border-radius: 26px; padding: 20px 22px; display: grid; gap: 14px; }
+    .mv-hero h1 { font-family: var(--serif); color: var(--mv); font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.35; }
+    .mv-hero p { color: #5b4636; }
+    .mv-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+    .mv-stat { background: #fff; border: 2px solid var(--line); border-radius: 18px; padding: 10px 14px; }
+    .mv-stat b { display: block; font-size: 1.7rem; font-weight: 900; color: var(--mv); line-height: 1.2; font-variant-numeric: tabular-nums; }
+    .mv-stat span { font-size: .85rem; color: var(--ink2); font-weight: 700; }
+    .mv-stat.fire b { color: #c2410c; }
+    .mv-now { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: #fff; border: 3px solid var(--line); border-radius: 22px; padding: 14px 18px; }
+    .mv-now h3 { font-size: 1.15rem; color: var(--mv); }
+    .mv-now small { color: var(--ink2); font-weight: 700; }
+    .bar { height: 12px; border-radius: 99px; background: #f3e6d2; overflow: hidden; margin-top: 8px; }
+    .bar i { display: block; height: 100%; background: linear-gradient(90deg, #f59e0b, #b45309); border-radius: 99px; transition: width .4s; }
+    .bar.ok i { background: linear-gradient(90deg, #22c55e, #15803d); }
+    .mv-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+    .slot { background: #fff; border: 3px solid var(--line); border-radius: 22px; padding: 14px; display: grid; gap: 8px; align-content: start; text-align: left; }
+    .slot.now { border-color: #f59e0b; box-shadow: 0 0 0 4px #fde68a; }
+    .slot.done { border-color: #86efac; background: #f0fdf4; }
+    .slot h3 { display: flex; align-items: center; gap: 8px; font-size: 1.1rem; color: var(--mv); }
+    .slot h3 .ico { font-size: 1.5rem; }
+    .slot .meta { font-size: .88rem; color: var(--ink2); font-weight: 700; }
+    .slot .tick { font-size: 1.05rem; font-weight: 900; color: var(--ok); }
+    .timer { font-size: 2.4rem; font-weight: 900; color: var(--mv); font-variant-numeric: tabular-nums; letter-spacing: 1px; text-align: center; }
+    .timer.end { color: var(--ok); }
+    .slot .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .slot label { font-size: .85rem; font-weight: 800; color: #5b4636; display: grid; gap: 3px; }
+    .slot input, .slot select, .slot textarea, .mv-notes { font: inherit; padding: 6px 10px; border: 2px solid #f1dfc1; border-radius: 12px; background: #fffdf8; width: 100%; }
+    .slot textarea { min-height: 54px; resize: vertical; }
+    .mv-cal-wrap { background: #fff; border: 3px solid var(--line); border-radius: 22px; padding: 14px; overflow-x: auto; }
+    .mv-cal { display: grid; grid-auto-flow: column; grid-template-rows: 16px repeat(7, 14px); gap: 3px; width: max-content; }
+    .mv-cal .m { font-size: .68rem; font-weight: 800; color: var(--ink2); white-space: nowrap; }
+    .mv-cal button { width: 14px; height: 14px; padding: 0; border: 0; border-radius: 3px; background: #f1e7d8; }
+    .mv-cal button.l1 { background: #fcd34d; } .mv-cal button.l2 { background: #f59e0b; } .mv-cal button.l3 { background: #b45309; }
+    .mv-cal button.fut { visibility: hidden; }
+    .mv-cal button.today { outline: 2px solid #1d4ed8; outline-offset: 1px; }
+    .mv-cal button.late { background-image: repeating-linear-gradient(45deg, transparent 0 3px, rgba(255,255,255,.55) 3px 5px); }
+    .mv-legend { display: flex; gap: 6px; align-items: center; font-size: .8rem; color: var(--ink2); font-weight: 700; margin-top: 8px; flex-wrap: wrap; }
+    .mv-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+    .mv-day { margin-top: 12px; border-top: 2px dashed #f1dfc1; padding-top: 12px; }
+    .mv-day .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .chip { display: inline-flex; gap: 6px; align-items: center; padding: 6px 12px; border-radius: 999px; border: 2px solid #f1dfc1; background: #fff; font-weight: 800; font-size: .9rem; }
+    .chip.on { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .part { margin-top: 18px; }
+    .part > h3 { font-family: var(--serif); font-size: 1.12rem; color: var(--pc, var(--mv)); border-left: 6px solid var(--pc, var(--mv)); padding-left: 10px; margin-bottom: 8px; }
+    .chs { display: grid; gap: 8px; }
+    details.ch { background: #fff; border: 2px solid var(--line); border-radius: 18px; }
+    details.ch[open] { border-color: #f6c784; box-shadow: var(--shadow); }
+    details.ch > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 46px 1fr auto; gap: 10px; align-items: center; padding: 10px 14px; }
+    details.ch > summary::-webkit-details-marker { display: none; }
+    .num { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; background: var(--mvs); color: var(--mv); font-size: 1.05rem; }
+    .ch.done .num { background: #dcfce7; color: #166534; }
+    .ch.cur .num { background: #f59e0b; color: #fff; }
+    .ch .tt b { display: block; font-size: 1rem; line-height: 1.4; }
+    .ch .tt small { color: var(--ink2); font-weight: 700; font-size: .8rem; }
+    .ch .badge { font-size: .78rem; font-weight: 900; color: #166534; background: #dcfce7; border-radius: 99px; padding: 2px 9px; white-space: nowrap; }
+    .ch-body { padding: 4px 18px 18px; display: grid; gap: 12px; }
+    .ch-body h4 { font-size: .95rem; color: var(--mv2); margin-bottom: 2px; }
+    .ev { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    .ev li { display: grid; grid-template-columns: 74px 1fr; gap: 8px; }
+    .ev .pp { font-size: .78rem; font-weight: 900; color: #7c2d12; background: #fff1dc; border-radius: 8px; padding: 2px 6px; height: max-content; text-align: center; font-variant-numeric: tabular-nums; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tags span { background: #f8f1e6; border-radius: 8px; padding: 1px 8px; font-size: .85rem; }
+    .sut { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+    .sut a { color: #1d4ed8; text-decoration: underline; text-underline-offset: 3px; }
+    .les { background: #fffbeb; border-left: 5px solid #f59e0b; border-radius: 10px; padding: 8px 12px; }
+    .qs { margin: 0; padding-left: 20px; }
+    .mv-notes { min-height: 80px; resize: vertical; }
+    .ch-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mv-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .mv-guide .card h3 { font-size: 1.05rem; color: var(--mv); margin-bottom: 6px; }
+    .mv-guide .card ol, .mv-guide .card ul { margin: 0; padding-left: 20px; }
+    .mv-guide .card a { color: #1d4ed8; text-decoration: underline; }
+    .mv-warn { background: #fef3c7; border: 2px solid #fcd34d; border-radius: 16px; padding: 10px 14px; font-weight: 700; }
+    .mv-data { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .mv-times { display: flex; gap: 8px; flex-wrap: wrap; align-items: end; margin-top: 10px; }
+    .mv-times label { display: grid; font-size: .85rem; font-weight: 800; gap: 2px; }
+    .mv-times input, .mv-times select { font: inherit; padding: 5px 8px; border: 2px solid #f1dfc1; border-radius: 10px; }
+    .confirm { margin-top: 10px; background: #fff7ed; border: 2px solid #fdba74; border-radius: 14px; padding: 10px 12px; display: grid; gap: 8px; }
+    .review { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 12px 14px; color: #334155; font-size: .93rem; }
+    @media (max-width: 760px) { .mv-sub { position: static; margin: 0 0 8px; } .mv-hero { padding: 14px; } .mv-hero > p { font-size: .9rem; } .mv-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; } .mv-stat { padding: 8px; border-radius: 14px; } .mv-stat b { font-size: 1.2rem; } .mv-stat span { font-size: .72rem; line-height: 1.35; display: block; } .mv-slots { grid-template-columns: 1fr; } .mv-now { grid-template-columns: 1fr; } .ev li { grid-template-columns: 64px 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#app">අන්තර්ගතයට යන්න</a>
+  <header class="top">
+    <div class="top-in">
+      <a class="brand" href="index.html" aria-label="මුල් පිටුව">
+        <img class="brand-logo" src="assets/img/logo.jpg" alt="Mahamevnawa Dhamma School UK" width="50" height="50">
+        <span class="brand-text"><b>මහාවංශය</b><small>දිනපතා අධ්‍යයනය · ගුරුවරුන්ට</small></span>
+      </a>
+      <nav class="nav" aria-label="ප්‍රධාන">
+        <a href="index.html"><span aria-hidden="true">🏠</span><span>සිරිත් මල්දම</span></a>
+        <a href="padam.html"><span aria-hidden="true">📚</span><span>පාඩම්</span></a>
+        <a href="ithihasaya-guru.html"><span aria-hidden="true">🕰️</span><span>ඉතිහාසය</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1">
+    <nav class="mv-sub" aria-label="මෙම පිටුව">
+      <a href="#ada">🌅 අද</a><a href="#dina">📅 දින සටහන</a><a href="#paricheda">📜 පරිච්ඡේද 37</a><a href="#upades">👩‍🏫 ක්‍රමය</a><a href="#datta">💾 දත්ත</a>
+    </nav>
+
+    <section class="mv-hero" aria-labelledby="h1">
+      <h1 id="h1">මහාවංශය මුල සිට අගට — දිනකට තුන් වතාවක්, විනාඩි 5 බැගින්</h1>
+      <p>මහමෙව්නා ආරාමයේ සිංහල මහාවංශයේ පරිච්ඡේද 37 ම (ඡේද <b id="totP">2,907</b>) දිනපතා උදේ, දවල් සහ හවස කියවා, එදා කියවූ තැන සටහන් කරන්න. නොකඩවා කියවූ දින ගණන මෙහි වැඩෙයි.</p>
+      <div class="mv-stats" id="stats" aria-live="polite"></div>
+      <div id="warn"></div>
+    </section>
+
+    <section class="mv-sec" id="ada" aria-labelledby="hAda">
+      <h2 id="hAda">🌅 අද</h2>
+      <p class="lead" id="todayLabel"></p>
+      <div class="mv-now" id="now"></div>
+      <div class="mv-slots" id="slots"></div>
+    </section>
+
+    <section class="mv-sec" id="dina" aria-labelledby="hDina">
+      <h2 id="hDina">📅 නොකඩවා කියවීමේ සටහන</h2>
+      <p class="lead">පසුගිය වසරේ දින සියල්ල. කොටුවක් තද වන්නේ එදා කියවූ වාර ගණන අනුවය. පසුව සටහන් කළ දින ඉරි සහිතව පෙනේ. දිනයක් තට්ටු කර එය සංස්කරණය කරන්න.</p>
+      <div class="mv-cal-wrap">
+        <div class="mv-cal" id="cal" role="grid" aria-label="කියවූ දින"></div>
+        <div class="mv-legend"><span>අඩු</span><i style="background:#f1e7d8"></i><i style="background:#fcd34d"></i><i style="background:#f59e0b"></i><i style="background:#b45309"></i><span>වැඩි (3/3)</span></div>
+        <div class="mv-day" id="dayEdit" hidden></div>
+      </div>
+    </section>
+
+    <section class="mv-sec" id="paricheda" aria-labelledby="hPar">
+      <h2 id="hPar">📜 පරිච්ඡේද 37 — අධ්‍යයන මාර්ගෝපදේශය</h2>
+      <p class="lead">එක් එක් පරිච්ඡේදයේ ප්‍රධාන සිදුවීම් ඡේද අංක සමඟ, පුද්ගලයන්, ස්ථාන, එහි සඳහන් සූත්‍ර (tripitaka.online සබැඳි සමඟ), පරිච්ඡේදය අවසානයේ ආවර්ජනය සහ සාකච්ඡා ප්‍රශ්න. සම්පූර්ණ පාඨය කියවන්නේ mahamevnawa.lk හිය.</p>
+      <div id="parts"></div>
+    </section>
+
+    <section class="mv-sec" id="upades" aria-labelledby="hUp">
+      <h2 id="hUp">👩‍🏫 කියවන ක්‍රමය</h2>
+      <div class="mv-guide">
+        <div class="card"><h3>දිනපතා පිළිවෙත</h3>
+          <ol>
+            <li>“අද” කොටසේ වාරය තෝරා <b>ආරම්භ කරන්න</b> ඔබන්න. විනාඩි 5 ක ඔරලෝසුව පටන් ගනී.</li>
+            <li><b>කියවන්න</b> ඔබා mahamevnawa.lk හි පරිච්ඡේදය විවෘත කරන්න. එහි ඡේද “1.”, “2.” ලෙස අංක කර ඇත.</li>
+            <li>අවසානයේ කියවූ අවසාන ඡේද අංකය ලියා <b>සටහන් කරන්න</b>. ඊළඟ වර එතැන් සිට අරඹයි.</li>
+            <li>පරිච්ඡේදයේ අවසාන ඡේදය ලියූ විට එය නිම වූ ලෙස සලකා ඊළඟ පරිච්ඡේදයට යයි.</li>
+          </ol></div>
+        <div class="card"><h3>නොකඩවා යාම</h3>
+          <ul>
+            <li>දිනකට එක් වාරයක් හෝ කළොත් “නොකඩවා දින” ගණන වැඩේ. වාර තුනම කළ දින “පූර්ණ දින” ලෙස ගණන් වේ.</li>
+            <li>අමතක වූ දිනයක් දින සටහනෙන් පසුව එක් කළ හැක. එය අවංකව “පසුව සටහන් කළා” ලෙස ඉරි සහිතව පෙනේ.</li>
+            <li>මතක් කිරීම් සඳහා “දත්ත” කොටසෙන් දින දර්ශන ගොනුව (.ics) බාගෙන ඔබේ දුරකථනයේ දින දර්ශනයට එක් කරන්න.</li>
+          </ul></div>
+        <div class="card"><h3>සතියකට වරක්</h3>
+          <ul>
+            <li>නිම කළ පරිච්ඡේදයේ “සාකච්ඡා ප්‍රශ්න” ගුරු කවයක් සමඟ කතා කරන්න.</li>
+            <li>එහි සඳහන් සූත්‍රයක් tripitaka.online හි පාලි සහ සිංහල පරිවර්තනයෙන් කියවන්න.</li>
+            <li>ඔබේ සටහන් එක් එක් පරිච්ඡේදයේ “මගේ සටහන්” කොටුවේ ලියන්න.</li>
+          </ul></div>
+        <div class="card"><h3>මූලාශ්‍ර</h3>
+          <ul>
+            <li>මහාවංශ පාඨය: <a href="https://mahamevnawa.lk/sinhala-mahawanshaya/" target="_blank" rel="noopener">mahamevnawa.lk — සිංහල මහාවංශය</a> (පරිච්ඡේද 1–37).</li>
+            <li>සූත්‍ර: <a href="https://www.tripitaka.online/" target="_blank" rel="noopener">tripitaka.online</a> — පාලි සහ අතිපූජ්‍ය කිරිබත්ගොඩ ඤාණානන්ද ස්වාමීන් වහන්සේගේ සිංහල පරිවර්තනය.</li>
+            <li>මෙහි සාරාංශ අපේම වචනයෙනි; මහාවංශ පාඨය මෙහි පිටපත් කර නැත. සූත්‍රයක් සබැඳියක් නැතිව ඇත්නම්, tripitaka.online හි ගැළපෙන පිටුවක් සොයා ගත්තේ නැත.</li>
+          </ul></div>
+      </div>
+      <p class="review" style="margin-top:12px"><b>පරීක්ෂාව:</b> මෙම පිටුවේ සාරාංශ, ආවර්ජන සහ සාකච්ඡා ප්‍රශ්න නව ලිපි වේ. උගන්වීමට පෙර මහමෙව්නාව ස්වාමීන් වහන්සේ නමක් හෝ දහම් පාසල් ගුරුතුමෙකු විසින් පරීක්ෂා කළ යුතුය. ඡේද අංක 2026-11-15 දින mahamevnawa.lk සමඟ ගැළපූ ඒවාය; එම වෙබ් අඩවිය වෙනස් වුවහොත් ඒවා ද වෙනස් විය හැක.</p>
+    </section>
+
+    <section class="mv-sec" id="datta" aria-labelledby="hDat">
+      <h2 id="hDat">💾 ඔබේ දත්ත</h2>
+      <p class="lead">සටහන් ගබඩා වන්නේ මෙම බ්‍රවුසරයේ පමණි; කිසිදු සේවාදායකයකට නොයයි. දුරකථනය මාරු කරන විට හෝ බ්‍රවුසරය හිස් කරන විට අහිමි නොවීමට මසකට වරක් උපස්ථ ගොනුවක් බාගන්න.</p>
+      <div class="card">
+        <div class="mv-data">
+          <button class="btn" type="button" id="exp">⬇️ උපස්ථය බාගන්න</button>
+          <label class="btn ghost" for="imp" style="cursor:pointer">⬆️ උපස්ථයක් ඇතුළත් කරන්න</label>
+          <input type="file" id="imp" accept="application/json,.json" hidden>
+          <span id="lastBk" style="font-weight:700;color:var(--ink2)"></span>
+        </div>
+        <div id="impAsk"></div>
+        <h3 style="margin-top:16px;color:var(--mv)">⏰ මතක් කිරීම් සහ වාර කාලය</h3>
+        <div class="mv-times">
+          <label>🌅 උදේ <input type="time" id="tm" value="06:30"></label>
+          <label>☀️ දවල් <input type="time" id="td" value="13:00"></label>
+          <label>🌙 හවස <input type="time" id="te" value="20:30"></label>
+          <label>වාරයක විනාඩි <select id="len"><option>5</option><option>10</option><option>15</option><option>20</option></select></label>
+          <button class="btn ghost small" type="button" id="ics">📅 දින දර්ශන ගොනුව (.ics)</button>
+        </div>
+        <div style="margin-top:16px"><button class="btn ghost small danger" type="button" id="resetAsk">සියල්ල මකා නැවත අරඹන්න</button><div id="resetBox"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-school"><img src="assets/img/logo.jpg" alt="" width="64" height="64" loading="lazy"><div><b>Mahamevnawa Dhamma School UK</b><span>මහමෙව්නාව දහම් පාසල · එක්සත් රාජධානිය</span></div></div>
+    <p>මහාවංශ පාඨය: <a href="https://mahamevnawa.lk/sinhala-mahawanshaya/" target="_blank" rel="noopener" style="text-decoration:underline">mahamevnawa.lk</a> · සූත්‍ර: <a href="https://www.tripitaka.online/" target="_blank" rel="noopener" style="text-decoration:underline">tripitaka.online</a></p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/mahawansaya-data.js"></script>
+  <script src="assets/js/mahawansaya.js"></script>
+  <noscript><p style="padding:24px;text-align:center">මෙම පිටුව බැලීමට JavaScript සක්‍රිය කරන්න.</p></noscript>
+</body>
+</html>
