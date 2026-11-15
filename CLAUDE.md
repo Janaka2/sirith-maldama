@@ -68,6 +68,7 @@ progress page, unless the owner asks.
 | `tools/google-sheet/` | Apps Script for the teacher's sheet and SETUP.md |
 | `assets/js/art.js`, `scenes*.js` | Drawing library and one picture per poem |
 | `assets/js/app.js` | Pages, progress, quiz |
+| `mahawansaya.html`, `assets/js/mahawansaya*.js` | Teachers' daily Mahavamsa study tracker (chapters 1–37 of the mahamevnawa.lk Mahavamsa). Summaries are our own words with paragraph numbers; the text itself is only linked, never copied. Progress lives in the browser's localStorage only |
 
 No build step. Test with `python3 -m http.server 8765`.
 

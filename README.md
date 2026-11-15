@@ -23,6 +23,17 @@ timeline, damage and revival, the capitals and the Tooth Relic's journey, 80 rul
 short quiz. By the owner's decision of 2026-11-13 it may also cite the Rajavaliya and the
 Culavamsa, for the period after Mahasena. See CLAUDE.md.
 
+## Mahavamsa daily study (teachers)
+
+`mahawansaya.html` helps a teacher read all 37 chapters of the mahamevnawa.lk Mahavamsa
+in three short sessions a day (morning, day, evening; 5 minutes by default). It keeps the
+reading position by paragraph number, the daily streak, a year calendar, per-chapter notes,
+and offers a JSON backup and an .ics file of daily reminders. Everything is stored in the
+browser's localStorage only. The chapter guide (`assets/js/mahawansaya-data.js`) gives
+each chapter's events in our own words with paragraph numbers, the suttas the chapter
+names (linked to tripitaka.online where a matching page was found), and discussion
+questions. The chronicle text itself is linked, not copied.
+
 ## Favourites
 
 `assets/js/favourites.js` is a self-contained module. It is not tied to the poems, so any
